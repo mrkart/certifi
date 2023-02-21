@@ -63,6 +63,16 @@ const Sidemenu = () => {
             />
             <span>Signers</span>
           </NavLink>
+
+
+          <NavLink to="/login" className="list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" activeClassName="active">
+            <img
+              src={require('../../assets/images/icons/log-out-outline.png')}
+              className='sidebaricons me-3'
+            />
+            <span>Logout</span>
+          </NavLink>
+
           {/* <a href="#" data-mdb-ripple-color="#44c6e3" className="list-group-item list-group-item-action px-3 py-2 ripple text-uppercase">
             <img
               src={require('../../assets/images/icons/settings.png')}

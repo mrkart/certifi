@@ -12,6 +12,8 @@ import Issue_Certificate from './components/Issue_Certificate';
 import PageNotFound from './components/PageNotFound';
 import Signer from './components/Signer';
 import { PrivateRoute } from './layout/PrivateRoute';
+import StudentsAdd from './components/Students_Add';
+import StudentsEdit from './components/Students_Edit';
 
 function App() {
   useEffect(() => {
@@ -30,6 +32,16 @@ function App() {
         <Route path="/students" element={ 
           <PrivateRoute>
             <Admin subElement={ <Students /> }  /> 
+          </PrivateRoute> 
+        } />
+        <Route path="/add-student" element={ 
+          <PrivateRoute>
+            <Admin subElement={ <StudentsAdd /> }  /> 
+          </PrivateRoute> 
+        } />
+        <Route path="/edit-student" element={ 
+          <PrivateRoute>
+            <Admin subElement={ <StudentsEdit /> }  /> 
           </PrivateRoute> 
         } />
         <Route path="/students-import" element={ 

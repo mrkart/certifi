@@ -298,6 +298,10 @@ input[type="file"] { display: none;}
 .btn-abs .eva{ position: absolute; right: 10px; top: 50%; transform: translateY(-50%);}
 .btn-abs::after{content: ''; position: absolute; right: 42px; height: 100%; width: 1px; background: rgba(0, 0, 0, 0.1); top: 0px;}
 .btn-disabled{pointer-events: none;}
+.light-brd { border-color: #a6b9c8;}
+
+.sidemenupanel {overflow: hidden;overflow-y: scroll;height: calc(100vh - 145px);}
+.mobvis{ display: none !important;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}
@@ -315,9 +319,11 @@ main {padding-left: 270px;}
     .sidebar.show{ display: block !important;}
     main.height100per .container-fluid {padding-left: 15px !important; padding-top: 15px !important;}
     .scrolldiv{ padding: 0px;}
+    .mobvis{ display: block !important;}
 }
 @media (max-width: 991px) {
-
+html, body, div#root, .dashboard-light-bg, .h100vh, .backgroundblur {height: auto;}
+.commonbox {padding-bottom: 15px;}
 }
 
 @media (max-width: 767px) {

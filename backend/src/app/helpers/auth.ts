@@ -1,8 +1,4 @@
-import {
-    Organisation,
-    Profile,
-    Role
-} from '../models/repositories/user-repository';
+import { Profile, Role, Organisation } from './user';
 
 export class AuthUser implements Profile {
     id: number;

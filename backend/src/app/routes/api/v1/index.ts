@@ -5,6 +5,6 @@ const routes: ApiRouter[] = [];
 const v1Router = Router();
 
 routes.forEach((route) => {
-  v1Router.use(`/v1/${route.basePath}`, route.Router);
+    v1Router.use(`/v1/${route.basePath}`, route.Router);
 });
 export default v1Router;

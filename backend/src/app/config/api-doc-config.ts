@@ -18,11 +18,11 @@ export const apiDefintion: SwaggerDefinition = {
     basePath: '/',
     schemes: ['http', 'https'],
     components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-        },
-      },
-    },
+        securitySchemes: {
+            bearerAuth: {
+                type: 'http',
+                scheme: 'bearer'
+            }
+        }
+    }
 };

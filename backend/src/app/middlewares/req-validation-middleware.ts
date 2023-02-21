@@ -3,14 +3,22 @@ import {
     instanceToPlain,
     plainToInstance
 } from 'class-transformer';
-import { validate, ValidationError } from 'class-validator';
+import {
+    isEmpty,
+    isNotEmpty,
+    isNumberString,
+    validate,
+    ValidationError
+} from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 import { trimSanitizer } from '../sanitizers/trim-sanitizer';
 import {
+    AccessDeniedError,
     InvalidRequestBodyError,
     InvalidRequestError,
     UnhandledError
 } from '../errors';
+import { AuthUser } from '../helpers';
 
 export function BodyValidationMiddleware(
     classType: ClassConstructor<unknown>,
@@ -94,6 +102,34 @@ export function UrlParamsValidationMiddleware(
             next();
         }
     };
+}
+
+export async function OrgIdHeaderValidationMiddleare(
+    request: Request,
+    response: Response,
+    next: NextFunction
+) {
+    const orgId: string = request.header('cerfi-org-id');
+    const user = plainToInstance(AuthUser, request['user']);
+    const isSameOrgAccess = user.organistaions.find(
+        (org) => org.id.toString() === orgId
+    );
+    if (isNumberString(orgId) && isNotEmpty(isSameOrgAccess)) {
+        next();
+    } else if (isNumberString(orgId) && isEmpty(isSameOrgAccess)) {
+        next(new AccessDeniedError());
+    } else {
+        next(
+            new InvalidRequestError(
+                'Required URL parameters in request are either missing or invalid',
+                'INVALID_REQUEST_URL_PARAMETERS',
+                [
+                    ['header certifi-org-id should not be empty'],
+                    ['header certifi-org-id should be a number string']
+                ]
+            )
+        );
+    }
 }
 
 async function validateRequest(

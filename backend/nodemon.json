@@ -1,5 +1,5 @@
 {
-  "watch": ["build/*", ".env"],
-  "ext": "js",
-  "exec": "npm run start"
+    "watch": ["build/*", ".env"],
+    "ext": "js",
+    "exec": "npm run start"
 }

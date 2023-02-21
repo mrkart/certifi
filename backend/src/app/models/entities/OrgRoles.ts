@@ -4,8 +4,7 @@ import {
     Index,
     JoinColumn,
     ManyToOne,
-    PrimaryGeneratedColumn,
-    RelationId
+    PrimaryGeneratedColumn
 } from 'typeorm';
 import { Org } from './Org';
 import { User } from './User';

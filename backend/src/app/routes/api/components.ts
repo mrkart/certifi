@@ -62,6 +62,37 @@
  *       properties:
  *           refreshToken:
  *               type: string
+ *     CreateUserDTO:
+ *       type: object
+ *       properties:
+ *           email:
+ *             type: string
+ *             format: email
+ *           name:
+ *               type: string
+ *           phone:
+ *               type: string
+ *           slotName:
+ *               type: string
+ *     OrgSlot:
+ *       type: object
+ *       properties:
+ *           id:
+ *               type: integer
+ *           name:
+ *               type: string
+ *     OrgUser:
+ *       allOf:
+ *         - $ref: '#/components/schemas/Profile'
+ *         - type: object
+ *           properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               slots:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/OrgSlot'
  *   responses:
  *     NotFound:
  *       description: The specified resource does not exsist

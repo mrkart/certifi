@@ -4,6 +4,8 @@ import { CertData } from './CertData';
 import { Certificate } from './Certificate';
 import { Org } from './Org';
 import { OrgRoles } from './OrgRoles';
+import { Slot } from './Slot';
+import { SlotHasUser } from './SlotHasUser';
 import { UserEmail } from './UserEmail';
 
 @Entity('user')
@@ -77,4 +79,7 @@ export class User {
         cascade: ['insert']
     })
     userEmails: UserEmail[];
+
+    @OneToMany(() => SlotHasUser, (slotHasUser) => slotHasUser.user)
+    slotHasUsers: SlotHasUser[];
 }

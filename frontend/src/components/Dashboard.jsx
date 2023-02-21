@@ -1,8 +1,5 @@
 import { React, useEffect, useMyCustomStuff } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSampleAPI } from '../actions/exampleAction';
-
 
 const data = [
   {

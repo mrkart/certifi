@@ -1,0 +1,41 @@
+{
+  "docType":"certificate", 
+   "holderName":"sundar",
+   "holder":"0xhgs",
+
+  "CertData":{
+    "course":"course",
+    "certNumber": "ABC4444",
+    "batchInfo": "APR 2023",
+    "gradeInfo": "A",
+},
+
+"Issuer":{
+    "insitution": "ABC University",
+    "institutionID": "10",
+    "Description":"Something about univ",
+    "issuedDate":"21-February-2023",
+},
+    
+"Cert":{
+      "templateID":"23", 
+      "uri":"https://ipfs.perma.store/content/bafkreifjgv6e52ufm3dpglrknm473q3kc53tk5m474cazqzhdndtnjtwnq",
+        "size":23208,
+        "mimeType":"image/webp",
+        "dimensions":"1600x1200"    },
+ 
+"Signer1":{
+    "address": "0xabc",
+    "signerID":"122".
+},
+  
+"Signer2":{
+    "address": "0xfbc",
+    "signerID":"127".
+},
+  
+"PlatformInfo":{
+        "Platform":"Certifi",
+        "MintedAt":"www.certifi.ly",
+    },
+}

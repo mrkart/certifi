@@ -4,10 +4,15 @@ import getDataSource from '../../config/datasource';
 import { ResourceNotFoundError } from '../../errors';
 import { Org } from '../entities/Org';
 
+interface OrgRepositoryInterface {
+    findById: (id: number) => Promise<Org>;
+}
+
+type This = Repository<Org> & OrgRepositoryInterface;
 const OrgRepository = getDataSource()
     .getRepository(Org)
     .extend({
-        findById: async function (orgId: number) {
+        findById: async function (this: This, orgId: number) {
             const org = await this.findOneBy({
                 id: orgId
             });
@@ -16,5 +21,5 @@ const OrgRepository = getDataSource()
             }
             return org;
         }
-    });
+    } as OrgRepositoryInterface & ThisType<Repository<Org> & OrgRepositoryInterface>);
 export default OrgRepository;

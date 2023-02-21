@@ -1,6 +1,6 @@
 import Router from 'express';
 import { UserController } from '../../../controllers';
-import { CreateUserDTO, UserIdUrlPramDTO } from '../../../dtos';
+import { CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../../dtos';
 import { AuthenticationMiddleware } from '../../../middlewares/authentication-middleware';
 import {
     BodyValidationMiddleware,
@@ -157,7 +157,7 @@ usersRouter.post(
  *         required: true
  *     responses:
  *       "200":
- *         description: User created
+ *         description: Users fetched
  *         content:
  *          application/json:
  *            schema:
@@ -202,6 +202,147 @@ usersRouter.get(
     }
 );
 
-console.log(JSON.stringify(usersRouter._router.stack, null, 4));
+/**
+ * @openapi
+ * /api/users/{userId}:
+ *   get:
+ *     summary: Get the user details
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: header
+ *         name: cerfi-org-id
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *       - in: path
+ *         name: userId
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *     responses:
+ *       "200":
+ *         description: User fetched
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Org user created
+ *                    data:
+ *                      type: object
+ *                      properties:
+ *                      $ref: '#/components/schemas/OrgUser'
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.get(
+    '/:userId',
+    AuthenticationMiddleware,
+    OrgIdHeaderValidationMiddleare,
+    async (request, response, next) => {
+        await userController.getOrgUser(request, response, next);
+    }
+);
+
+/**
+ * @openapi
+ * /api/users/{userId}:
+ *   put:
+ *     summary: Update user details
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: header
+ *         name: cerfi-org-id
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *       - in: path
+ *         name: userId
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *     requestBody:
+ *       description: Describe the user to be added to organisation
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateUserDTO'
+ *     responses:
+ *       "200":
+ *         description: User created
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Org user created
+ *                    data:
+ *                      type: object
+ *                      properties:
+ *                        count:
+ *                          type: integer
+ *                          description: The number of org users in list
+ *                        orgUsers:
+ *                          type: array
+ *                          items:
+ *                            $ref: '#/components/schemas/OrgUser'
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.put(
+    '/:userId',
+    AuthenticationMiddleware,
+    OrgIdHeaderValidationMiddleare,
+    BodyValidationMiddleware(UpdateUserDTO),
+    async (request, response, next) => {
+        await userController.updateOrgUser(request, response, next);
+    }
+);
 
 export default usersRouter;

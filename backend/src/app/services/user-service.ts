@@ -1,4 +1,4 @@
-import { CreateUserDTO } from '../dtos';
+import { CreateUserDTO, UpdateUserDTO } from '../dtos';
 import {
     ListResponse,
     OrgUser,
@@ -27,6 +27,7 @@ export class UserService {
             id: user.id,
             name: user.name,
             organistaions: user.organistaions,
+            phone: user.phone,
             roles: user.roles,
             slot: user.slot
         };
@@ -52,6 +53,7 @@ export class UserService {
                             name: orgRole.org.orgName
                         };
                     }),
+                phone: user.phone,
                 roles: user.orgRoles
                     .filter((orgRole) => orgRole.orgId === orgId)
                     .map((orgRole) => {
@@ -71,6 +73,60 @@ export class UserService {
             };
         });
         return new ListResponse(count, orgUsers);
+    }
+
+    public async updateOrgUser(
+        orgId: number,
+        userId: number,
+        request: UpdateUserDTO
+    ): Promise<OrgUserResponse> {
+        const rs = await UserRepository.updateOrgUser(orgId, userId, request);
+        return {
+            email: undefined,
+            id: rs.id,
+            name: rs.name,
+            phone: rs.phone,
+            organistaions: undefined,
+            roles: undefined,
+            slot: undefined
+        };
+    }
+
+    public async getOrgUser(
+        orgId: number,
+        userId: number
+    ): Promise<OrgUserResponse> {
+        const user = await UserRepository.findOrgUserById(userId, orgId);
+        return {
+            email: user.userEmails[0].email,
+            id: user.id,
+            name: user.name,
+            organistaions: user.orgRoles
+                .filter((orgRole) => orgRole.orgId === orgId)
+                .map((orgRole) => {
+                    return {
+                        id: orgRole.orgId,
+                        name: orgRole.org.orgName
+                    };
+                }),
+            phone: user.phone,
+            roles: user.orgRoles
+                .filter((orgRole) => orgRole.orgId === orgId)
+                .map((orgRole) => {
+                    return {
+                        id: orgRole.id,
+                        name: orgRole.accessType
+                    };
+                }),
+            slot: user.slotHasUsers
+                .filter((slotHasUser) => slotHasUser?.slot?.orgId === orgId)
+                .map((slotHasUser) => {
+                    return {
+                        id: slotHasUser.id,
+                        name: slotHasUser.slot.slotTitle
+                    };
+                })
+        };
     }
 
     private async dispatchInvitation(user: OrgUser) {

@@ -93,6 +93,13 @@
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/OrgSlot'
+ *     UpdateUserDTO:
+ *       type: object
+ *       properties:
+ *           name:
+ *               type: string
+ *           phone:
+ *               type: string
  *   responses:
  *     NotFound:
  *       description: The specified resource does not exsist

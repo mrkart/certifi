@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { NextFunction, Request, Response } from 'express';
-import { CreateUserDTO, UserIdUrlPramDTO } from '../../dtos';
+import { CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../dtos';
 import { APIError, UnhandledError } from '../../errors';
 import { ApiResponse, AuthUser } from '../../helpers';
 import { UserService } from '../../services';
@@ -43,6 +43,74 @@ export class UserController {
             response
                 .status(200)
                 .send(new ApiResponse(200, res, 'User created'));
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
+
+    public async getOrgUser(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const orgId = request.header('cerfi-org-id');
+            const { userId } = plainToInstance(
+                UserIdUrlPramDTO,
+                request.params
+            );
+            const res = await this.userService.getOrgUser(
+                parseInt(orgId),
+                parseInt(userId)
+            );
+            response.status(200).send(
+                new ApiResponse(
+                    200,
+                    {
+                        orgUser: res
+                    },
+                    'User fetched'
+                )
+            );
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
+
+    public async updateOrgUser(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const orgId = request.header('cerfi-org-id');
+            const { userId } = plainToInstance(
+                UserIdUrlPramDTO,
+                request.params
+            );
+            const reqBody = plainToInstance(UpdateUserDTO, request.body);
+            const res = await this.userService.updateOrgUser(
+                parseInt(orgId),
+                parseInt(userId),
+                reqBody
+            );
+            response.status(200).send(
+                new ApiResponse(
+                    200,
+                    {
+                        orgUser: res
+                    },
+                    'User updated'
+                )
+            );
         } catch (e) {
             if (e instanceof APIError) {
                 next(e);

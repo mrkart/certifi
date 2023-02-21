@@ -24,6 +24,7 @@ export interface OrgUserSlot {
 
 export interface OrgUser extends Profile {
     email: string;
+    phone: string;
     password: string;
     slot: OrgUserSlot[];
 }

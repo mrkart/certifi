@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "target": "es2016",
+    "sourceMap": true,
+    "outDir": "./build/",
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules", "test", "build"],
+  "include": ["src"]
+}

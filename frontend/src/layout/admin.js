@@ -62,22 +62,23 @@ const Admin = ({subElement}) => {
                   <div className='profile-area'>                  
                     <div className='profile-cont'>
                       <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
-                      <p className='lastlogin mb-0'>Last Login: Jul-17-2022 | 10:00</p>
+                      {/* <p className='lastlogin mb-0'>Last Login: Jul-17-2022 | 10:00</p> */}
+                      <p className='lastlogin mb-0'><a class="btn btn-light btn-sm text-primary" href="#"><i data-eva="log-out-outline"></i> Logout</a></p>
                     </div>
-                    <div class="dropdown">
+                    {/* <div class="dropdown">
   <span 
     id="dropdownMenuButton"
     data-mdb-toggle="dropdown"
     aria-expanded="false"
-  >
+  > */}
     <div className='profile-icon'>
                       <img className='headerprofilepic' src={require('../assets/images/photo4.png')} loading="lazy" />
                     </div>
-  </span>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  {/* </span> */}
+  {/* <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li><a class="dropdown-item text-primary" href="#"><i data-eva="log-out-outline"></i> Logout</a></li>
-  </ul>
-</div>
+  </ul> */}
+{/* </div> */}
                    
                     </div>
                 </div>

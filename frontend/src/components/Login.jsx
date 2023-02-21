@@ -1,30 +1,30 @@
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postSignIn, getUserProfile } from '../actions/exampleAction';
-
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logInInfo = useSelector(state => state.demoReducer.logInResponse);
+  const userProfile = useSelector(state => state.demoReducer.userProfile);
 
-  // if(logInResponse.statusCode == 200 && logInResponse.data.accessToken){
-  //   console.log('logInResponse - success');
-  //   dispatch(getUserProfile());
-  // }
-
-  // const userProfile = useSelector(state => state.demoReducer.userProfile);
-  // console.log('userProfile');
-  // console.log(userProfile);
-  // if(userProfile.statusCode == 200){
-  //   console.log('userProfile - success');
-  //   console.log(userProfile);
-  // }
 
   useEffect(() => {
-    console.log('logInInfo');
-    console.log(logInInfo);
-  }, [logInInfo]);
+    if(logInInfo.statusCode == 200 && logInInfo.data.accessToken){
+      console.log('logInResponse - success');
+      dispatch(getUserProfile());
+    }  
+  },[logInInfo]);
+
+  useEffect(() => {
+    if(userProfile.statusCode == 200){
+      console.log('userProfile');
+      console.log(userProfile);
+      navigate("/");
+    }  
+  },[userProfile]);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

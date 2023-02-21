@@ -1,5 +1,15 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn
+} from 'typeorm';
 import { CertData } from './CertData';
+import { Org } from './Org';
+import { SlotHasUser } from './SlotHasUser';
+import { User } from './User';
 
 @Entity('slot')
 export class Slot {
@@ -11,25 +21,17 @@ export class Slot {
     id: number;
 
     @Column('varchar', {
-        name: 'userId',
-        comment: 'Name of the user',
-        length: 255
-    })
-    userId: string;
-
-    @Column('varchar', {
-        name: 'slotTitle',
-        comment: 'Email ID of the user',
+        name: 'slot_title',
+        comment: 'name of the slot',
         length: 255
     })
     slotTitle: string;
 
-    @Column('varchar', {
-        name: 'orgId',
-        comment: 'Email ID of the user',
-        length: 255
+    @Column('integer', {
+        name: 'org_id',
+        comment: 'ID of the organisation'
     })
-    orgId: string;
+    orgId: number;
 
     @Column('timestamp', {
         name: 'datetime_created',
@@ -44,6 +46,18 @@ export class Slot {
     })
     datetimeUpdated: Date;
 
+    @ManyToOne(() => Org, (org) => org.slots, {
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+    })
+    @JoinColumn([{ name: 'org_id', referencedColumnName: 'id' }])
+    org: Org;
+
     @OneToMany(() => CertData, (certData) => certData.slot)
     certData: CertData[];
+
+    @OneToMany(() => SlotHasUser, (slotHasUser) => slotHasUser.slot, {
+        cascade: ['insert']
+    })
+    slotHasUsers: SlotHasUser[];
 }

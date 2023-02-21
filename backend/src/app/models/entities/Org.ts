@@ -14,6 +14,7 @@ import { Certificate } from './Certificate';
 import { UserEmail } from './UserEmail';
 import { User } from './User';
 import { OrgRoles } from './OrgRoles';
+import { Slot } from './Slot';
 
 @Index('Org_fk0', ['userId'], {})
 @Index('Org_fk1', ['userEmailId'], {})
@@ -71,4 +72,7 @@ export class Org {
         cascade: ['insert']
     })
     orgRoles: OrgRoles[];
+
+    @OneToMany(() => Slot, (slots) => slots.org)
+    slots: Slot[];
 }

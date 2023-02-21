@@ -3,12 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './assets/css/style.css';
+import 'font-awesome/css/font-awesome.min.css';
+import * as mdb from 'mdb-ui-kit'; // lib
+import { BrowserRouter } from 'react-router-dom';
+import { Provider} from 'react-redux';
+import {store} from './store';
+// import { Input } from 'mdb-ui-kit'; // module
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

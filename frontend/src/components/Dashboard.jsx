@@ -1,8 +1,5 @@
 import { React, useEffect, useMyCustomStuff } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSampleAPI } from '../actions/exampleAction';
-
 
 const data = [
   {
@@ -91,6 +88,11 @@ const Dashboard = () => {
   
   return (
     <div className='scrolldiv'>
+            {/* <div className='cert-loader'>
+            <div className='backgroundblur'>
+              <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />
+            </div>
+          </div> */}
       <div className='row'>
         <div className='col-md-12 text-start'>
           <div className='row'>

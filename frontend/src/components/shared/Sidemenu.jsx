@@ -28,13 +28,13 @@ const Sidemenu = () => {
             />
             <span>Students</span>
           </NavLink>
-          <NavLink to="/students-import" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          {/* <NavLink to="/students-import" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
             <img
               src={require('../../assets/images/icons/users-import.png')}
               className='sidebaricons me-3'
             />
             <span>Students Import</span>
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/select-template" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
             <img
               src={require('../../assets/images/icons/file-text.png')}

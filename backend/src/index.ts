@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 config();
 
+import './app/config/flow';
 import { App } from './app';
 import getDataSource from './app/config/datasource';
 import { Logger } from './app/helpers';

@@ -819,7 +819,7 @@ const Issue_Certificate = () => {
                           </h2>
                           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
                             <div class="accordion-body text-center">
-                              <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
+                              <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" />
                             </div>
                           </div>
                         </div>

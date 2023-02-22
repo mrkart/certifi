@@ -318,8 +318,14 @@ input[type="file"] { display: none;}
 .mintnft .ctemp .backgroundblur h3{ font-size: 25px; font-weight: 700; text-transform: uppercase; color: #005FFF; }
 .p-15px{padding: 15px;}
 
-
 .listview .accordion-body img{max-height: 475px;}
+
+/* .certsteps > div > div > div {padding: 0px !important;}
+.certsteps > div > div > div div:first-child, .certsteps > div > div > div div:last-child, .certsteps > div > div > div div:nth-child(3){ display: none !important;}
+.certsteps > div > div > div a, .certsteps > div > div > div div:nth-child(2) { margin-top: 0px !important; margin: 0px; border-radius: 10px; position: relative; border: 1px solid #E0E0E0;    background: #FFFFFF; padding: 0px 40px; transition: all ease 0.75s;height: 46px; line-height: 40px; font-size: 13px !important; text-transform: uppercase; font-weight: 500 !important;}
+
+.certsteps > div > div > div:not(:last-child) div, .certsteps > div > div > div:not(:last-child) a{border-radius: 10px 50px 50px 10px;} */
+
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

@@ -18,7 +18,9 @@ const Issue_Certificate = () => {
           </div>
 
           <div>
+         
             <div className="certsteps mb-3">
+              
             <Stepper steps={[
               { title: 'Select students', className: 'certsteps' },
               { title: 'Certification info', className: 'certsteps' },

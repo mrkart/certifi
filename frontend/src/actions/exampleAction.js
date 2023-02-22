@@ -14,6 +14,7 @@ export const getSampleAPI = () => {
   };
 };
 
+// Sign in
 export const postSignIn = (data) => {
   return (dispatch) => {
     api.post('/api/users/auth/sign-in', data)
@@ -27,9 +28,9 @@ export const postSignIn = (data) => {
   };
 };
 
+// Get user profile
 export const getUserProfile = () => { 
   return (dispatch) => {
-    //console.log(localStorage.getItem('accessToken'));
     apiWithToken(localStorage.getItem('accessToken')).get(`/api/users/profile/self`)
       .then((response) => {
         dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
@@ -40,6 +41,7 @@ export const getUserProfile = () => {
   };
 };
 
+// Create user
 export const postCreateStudent = (data,orgID) => { 
   return (dispatch) => {
     apiTokenOrgid(localStorage.getItem('accessToken'),orgID).post(`/api/users`, data)
@@ -52,15 +54,41 @@ export const postCreateStudent = (data,orgID) => {
   };
 };
 
+// Get all user
 export const getUserList = (orgID) => { 
   return (dispatch) => {
-    //console.log(localStorage.getItem('accessToken'));
     apiTokenOrgid(localStorage.getItem('accessToken'),orgID).get(`/api/users`)
       .then((response) => {
         dispatch({ type: 'GET_USERLIST_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'GET_USERLIST_SUCCESS', payload: error });
+        dispatch({ type: 'GET_USERLIST_FAILURE', payload: error });
+      });
+  };
+};
+
+// Get user by id
+export const getUserByID = (orgID,userID) => { 
+  return (dispatch) => {
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).get(`/api/users/${userID}`)
+      .then((response) => {
+        dispatch({ type: 'GET_USERBYID_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GET_USERBYID_FAILURE', payload: error });
+      });
+  };
+};
+
+// Edit user by id
+export const putUserDetails = (data,orgID,userID) => { 
+  return (dispatch) => {
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).put(`/api/users/${userID}`,data)
+      .then((response) => {
+        dispatch({ type: 'PUT_EDITUSERDETAILS_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'PUT_EDITUSERDETAILS_FAILURE', payload: error });
       });
   };
 };

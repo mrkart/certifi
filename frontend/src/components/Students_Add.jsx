@@ -17,8 +17,8 @@ const StudentsAdd = () => {
     }
   },[addStudentRes]);
 
-  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
-  let orgID = userprfile.organistaions[0]?.id;
+  let userprofile = JSON.parse(localStorage.getItem('userprfile'));
+  let orgID = userprofile.organistaions[0]?.id;
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');

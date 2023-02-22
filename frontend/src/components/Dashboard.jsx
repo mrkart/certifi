@@ -1,6 +1,6 @@
 import { React, useEffect, useMyCustomStuff } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import {useNavigate} from 'react-router'
 const data = [
   {
     name: 'Page A',
@@ -76,8 +76,8 @@ const data = [
   },
 ];
 
-
 const Dashboard = () => {
+  let navigate = useNavigate()
 
   // const dispatch = useDispatch();
   // const sampleApi = useSelector(state => state.demoReducer.sampleApi);
@@ -85,9 +85,16 @@ const Dashboard = () => {
   // useEffect(() => {
   //   dispatch(getSampleAPI());
   // }, []);  
-  
+  const gotoIssueCert = () => {
+    navigate('/issue-certificate')
+  }
   return (
     <div className='scrolldiv'>
+            {/* <div className='cert-loader'>
+            <div className='backgroundblur'>
+              <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />
+            </div>
+          </div> */}
       <div className='row'>
         <div className='col-md-12 text-start'>
           <div className='row'>
@@ -96,7 +103,7 @@ const Dashboard = () => {
                 <h5>Create</h5>
                 <h4 className='fw-bolder text-black'>CERTIFICATE</h4>
                 <p >Create a new certificate on Certifily. Collabrate and Share to your certificates</p>
-                <span className='icontext eva-hover'>
+                <span className='icontext eva-hover' onClick={gotoIssueCert}>
                   <span className='icon'><i data-eva="plus-outline" data-eva-animation="flip"></i></span>
                   <span className='text'>Create</span>
                 </span>

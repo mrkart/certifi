@@ -257,7 +257,7 @@ input[type="file"] { display: none;}
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
 .custable .form-group{ margin: 0px;}
-.formscroldiv {height: calc(100vh - 330px); overflow: hidden; overflow-y: auto; margin-bottom: 30px;}
+.formscroldiv {height:calc(100vh - 370px); overflow: hidden; overflow-y: auto; margin-bottom: 30px;}
 
 .certinfo{ padding: 30px; min-height: 100%;}
 .certinfocont{ display: flex; align-items: center; justify-content: center;}
@@ -316,6 +316,10 @@ input[type="file"] { display: none;}
 .mintnft .ctemp .backgroundblur{ align-items: center; justify-content: center; flex-direction: column; display: flex; min-height: 225px;}
 .mintnft .ctemp .backgroundblur h4{ font-size: 20px; color: #464646; font-weight: 400;}
 .mintnft .ctemp .backgroundblur h3{ font-size: 25px; font-weight: 700; text-transform: uppercase; color: #005FFF; }
+.p-15px{padding: 15px;}
+
+
+.listview .accordion-body img{max-height: 475px;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

@@ -7,7 +7,102 @@ const CertificateTemplate = () => {
     <div className='scrolldiv'>
       <div className='row '>
         <div className='col-md-12 text-start'>
-          <div className=''>
+        {/* <div className=''>
+            <div className='row mb-3 align-items-center'>
+              <div className='col-md-12 text-center'>
+                <h4 class="fw-bolder text-black text-uppercase mb-2">Mint NFT</h4>
+                <h6 className='mb-3'>Select NFT type</h6>
+                </div>              
+            </div>
+            </div>
+
+            <div className='certtemplates mintnft'>
+              <div className='row'>
+                <div className="col-sm-6 col-md-4">         
+                <div className='ctemp' >  
+                  <input type={'radio'} id="certselect-1" name='cerselect'/>       
+                    <label className='backgroundblur' for="certselect-1">                   
+                        <div className='img'>
+                          <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
+                        </div>
+                        <h4>Create a</h4>
+                        <h3>Certificate</h3>
+                    </label>                   
+                  </div>
+                </div>
+
+                <div className="col-sm-6 col-md-4 btn-disabled" >         
+                <div className='ctemp' >  
+                  <input type={'radio'} id="certselect-1" name='cerselect'/>       
+                    <label className='backgroundblur' for="certselect-1">                   
+                        <div className='img'>
+                          <img src={require('../assets/images/icons/Certifily-icon-1.png')} loading="lazy" />
+                        </div>
+                        <h4>Create a</h4>
+                        <h3>Agreement | Contract</h3>
+                    </label>                   
+                  </div>
+                </div>
+
+                <div className="col-sm-6 col-md-4 btn-disabled">         
+                <div className='ctemp' >  
+                  <input type={'radio'} id="certselect-1" name='cerselect'/>       
+                    <label className='backgroundblur' for="certselect-1">                   
+                        <div className='img'>
+                          <img src={require('../assets/images/icons/Group-16.png')} loading="lazy" />
+                        </div>
+                        <h4>Create a</h4>
+                        <h3>Membership</h3>
+                    </label>                   
+                  </div>
+                </div>
+
+                <div className="col-sm-6 col-md-4 btn-disabled">         
+                <div className='ctemp' >  
+                  <input type={'radio'} id="certselect-1" name='cerselect'/>       
+                    <label className='backgroundblur' for="certselect-1">                   
+                        <div className='img'>
+                          <img src={require('../assets/images/icons/Group-16-1.png')} loading="lazy" />
+                        </div>
+                        <h4>Create a</h4>
+                        <h3>Letter</h3>
+                    </label>                   
+                  </div>
+                </div>
+
+                <div className="col-sm-6 col-md-4 btn-disabled">         
+                <div className='ctemp' >  
+                  <input type={'radio'} id="certselect-1" name='cerselect'/>       
+                    <label className='backgroundblur' for="certselect-1">                   
+                        <div className='img'>
+                          <img src={require('../assets/images/icons/Group-16-2.png')} loading="lazy" />
+                        </div>
+                        <h4>Create a</h4>
+                        <h3>Cards</h3>
+                    </label>                   
+                  </div>
+                </div>
+
+                <div className="col-sm-6 col-md-4 btn-disabled">         
+                <div className='ctemp' >  
+                  <input type={'radio'} id="certselect-1" name='cerselect'/>       
+                    <label className='backgroundblur' for="certselect-1">                   
+                        <div className='img'>
+                          <img src={require('../assets/images/icons/Group-16-3.png')} loading="lazy" />
+                        </div>
+                        <h4>Create a</h4>
+                        <h3>Tickets</h3>
+                    </label>                   
+                  </div>
+                </div>
+
+                
+              </div>
+            </div> */}
+
+            
+            
+            <div className=''>
             <div className='row mb-3 align-items-center'>
               <div className='col-md-6'><h4 class="fw-bolder text-black text-uppercase mb-0">cert templates</h4></div>
               <div className='col-md-6 text-end'>

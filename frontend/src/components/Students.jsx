@@ -1,8 +1,18 @@
 import { React, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { getUserList } from '../actions/exampleAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Students = () => {
   
+  const dispatch = useDispatch();
+  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
+  let orgID = userprfile.organistaions[0]?.id;
+
+  useEffect(() => {
+    dispatch(getUserList(orgID));
+  },[]);
+
   return (
     <div className='scrolldiv'>
       <div className='row '>

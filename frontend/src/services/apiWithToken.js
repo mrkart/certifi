@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const apiWithToken = axios.create({
+const apiWithToken = (token) => axios.create({
   baseURL: 'https://api.certifi.ly/',
   headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    'Content-Type': `application/json`,
+    'Authorization': `Bearer ${token}`
   },
 });
 

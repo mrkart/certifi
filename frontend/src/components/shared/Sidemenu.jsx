@@ -35,7 +35,7 @@ const Sidemenu = () => {
             />
             <span>Students Import</span>
           </NavLink> */}
-          <NavLink to="/select-template" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          {/* <NavLink to="/select-template" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
             <img
               src={require('../../assets/images/icons/file-text.png')}
               className='sidebaricons me-3'
@@ -48,7 +48,7 @@ const Sidemenu = () => {
               className='sidebaricons me-3'
             />
             <span>Customize Template</span>
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/issue-certificate" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
             <img
               src={require('../../assets/images/icons/award.png')}
@@ -56,13 +56,13 @@ const Sidemenu = () => {
             />
             <span>Issue Certificate</span>
           </NavLink>
-          <NavLink to="/signer" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          {/* <NavLink to="/signer" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
             <img
               src={require('../../assets/images/icons/edit-3.png')}
               className='sidebaricons me-3'
             />
             <span>Signers</span>
-          </NavLink>
+          </NavLink> */}
 
 
           <NavLink to="/login" className="list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" activeClassName="active">

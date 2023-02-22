@@ -3,7 +3,9 @@ import { types } from "../constants/types";
 const initialState = {
     sampleApi : [],
     logInResponse : [],
-    userProfile : []
+    userProfile : [],
+    addStudent : [],
+    userlist : []
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -22,6 +24,16 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 userProfile : action.payload
+            }
+        case types.POST_CREATESTUDENT_SUCCESS:
+            return {
+                ...state,
+                addStudent : action.payload
+            }
+        case types.GET_USERLIST_SUCCESS:
+            return {
+                ...state,
+                userlist : action.payload
             }
         default:
             return state

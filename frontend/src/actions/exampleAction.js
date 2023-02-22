@@ -1,4 +1,5 @@
 import api from '../services/api';
+import apiTokenOrgid from '../services/apiTokenOrgid';
 import apiWithToken from '../services/apiWithToken';
 
 export const getSampleAPI = () => {
@@ -28,12 +29,38 @@ export const postSignIn = (data) => {
 
 export const getUserProfile = () => { 
   return (dispatch) => {
-    apiWithToken.get(`/api/users/profile/self`)
+    //console.log(localStorage.getItem('accessToken'));
+    apiWithToken(localStorage.getItem('accessToken')).get(`/api/users/profile/self`)
       .then((response) => {
         dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
       })
       .catch((error) => {
         dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error });
+      });
+  };
+};
+
+export const postCreateStudent = (data,orgID) => { 
+  return (dispatch) => {
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).post(`/api/users`, data)
+      .then((response) => {
+        dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error });
+      });
+  };
+};
+
+export const getUserList = (orgID) => { 
+  return (dispatch) => {
+    //console.log(localStorage.getItem('accessToken'));
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).get(`/api/users`)
+      .then((response) => {
+        dispatch({ type: 'GET_USERLIST_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GET_USERLIST_SUCCESS', payload: error });
       });
   };
 };

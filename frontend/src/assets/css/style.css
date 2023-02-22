@@ -231,7 +231,7 @@ input[type="file"] { display: none;}
 .ctemp{ position: relative; text-align: center; margin-bottom: 30px;}
 .dis-bfore::before{  content: '';position: absolute;background: rgba(255,255,255,0.5);top: 0px;left: 0px;z-index: 1;width: 100%;height: 100%; border-radius: 27px;}
 .ctemp .img{ max-width: 100%; padding: 15px; display: flex;}
-.ctemp .img img{ width: 100%;}
+.ctemp .img img{ width: 100%; max-height: 240px;}
 .ctemp .cername{ padding: 15px 0px; transition: all ease 0.75s;}
 .ctemp input[type="checkbox"] + *, .ctemp input[type="radio"] + *{ width: 100%; height: auto; flex-direction: column;}
 .ctemp  .backgroundblur{cursor: pointer; transition: all ease 0.75s; border:1px solid #fff}
@@ -257,7 +257,7 @@ input[type="file"] { display: none;}
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
 .custable .form-group{ margin: 0px;}
-.formscroldiv {height: calc(100vh - 330px); overflow: hidden; overflow-y: auto; margin-bottom: 30px;}
+.formscroldiv {height:calc(100vh - 370px); overflow: hidden; overflow-y: auto; margin-bottom: 30px;}
 
 .certinfo{ padding: 30px; min-height: 100%;}
 .certinfocont{ display: flex; align-items: center; justify-content: center;}
@@ -311,6 +311,21 @@ input[type="file"] { display: none;}
 .profile-cont .btn-sm:hover .eva{fill: #333;}
 
 .cert-loader .backgroundblur{ min-height: 300px; display: flex; padding: 30px; align-items: center; justify-content: center; height: auto !important; margin-bottom: 30px;}
+
+.mintnft .img img{ max-height: inherit; max-width: 100%; width: auto; max-height: 65px;}
+.mintnft .ctemp .backgroundblur{ align-items: center; justify-content: center; flex-direction: column; display: flex; min-height: 225px;}
+.mintnft .ctemp .backgroundblur h4{ font-size: 20px; color: #464646; font-weight: 400;}
+.mintnft .ctemp .backgroundblur h3{ font-size: 25px; font-weight: 700; text-transform: uppercase; color: #005FFF; }
+.p-15px{padding: 15px;}
+
+.listview .accordion-body img{max-height: 475px;}
+
+/* .certsteps > div > div > div {padding: 0px !important;}
+.certsteps > div > div > div div:first-child, .certsteps > div > div > div div:last-child, .certsteps > div > div > div div:nth-child(3){ display: none !important;}
+.certsteps > div > div > div a, .certsteps > div > div > div div:nth-child(2) { margin-top: 0px !important; margin: 0px; border-radius: 10px; position: relative; border: 1px solid #E0E0E0;    background: #FFFFFF; padding: 0px 40px; transition: all ease 0.75s;height: 46px; line-height: 40px; font-size: 13px !important; text-transform: uppercase; font-weight: 500 !important;}
+
+.certsteps > div > div > div:not(:last-child) div, .certsteps > div > div > div:not(:last-child) a{border-radius: 10px 50px 50px 10px;} */
+
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

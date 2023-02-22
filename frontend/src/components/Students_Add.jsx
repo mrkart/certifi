@@ -1,8 +1,46 @@
-import { React, useEffect, useMyCustomStuff } from 'react';
+import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { postCreateStudent } from '../actions/exampleAction';
 
 const StudentsAdd = () => {
+
+  const dispatch = useDispatch();
+
+  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
+  let orgID = userprfile.organistaions[0]?.id;
+
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [slot, setSlot] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = { email, name, slot, number };
+    console.log(formData);
+    let data = {
+      "email": formData.email,
+      "name": formData.name,
+      "phone": "+91 "+formData.number,
+      "slotName": "CSE"
+    }
+    dispatch(postCreateStudent(data,orgID));
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'name') {
+      setName(value);
+    } else if (name === 'slot') {
+      setSlot(value);
+    } else if (name === 'number') {
+      setNumber(value);
+    }
+  };
+
   return (
     <div className='scrolldiv1'>
       <div className='row '>
@@ -16,39 +54,38 @@ const StudentsAdd = () => {
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
                 </div>
               </div> */}
-            </div>
+              </div>
             <div className='backgroundblur'>
-            
               <div className='searchform border-none d-block'>
-              <div className='formscroldiv'>
-              <h6 className='mb-3 fw-bold'>Student Details</h6>
-                <div className='row'>
-                  <div className='col-md-4'>
-                    <div className='form-group'>
-                      <label className='mb-2'>Email</label>
-                      <input type={'text'} className="form-control" placeholder='Email' />
+                <form onSubmit={handleSubmit}>
+                  <div className='formscroldiv'>
+                    <h6 className='mb-3 fw-bold'>Student Details</h6>
+                    <div className='row'>
+                      <div className='col-md-4'>
+                        <div className='form-group'>
+                          <label className='mb-2'>Email</label>
+                          <input name="email" type={'text'} value={email} onChange={handleInputChange} className="form-control" placeholder='Email' />
+                        </div>
+                      </div>
+                      <div className='col-md-4'>
+                        <div className='form-group'>
+                          <label className='mb-2'>Name</label>
+                          <input name="name" type={'text'}  value={name} onChange={handleInputChange} className="form-control" placeholder='Name' />
+                        </div>
+                      </div>
+                      <div className='col-md-4'>
+                        <div className='form-group'>
+                          <label className='mb-2'>Contact Number</label>
+                          <input name="number" type={'text'}  value={number} onChange={handleInputChange} className="form-control" placeholder='Contact Number'/>
+                        </div>
+                      </div>
+                      <div className='col-md-4'>
+                        <div className='form-group'>
+                          <label className='mb-2'>Slot</label>
+                          <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Slot' />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className='col-md-4'>
-                    <div className='form-group'>
-                      <label className='mb-2'>Name</label>
-                      <input type={'text'} className="form-control" placeholder='Name' />
-                    </div>
-                  </div>
-                  <div className='col-md-4'>
-                    <div className='form-group'>
-                      <label className='mb-2'>Last Name</label>
-                      <input type={'text'} className="form-control" placeholder='Last Name' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-4'>
-                    <div className='form-group'>
-                      <label className='mb-2'>Contact Number</label>
-                      <input type={'text'} className="form-control" placeholder='Contact Number'/>
-                    </div>
-                  </div>
-                  </div>
                   {/* <h6 className='my-3 fw-bold'>College Details</h6>
                   <div className='row'>
                   <div className='col-md-4'>
@@ -81,17 +118,18 @@ const StudentsAdd = () => {
                           </select>
                     </div>
                   </div>
-                </div> */}
-              </div>
-              <hr className='light-brd'/>
-              <div className='row align-items-center'>                  
-                  <div className='col-12 text-center'>
-                    <div className='btngrouprht'>
-                      <button className='btn btn-primary btn-icon icon-rht'>Submit</button>
+                  </div> */}
+                  </div>
+                  <hr className='light-brd'/>
+                  <div className='row align-items-center'>                  
+                    <div className='col-12 text-center'>
+                      <div className='btngrouprht'>
+                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Submit</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>

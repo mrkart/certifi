@@ -9,7 +9,7 @@ const StudentsAdd = () => {
         <div className='col-md-12 text-start'>
           <div className=''>
             <div className='row mb-3 align-items-center'>
-              <div className='col-md-12'><h4 class="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Add Students</h4></div>
+              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Add Students</h4></div>
               {/* <div className='col-md-6 text-end'>
                 <div className='btngrouprht'>
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
@@ -49,7 +49,7 @@ const StudentsAdd = () => {
                     </div>
                   </div>
                   </div>
-                  <h6 className='my-3 fw-bold'>College Details</h6>
+                  {/* <h6 className='my-3 fw-bold'>College Details</h6>
                   <div className='row'>
                   <div className='col-md-4'>
                     <div className='form-group'>
@@ -81,7 +81,7 @@ const StudentsAdd = () => {
                           </select>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <hr className='light-brd'/>
               <div className='row align-items-center'>                  

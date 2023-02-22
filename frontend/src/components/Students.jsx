@@ -1,4 +1,5 @@
 import { React, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Students = () => {
   
@@ -8,15 +9,17 @@ const Students = () => {
         <div className='col-md-12 text-start'>                  
           <div className=''>
           <div className='row mb-3 align-items-center'>
-                <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0">Students</h4></div>
-                <div className='col-md-6 text-end'>
-                  <div className='btngrouprht'>
-                    <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
-                    <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
-                  </div>
+            <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0">Students</h4></div>
+              <div className='col-md-6 text-end'>
+                <div className='btngrouprht'>
+                  <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
+                  <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
+                  {/* <a href='/add-student' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a> 
+                  <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
+                  */}
                 </div>
               </div>
-
+            </div>
             <div className='tableblur mt-4'>                    
               <div className='searchform'>
                 <div className='fields'>Search & Filters</div>

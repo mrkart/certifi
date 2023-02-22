@@ -326,14 +326,25 @@ input[type="file"] { display: none;}
 
 .certsteps > div > div > div:not(:last-child) div, .certsteps > div > div > div:not(:last-child) a{border-radius: 10px 50px 50px 10px;} */
 
+.createcetr {position: relative;}
+
+.mobileprofile{ background: #DFEBFD; padding: 30px; margin-bottom: 30px; border-radius: 10px; display: none;}
+.mobileprofile .profile-icon {margin: 0px auto 15px auto;width: 65px;height: 65px;}
+.mobileprofile .profile-icon .headerprofilepic{ height: 70px; max-width: 70px;}
+.mobileprofile .profile-area {flex-direction: column;align-items: center;justify-content: center;text-align: center;}
+
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}
 .mobile-header{padding: 0px;}
 }
 
+@media (max-width: 1440px) {
+.folder::before{width: 170px;}
+.folder::after{left: 143px;}
+}
 @media (max-width: 1366px) {
-html, body, div#root, .dashboard-light-bg, .h100vh, .backgroundblur {height: auto;}
+html, body, div#root, .dashboard-light-bg, .h100vh, .backgroundblur {height: 100%;}
 .commonbox {padding-bottom: 15px;}
 #main-navbar{ display: flex;}
 .sidebar {width: 100%; display: none !important;}
@@ -342,8 +353,17 @@ html, body, div#root, .dashboard-light-bg, .h100vh, .backgroundblur {height: aut
 main{padding-top: 48px; padding-left: 0;} 
 .sidebar.show{ display: block !important;}
 main.height100per .container-fluid {padding-left: 15px !important; padding-top: 15px !important;}
-.scrolldiv{ padding: 0px;}
+.scrolldiv{ padding: 0px; height: calc(100vh - 110px);}
 .mobvis{ display: block !important;}
+.content-header{ display: none;}
+nav#sidebarMenu{ background: #fff;}
+.mobileprofile{ display: flex; justify-content: center;}
+}
+
+
+@media (max-width: 1024px) {
+.foldersview .row{overflow: hidden; overflow-x: auto; flex-wrap: nowrap;}
+.foldersview .row .col-md-3{ width: 30%; margin-bottom: 30px;}
 }
 @media (max-width: 991px) {
 }

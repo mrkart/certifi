@@ -5,7 +5,9 @@ const initialState = {
     logInResponse : [],
     userProfile : [],
     addStudent : [],
-    userlist : []
+    userlist : [],
+    edituser : [],
+    userbyid : []
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -34,6 +36,16 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 userlist : action.payload
+            }
+        case types.PUT_EDITUSERDETAILS_SUCCESS:
+            return {
+                ...state,
+                edituser : action.payload
+            }
+        case types.GET_USERBYID_SUCCESS:
+            return {
+                ...state,
+                userbyid : action.payload
             }
         default:
             return state

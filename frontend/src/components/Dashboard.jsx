@@ -97,6 +97,7 @@ const Dashboard = () => {
           </div> */}
       <div className='row'>
         <div className='col-md-12 text-start'>
+          <div className='foldersview'>
           <div className='row'>
             <div className='col-md-3'>
               <div className='createcetr'>
@@ -116,21 +117,22 @@ const Dashboard = () => {
                     Certificates
                   </div>
                   <div className='foldcont'>
-                    <p className="card-text mb-1 ccondi">Good</p>
-                    <p className=" cpartitle">CLINICAL PRACTICES</p>
+                    {/* <p className="card-text mb-1 ccondi">Good</p>
+                    <p className=" cpartitle">CLINICAL PRACTICES</p> */}
+                    <h2 className='fw-medium mt-5'>486</h2>
                   </div>
                   <div className='foldpicshare'>
                     <div className='foldpics'>
-                      <ul className='list-unstyled'>
+                      {/* <ul className='list-unstyled'>
                         <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo3.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li>
                         <li><span className='flpic last-count'>+25</span></li>
-                      </ul>
+                      </ul> */}
                     </div>
-                    <div className='foldshare eva-hover'> <i data-eva="share-outline" data-eva-animation="flip"></i> Share</div>
+                    <div className='foldshare eva-hover'> <i data-eva="eye-outline" data-eva-animation="flip"></i> View all</div>
                   </div>
                 </div>
               </div>
@@ -139,24 +141,25 @@ const Dashboard = () => {
               <div className='folder'>
                 <div className="card dashboardboxContainer light-blur">
                   <div className='cltitle'> <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
-                    Documents
+                    Students
                   </div>
                   <div className='foldcont'>
-                    <p className="card-text mb-1 ccondi">Best</p>
-                    <p className=" cpartitle">Distribution Practices</p>
+                    {/* <p className="card-text mb-1 ccondi">Best</p>
+                    <p className=" cpartitle">Distribution Practices</p> */}
+                    <h2 className='fw-medium mt-5'>6866</h2>
                   </div>
                   <div className='foldpicshare'>
                     <div className='foldpics'>
                       <ul className='list-unstyled'>
-                        <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li>
+                        {/* <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li> */}
                         <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo3.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
-                        <li><span className='flpic last-count'>+25</span></li>
+                        <li><span className='flpic last-count'>+100</span></li>
                       </ul>
                     </div>
-                    <div className='foldshare eva-hover'> <i data-eva="share-outline" data-eva-animation="flip" data-eva-infinite="true"></i> Share</div>
+                    <div className='foldshare eva-hover'> <i data-eva="grid-outline" data-eva-animation="flip" data-eva-infinite="true"></i> Manage</div>
                   </div>
                 </div>
               </div>
@@ -165,28 +168,30 @@ const Dashboard = () => {
               <div className='folder'>
                 <div className="card dashboardboxContainer light-blur">
                   <div className='cltitle'> <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
-                    memberships
+                    Signers
                   </div>
                   <div className='foldcont'>
-                    <p className="card-text mb-1 ccondi">Awesome</p>
-                    <p className=" cpartitle">Interior Design</p>
+                    {/* <p className="card-text mb-1 ccondi">Awesome</p>
+                    <p className=" cpartitle">Interior Design</p> */}
+                    <h2 className='fw-medium mt-5'>3</h2>
                   </div>
                   <div className='foldpicshare'>
                     <div className='foldpics'>
                       <ul className='list-unstyled'>
-                        <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
-                        <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li>
+                        {/* <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
+                        <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li> */}
                         <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo3.png')} loading="lazy" /></span></li>
-                        <li><span className='flpic last-count'>+25</span></li>
+                        {/* <li><span className='flpic last-count'>+25</span></li> */}
                       </ul>
                     </div>
-                    <div className='foldshare eva-hover'> <i data-eva="share-outline" data-eva-animation="flip" data-eva-infinite="true"></i> Share</div>
+                    <div className='foldshare eva-hover'> <i data-eva="eye-outline" data-eva-animation="flip"></i> View all</div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
           </div>
           <div className=''>
             <div className='tableblur mt-4 p-4'>
@@ -409,16 +414,14 @@ const Dashboard = () => {
                   <div className='col-md-6 barchart'>
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart width={150} height={40} data={data}>
-                        <Bar dataKey="uv" fill="#005fff" radius={[20, 20, 0, 0]} />
+                        <Bar dataKey="uv" fill="#005fff" radius={[20, 20, 0, 0]} label={{ value: "index", fontSize:'100%', color:"#005FFF", position: "top", angle: 0,   dy: 0}}/>
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
                   <div className='col-md-6 borderleft2pxwhite'>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <div className='row'>
+                  <div className='row'>
                           <div className='col-md-9'>
-                            <h5 className='fw-bolder'>TEAM MEMBERS</h5>
+                            <h5 className='fw-bolder'>SIGNERS</h5>
                           </div>
                           <div className='col-md-3'>
                             <span className='icontext pull-right viewall'>
@@ -427,8 +430,7 @@ const Dashboard = () => {
                             </span>
                           </div>
                         </div>
-                      </div>
-                      <div className='col-sm-12'>
+
                         <div className='row teammemberrow'>
                           <div className='col-md-2'>
                             <img className='teammemberprofile' src={require('../assets/images/photo1.png')} loading="lazy" />
@@ -436,7 +438,7 @@ const Dashboard = () => {
                           <div className='col-md-7'>
                             <p className='teammembername'>Anderson</p>
                           </div>
-                          <div className='col-md-3 p-0'>
+                          <div className='col-md-3 p-0 text-end'>
                             <p className='teammembercert'>13 certificates</p>
                           </div>
                         </div>
@@ -447,7 +449,7 @@ const Dashboard = () => {
                           <div className='col-md-7'>
                             <p className='teammembername'>Taylor</p>
                           </div>
-                          <div className='col-md-3 p-0'>
+                          <div className='col-md-3 p-0 text-end'>
                             <p className='teammembercert'>32 certificates</p>
                           </div>
                         </div>
@@ -458,13 +460,11 @@ const Dashboard = () => {
                           <div className='col-md-7'>
                             <p className='teammembername'>Maddona</p>
                           </div>
-                          <div className='col-md-3 p-0'>
+                          <div className='col-md-3 p-0 text-end'>
                             <p className='teammembercert'>21 certificates</p>
                           </div>
                         </div>
-                      </div>
-
-                    </div>
+                    
                   </div>
                 </div>
               </div>

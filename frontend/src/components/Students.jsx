@@ -101,7 +101,9 @@ const Students = () => {
                       </td>
                       <td className='text-center'>
                       <div className='btngrouprht'>
+                      <NavLink to={"/edit-student/"+user.id}>
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      </NavLink>
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                       </div>
                       </td>

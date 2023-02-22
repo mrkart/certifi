@@ -4,7 +4,6 @@ import { CertData } from './CertData';
 import { Certificate } from './Certificate';
 import { Org } from './Org';
 import { OrgRoles } from './OrgRoles';
-import { Slot } from './Slot';
 import { SlotHasUser } from './SlotHasUser';
 import { UserEmail } from './UserEmail';
 
@@ -50,6 +49,22 @@ export class User {
         length: 255
     })
     password: string;
+
+    @Column('varchar', {
+        name: 'flow_address',
+        comment: 'Flow Address allocated for the user',
+        length: 25,
+        unique: true,
+        nullable: true
+    })
+    flowAddress: string;
+
+    @Column('tinyint', {
+        name: 'flow_acc_setup_status',
+        comment: '1 if flow account has been setup for the allocated address',
+        default: 0
+    })
+    flowAccSetupStatus: 0 | 1;
 
     @OneToMany(() => AssetOrg, (assetOrg) => assetOrg.user)
     assetOrgs: AssetOrg[];

@@ -231,7 +231,7 @@ input[type="file"] { display: none;}
 .ctemp{ position: relative; text-align: center; margin-bottom: 30px;}
 .dis-bfore::before{  content: '';position: absolute;background: rgba(255,255,255,0.5);top: 0px;left: 0px;z-index: 1;width: 100%;height: 100%; border-radius: 27px;}
 .ctemp .img{ max-width: 100%; padding: 15px; display: flex;}
-.ctemp .img img{ width: 100%;}
+.ctemp .img img{ width: 100%; max-height: 240px;}
 .ctemp .cername{ padding: 15px 0px; transition: all ease 0.75s;}
 .ctemp input[type="checkbox"] + *, .ctemp input[type="radio"] + *{ width: 100%; height: auto; flex-direction: column;}
 .ctemp  .backgroundblur{cursor: pointer; transition: all ease 0.75s; border:1px solid #fff}
@@ -311,6 +311,11 @@ input[type="file"] { display: none;}
 .profile-cont .btn-sm:hover .eva{fill: #333;}
 
 .cert-loader .backgroundblur{ min-height: 300px; display: flex; padding: 30px; align-items: center; justify-content: center; height: auto !important; margin-bottom: 30px;}
+
+.mintnft .img img{ max-height: inherit; max-width: 100%; width: auto; max-height: 65px;}
+.mintnft .ctemp .backgroundblur{ align-items: center; justify-content: center; flex-direction: column; display: flex; min-height: 225px;}
+.mintnft .ctemp .backgroundblur h4{ font-size: 20px; color: #464646; font-weight: 400;}
+.mintnft .ctemp .backgroundblur h3{ font-size: 25px; font-weight: 700; text-transform: uppercase; color: #005FFF; }
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

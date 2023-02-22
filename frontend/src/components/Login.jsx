@@ -22,7 +22,7 @@ const Login = () => {
     if(userProfile.statusCode == 200){
       // console.log('userProfile');
       // console.log(userProfile.data);
-      localStorage.setItem('userprfile',JSON.stringify(userProfile.data));
+      localStorage.setItem('userprofile',JSON.stringify(userProfile.data));
       navigate("/");
     }  
   },[userProfile]);

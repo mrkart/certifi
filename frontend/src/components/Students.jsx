@@ -7,8 +7,8 @@ import TableLoader from './shared/TableLoader';
 const Students = () => {
   
   const dispatch = useDispatch();
-  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
-  let orgID = userprfile.organistaions[0]?.id;
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let orgID = userprofile.organistaions[0]?.id;
 
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
   const [userlist, setUserlist] = useState([]);

@@ -20,7 +20,7 @@ const StudentsEdit = () => {
   const edituser = useSelector(state => state.demoReducer.edituser);
   const userbyid = useSelector(state => state.demoReducer.userbyid);
 
-  let userprofile = JSON.parse(localStorage.getItem('userprfile'));
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile.organistaions[0]?.id;
 
   useEffect(() => {

@@ -2,9 +2,9 @@ import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidemenu = () => {
-  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
-  let userName = userprfile.name;
-  let userOrg = userprfile.organistaions[0]?.name;
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let userName = userprofile.name;
+  let userOrg = userprofile.organistaions[0]?.name;
   console.log(userName);
   console.log(userOrg);
   const [selectType,setSelectType] = "1"

@@ -1,6 +1,6 @@
 import { React, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
-
+import { NavLink } from 'react-router-dom';
 
 const StudentsImport = () => {
   return (
@@ -12,8 +12,10 @@ const StudentsImport = () => {
                 <div className='col-md-6'><h4 class="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Import</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btngrouprht'>
-                    <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
-                    <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
+                    <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
+                    <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
+                    {/* <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
+                    <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a> */}
                   </div>
                 </div>
               </div>

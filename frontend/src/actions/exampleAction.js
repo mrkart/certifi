@@ -44,10 +44,10 @@ export const postCreateStudent = (data,orgID) => {
   return (dispatch) => {
     apiTokenOrgid(localStorage.getItem('accessToken'),orgID).post(`/api/users`, data)
       .then((response) => {
-        dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
+        dispatch({ type: 'POST_CREATESTUDENT_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error });
+        dispatch({ type: 'POST_CREATESTUDENT_FAILURE', payload: error });
       });
   };
 };

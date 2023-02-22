@@ -88,11 +88,6 @@ const Dashboard = () => {
   
   return (
     <div className='scrolldiv'>
-            {/* <div className='cert-loader'>
-            <div className='backgroundblur'>
-              <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />
-            </div>
-          </div> */}
       <div className='row'>
         <div className='col-md-12 text-start'>
           <div className='row'>

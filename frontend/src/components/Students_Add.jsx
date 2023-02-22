@@ -2,10 +2,20 @@ import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateStudent } from '../actions/exampleAction';
+import { useNavigate } from "react-router-dom";
 
 const StudentsAdd = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const addStudentRes = useSelector(state => state.demoReducer.addStudent);
+
+  useEffect(() => {
+    if(addStudentRes.statusCode == 200){
+      navigate("/students");
+    }
+  },[addStudentRes]);
 
   let userprfile = JSON.parse(localStorage.getItem('userprfile'));
   let orgID = userprfile.organistaions[0]?.id;
@@ -23,7 +33,7 @@ const StudentsAdd = () => {
       "email": formData.email,
       "name": formData.name,
       "phone": "+91 "+formData.number,
-      "slotName": "CSE"
+      "slotName": formData.slot
     }
     dispatch(postCreateStudent(data,orgID));
   };
@@ -81,8 +91,8 @@ const StudentsAdd = () => {
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Slot</label>
-                          <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Slot' />
+                          <label className='mb-2'>Batch</label>
+                          <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Batch' />
                         </div>
                       </div>
                     </div>

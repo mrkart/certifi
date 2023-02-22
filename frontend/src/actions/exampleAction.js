@@ -51,3 +51,16 @@ export const postCreateStudent = (data,orgID) => {
       });
   };
 };
+
+export const getUserList = (orgID) => { 
+  return (dispatch) => {
+    //console.log(localStorage.getItem('accessToken'));
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).get(`/api/users`)
+      .then((response) => {
+        dispatch({ type: 'GET_USERLIST_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GET_USERLIST_SUCCESS', payload: error });
+      });
+  };
+};

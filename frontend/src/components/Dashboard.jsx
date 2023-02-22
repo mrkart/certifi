@@ -414,7 +414,7 @@ const Dashboard = () => {
                   <div className='col-md-6 barchart'>
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart width={150} height={40} data={data}>
-                        <Bar dataKey="uv" fill="#005fff" radius={[20, 20, 0, 0]} />
+                        <Bar dataKey="uv" fill="#005fff" radius={[20, 20, 0, 0]} label={{ value: "index", fontSize:'100%', color:"#005FFF", position: "top", angle: 0,   dy: 0}}/>
                       </BarChart>
                     </ResponsiveContainer>
                   </div>

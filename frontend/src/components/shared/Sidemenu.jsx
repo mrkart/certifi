@@ -7,6 +7,8 @@ const Sidemenu = () => {
   let userOrg = userprfile.organistaions[0]?.name;
   console.log(userName);
   console.log(userOrg);
+  const [selectType,setSelectType] = "1"
+  const onChangeValue = () => {}
   return (
     <nav id="sidebarMenu" className="collapse sidebar collapse pt-0 ">
       <div className="position-sticky">
@@ -104,6 +106,11 @@ const Sidemenu = () => {
       </div>
       <div className="sidebarbottom light-blur text-center">
         <p className='mt-0 mb-1'> Blockchain network status</p>
+        <select class="form-control mb-1" value={selectType} onChange={onChangeValue}>
+          <option value="1">Testnet</option>
+          <option value="2">Mainnet</option>
+        </select>
+        
         <p className=' mb-0 text-uppercase fw-bolder networkstatus text-success'>Online</p>
       </div>
     </nav>

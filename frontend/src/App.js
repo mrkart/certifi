@@ -14,6 +14,8 @@ import Signer from './components/Signer';
 import { PrivateRoute } from './layout/PrivateRoute';
 import StudentsAdd from './components/Students_Add';
 import StudentsEdit from './components/Students_Edit';
+import StudentLayout from './layout/studentslayout';
+import StudentDashboard from './components/StudentDashboard';
 
 function App() {
   useEffect(() => {
@@ -39,7 +41,7 @@ function App() {
             <Admin subElement={ <StudentsAdd /> }  /> 
           </PrivateRoute> 
         } />
-        <Route path="/edit-student" element={ 
+        <Route path="/edit-student/:studentId" element={ 
           <PrivateRoute>
             <Admin subElement={ <StudentsEdit /> }  /> 
           </PrivateRoute> 
@@ -67,6 +69,11 @@ function App() {
         <Route path="/signer" element={ 
           <PrivateRoute>
             <Admin  subElement={ <Signer /> } /> 
+          </PrivateRoute>
+        } />
+        <Route path="/student-dashboard" element={ 
+          <PrivateRoute>
+            <StudentLayout  subElement={ <StudentDashboard /> } /> 
           </PrivateRoute>
         } />
         <Route path="*" element={ 

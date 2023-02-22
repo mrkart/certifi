@@ -1,8 +1,32 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { getUserList } from '../actions/exampleAction';
+import { useDispatch, useSelector } from 'react-redux';
+import TableLoader from './shared/TableLoader';
 
 const Students = () => {
   
+  const dispatch = useDispatch();
+  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
+  let orgID = userprfile.organistaions[0]?.id;
+
+  const fulluserlist = useSelector(state => state.demoReducer.userlist);
+  const [userlist, setUserlist] = useState([]);
+
+  useEffect(() => {
+    dispatch(getUserList(orgID));
+  },[]);
+
+  useEffect(() => {
+    if(fulluserlist.statusCode == 200 && fulluserlist.data.orgUsers){
+      let data = fulluserlist.data.orgUsers;
+      console.log(data);
+      setTimeout(() => {
+        setUserlist(data);
+      }, 1000);
+    }
+  },[fulluserlist]);
+
   return (
     <div className='scrolldiv'>
       <div className='row '>
@@ -20,6 +44,9 @@ const Students = () => {
                 </div>
               </div>
             </div>
+            {userlist.length == 0 ? (
+                <TableLoader/>
+              ) : (
             <div className='tableblur mt-4'>                    
               <div className='searchform'>
                 <div className='fields'>Search & Filters</div>
@@ -40,9 +67,9 @@ const Students = () => {
               <table className="table align-middle mb-0 custable table-hover" >
                 <thead className="">
                   <tr>
-                    <th>
+                    {/* <th>
                     <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" for="exampleCheck1"></label></div>
-                    </th>
+                    </th> */}
                     <th>Student ID</th>
                     <th>Email</th>
                     <th>Name</th>
@@ -52,7 +79,37 @@ const Students = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  {userlist.map((user, index) => (
+                    <tr key={index}>
+                      {/* <td>
+                        <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" for="exampleCheck2"></label></div>
+                        </td> */}
+                      <td>
+                      <div className="d-flex align-items-center">
+                        {user.id}
+                      </div>
+                      </td>
+                      <td>
+                      <span className="text-dark">{user.email}</span>
+                      </td>
+                      <td>
+                      <p className="fw-normal mb-1">{user.name}</p>
+                      </td>
+                      <td> {user.slot[0].name} </td>
+                      <td>
+                      <span className="text-success">Approved</span>
+                      </td>
+                      <td className='text-center'>
+                      <div className='btngrouprht'>
+                      <NavLink to={"/edit-student/"+user.id}>
+                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      </NavLink>
+                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      </div>
+                      </td>
+                  </tr>
+                  ))}
+                  {/* <tr>
                   <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" for="exampleCheck2"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
@@ -172,11 +229,12 @@ const Students = () => {
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
               </div>
             </div>
+              )}
           </div>
         </div>
         {/* <div className='col-md-2'>

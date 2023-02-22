@@ -32,7 +32,7 @@ const StudentsAdd = () => {
     let data = {
       "email": formData.email,
       "name": formData.name,
-      "phone": "+91 "+formData.number,
+      "phone": formData.number,
       "slotName": formData.slot
     }
     dispatch(postCreateStudent(data,orgID));

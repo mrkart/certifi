@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { putUserDetails } from '../actions/exampleAction';
+import { putUserDetails, getUserByID } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
 
 const StudentsEdit = () => {
@@ -14,10 +14,11 @@ const StudentsEdit = () => {
   const [name, setName] = useState('');
   const [batch, setBatch] = useState('');
   const [number, setNumber] = useState('');
-  console.log(params.studentId);
+  // console.log(params.studentId);
 
   const studentID = params.studentId;
   const edituser = useSelector(state => state.demoReducer.edituser);
+  const userbyid = useSelector(state => state.demoReducer.userbyid);
 
   let userprofile = JSON.parse(localStorage.getItem('userprfile'));
   let orgID = userprofile.organistaions[0]?.id;
@@ -28,6 +29,20 @@ const StudentsEdit = () => {
     }
   },[edituser]);
 
+  useEffect(() => {
+    if(userbyid.statusCode == 200){
+      console.log(userbyid.data.orgUser);
+      setEmail(userbyid.data.orgUser.email);
+      setName(userbyid.data.orgUser.name);
+      setBatch(userbyid.data.orgUser.slot[0].name);
+      setNumber(userbyid.data.orgUser.phone);
+    }
+  },[userbyid]);
+
+  useEffect(() => {
+    dispatch(getUserByID(orgID,studentID));
+  },[]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = { email, name, batch, number };
@@ -35,7 +50,7 @@ const StudentsEdit = () => {
     let data = {
       "email": formData.email,
       "name": formData.name,
-      "phone": "+91 "+formData.number,
+      "phone": formData.number,
       "slotName": formData.batch
     }
     dispatch(putUserDetails(data,orgID,studentID));

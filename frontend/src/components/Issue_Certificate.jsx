@@ -2,6 +2,10 @@ import { Fragment, React, useEffect, useMyCustomStuff, useState } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
 import Stepper from "react-stepper-horizontal";
 import * as eva from 'eva-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { generateCertificate, getUserList } from '../actions/exampleAction';
+import TableLoader from './shared/TableLoader';
+import { signMessage } from '../utils/generateSign';
 
 
 const Issue_Certificate = () => {
@@ -19,14 +23,149 @@ const Issue_Certificate = () => {
   const [course, setCourse] = useState('Bachelor of engineering')
   const [grade, setGrade] = useState('A')
   const [batch, setBatch] = useState('2023')
+  const [selectedUser,setSelectedUser] = useState(0)
+  const [selectedUserDetail,setSelectedUserDetail] = useState({})
+
+  const dispatch = useDispatch();
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let orgID = userprofile && userprofile.organistaions[0]?.id;
+
+  const fulluserlist = useSelector(state => state.demoReducer.userlist);
+  const downloadCertificate = useSelector(state => state.demoReducer.generatedCertificate);
+
+  const [userlist, setUserlist] = useState([]);
+  const [certificatePreview,setCertificatePreview] = useState('')
+  const [blobData,setBlobData] = useState({})
+  const [coursename, setCoursename] = useState('');
+  const [stuGrad, setStuGrad] = useState('');
+  const [batchno, setBatchno] = useState('');
+  const [cnumber, setCNumber] = useState('');
+  const [isCertificateSelect, setIsCertificateSelect] = useState(false)
+
+  const [fineToSelectUser, setFineToSelectUser] = useState(false)
+  const [fineToGetCertInfo, setFineToGetCertInfo] = useState(false)
+  const [fineToSelectCertificate,setFineToSelectCertificate] = useState(false)
+  const [callBack,setCallBack] = useState(false)
   useEffect(() => {
     eva.replace()
   })
   const handleSelectMinType = () => {
     setSelectedType(true)
+    dispatch(getUserList(orgID));
   }
   const onChangeValue = (e) => { }
 
+  // useEffect(() => {
+  //   dispatch(getUserList(orgID));
+  // }, []);
+
+  useEffect(() => {
+    if (fulluserlist && fulluserlist.statusCode == 200 && fulluserlist.data && fulluserlist.data.orgUsers) {
+      let data = fulluserlist.data.orgUsers;
+      console.log(data);
+      setTimeout(() => {
+        setUserlist(data);
+      }, 1000);
+    }
+  }, [fulluserlist]);
+  const handleselectUser = (user) => {
+    if(user && user.id){
+      setSelectedUser(user.id)
+      setSelectedUserDetail(user)
+      setFineToSelectUser(true)
+      localStorage.setItem('selectedStudent',JSON.stringify(user))
+      if(user && user.slot && user.slot[0] && user.slot[0].name){
+        setBatchno(user.slot[0].name)
+      }
+      
+    }
+    
+  }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'coursename') {
+      setCoursename(value);
+      setCallBack(true)
+    } else if (name === 'stuGrad') {
+      setStuGrad(value);
+      setCallBack(true)
+    } else if (name === 'batchno') {
+      setBatchno(value);
+      setCallBack(true)
+    } else if (name === 'cnumber') {
+      setCNumber(value);
+      setCallBack(true)
+    }
+  };
+  const movewithInfo = () => {
+    const formData = { coursename, stuGrad, batchno, cnumber };
+    let data = {
+      "coursename": formData.coursename,
+      "grade": formData.stuGrad,
+      "batch": formData.batchno,
+      "certificateNumber": formData.cnumber
+    }
+    localStorage.setItem('certInfo',JSON.stringify(data))
+    setStepper(stepper + 1)
+
+  }
+  useEffect(() => {
+    if(downloadCertificate && downloadCertificate.status === 200){
+      var blob = new Blob([downloadCertificate.data], {type: "application/pdf"});
+      var blob_url = URL.createObjectURL(blob);
+      setCertificatePreview(blob_url)
+      setBlobData(downloadCertificate.data)
+    }
+    
+  },[downloadCertificate])
+
+  const moveWithCertificatePreview = () => {
+    console.log(selectedUserDetail)
+    let userDetail = JSON.parse(localStorage.getItem('selectedStudent'));
+    let certDetail = JSON.parse(localStorage.getItem('certInfo'));
+
+    if(userDetail && userDetail.id){
+      const userId = userDetail.id
+      const slotId = userDetail.slot && userDetail.slot[0]?.id
+      if(certDetail && certDetail.coursename){
+        let obj = {
+          "courseName": certDetail.coursename,
+          "grade": certDetail.grade,
+          "slotId": slotId,
+          "certificateNumber": certDetail.certificateNumber
+        }
+        setCertificatePreview('')
+        dispatch(generateCertificate(orgID,userId,obj))
+      }
+      
+      
+    }
+    setStepper(stepper + 1)
+
+
+  }
+  const generateSign = () => {
+    signMessage()
+
+  }
+  const backtoSelectStuStep = () => {
+    setStepper(stepper - 1)
+  }
+
+  useEffect(() => {
+    setCallBack(false)
+    if(coursename && stuGrad && batchno && cnumber){
+      setFineToGetCertInfo(true)
+      
+    }else{
+      setFineToGetCertInfo(false)
+    }
+  },[callBack])
+
+  const handleSelectCertificatetheme = () => {
+    setFineToSelectCertificate(true)
+    setIsCertificateSelect(true)
+  }
   return (
     <Fragment>
       {!selectedType ? <div className='scrolldiv'>
@@ -159,8 +298,74 @@ const Issue_Certificate = () => {
                         </div>
                         <div className='fields'></div>
                       </div>
+                      {userlist.length == 0 ? (
+                        <TableLoader />
+                      ) : (
+                        <div className='tableblur mt-4'>
+                          <div className='searchform'>
+                            <div className='fields'>Search & Filters</div>
+                            <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
+                            <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year' /></div>
+                            <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
+                            <div className='fields'>
+                              <select className="form-control">
+                                <option selected>Import slot</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                              </select>
 
-                      <div className='tableblur mt-4'>
+                            </div>
+                          </div>
+                          <div className='table-responsive'>
+                            <table className="table align-middle mb-0 custable table-hover" >
+                              <thead className="">
+                                <tr>
+                                  <th></th>
+                                  <th>Student ID</th>
+                                  <th>Email</th>
+                                  <th>Name</th>
+                                  <th>Batch</th>
+                                  <th>Status</th>
+                                  {/* <th className='text-center'>Action</th> */}
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {userlist.map((user, index) => (
+                                  <tr key={index}>
+                                    <td>
+                                      <div className="form-group"><input type="checkbox" className="form-check-input" id={`exampleCheck${index}`} checked={selectedUser === user.id} onChange={() => handleselectUser(user)}/><label className="form-check-label" for={`exampleCheck${index}`}></label></div>
+                                    </td>
+                                    <td>
+                                      <div className="d-flex align-items-center">
+                                        {user.id}
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <span className="text-dark">{user.email}</span>
+                                    </td>
+                                    <td>
+                                      <p className="fw-normal mb-1">{user.name}</p>
+                                    </td>
+                                    <td> {user.slot[0].name} </td>
+                                    <td>
+                                      <span className="text-success">Approved</span>
+                                    </td>
+                                    {/* <td className='text-center'>
+                                      <div className='btngrouprht'>
+                                      
+                                        <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                                      </div>
+                                    </td> */}
+                                  </tr>
+                                ))}
+
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+                      {/* <div className='tableblur mt-4'>
                         <div className='searchform'>
                           <div className='fields'>Search & Filters</div>
                           <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
@@ -316,7 +521,7 @@ const Issue_Certificate = () => {
                             </tbody>
                           </table>
                         </div>
-                      </div>
+                      </div> */}
 
                     </div>
 
@@ -324,7 +529,7 @@ const Issue_Certificate = () => {
                       {/* <div className='col-6'>Totally <span className='fw-bold'>125</span> students seclected</div> */}
                       <div className='col-12 text-end'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
+                          <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)} disabled={!fineToSelectUser}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
                       </div>
                     </div>
@@ -340,22 +545,22 @@ const Issue_Certificate = () => {
                             <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
                                 <label className='mb-2'>Course</label>
-                                <input type={'text'} className="form-control" placeholder='Course' />
+                                <input type={'text'} className="form-control" placeholder='Course' onChange={handleInputChange} value={coursename} name="coursename" />
                               </div>
 
                               <div className='form-group'>
                                 <label className='mb-2'>Grade</label>
-                                <input type={'text'} className="form-control" placeholder='Grade' />
+                                <input type={'text'} className="form-control" placeholder='Grade' onChange={handleInputChange} value={stuGrad} name="stuGrad" />
                               </div>
 
                               <div className='form-group'>
                                 <label className='mb-2'>Batch</label>
-                                <input type={'text'} className="form-control" placeholder='Batch' />
+                                <input type={'text'} className="form-control" placeholder='Batch' onChange={handleInputChange} value={batchno} name="batchno" readOnly/>
                               </div>
 
                               <div className='form-group'>
                                 <label className='mb-2'>Certificate Number</label>
-                                <input type={'text'} className="form-control" placeholder='Certificate Number' />
+                                <input type={'text'} className="form-control" placeholder='Certificate Number' onChange={handleInputChange} value={cnumber} name="cnumber"/>
                               </div>
                             </div>
                           </div>
@@ -382,12 +587,12 @@ const Issue_Certificate = () => {
                     <div className='row align-items-center'>
                       <div className='col-6'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-light btn-icon' onClick={() => setStepper(stepper - 1)}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
+                          <button className='btn btn-light btn-icon' onClick={backtoSelectStuStep}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
+                          <button className='btn btn-primary btn-icon icon-rht' onClick={movewithInfo} disabled={!fineToGetCertInfo}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
                       </div>
                     </div>
@@ -430,7 +635,7 @@ const Issue_Certificate = () => {
                         <div className='row'>
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp' >
-                              <input type={'radio'} id="certselect-1" name='cerselect' onClick={() => setStepper(stepper + 1)} />
+                              <input type={'radio'} id="certselect-1" name='cerselect' checked={isCertificateSelect} onChange={handleSelectCertificatetheme}/>
                               <label className='backgroundblur' for="certselect-1">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
@@ -537,7 +742,7 @@ const Issue_Certificate = () => {
                       </div>
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
+                          <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)} disabled={!fineToSelectCertificate}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
                       </div>
                     </div>
@@ -764,7 +969,7 @@ const Issue_Certificate = () => {
                       </div>
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
+                          <button className='btn btn-primary btn-icon icon-rht' onClick={moveWithCertificatePreview}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
                       </div>
                     </div>
@@ -773,7 +978,7 @@ const Issue_Certificate = () => {
 
                 {stepper === 4 &&
                   <div>
-                    <div className='formscroldiv'>
+                    {certificatePreview ? <div className='formscroldiv'>
                       {/* <div className='backgroundblur text-center mh-auto'>
                     <div className='certinfo certpreview'>
                       <div className='img'>
@@ -825,7 +1030,8 @@ const Issue_Certificate = () => {
                           </h2>
                           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
                             <div class="accordion-body text-center">
-                              <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" />
+                              <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} height={"300px"} width="70%"></iframe>
+                              {/* <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" /> */}
                             </div>
                           </div>
                         </div>
@@ -881,7 +1087,7 @@ const Issue_Certificate = () => {
                     </div> */}
                       </div>
 
-                    </div>
+                    </div> : <TableLoader/>}
 
                     <div className='row align-items-center'>
                       {/* <div className='col-12 text-center'>You will be prompted to initiate your blockchain signature in next step</div> */}
@@ -939,7 +1145,7 @@ const Issue_Certificate = () => {
                           <div className='backgroundblur text-center'>
                             <div className='signerboxes'>
                               <h6>Issuer Sign</h6>
-                              <button type="button" class="btn btn-light text-primary">Sign</button>
+                              <button type="button" class="btn btn-light text-primary" onClick={generateSign}>Sign</button>
                               <button type="button" class="btn btn-danger">Reject</button>
                             </div>
                           </div>

@@ -1,19 +1,24 @@
 import { React, useEffect, useMyCustomStuff } from 'react';
 import * as eva from 'eva-icons';
 import StudentSidemenu from '../components/shared/StudentSidemenu';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { mainRoles,userRoles } from '../components/shared/Roles';
 
 const StudentLayout = ({ subElement }) => {
 
     let userprofile = JSON.parse(localStorage.getItem('userprofile'));
-    let userName = userprofile.name;
-    let userOrg = userprofile.organistaions[0]?.name;
-    let userRole = userprofile.roles && userprofile.roles[0]?.name;
-    let userFlowAddress = userprofile.flowAddress;
+    let userName = userprofile && userprofile.name;
+    let userOrg = userprofile && userprofile.organistaions[0]?.name;
+    let userRole = userprofile && userprofile.roles && userprofile.roles[0]?.name;
+    let userFlowAddress = userprofile && userprofile.flowAddress;
     console.log(userName);
     console.log(userOrg);
-
+    const navigate = useNavigate();
+    function logout(){
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userprofile');
+        navigate("/login");
+      }
     useEffect(() => { eva.replace() });
     return (
         (userRoles.includes(userRole) ? <div className='container-fluid ptb15 h100vh'>
@@ -68,7 +73,7 @@ const StudentLayout = ({ subElement }) => {
                                         <div className='profile-cont'>
                                             <p className='mb-0 profilename'>Welcome <span className='username'>{userName}</span></p>
                                             <p className='mb-1 profilename'>{userFlowAddress}</p>
-                                            <p className='lastlogin mb-0'><a class="btn btn-light btn-sm text-primary" href="#"><i data-eva="log-out-outline"></i> Logout</a></p>
+                                            <p className='lastlogin mb-0'><a class="btn btn-light btn-sm text-primary"  onClick={logout} href=""><i data-eva="log-out-outline"></i> Logout</a></p>
                                         </div>
 
                                         <div className='profile-icon'>

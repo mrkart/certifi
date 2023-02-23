@@ -1,5 +1,5 @@
 import api from '../services/api';
-import apiTokenOrgid from '../services/apiTokenOrgid';
+import apiTokenOrgid, { apiTokenWithBlob } from '../services/apiTokenOrgid';
 import apiWithToken from '../services/apiWithToken';
 
 export const getSampleAPI = () => {
@@ -92,3 +92,15 @@ export const putUserDetails = (data,orgID,userID) => {
       });
   };
 };
+
+export const generateCertificate = (orgID, userID, data) => {
+  return (dispatch) => {
+    apiTokenWithBlob(localStorage.getItem('accessToken'),orgID).post(`/api/users/${userID}/certificate`, data)
+      .then((response) => {
+        dispatch({ type: 'GENERATE_CERTIFICATE_SUCCESS', payload: response });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GENERATE_CERTIFICATE_FAILED', payload: error });
+      });
+  };
+}

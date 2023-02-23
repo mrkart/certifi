@@ -63,14 +63,14 @@ const StudentSidemenu = () => {
                 <div class="accordion-body p-0 ps-3">
                   <NavLink to="/claim-flow-account" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
                     <img
-                      src={require('../../assets/images/icons/edit-3.png')}
+                      src={require('../../assets/images/icons/claim.png')}
                       className='sidebaricons me-3'
                     />
                     <span>Claim Flow Account</span>
                   </NavLink>
                   <NavLink to="/add-email" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
                     <img
-                      src={require('../../assets/images/icons/users-import.png')}
+                      src={require('../../assets/images/icons/add-email.png')}
                       className='sidebaricons me-3'
                     />
                     <span>Add Email Accounts</span>

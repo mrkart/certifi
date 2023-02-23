@@ -369,6 +369,12 @@ usersRouter.put(
  *         type: integer
  *         example: 1
  *         required: true
+ *     requestBody:
+ *       description: Describe the certificate to be created
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateCertificateDTO'
  *     responses:
  *       "200":
  *         description: Certificate generated

@@ -42,6 +42,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = { email, password };
+    localStorage.setItem('user_email',formData.email);
     // console.log(formData);
     let data = {
       "email": formData.email,

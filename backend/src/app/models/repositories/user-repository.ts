@@ -78,7 +78,8 @@ export const UserRepository = getDataSource()
                         id: orgRole.id,
                         name: orgRole.accessType
                     };
-                })
+                }),
+                flowAddress: user.flowAddress
             };
             return profile;
         },

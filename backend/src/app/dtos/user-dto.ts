@@ -42,7 +42,6 @@ export class CreateUserDTO {
 }
 
 export class UpdateUserDTO {
-
     @Trim()
     @StringLength(1, 255)
     @IsString()
@@ -56,4 +55,11 @@ export class UpdateUserDTO {
     @IsNotEmpty()
     @IsOptional()
     phone?: string;
+}
+
+export class CreateCertificateDTO {
+    courseName: string;
+    grade: string;
+    slotId: number;
+    certificateNumber: string;
 }

@@ -100,6 +100,17 @@
  *               type: string
  *           phone:
  *               type: string
+ *     CreateCertificateDTO:
+ *       type: object
+ *       properties:
+ *           courseName:
+ *               type: string
+ *           grade:
+ *               type: string
+ *           slotId:
+ *               type: integer
+ *           certificateNumber:
+ *               type: string
  *   responses:
  *     NotFound:
  *       description: The specified resource does not exsist

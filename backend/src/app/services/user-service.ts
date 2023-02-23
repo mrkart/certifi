@@ -1,4 +1,8 @@
 import { isEmpty } from 'class-validator';
+import { randomBytes } from 'crypto';
+import { existsSync } from 'fs';
+import { mkdir } from 'fs/promises';
+import { resolve } from 'path';
 import { CreateUserDTO, UpdateUserDTO } from '../dtos';
 import { UnhandledError } from '../errors';
 import {
@@ -12,11 +16,16 @@ import {
 } from '../helpers';
 import MailTransporterFactory from '../helpers/transporter';
 import { OrgUserInviationMail } from '../mail/org-user-invitation-mail';
+import { User } from '../models/entities/User';
 import { UserRepository } from '../models/repositories/user-repository';
 import fclService, { FclService } from './fcl-service';
+import pdfService, { PdfService } from './pdf-service';
 
 export class UserService {
-    constructor(private fclService: FclService) {}
+    constructor(
+        private fclService: FclService,
+        private pdfService: PdfService
+    ) {}
     public async getProfile(userId: number): Promise<Profile> {
         const profile = await UserRepository.findProfile(userId);
         return profile;
@@ -136,6 +145,36 @@ export class UserService {
         };
     }
 
+    public async createCertificate(
+        orgId: number,
+        userId: number
+    ): Promise<string> {
+        const user = await UserRepository.findOrgUserById(userId, orgId);
+        return this.generateCertificateFile(orgId, user);
+    }
+
+    private async generateCertificateFile(
+        orgId: number,
+        user: User
+    ): Promise<string> {
+        const templatePath = resolve('./templates/certificates/template1.pdf');
+        const outDir = resolve(
+            `./generated_files/preview/org/${orgId}/certificates`
+        );
+        if (existsSync(outDir) === false) {
+            await mkdir(outDir, { recursive: true });
+        }
+        const fileName: string =
+            `${orgId}_${user.id}_` + randomBytes(4).toString('hex') + '.pdf';
+        const outPath: string = `${outDir}/${fileName}`;
+        await this.pdfService.createCertificate(
+            user.name,
+            templatePath,
+            outPath
+        );
+        return outPath;
+    }
+
     private async dispatchInvitation(user: OrgUser) {
         const invite = new OrgUserInviationMail(
             {
@@ -236,5 +275,5 @@ export class UserService {
     }
 }
 
-const userService = new UserService(fclService);
+const userService = new UserService(fclService, pdfService);
 export default userService;

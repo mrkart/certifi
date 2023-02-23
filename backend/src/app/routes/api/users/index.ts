@@ -345,4 +345,56 @@ usersRouter.put(
     }
 );
 
+/**
+ * @openapi
+ * /api/users/{userId}/certificate:
+ *   post:
+ *     summary: generate certificate
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: header
+ *         name: cerfi-org-id
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *       - in: path
+ *         name: userId
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *     responses:
+ *       "200":
+ *         description: Certificate generated
+ *         content:
+ *          application/pdf:
+ *            schema:
+ *              type: string
+ *              format: binary
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.post(
+    '/:userId/certificate',
+    AuthenticationMiddleware,
+    OrgIdHeaderValidationMiddleare,
+    async (request, response, next) => {
+        await userController.createCertificate(request, response, next);
+    }
+);
+
 export default usersRouter;

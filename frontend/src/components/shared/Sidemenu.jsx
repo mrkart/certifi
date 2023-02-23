@@ -112,7 +112,7 @@ const Sidemenu = () => {
       </div>
       <div className="sidebarbottom light-blur text-center">
         <p className='mt-0 mb-1'> Blockchain network status</p>
-        <select class="form-control mb-1" value={selectType} onChange={onChangeValue}>
+        <select className="form-control mb-1" value={selectType} onChange={onChangeValue}>
           <option value="1">Testnet</option>
           <option value="2">Mainnet</option>
         </select>

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { getUserList } from '../actions/exampleAction';
 import { useDispatch, useSelector } from 'react-redux';
 import TableLoader from './shared/TableLoader';
+import * as eva from 'eva-icons';
 
 const Students = () => {
   
@@ -16,6 +17,9 @@ const Students = () => {
   useEffect(() => {
     dispatch(getUserList(orgID));
   },[]);
+  useEffect(() => {
+    eva.replace();
+  });
 
   useEffect(() => {
     if(fulluserlist.statusCode == 200 && fulluserlist.data.orgUsers){
@@ -55,7 +59,7 @@ const Students = () => {
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email'/></div>
                 <div className='fields'>
                   <select className="form-control"> 
-                      <option selected>Import slot</option>
+                      <option defaultValue>Import slot</option>
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -101,16 +105,16 @@ const Students = () => {
                       </td>
                       <td className='text-center'>
                       <div className='btngrouprht'>
-                      <NavLink to={"/edit-student/"+user.id}>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-student/"+user.id}>
+                        < i data-eva-animation="flip" data-eva="edit-outline"></i>
                       </NavLink>
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                       </div>
                       </td>
                   </tr>
                   ))}
-                  {/* <tr>
-                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" for="exampleCheck2"></label></div></td>
+                  {/* 
+                  <tr>
                     <td>
                       <div className="d-flex align-items-center">
                         1
@@ -128,7 +132,9 @@ const Students = () => {
                     </td>
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-student/21"}>
+                        < i data-eva-animation="flip" data-eva="edit-outline"></i>
+                      </NavLink>
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>

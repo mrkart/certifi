@@ -2,6 +2,11 @@ import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidemenu = () => {
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let userName = userprofile.name;
+  let userOrg = userprofile.organistaions[0]?.name;
+  console.log(userName);
+  console.log(userOrg);
   const [selectType,setSelectType] = "1"
   const onChangeValue = () => {}
   return (
@@ -16,6 +21,14 @@ const Sidemenu = () => {
               className='sidebarlogo mb-3'
             />
           </a>
+          <div className='mobileprofile'>
+            <div className='profile-area'>
+              <div className='profile-icon'>
+                <img className='headerprofilepic' src={require('../../assets/images/photo4.png')} loading="lazy" />
+              </div>
+              <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
+            </div>
+          </div>
           <NavLink to="/" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
             <img
               src={require('../../assets/images/icons/airplay.png')}

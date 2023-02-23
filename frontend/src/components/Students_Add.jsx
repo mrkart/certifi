@@ -17,8 +17,8 @@ const StudentsAdd = () => {
     }
   },[addStudentRes]);
 
-  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
-  let orgID = userprfile.organistaions[0]?.id;
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let orgID = userprofile.organistaions[0]?.id;
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -32,7 +32,7 @@ const StudentsAdd = () => {
     let data = {
       "email": formData.email,
       "name": formData.name,
-      "phone": "+91 "+formData.number,
+      "phone": formData.number,
       "slotName": formData.slot
     }
     dispatch(postCreateStudent(data,orgID));

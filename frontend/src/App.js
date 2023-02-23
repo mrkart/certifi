@@ -41,7 +41,7 @@ function App() {
             <Admin subElement={ <StudentsAdd /> }  /> 
           </PrivateRoute> 
         } />
-        <Route path="/edit-student" element={ 
+        <Route path="/edit-student/:studentId" element={ 
           <PrivateRoute>
             <Admin subElement={ <StudentsEdit /> }  /> 
           </PrivateRoute> 

@@ -1,8 +1,74 @@
-import { React, useEffect, useMyCustomStuff } from 'react';
-import { Tooltip, ResponsiveContainer } from 'recharts';
-
+import { React, useState, useEffect, useMyCustomStuff } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { putUserDetails, getUserByID } from '../actions/exampleAction';
+import { useNavigate } from "react-router-dom";
 
 const StudentsEdit = () => {
+
+  const params = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [batch, setBatch] = useState('');
+  const [number, setNumber] = useState('');
+  // console.log(params.studentId);
+
+  const studentID = params.studentId;
+  const edituser = useSelector(state => state.demoReducer.edituser);
+  const userbyid = useSelector(state => state.demoReducer.userbyid);
+
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let orgID = userprofile.organistaions[0]?.id;
+
+  useEffect(() => {
+    if(edituser.statusCode == 200){
+      navigate("/students");
+    }
+  },[edituser]);
+
+  useEffect(() => {
+    if(userbyid.statusCode == 200){
+      console.log(userbyid.data.orgUser);
+      setEmail(userbyid.data.orgUser.email);
+      setName(userbyid.data.orgUser.name);
+      setBatch(userbyid.data.orgUser.slot[0].name);
+      setNumber(userbyid.data.orgUser.phone);
+    }
+  },[userbyid]);
+
+  useEffect(() => {
+    dispatch(getUserByID(orgID,studentID));
+  },[]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = { email, name, batch, number };
+    console.log(formData);
+    let data = {
+      "email": formData.email,
+      "name": formData.name,
+      "phone": formData.number,
+      "slotName": formData.batch
+    }
+    dispatch(putUserDetails(data,orgID,studentID));
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'name') {
+      setName(value);
+    } else if (name === 'batch') {
+      setBatch(value);
+    } else if (name === 'number') {
+      setNumber(value);
+    }
+  };
+
   return (
     <div className='scrolldiv1'>
       <div className='row '>
@@ -20,43 +86,44 @@ const StudentsEdit = () => {
             <div className='backgroundblur'>
             
               <div className='searchform border-none d-block'>
+              <form onSubmit={handleSubmit}>
               <div className='formscroldiv'>
               <h6 className='mb-3 fw-bold'>Student Details</h6>
                 <div className='row'>
                 <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Student ID</label>
-                      <input type={'text'} className="form-control" placeholder='Email' value={'24586'} disabled />
+                      <input name="studentid" onChange={handleInputChange} value={studentID} type={'text'} className="form-control" placeholder='Email' disabled />
                     </div>
                   </div>
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Email</label>
-                      <input type={'text'} className="form-control" placeholder='Email' value={'anderson@gmail.com'} />
+                      <input name="email" onChange={handleInputChange} value={email} type={'text'} className="form-control" placeholder='Email' />
                     </div>
                   </div>
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Name</label>
-                      <input type={'text'} className="form-control" placeholder='Name' value={'Anderson'} />
+                      <input name="name" onChange={handleInputChange} value={name} type={'text'} className="form-control" placeholder='Name' />
                     </div>
                   </div>
-                  <div className='col-md-4'>
-                    <div className='form-group'>
-                      <label className='mb-2'>Last Name</label>
-                      <input type={'text'} className="form-control" placeholder='Last Name' value={'David'} />
-                    </div>
-                  </div>
-
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Contact Number</label>
-                      <input type={'text'} className="form-control" placeholder='Contact Number' value={'9876543210'} />
+                      <input name="number" onChange={handleInputChange} value={number} type={'text'} className="form-control" placeholder='Contact Number' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-4'>
+                    <div className='form-group'>
+                      <label className='mb-2'>Batch</label>
+                      <input name="batch" onChange={handleInputChange} value={batch} type={'text'} className="form-control" placeholder='Batch' />
                     </div>
                   </div>
 
                   </div>
-                  <h6 className='my-3 fw-bold'>College Details</h6>
+                  {/* <h6 className='my-3 fw-bold'>College Details</h6>
                   <div className='row'>
                   <div className='col-md-4'>
                     <div className='form-group'>
@@ -88,17 +155,18 @@ const StudentsEdit = () => {
                           </select>
                     </div>
                   </div>
-                </div>
+                </div>*/}
               </div>
               <hr className='light-brd'/>
               <div className='row align-items-center'>                  
-                  <div className='col-12 text-center'>
-                    <div className='btngrouprht'>
-                      <button className='btn btn-primary btn-icon icon-rht'>Save</button>
-                    </div>
+                <div className='col-12 text-center'>
+                  <div className='btngrouprht'>
+                    <button className='btn btn-primary btn-icon icon-rht'>Save</button>
                   </div>
                 </div>
-                </div>
+              </div>
+              </form>
+              </div>
             </div>
           </div>
         </div>

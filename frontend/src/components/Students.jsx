@@ -7,8 +7,8 @@ import TableLoader from './shared/TableLoader';
 const Students = () => {
   
   const dispatch = useDispatch();
-  let userprfile = JSON.parse(localStorage.getItem('userprfile'));
-  let orgID = userprfile.organistaions[0]?.id;
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let orgID = userprofile.organistaions[0]?.id;
 
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
   const [userlist, setUserlist] = useState([]);
@@ -101,7 +101,9 @@ const Students = () => {
                       </td>
                       <td className='text-center'>
                       <div className='btngrouprht'>
+                      <NavLink to={"/edit-student/"+user.id}>
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      </NavLink>
                       <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                       </div>
                       </td>

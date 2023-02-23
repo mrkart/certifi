@@ -1,16 +1,22 @@
+import { isEmpty } from 'class-validator';
 import { CreateUserDTO, UpdateUserDTO } from '../dtos';
+import { UnhandledError } from '../errors';
 import {
+    AccountCreatedEventData,
     ListResponse,
     OrgUser,
     OrgUserResponse,
     Profile,
+    TransactionEvent,
     Utility
 } from '../helpers';
 import MailTransporterFactory from '../helpers/transporter';
 import { OrgUserInviationMail } from '../mail/org-user-invitation-mail';
 import { UserRepository } from '../models/repositories/user-repository';
+import fclService, { FclService } from './fcl-service';
 
 export class UserService {
+    constructor(private fclService: FclService) {}
     public async getProfile(userId: number): Promise<Profile> {
         const profile = await UserRepository.findProfile(userId);
         return profile;
@@ -22,6 +28,7 @@ export class UserService {
     ): Promise<OrgUserResponse> {
         const user = await UserRepository.createOrgUser(request, orgId);
         this.dispatchInvitation(user);
+        this.createAndSetupWallet(user);
         return {
             email: user.email,
             id: user.id,
@@ -152,7 +159,82 @@ export class UserService {
             console.error('Error: Failed to send message', e);
         }
     }
+
+    private async createAndSetupWallet(orgUser: OrgUser): Promise<void> {
+        try {
+            const user = await UserRepository.findOneBy({
+                id: orgUser.id
+            });
+            if (isEmpty(user)) {
+                throw new UnhandledError(
+                    new Error('Could not find user for id: ' + orgUser.id)
+                );
+            }
+            const userTx = await this.fclService.createUser(0);
+            // console.log('User creation\n', JSON.stringify(userTx, null, 4));
+            console.log('✓ Account created');
+            const flowAccountCreatedEvt: TransactionEvent<AccountCreatedEventData> =
+                userTx.events.find(
+                    (evt) => evt.type === 'flow.AccountCreated'
+                ) as TransactionEvent<AccountCreatedEventData>;
+            if (isEmpty(flowAccountCreatedEvt)) {
+                throw new UnhandledError(
+                    new Error(
+                        'User creation tx response ' +
+                            'did not contain event "flow.AccountCreated"'
+                    )
+                );
+            }
+            const { address } = flowAccountCreatedEvt.data;
+            user.flowAddress = address;
+            await UserRepository.save(user);
+            const tokenTransferRs = await fclService.transferFlowToken(
+                0,
+                1,
+                address
+            );
+            // console.log(
+            //     'Transfer token response\n',
+            //     JSON.stringify(tokenTransferRs, null, 4)
+            // );
+            console.log('✓ Flow Token transferred');
+            const setupAccountStatus = await this.fclService.setupAccount(
+                0,
+                address
+            );
+            // console.log(
+            //     'Flow account setup\n',
+            //     JSON.stringify(setupAccountStatus, null, 4)
+            // );
+            console.log('✓ Collection created');
+            user.flowAccSetupStatus = 1;
+            await UserRepository.save(user);
+        } catch (e) {
+            // console.error(e);
+            console.error(
+                JSON.stringify(
+                    e,
+                    (key, val) => {
+                        if (val instanceof Error) {
+                            var error = {};
+
+                            Object.getOwnPropertyNames(val).forEach(function (
+                                propName
+                            ) {
+                                error[propName] = val[propName];
+                            });
+
+                            return error;
+                        }
+
+                        return val;
+                    },
+                    4
+                )
+            );
+        }
+    }
 }
 
-const userService = new UserService();
+const userService = new UserService(fclService);
 export default userService;

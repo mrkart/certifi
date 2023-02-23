@@ -6,10 +6,10 @@ import { mainRoles,userRoles } from '../components/shared/Roles';
 
 const StudentLayout = ({ subElement }) => {
 
-    let userprfile = JSON.parse(localStorage.getItem('userprfile'));
-    let userName = userprfile.name;
-    let userOrg = userprfile.organistaions[0]?.name;
-    let userRole = userprfile.roles && userprfile.roles[0]?.name
+    let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+    let userName = userprofile.name;
+    let userOrg = userprofile.organistaions[0]?.name;
+    let userRole = userprofile.roles && userprofile.roles[0]?.name
     console.log(userName);
     console.log(userOrg);
 

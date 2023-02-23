@@ -86,7 +86,7 @@ export class UserService {
                     .filter((slotHasUser) => slotHasUser?.slot?.orgId === orgId)
                     .map((slotHasUser) => {
                         return {
-                            id: slotHasUser.id,
+                            id: slotHasUser.slot.id,
                             name: slotHasUser.slot.slotTitle
                         };
                     })
@@ -142,7 +142,7 @@ export class UserService {
                 .filter((slotHasUser) => slotHasUser?.slot?.orgId === orgId)
                 .map((slotHasUser) => {
                     return {
-                        id: slotHasUser.id,
+                        id: slotHasUser.slot.id,
                         name: slotHasUser.slot.slotTitle
                     };
                 })

@@ -1,5 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { NextFunction, Request, Response } from 'express';
+import { resolve } from 'path';
 import { CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../dtos';
 import { APIError, UnhandledError } from '../../errors';
 import { ApiResponse, AuthUser } from '../../helpers';
@@ -138,6 +139,45 @@ export class UserController {
                     'Users fetched'
                 )
             );
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
+
+    public async createCertificate(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const orgId = request.header('cerfi-org-id');
+            const { userId } = plainToInstance(
+                UserIdUrlPramDTO,
+                request.params
+            );
+            const res = await this.userService.createCertificate(
+                parseInt(orgId),
+                parseInt(userId)
+            );
+            // response.sendFile(
+            //     resolve(res),
+            //     {
+            //         maxAge: 29030400,
+            //         headers: {
+
+            //             // Set this resource policy to "cross origin"
+            //             // to allow embedding of image or video
+            //             // in html pages
+            //             "Cross-Origin-Resource-Policy": "cross-origin",
+            //             "Content-Type":"application/pdf"
+            //         }
+            //     }
+            // )
+            response.download(resolve(res));
         } catch (e) {
             if (e instanceof APIError) {
                 next(e);

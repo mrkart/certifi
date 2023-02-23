@@ -15,7 +15,7 @@ export class PdfService {
         name: string,
         templatePath: string,
         outputPath: string
-    ) {
+    ): Promise<void> {
         // Load the existing PDF template
         const templateBytes = await fs.readFile(templatePath);
 

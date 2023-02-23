@@ -43,7 +43,7 @@ const Issue_Certificate = () => {
 
             <div className='certtemplates mintnft'>
               <div className='row'>
-                <div className="col-sm-6 col-md-4">
+                <div className="col-6 col-md-4">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' onClick={handleSelectMinType} />
                     <label className='backgroundblur' for="certselect-1">
@@ -56,7 +56,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-sm-6 col-md-4 btn-disabled" >
+                <div className="col-6 col-md-4 btn-disabled" >
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' for="certselect-1">
@@ -69,7 +69,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-sm-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' for="certselect-1">
@@ -82,7 +82,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-sm-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' for="certselect-1">
@@ -95,7 +95,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-sm-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' for="certselect-1">
@@ -108,7 +108,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-sm-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' for="certselect-1">
@@ -321,8 +321,8 @@ const Issue_Certificate = () => {
                     </div>
 
                     <div className='row align-items-center'>
-                      <div className='col-6'>Totally <span className='fw-bold'>125</span> students seclected</div>
-                      <div className='col-6 text-end'>
+                      {/* <div className='col-6'>Totally <span className='fw-bold'>125</span> students seclected</div> */}
+                      <div className='col-12 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
@@ -428,7 +428,7 @@ const Issue_Certificate = () => {
                   </div> */}
                       <div className='certtemplates mt-3'>
                         <div className='row'>
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp' >
                               <input type={'radio'} id="certselect-1" name='cerselect' onClick={() => setStepper(stepper + 1)} />
                               <label className='backgroundblur' for="certselect-1">
@@ -440,7 +440,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-2" name='cerselect' />
                               <label className='backgroundblur' for="certselect-2">
@@ -452,7 +452,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-3" name='cerselect' />
                               <label className='backgroundblur' for="certselect-3">
@@ -464,7 +464,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-4" name='cerselect' />
                               <label className='backgroundblur' for="certselect-4">
@@ -476,7 +476,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-5" name='cerselect' />
                               <label className='backgroundblur' for="certselect-5">
@@ -488,7 +488,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-6" name='cerselect' />
                               <label className='backgroundblur' for="certselect-6">
@@ -500,7 +500,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-7" name='cerselect' />
                               <label className='backgroundblur' for="certselect-7">
@@ -512,7 +512,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className="col-sm-6 col-md-3">
+                          <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-8" name='cerselect' />
                               <label className='backgroundblur' for="certselect-8">
@@ -553,6 +553,7 @@ const Issue_Certificate = () => {
                               <label className='mb-2'>Title</label>
                               <input type={'text'} className="form-control" placeholder='Title' value={title} onChange={onChangeValue} />
                             </div>
+                            <div className='txtsfont'>
                             <div className='row'>
                               <div className='col-md-8'>
                                 <div className='form-group'>
@@ -583,8 +584,9 @@ const Issue_Certificate = () => {
 
                               </div>
                             </div>
+                            </div>
 
-
+                            <div className='txtsstyle'>
                             <div className='row'>
                               <div className='col-md-6'>
                                 <div className='form-group'>
@@ -610,11 +612,12 @@ const Issue_Certificate = () => {
 
                               </div>
                             </div>
+                            </div>
                           </div>
                           <div className='col-md-4'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload background picture</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload background picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -628,7 +631,7 @@ const Issue_Certificate = () => {
                           <div className='col-md-4'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload design picture</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload design picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -661,7 +664,7 @@ const Issue_Certificate = () => {
                           <div className='col-md-12'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload chief executive officer signature</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload chief executive officer signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -677,7 +680,7 @@ const Issue_Certificate = () => {
                           <div className='col-md-12'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload department head signature</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload department head signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -881,13 +884,14 @@ const Issue_Certificate = () => {
                     </div>
 
                     <div className='row align-items-center'>
-                      <div className='col-4'>
+                      {/* <div className='col-12 text-center'>You will be prompted to initiate your blockchain signature in next step</div> */}
+                      <div className='col-6'>
                         <div className='btngrouprht'>
                           <button className='btn btn-light btn-icon' onClick={() => setStepper(stepper - 1)}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
-                      <div className='col-4 text-center'>You will be prompted to initiate your blockchain signature in next step</div>
-                      <div className='col-4 text-end'>
+                      
+                      <div className='col-6 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
@@ -944,13 +948,12 @@ const Issue_Certificate = () => {
                     </div>
 
                     <div className='row align-items-center'>
-                      <div className='col-4'>
+                      <div className='col-6'>
                         <div className='btngrouprht'>
                           <button className='btn btn-light btn-icon' onClick={() => setStepper(stepper - 1)}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
-                      </div>
-                      <div className='col-4 text-center'>You will be prompted to initiate your blockchain signature in next step</div>
-                      <div className='col-4 text-end'>
+                      </div>                      
+                      <div className='col-6 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht'>Finish < i data-eva-animation="flip" data-eva="checkmark-outline"></i></button>
                         </div>

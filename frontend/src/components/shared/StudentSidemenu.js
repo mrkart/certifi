@@ -7,7 +7,7 @@ const StudentSidemenu = () => {
   return (
     <nav id="sidebarMenu" className="collapse sidebar collapse pt-0 ">
       <div className="position-sticky">
-        <div className="list-group list-group-flush mx-3 mt-3 text-start sidemenupanel">
+        <div className="list-group list-group-flush mx-2 mt-3 text-start sidemenupanel">
           <a className="navbar-brand" href="/">
             <img
               src={require('../../assets/images/logo.png')}
@@ -22,6 +22,20 @@ const StudentSidemenu = () => {
               className='sidebaricons me-3'
             />
             <span>Dashboard</span>
+          </NavLink>
+          <NavLink to="/claim-flow-account" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+            <img
+              src={require('../../assets/images/icons/edit-3.png')}
+              className='sidebaricons me-3'
+            />
+            <span>Claim Flow Account</span>
+          </NavLink>
+          <NavLink to="/add-email" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+            <img
+              src={require('../../assets/images/icons/users-import.png')}
+              className='sidebaricons me-3'
+            />
+            <span>Add Email Accounts</span>
           </NavLink>
           <NavLink to="/login" className="list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" activeClassName="active">
             <img

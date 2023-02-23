@@ -9,7 +9,8 @@ const StudentLayout = ({ subElement }) => {
     let userprofile = JSON.parse(localStorage.getItem('userprofile'));
     let userName = userprofile.name;
     let userOrg = userprofile.organistaions[0]?.name;
-    let userRole = userprofile.roles && userprofile.roles[0]?.name
+    let userRole = userprofile.roles && userprofile.roles[0]?.name;
+    let userFlowAddress = userprofile.flowAddress;
     console.log(userName);
     console.log(userOrg);
 
@@ -63,8 +64,10 @@ const StudentLayout = ({ subElement }) => {
                                 </div>
                                 <div className='col-6 text-end'>
                                     <div className='profile-area'>
+                                        <p className='mb-0 me-3 p-2 profile-cont'><a class="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>
                                         <div className='profile-cont'>
-                                            <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
+                                            <p className='mb-0 profilename'>Welcome <span className='username'>{userName}</span></p>
+                                            <p className='mb-1 profilename'>{userFlowAddress}</p>
                                             <p className='lastlogin mb-0'><a class="btn btn-light btn-sm text-primary" href="#"><i data-eva="log-out-outline"></i> Logout</a></p>
                                         </div>
 

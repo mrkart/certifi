@@ -16,6 +16,8 @@ import StudentsAdd from './components/Students_Add';
 import StudentsEdit from './components/Students_Edit';
 import StudentLayout from './layout/studentslayout';
 import StudentDashboard from './components/StudentDashboard';
+import ClaimFlowAccount from './components/Claim_Flow_Account';
+import StudentsAddEmail from './components/Students_Add_Email';
 
 function App() {
   useEffect(() => {
@@ -74,6 +76,16 @@ function App() {
         <Route path="/student-dashboard" element={ 
           <PrivateRoute>
             <StudentLayout  subElement={ <StudentDashboard /> } /> 
+          </PrivateRoute>
+        } />
+        <Route path="/claim-flow-account" element={ 
+          <PrivateRoute>
+            <StudentLayout  subElement={ <ClaimFlowAccount /> } /> 
+          </PrivateRoute>
+        } />
+        <Route path="/add-email" element={ 
+          <PrivateRoute>
+            <StudentLayout  subElement={ <StudentsAddEmail /> } /> 
           </PrivateRoute>
         } />
         <Route path="*" element={ 

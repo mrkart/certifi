@@ -7,7 +7,8 @@ const initialState = {
     addStudent : [],
     userlist : [],
     edituser : [],
-    userbyid : []
+    userbyid : [],
+    generatedCertificate : []
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -46,6 +47,11 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 userbyid : action.payload
+            }
+        case types.GENERATE_CERTIFICATE_SUCCESS:
+            return {
+                ...state,
+                generatedCertificate : action.payload
             }
         default:
             return state

@@ -9,6 +9,7 @@ import * as mdb from 'mdb-ui-kit'; // lib
 import { BrowserRouter } from 'react-router-dom';
 import { Provider} from 'react-redux';
 import {store} from './store';
+import './config'
 // import { Input } from 'mdb-ui-kit'; // module
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

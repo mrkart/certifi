@@ -29,7 +29,12 @@ const Sidemenu = () => {
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
             </div>
           </div>
-          <NavLink to="/" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          <div data-mdb-toggle="collapse"
+                  data-mdb-target="#sidebarMenu"
+                  aria-controls="sidebarMenu"
+                  aria-expanded="false">
+          <NavLink to="/" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active"
+          >
             <img
               src={require('../../assets/images/icons/airplay.png')}
               className='sidebaricons me-3'
@@ -102,6 +107,7 @@ const Sidemenu = () => {
             />
             <span>Accounts</span>
           </a> */}
+          </div>
         </div>
       </div>
       <div className="sidebarbottom light-blur text-center">

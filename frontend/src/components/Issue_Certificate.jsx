@@ -321,9 +321,8 @@ const Issue_Certificate = () => {
                     </div>
 
                     <div className='row align-items-center'>
-                      <div className='col-3'></div>
-                      <div className='col-6 text-center'>Totally <span className='fw-bold'>125</span> students seclected</div>
-                      <div className='col-3 text-end'>
+                      <div className='col-6'>Totally <span className='fw-bold'>125</span> students seclected</div>
+                      <div className='col-6 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
@@ -642,7 +641,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className='col-md-12'>
+                          <div className='col-md-8'>
                             <div className='form-group'>
                               <div className='imgpreviewbox draganddrop'>
                                 <img src={require('../assets/images/cert/cert1-split/cert-cont.png')} className="mw-100 mh-100" loading="lazy" />
@@ -651,17 +650,18 @@ const Issue_Certificate = () => {
                               </div>
                             </div>
                           </div>
-
-                          <div className='col-md-12'>
+                          <div className='col-md-4'>
+                            <div className='row'>
+                            <div className='col-md-12'>
                             <div className='form-group'>
                               <h4 className='formsubhead'>Manage signature</h4>
                             </div>
                           </div>
 
-                          <div className='col-md-3'>
+                          <div className='col-md-12'>
                             <div className='form-group'>
-                              <label className='mb-2'>Upload cancellor signature</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload cancellor signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label className='mb-2'>Upload chief executive officer signature</label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload chief executive officer signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -674,10 +674,10 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className='col-md-3'>
+                          <div className='col-md-12'>
                             <div className='form-group'>
-                              <label className='mb-2'>Upload register signature</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload register signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label className='mb-2'>Upload department head signature</label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload department head signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -689,6 +689,9 @@ const Issue_Certificate = () => {
                               </div>
                             </div>
                           </div>
+                            </div>
+                          </div>
+                         
 
                           {/* <div className='col-md-4'>
                           <div className='form-group'>

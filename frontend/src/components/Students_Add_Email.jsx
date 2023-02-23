@@ -38,7 +38,7 @@ const StudentsAddEmail = () => {
                 <h4 className="fw-bolder text-black text-uppercase">Email Accounts</h4>
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className='col-md-8'>
+                    <div className='col-md-4'>
                       <div class="input-group mb-3 inputbtngroup">
                         <input type={'text'} name="email" value={email} onChange={handleInputChange} className="form-control" placeholder='Email' />
                         <button type="submit" className='btn btn-primary btn-icon'><i data-eva="plus-outline"></i> Add</button>

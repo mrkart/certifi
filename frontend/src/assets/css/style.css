@@ -63,7 +63,7 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .list-group-item-action:active {background: none;}
 .dashboardboxContainer {min-height: 230px; width: 100%; padding: 15px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 4px 5px rgba(0,0,0,0.15); z-index: 2;}
 .dashboardsideContainer {min-height: 770px;}
-.tableblur{border-radius: 20px;box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15); background: rgb(255 255 255 / 50%); overflow: hidden;}
+.tableblur{border-radius: 20px;box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15); background: rgb(255 255 255 / 50%); overflow: hidden; padding: 15px;}
 .height100per {height: 100%;}
 .sidebarbottom {position: absolute; bottom: 0px;right: 0;left: 0; margin: 15px; border-radius: 27px;    box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15);
     background: linear-gradient(to top, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15));    -webkit-backdrop-filter: blur(10px);    backdrop-filter: blur(10px); padding: 15px;}
@@ -82,7 +82,9 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .content-header{ margin-bottom: 30px; padding-left: 5px; padding-right: 10px;}
 
 .teammemberprofile {border-radius: 50%;width: 55px;height: 55px;box-shadow: inset 0 0 30px 0 rgb(255 255 255 / 35%), 0 2px 5px rgb(0 0 0 / 15%);background: linear-gradient(to top, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15));backdrop-filter: blur(10px);overflow: hidden;padding: 1px;align-items: center;justify-content: center;}
-.teammemberrow {border-top: 2px solid #ffffff;padding: 5px 0px; transition: all ease 0.75s;}
+.teammemberrow {border-top: 1px solid #ffffff;padding: 5px 0px; transition: all ease 0.75s; padding: 10px; display: flex;}
+.temproname{ display: flex; flex: 1; align-items: center;}
+.temproname img{ margin-right: 15px;}
 .teammemberrow:hover{ background:#CCDFFF;}
 .teammembername {margin-top: 16px;font-weight: 500;}
 .teammembercert {color: #005fff;margin-top: 16px;font-weight: 500;}
@@ -219,7 +221,7 @@ input[type="file"] { display: none;}
 .mobnav .logo .navbar-brand{ margin: 0px; padding: 5px;}
 .mobnav .logo img{max-width: 100%; filter: brightness(0) invert(1);}
 .mobnav .cmpname{ flex: 1; display: flex; justify-content: center; align-items: center}
-.mobnav .cmpname h5{ color: #fff; margin-bottom: 0px;}
+.mobnav .cmpname h5{ color: #fff; margin-bottom: 0px; white-space: nowrap;max-width: 85%;text-overflow: ellipsis;overflow: hidden;}
 .mobnav .bars{ width: 28px; height: 2px; border-radius: 30px; display: block; background: #fff; transition: all ease 0.75s; position: relative; transform: rotate(0deg);}
 .mobnav .bars:not(:first-child){ margin-top:5px;}
 .mobnav  .navbar-toggler{ padding: 0px; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; border-radius: 0px; transition: all ease 0.75s;}
@@ -232,7 +234,7 @@ input[type="file"] { display: none;}
 .dis-bfore::before{  content: '';position: absolute;background: rgba(255,255,255,0.5);top: 0px;left: 0px;z-index: 1;width: 100%;height: 100%; border-radius: 27px;}
 .ctemp .img{ max-width: 100%; padding: 15px; display: flex;}
 .ctemp .img img{ width: 100%; max-height: 240px;}
-.ctemp .cername{ padding: 15px 0px; transition: all ease 0.75s;}
+.ctemp .cername{ padding: 0px 0px 15px; transition: all ease 0.75s;}
 .ctemp input[type="checkbox"] + *, .ctemp input[type="radio"] + *{ width: 100%; height: auto; flex-direction: column;}
 .ctemp  .backgroundblur{cursor: pointer; transition: all ease 0.75s; border:1px solid #fff}
 .ctemp input[type="checkbox"] + ::before, .ctemp input[type="radio"] + ::before{ position: absolute;right: 10px;top: 10px;border: none;border-radius: 50%; width: 24px; height: 24px; transition: all ease 0.75s;  background-color: transparent;}
@@ -300,7 +302,7 @@ input[type="file"] { display: none;}
 .btn-disabled{pointer-events: none;}
 .light-brd { border-color: #a6b9c8;}
 
-.sidemenupanel {overflow: hidden;overflow-y: scroll;height: calc(100vh - 145px);}
+.sidemenupanel {overflow: hidden;overflow-y: scroll;height: calc(100vh - 200px);}
 .mobvis{ display: none !important;}
 
 .alert-top{ position: absolute; top: 0px; width: 100%; border-radius: 0px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); }
@@ -316,6 +318,7 @@ input[type="file"] { display: none;}
 .mintnft .ctemp .backgroundblur{ align-items: center; justify-content: center; flex-direction: column; display: flex; min-height: 225px;}
 .mintnft .ctemp .backgroundblur h4{ font-size: 20px; color: #464646; font-weight: 400;}
 .mintnft .ctemp .backgroundblur h3{ font-size: 25px; font-weight: 700; text-transform: uppercase; color: #005FFF; }
+.mintnft .ctemp .backgroundblur .img{padding: 0; margin-bottom: 15px;}
 .p-15px{padding: 15px;}
 
 .listview .accordion-body img{max-height: 475px;}
@@ -338,6 +341,10 @@ input[type="file"] { display: none;}
 .certsteps div, .certsteps a {font-size: 13px !important;font-weight: 600 !important;text-transform: uppercase;}
 .certsteps > div > div > div div:first-child a, .certsteps > div > div > div div:first-child span{ line-height: normal !important;display: flex;align-items: center;justify-content: center;height: 100%;}
 .certsteps > div > div > div div:first-child span{ color: #a4a4a4 !important;}
+.recharts-surface tspan {font-size: 10px;}
+.accordion-collapse{  transition: all ease 0.75s;}
+
+.btngrouprht {min-width: 100px;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}
@@ -352,8 +359,8 @@ main {padding-left: 270px;}
 html, body, div#root, .dashboard-light-bg, .h100vh, .backgroundblur {height: 100%;}
 .commonbox {padding-bottom: 15px;}
 #main-navbar{ display: flex;}
-.sidebar {width: 0px; display: none !important; height: 100%;  transition: all ease 0.75s; left: 0px; display: block !important; box-shadow: 0 0px 10px rgba(0,0,0,0.2) !important; white-space: nowrap;}
-.sidebar.show{ width: 270px; }
+.sidebar {width: 100%; height: 0%; transition: all ease 0.75s; overflow: hidden;}
+.sidebar.show{height: 100%; }
 .sidemenupanel .list-group-item{white-space: nowrap;}
 #sidebarMenu .sidebarlogo { display: none;}
 .sidebar .list-group{ padding-top: 48px; margin: 0px;}
@@ -364,18 +371,69 @@ main.height100per .container-fluid {padding-left: 15px !important; padding-top: 
 .content-header{ display: none;}
 nav#sidebarMenu{ background: #fff;}
 .mobileprofile{ display: flex; justify-content: center;}
+.formscroldiv {height: calc(100vh - 325px);}
 }
 
 
 @media (max-width: 1024px) {
 .foldersview .row{overflow: hidden; overflow-x: auto; flex-wrap: nowrap;}
-.foldersview .row .col-md-3{ width: 30%; margin-bottom: 30px;}
+.foldersview .row .col-md-4{ width: 300px; margin-bottom: 30px;}
+.foldersview .row .col-md-9{ width: 900px;}
 .mintnft .ctemp .backgroundblur h3 {font-size: 18px;}
 .mintnft .ctemp .backgroundblur h4 {font-size: 16px;}
+.dashlast .col-md-3, .dashlast .col-md-9, .dashlast  .col-md-6{ width: 100%;}
+.barchart{ margin: 30px 0px;}
+.dashlast h5 br{ display: none;}
+.formscroldiv{height: calc(100vh - 305px); margin-bottom: 15px;}
+.txtsfont .col-md-8, .txtsfont .col-md-4, .txtsstyle .col-md-6 {width: 100%;}
+.txtsstyle .col-md-2 {width: 33.3%;}
+.txtsstyle .col-md-4 {width: 66.6%;}
+
 }
 @media (max-width: 991px) {
 }
 
 @media (max-width: 767px) {
-.scrolldiv {height: calc(100vh - 175px);}   
+.scrolldiv {height: calc(100vh - 110px);} 
+.container-fluid.ptb15.h100vh{padding: 5px;}  
+.foldersview .row{ flex-wrap: wrap;}
+.foldersview .row .row{ flex-wrap: nowrap;}
+.foldersview .row .col-md-9{ width: 100%; margin-top: 30px;}
+.createcetr h4{ margin-bottom: 15px;}
+.mobnav .cmpname h5{ font-size: 18px; }
+.searchform{ flex-wrap: wrap;  padding: 0px; padding-bottom: 15px;}
+.tableblur .searchform .fields:first-child {flex: 0 auto; width: 100%; margin: 0px 0px 15px 0px;}
+.tableblur .searchform .fields:not(:first-child){ width: 50%; flex: 0 auto; margin: 0px; margin-bottom: 15px;}
+.tableblur .searchform .fields:nth-child(2), .tableblur .searchform .fields:nth-child(4){ padding-right: 15px;}
+.tableblur .searchform .fields:nth-child(3), .tableblur .searchform .fields:nth-child(5){ padding-left: 15px;}
+.certsteps div, .certsteps a{font-size: 11px !important;}
+.searchform .fields.txtfields {flex: auto;width: 100%; margin-bottom: 15px;}
+.searchform .fields.txtfields + .fields {margin: 0px;width: 100%;flex: auto;}
+.custable {font-size: 12px;}
+.listview .accordion-body img {    max-height: 100%;max-width: 100%;}
+.listviewtxts{font-size: 12px; font-weight: bold;}
+.studbetch {width: 50px;}
+.studid {width: 75px;}
+}
+
+@media (max-width:575px) {
+    .mintnft .ctemp .backgroundblur h3 {font-size: 14px;}
+    .mintnft .ctemp .backgroundblur h4 {font-size: 12px;}
+    .mintnft .img img{max-height: 46px;}
+    .mintnft .ctemp .backgroundblur{min-height: 160px;}
+    .ctemp .img img { max-height: inherit;}
+}
+
+@media (max-width:475px) {
+    .bluetxttitle, .dashlast h5, .createcetr h5{font-size: 16px;}
+    .createcetr h4{ font-size: 20px;}
+    .teammemberprofile{ width: 40px; height: 40px;}
+    .icontext .text{ font-size: 12px;}
+    .viewall .icon {width: 20px; height: 20px;}
+    .recharts-surface tspan {font-size: 8px;}
+    .mintnft .img img {max-height: 35px;}
+    .tableblur .searchform .fields:not(:first-child){ width: 100%; flex: 0 auto; margin: 0px; margin-bottom: 15px; padding-left: 0px; padding-right: 0px;}
+    .listviewtxts{ flex-wrap: wrap;}
+    .listviewtxts span { width: 100%;flex: auto;}
+    .listviewtxts span:not(:last-child){ margin-bottom: 10px;}
 }

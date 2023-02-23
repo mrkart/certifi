@@ -29,10 +29,10 @@ const Sidemenu = () => {
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
             </div>
           </div>
-          <div data-mdb-toggle="collapse"
+          {/* <div data-mdb-toggle="collapse"
                   data-mdb-target="#sidebarMenu"
                   aria-controls="sidebarMenu"
-                  aria-expanded="false">
+                  aria-expanded="false"> */}
           <NavLink to="/" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active"
           >
             <img
@@ -107,7 +107,7 @@ const Sidemenu = () => {
             />
             <span>Accounts</span>
           </a> */}
-          </div>
+          {/* </div> */}
         </div>
       </div>
       <div className="sidebarbottom light-blur text-center">

@@ -15,6 +15,7 @@ export interface Profile {
     name: string;
     roles: Role[];
     organistaions: Organisation[];
+    flowAddress?: string;
 }
 
 export interface OrgUserSlot {

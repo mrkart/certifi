@@ -360,11 +360,11 @@ input[type="file"] { display: none;}
 .sidebar .accordion-button[aria-expanded="true"]::after{transform: rotate(180deg) !important;}
 .sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: #d4e4ff;color: #717274;}
 
-.addemailaccount .backgroundblur{ padding: 30px; margin-bottom: 30px;}
+.addemailaccount .backgroundblur{ padding: 15px; margin-bottom: 30px;}
 .addemailaccount .backgroundblur h4{ margin-bottom: 15px;}
 
-.studentcert .backgroundblur{ padding: 30px;}
-.studentcert .backgroundblur iframe{ width: 100%; min-height: 600px;}
+.studentcert .ctemp .backgroundblur{ padding: 15px; align-items: normal ; justify-content: normal;}
+.studentcert .ctemp .backgroundblur iframe{ width: 100%; min-height: 500px;}
 .inputbtngroup .btn{ height: 48px; padding-top: 0px;}
 
 @media (min-width: 992px) {
@@ -395,6 +395,10 @@ nav#sidebarMenu{ background: #fff;}
 .formscroldiv {height: calc(100vh - 325px);}
 }
 
+@media (max-width: 1199px) {
+.studentcert .ctemp .backgroundblur iframe { min-height: 450px;}
+}
+
 
 @media (max-width: 1024px) {
 .foldersview .row{overflow: hidden; overflow-x: auto; flex-wrap: nowrap;}
@@ -409,7 +413,7 @@ nav#sidebarMenu{ background: #fff;}
 .txtsfont .col-md-8, .txtsfont .col-md-4, .txtsstyle .col-md-6 {width: 100%;}
 .txtsstyle .col-md-2 {width: 33.3%;}
 .txtsstyle .col-md-4 {width: 66.6%;}
-
+.studentcert .ctemp .backgroundblur iframe {min-height: 375px;}
 }
 @media (max-width: 991px) {
 }
@@ -435,6 +439,12 @@ nav#sidebarMenu{ background: #fff;}
 .listviewtxts{font-size: 12px; font-weight: bold;}
 .studbetch {width: 50px;}
 .studid {width: 75px;}
+.verifytable {margin-top: 15px; text-align: center;}
+.verifytable .otp-input-fields{ margin: 0px auto; padding: 10px 5px; gap: 5px; }
+.verifytable .otp-input-fields input{width: 30px;}
+.verifytable tr:nth-child(even) {background: #fff;}
+.verifytable tr:nth-child(odd) {background: #dde9ff;}
+.verifytable td {display: block;}
 }
 
 @media (max-width:575px) {
@@ -457,4 +467,9 @@ nav#sidebarMenu{ background: #fff;}
     .listviewtxts{ flex-wrap: wrap;}
     .listviewtxts span { width: 100%;flex: auto;}
     .listviewtxts span:not(:last-child){ margin-bottom: 10px;}
+    .studentcert .ctemp .backgroundblur iframe {min-height: 300px;}
+}
+
+@media (max-width:414px) {
+    .studentcert .ctemp .backgroundblur iframe {min-height: inherit;}
 }

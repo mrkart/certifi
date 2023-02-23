@@ -105,20 +105,41 @@ const StudentDashboard = () => {
                         <div>
                             <div className='certtemplates mintnft studentcert'>
                                 <div className='row'>
-                                    <div className="col-sm-6">
+                                    <div className="col-md-6">
                                         <div className='ctemp' >
-                                            <label className='backgroundblur' for="cert-1">                                                
-                                                    <iframe src={require('../assets/images/certificate-ela.pdf#toolbar=0&navpanes=0&scrollbar=0')}></iframe>                                               
+                                            <label className='backgroundblur' for="cert-1">  
+                                                    <p className='text-end w-100 mb-3'>#234254 <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>                                              
+                                                    <iframe src={require('../assets/images/certificate-ela.pdf#toolbar=0&navpanes=0&scrollbar=0')}></iframe> 
+                                                    <div className='row align-items-center'>
+                                                    <div className='col-md-7 text-start'>
+                                                        <p className='mt-3 mb-2'>Issued on Feb 23 2023</p>   
+                                                        <p className=''>by Madurai Kamaraj University</p>                                                   
+                                                    </div>
+                                                    <div className='col-md-5 text-end'>
+                                                        <span className='eva-hover d-inline-flex align-items-center'><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                    </div>
+                                                    </div>
 
                                             </label>
                                         </div>
                                     </div>
 
-                                    <div className="col-sm-6 " >
+                                    <div className="col-md-6 " >
                                         <div className='ctemp' >
                                             <input type={'radio'} id="cert-2" name='cert-2' disabled />
                                             <label className='backgroundblur' for="cert-2">
+                                            <p className='text-end w-100 mb-3'>#234254 <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p> 
                                                     <iframe src={require('../assets/images/certificate-shun.pdf')}></iframe>
+
+                                                    <div className='row align-items-center'>
+                                                    <div className='col-md-7 text-start'>
+                                                        <p className='mt-3 mb-2'>Issued on Feb 23 2023</p>   
+                                                        <p className=''>by Madurai Kamaraj University</p>                                                   
+                                                    </div>
+                                                    <div className='col-md-5 text-end'>
+                                                        <span className='eva-hover d-inline-flex align-items-center'><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                    </div>
+                                                    </div>
                                             </label>
                                         </div>
                                     </div>

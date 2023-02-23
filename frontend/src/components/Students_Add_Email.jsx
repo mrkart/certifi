@@ -103,7 +103,7 @@ const StudentsAddEmail = () => {
               <div className='backgroundblur verifyotp'>
                 <h4 className="fw-bolder text-black text-uppercase mb-0">OTP VERIFICATION</h4>
 
-                <table class="table table-borderless">
+                <table class="table table-borderless verifytable">
                   <tbody>
                     {verifyOTP.map((user, index) => (
                       <tr key={index}>

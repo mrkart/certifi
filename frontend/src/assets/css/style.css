@@ -70,40 +70,11 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
     .list-group-item {background: none;border: 0px;}
 .networkstatus{font-size: 14px;}
 
-.otp-input-fields {
-    margin: auto;
-    background-color: white;
-    box-shadow: 0px 0px 8px 0px #02025044;
-    max-width: 400px;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px;
-    border-radius: 10px;
-}
-.otp-input-fields input {
-    height: 40px;
-    width: 40px;
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid #2f8f1f;
-    text-align: center;
-    outline: none;
-    font-size: 16px;
-}
-.otp-input-fields input::-webkit-outer-spin-button, .otp-input-fields input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.otp-input-fields input[type=number] {
-    -moz-appearance: textfield;
-}
-.otp-input-fields input:focus {
-    border-width: 2px;
-    border-color: #287a1a;
-    font-size: 20px;
-}
+.otp-input-fields {background-color: white;box-shadow: 0px 0px 8px 0px #02025044;max-width: 400px;width: auto;display: flex;justify-content: center;gap: 10px;padding: 15px;border-radius: 10px;}
+.otp-input-fields input {height: 40px;width: 40px;background-color: transparent;border-radius: 4px;border: 1px solid #005fff;text-align: center;outline: none;font-size: 16px;}
+.otp-input-fields input::-webkit-outer-spin-button, .otp-input-fields input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+.otp-input-fields input[type=number] {-moz-appearance: textfield;}
+.otp-input-fields input:focus {border-width: 2px;border-color: #005fff;font-size: 20px;}
 
 
 /* Sidebar */
@@ -252,7 +223,7 @@ input[type="file"] { display: none;}
 .formsubhead{font-size: 14px; text-transform: uppercase; font-weight: bold;}
 
 #main-navbar{  padding: 0; background: #045dfb !important; border-radius: 0px; box-shadow: 0px 2px 3px rgba(0,0,0,0.4); display: none;}
-.mobnav{ display: flex; align-items: center; justify-content: center; flex: 1;}
+.mobnav{ display: flex; align-items: center; justify-content: space-between; flex: 1;}
 .mobnav .logo, .mobnav .navtoggle{ width: 48px; height: 48px; display: flex;}
 .mobnav .logo .navbar-brand{ margin: 0px; padding: 5px;}
 .mobnav .logo img{max-width: 100%; filter: brightness(0) invert(1);}
@@ -381,6 +352,20 @@ input[type="file"] { display: none;}
 .accordion-collapse{  transition: all ease 0.75s;}
 
 .btngrouprht {min-width: 100px;}
+
+.studentdash .ctemp .backgroundblur{min-height: 260px;}
+.sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: transparent;color: #717274;}
+.sidebar .accordion-button::after{transform: rotate(0deg) !important;filter: grayscale(1); transition: all ease 0.75s;}
+.sidebar .accordion-button:not(.collapsed)::after{ }
+.sidebar .accordion-button[aria-expanded="true"]::after{transform: rotate(180deg) !important;}
+.sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: #d4e4ff;color: #717274;}
+
+.addemailaccount .backgroundblur{ padding: 30px; margin-bottom: 30px;}
+.addemailaccount .backgroundblur h4{ margin-bottom: 15px;}
+
+.studentcert .backgroundblur{ padding: 30px;}
+.studentcert .backgroundblur iframe{ width: 100%; min-height: 600px;}
+.inputbtngroup .btn{ height: 48px; padding-top: 0px;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

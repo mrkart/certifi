@@ -1,7 +1,12 @@
 import { plainToInstance } from 'class-transformer';
 import { NextFunction, Request, Response } from 'express';
 import { resolve } from 'path';
-import { CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../dtos';
+import {
+    CreateCertificateDTO,
+    CreateUserDTO,
+    UpdateUserDTO,
+    UserIdUrlPramDTO
+} from '../../dtos';
 import { APIError, UnhandledError } from '../../errors';
 import { ApiResponse, AuthUser } from '../../helpers';
 import { UserService } from '../../services';
@@ -159,9 +164,11 @@ export class UserController {
                 UserIdUrlPramDTO,
                 request.params
             );
+            const reqBody = plainToInstance(CreateCertificateDTO, request.body);
             const res = await this.userService.createCertificate(
                 parseInt(orgId),
-                parseInt(userId)
+                parseInt(userId),
+                reqBody
             );
             // response.sendFile(
             //     resolve(res),

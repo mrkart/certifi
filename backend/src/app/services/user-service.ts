@@ -1,12 +1,13 @@
 import { isEmpty } from 'class-validator';
 import { randomBytes } from 'crypto';
-import { existsSync } from 'fs';
+import { existsSync, PathLike } from 'fs';
 import { mkdir } from 'fs/promises';
 import { resolve } from 'path';
-import { CreateUserDTO, UpdateUserDTO } from '../dtos';
+import { CreateCertificateDTO, CreateUserDTO, UpdateUserDTO } from '../dtos';
 import { UnhandledError } from '../errors';
 import {
     AccountCreatedEventData,
+    CertificateMetadata,
     ListResponse,
     OrgUser,
     OrgUserResponse,
@@ -16,7 +17,10 @@ import {
 } from '../helpers';
 import MailTransporterFactory from '../helpers/transporter';
 import { OrgUserInviationMail } from '../mail/org-user-invitation-mail';
+import { Org } from '../models/entities/Org';
 import { User } from '../models/entities/User';
+import OrgRepository from '../models/repositories/org-repository';
+import SlotRepository from '../models/repositories/SlotRepository';
 import { UserRepository } from '../models/repositories/user-repository';
 import fclService, { FclService } from './fcl-service';
 import pdfService, { PdfService } from './pdf-service';
@@ -147,33 +151,55 @@ export class UserService {
 
     public async createCertificate(
         orgId: number,
-        userId: number
+        userId: number,
+        data: CreateCertificateDTO
     ): Promise<string> {
+        const org = await OrgRepository.findById(orgId);
         const user = await UserRepository.findOrgUserById(userId, orgId);
-        return this.generateCertificateFile(orgId, user);
+        const outDir = resolve(
+            `./generated_files/preview/org/${org.id}/certificates`
+        );
+        return this.generateCertificateFile(org, user, data, outDir);
     }
 
     private async generateCertificateFile(
-        orgId: number,
-        user: User
+        org: Org,
+        user: User,
+        data: CreateCertificateDTO,
+        outDir: PathLike
     ): Promise<string> {
         const templatePath = resolve('./templates/certificates/template1.pdf');
-        const outDir = resolve(
-            `./generated_files/preview/org/${orgId}/certificates`
-        );
+        const slot = await SlotRepository.findOneBy({
+            id: data.slotId
+        });
         if (existsSync(outDir) === false) {
             await mkdir(outDir, { recursive: true });
         }
         const fileName: string =
-            `${orgId}_${user.id}_` + randomBytes(4).toString('hex') + '.pdf';
+            `${org.id}_${user.id}_` + randomBytes(4).toString('hex') + '.pdf';
         const outPath: string = `${outDir}/${fileName}`;
         await this.pdfService.createCertificate(
-            user.name,
+            {
+                batchName: slot.slotTitle,
+                certificateNumber: data.certificateNumber,
+                courseName: data.courseName,
+                grade: data.grade,
+                instituionName: org.orgName,
+                name: user.name
+            },
             templatePath,
             outPath
         );
         return outPath;
     }
+
+    // private async generateCertificateMetadata(
+    //     orgId: number,
+    //     user: User
+    // ): Promise<CertificateMetadata> {
+    //     const org = await OrgRepository.findById(orgId);
+
+    // }
 
     private async dispatchInvitation(user: OrgUser) {
         const invite = new OrgUserInviationMail(

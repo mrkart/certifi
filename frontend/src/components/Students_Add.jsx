@@ -108,7 +108,7 @@ const StudentsAdd = () => {
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Batch</label>
-                      <select class="form-control">
+                      <select className="form-control">
                             <option>Select Batch</option>
                             <option value="1">2020</option>
                             <option value="2">2021</option>
@@ -120,7 +120,7 @@ const StudentsAdd = () => {
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Department</label>
-                      <select class="form-control">
+                      <select className="form-control">
                             <option>Select Department</option>
                             <option value="1">B.Sc</option>
                             <option value="2">B.Com</option>

@@ -281,7 +281,7 @@ const Issue_Certificate = () => {
             <div className=''>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-12 text-center'>
-                  <h4 class="fw-bolder text-black text-uppercase mb-2">Mint NFT</h4>
+                  <h4 className="fw-bolder text-black text-uppercase mb-2">Mint NFT</h4>
                   <h6 className='mb-3'>Select NFT type</h6>
                 </div>
               </div>
@@ -292,7 +292,7 @@ const Issue_Certificate = () => {
                 <div className="col-6 col-md-4">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' onClick={handleSelectMinType} />
-                    <label className='backgroundblur' for="certselect-1">
+                    <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
                       </div>
@@ -305,7 +305,7 @@ const Issue_Certificate = () => {
                 <div className="col-6 col-md-4 btn-disabled" >
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
-                    <label className='backgroundblur' for="certselect-1">
+                    <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Certifily-icon-1.png')} loading="lazy" />
                       </div>
@@ -318,7 +318,7 @@ const Issue_Certificate = () => {
                 <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
-                    <label className='backgroundblur' for="certselect-1">
+                    <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16.png')} loading="lazy" />
                       </div>
@@ -331,7 +331,7 @@ const Issue_Certificate = () => {
                 <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
-                    <label className='backgroundblur' for="certselect-1">
+                    <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16-1.png')} loading="lazy" />
                       </div>
@@ -344,7 +344,7 @@ const Issue_Certificate = () => {
                 <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
-                    <label className='backgroundblur' for="certselect-1">
+                    <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16-2.png')} loading="lazy" />
                       </div>
@@ -357,7 +357,7 @@ const Issue_Certificate = () => {
                 <div className="col-6 col-md-4 btn-disabled">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
-                    <label className='backgroundblur' for="certselect-1">
+                    <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16-3.png')} loading="lazy" />
                       </div>
@@ -381,8 +381,7 @@ const Issue_Certificate = () => {
                   <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0">Issue Certs</h4></div>
                 </div>
               </div>
-
-              <div>
+              <div>              
               {isMintInitiated ? <SuccessModal closemodal={closeModal}/> : ''}
               {isLoading ? <FullLoader/> : ''}
               {mintFailed ? <FailureModal closemodal={closefailedModal}/> : ''}
@@ -469,8 +468,7 @@ const Issue_Certificate = () => {
                                       <span className="text-success">Approved</span>
                                     </td>
                                     {/* <td className='text-center'>
-                                      <div className='btngrouprht'>
-                                      
+                                      <div className='btngrouprht'>                                      
                                         <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                                       </div>
                                     </td> */}
@@ -503,7 +501,7 @@ const Issue_Certificate = () => {
                             <thead className="">
                               <tr>
                                 <th>
-                                  <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" for="exampleCheck1"></label></div>
+                                  <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                                 </th>
                                 <th>Student ID</th>
                                 <th>Email</th>
@@ -515,7 +513,7 @@ const Issue_Certificate = () => {
                             </thead>
                             <tbody>
                               <tr>
-                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" for="exampleCheck2"></label></div></td>
+                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                                 <td>
                                   <div className="d-flex align-items-center">
                                     1
@@ -540,7 +538,7 @@ const Issue_Certificate = () => {
 
                               </tr>
                               <tr>
-                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck3" /><label className="form-check-label" for="exampleCheck3"></label></div></td>
+                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck3" /><label className="form-check-label" htmlFor="exampleCheck3"></label></div></td>
                                 <td>
                                   <div className="d-flex align-items-center">
                                     2
@@ -564,7 +562,7 @@ const Issue_Certificate = () => {
                                 </td>
                               </tr>
                               <tr>
-                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck4" /><label className="form-check-label" for="exampleCheck4"></label></div></td>
+                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck4" /><label className="form-check-label" htmlFor="exampleCheck4"></label></div></td>
                                 <td>
                                   <div className="d-flex align-items-center">
                                     3
@@ -588,7 +586,7 @@ const Issue_Certificate = () => {
                                 </td>
                               </tr>
                               <tr>
-                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck5" /><label className="form-check-label" for="exampleCheck5"></label></div></td>
+                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck5" /><label className="form-check-label" htmlFor="exampleCheck5"></label></div></td>
                                 <td>
                                   <div className="d-flex align-items-center">
                                     4
@@ -612,7 +610,7 @@ const Issue_Certificate = () => {
                                 </td>
                               </tr>
                               <tr>
-                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck6" /><label className="form-check-label" for="exampleCheck6"></label></div></td>
+                                <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck6" /><label className="form-check-label" htmlFor="exampleCheck6"></label></div></td>
                                 <td>
                                   <div className="d-flex align-items-center">
                                     5
@@ -693,7 +691,7 @@ const Issue_Certificate = () => {
                       <h3>Download CSV File</h3>
 
                       <div className='form-group'>
-                        <label for="file-upload" class="custom-file-upload btn btn-primary btn-icon icon-rht">Upload File <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                        <label htmlFor="file-upload" className="custom-file-upload btn btn-primary btn-icon icon-rht">Upload File <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                         <input id="file-upload" type="file" />
                       </div>
 
@@ -753,7 +751,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp' >
                               <input type={'radio'} id="certselect-1" name='cerselect' checked={isCertificateSelect} onChange={handleSelectCertificatetheme} />
-                              <label className='backgroundblur' for="certselect-1">
+                              <label className='backgroundblur' htmlFor="certselect-1">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                                 </div>
@@ -765,7 +763,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-2" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-2">
+                              <label className='backgroundblur' htmlFor="certselect-2">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert2.png')} loading="lazy" />
                                 </div>
@@ -777,7 +775,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-3" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-3">
+                              <label className='backgroundblur' htmlFor="certselect-3">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert3.png')} loading="lazy" />
                                 </div>
@@ -789,7 +787,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-4" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-4">
+                              <label className='backgroundblur' htmlFor="certselect-4">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert4.png')} loading="lazy" />
                                 </div>
@@ -801,7 +799,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-5" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-5">
+                              <label className='backgroundblur' htmlFor="certselect-5">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert5.png')} loading="lazy" />
                                 </div>
@@ -813,7 +811,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-6" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-6">
+                              <label className='backgroundblur' htmlFor="certselect-6">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert6.png')} loading="lazy" />
                                 </div>
@@ -825,7 +823,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-7" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-7">
+                              <label className='backgroundblur' htmlFor="certselect-7">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert7.png')} loading="lazy" />
                                 </div>
@@ -837,7 +835,7 @@ const Issue_Certificate = () => {
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp dis-bfore' >
                               <input type={'radio'} id="certselect-8" name='cerselect' />
-                              <label className='backgroundblur' for="certselect-8">
+                              <label className='backgroundblur' htmlFor="certselect-8">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert8.png')} loading="lazy" />
                                 </div>
@@ -879,9 +877,9 @@ const Issue_Certificate = () => {
                               <div className='row'>
                                 <div className='col-md-8'>
                                   <div className='form-group'>
-                                    <div class="input-group has-validation">
-                                      <span class="input-group-text">T</span>
-                                      <select class="form-control" value={fontOption} onChange={onChangeValue}>
+                                    <div className="input-group has-validation">
+                                      <span className="input-group-text">T</span>
+                                      <select className="form-control" value={fontOption} onChange={onChangeValue}>
                                         <option>Select font</option>
                                         <option value="1">Verdana</option>
                                         <option value="2">Times New Roman</option>
@@ -893,8 +891,8 @@ const Issue_Certificate = () => {
                                 </div>
                                 <div className='col-md-4'>
                                   <div className='form-group'>
-                                    <div class="input-group has-validation">
-                                      <select class="form-control" value={fontSize} onChange={onChangeValue}>
+                                    <div className="input-group has-validation">
+                                      <select className="form-control" value={fontSize} onChange={onChangeValue}>
                                         <option>Font Size</option>
                                         <option value="1">8px</option>
                                         <option value="2">9px</option>
@@ -912,12 +910,12 @@ const Issue_Certificate = () => {
                               <div className='row'>
                                 <div className='col-md-6'>
                                   <div className='form-group'>
-                                    <div class="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
-                                      <div class="btn-group me-2" role="group" aria-label="First group">
-                                        <button type="button" class="btn btn-outline-secondary bold">B</button>
-                                        <button type="button" class="btn btn-outline-secondary italic">I</button>
-                                        <button type="button" class="btn btn-outline-secondary underline">U</button>
-                                        <button type="button" class="btn btn-outline-secondary linethrough">S</button>
+                                    <div className="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
+                                      <div className="btn-group me-2" role="group" aria-label="First group">
+                                        <button type="button" className="btn btn-outline-secondary bold">B</button>
+                                        <button type="button" className="btn btn-outline-secondary italic">I</button>
+                                        <button type="button" className="btn btn-outline-secondary underline">U</button>
+                                        <button type="button" className="btn btn-outline-secondary linethrough">S</button>
                                       </div>
 
                                     </div>
@@ -939,7 +937,7 @@ const Issue_Certificate = () => {
                           <div className='col-md-4'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload background image</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -953,7 +951,7 @@ const Issue_Certificate = () => {
                           <div className='col-md-4'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload border image</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -990,7 +988,7 @@ const Issue_Certificate = () => {
                                   </div>
                                 <div className='form-group'>
                                   <label className='mb-2'>Upload chief executive officer signature</label>
-                                  <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                                  <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                                   <input id="file-upload" type="file" />
                                 </div>
                                 <div className='form-group'>
@@ -1011,7 +1009,7 @@ const Issue_Certificate = () => {
                                   </div>
                                 <div className='form-group'>
                                   <label className='mb-2'>Upload department head signature</label>
-                                  <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                                  <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                                   <input id="file-upload" type="file" />
                                 </div>
                                 <div className='form-group'>
@@ -1030,7 +1028,7 @@ const Issue_Certificate = () => {
                           {/* <div className='col-md-4'>
                           <div className='form-group'>
                             <label className='mb-2'>Upload president signature</label>
-                            <label for="file-upload1" class="custom-file-upload form-control">Upload president signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                            <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload president signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                             <input id="file-upload" type="file" />
                           </div>
                           <div className='form-group'>
@@ -1134,11 +1132,11 @@ const Issue_Certificate = () => {
                     </div>
                   </div>  */}
 
-                      <div class="accordion listview" id="accordionExample">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="headingOne">
+                      <div className="accordion listview" id="accordionExample">
+                        <div className="accordion-item">
+                          <h2 className="accordion-header" id="headingOne">
                             <button
-                              class="accordion-button"
+                              className="accordion-button"
                               type="button"
                               data-mdb-toggle="collapse"
                               data-mdb-target="#collapseOne"
@@ -1154,17 +1152,17 @@ const Issue_Certificate = () => {
 
                             </button>
                           </h2>
-                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
-                            <div class="accordion-body text-center">
+                          <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+                            <div className="accordion-body text-center">
                               <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} className="iframe" ></iframe>
                               {/* <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" /> */}
                             </div>
                           </div>
                         </div>
-                        {/* <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
+                        {/* <div className="accordion-item">
+                      <h2 className="accordion-header" id="headingTwo">
                         <button
-                          class="accordion-button collapsed"
+                          className="accordion-button collapsed"
                           type="button"
                           data-mdb-toggle="collapse"
                           data-mdb-target="#collapseTwo"
@@ -1180,16 +1178,16 @@ const Issue_Certificate = () => {
 
                         </button>
                       </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
-                        <div class="accordion-body text-center">
+                      <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
+                        <div className="accordion-body text-center">
                           <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                         </div>
                       </div>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
+                    <div className="accordion-item">
+                      <h2 className="accordion-header" id="headingThree">
                         <button
-                          class="accordion-button collapsed"
+                          className="accordion-button collapsed"
                           type="button"
                           data-mdb-toggle="collapse"
                           data-mdb-target="#collapseThree"
@@ -1205,8 +1203,8 @@ const Issue_Certificate = () => {
 
                         </button>
                       </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
-                        <div class="accordion-body text-center">
+                      <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
+                        <div className="accordion-body text-center">
                           <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                         </div>
                       </div>
@@ -1247,7 +1245,7 @@ const Issue_Certificate = () => {
                           <div className='backgroundblur text-center'>
                             <div className='signerboxes'>
                               <h6>Preparer Sign</h6>
-                              <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
+                              <button type="button" className="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
                               <p>On Feb-17-2023 11:01 EST</p>
                               <p>By <b>Prof Charles Harper</b></p>
                             </div>
@@ -1258,7 +1256,7 @@ const Issue_Certificate = () => {
                           <div className='backgroundblur text-center'>
                             <div className='signerboxes'>
                               <h6>Verifier Sign</h6>
-                              <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
+                              <button type="button" className="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
                               <p>On Feb-18-2023 08:01 EST</p>
                               <p>By <b>David R. Martin</b></p>
                             </div>
@@ -1269,8 +1267,8 @@ const Issue_Certificate = () => {
                           <div className='backgroundblur text-center'>
                             <div className='signerboxes'>
                               <h6>Issuer Sign</h6>
-                              <button type="button" class="btn btn-light text-primary" onClick={generateSign}>Sign</button>
-                              <button type="button" class="btn btn-danger">Reject</button>
+                              <button type="button" className="btn btn-light text-primary" onClick={generateSign}>Sign</button>
+                              <button type="button" className="btn btn-danger">Reject</button>
                             </div>
                           </div>
                         </div>
@@ -1335,7 +1333,7 @@ const Issue_Certificate = () => {
                         <thead className="">
                           <tr>
                             <th>
-                              <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" for="exampleCheck1"></label></div>
+                              <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                             </th>
                             <th>Student ID</th>
                             <th>Email</th>
@@ -1347,7 +1345,7 @@ const Issue_Certificate = () => {
                         </thead>
                         <tbody>
                           <tr>
-                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" for="exampleCheck2"></label></div></td>
+                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                             <td>
                               <div className="d-flex align-items-center">
                                 1
@@ -1372,7 +1370,7 @@ const Issue_Certificate = () => {
 
                           </tr>
                           <tr>
-                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck3" /><label className="form-check-label" for="exampleCheck3"></label></div></td>
+                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck3" /><label className="form-check-label" htmlFor="exampleCheck3"></label></div></td>
                             <td>
                               <div className="d-flex align-items-center">
                                 2
@@ -1396,7 +1394,7 @@ const Issue_Certificate = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck4" /><label className="form-check-label" for="exampleCheck4"></label></div></td>
+                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck4" /><label className="form-check-label" htmlFor="exampleCheck4"></label></div></td>
                             <td>
                               <div className="d-flex align-items-center">
                                 3
@@ -1420,7 +1418,7 @@ const Issue_Certificate = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck5" /><label className="form-check-label" for="exampleCheck5"></label></div></td>
+                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck5" /><label className="form-check-label" htmlFor="exampleCheck5"></label></div></td>
                             <td>
                               <div className="d-flex align-items-center">
                                 4
@@ -1444,7 +1442,7 @@ const Issue_Certificate = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck6" /><label className="form-check-label" for="exampleCheck6"></label></div></td>
+                            <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck6" /><label className="form-check-label" htmlFor="exampleCheck6"></label></div></td>
                             <td>
                               <div className="d-flex align-items-center">
                                 5
@@ -1499,7 +1497,7 @@ const Issue_Certificate = () => {
                       <h3>Download CSV File</h3>
 
                       <div className='form-group'>
-                        <label for="file-upload" class="custom-file-upload btn btn-primary btn-icon icon-rht">Upload File <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                        <label htmlFor="file-upload" className="custom-file-upload btn btn-primary btn-icon icon-rht">Upload File <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                         <input id="file-upload" type="file" />
                       </div>
 
@@ -1604,11 +1602,11 @@ const Issue_Certificate = () => {
                     </div>
                   </div> 
 
-                  <div class="accordion listview" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
+                  <div className="accordion listview" id="accordionExample">
+                    <div className="accordion-item">
+                      <h2 className="accordion-header" id="headingOne">
                         <button
-                          class="accordion-button"
+                          className="accordion-button"
                           type="button"
                           data-mdb-toggle="collapse"
                           data-mdb-target="#collapseOne"
@@ -1624,16 +1622,16 @@ const Issue_Certificate = () => {
                           
                         </button>
                       </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
-                        <div class="accordion-body text-center">
+                      <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+                        <div className="accordion-body text-center">
                         <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                         </div>
                       </div>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
+                    <div className="accordion-item">
+                      <h2 className="accordion-header" id="headingTwo">
                         <button
-                          class="accordion-button collapsed"
+                          className="accordion-button collapsed"
                           type="button"
                           data-mdb-toggle="collapse"
                           data-mdb-target="#collapseTwo"
@@ -1649,16 +1647,16 @@ const Issue_Certificate = () => {
                           
                         </button>
                       </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
-                      <div class="accordion-body text-center">
+                      <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
+                      <div className="accordion-body text-center">
                         <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                         </div>
                       </div>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
+                    <div className="accordion-item">
+                      <h2 className="accordion-header" id="headingThree">
                         <button
-                          class="accordion-button collapsed"
+                          className="accordion-button collapsed"
                           type="button"
                           data-mdb-toggle="collapse"
                           data-mdb-target="#collapseThree"
@@ -1674,8 +1672,8 @@ const Issue_Certificate = () => {
                           
                         </button>
                       </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
-                      <div class="accordion-body text-center">
+                      <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
+                      <div className="accordion-body text-center">
                         <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                         </div>
                       </div>

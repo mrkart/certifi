@@ -69,11 +69,11 @@ const StudentLayout = ({ subElement }) => {
                                 </div>
                                 <div className='col-6 text-end'>
                                     <div className='profile-area'>
-                                        <p className='mb-0 me-3 p-2 profile-cont'><a class="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>
+                                        <p className='mb-0 me-3 p-2 profile-cont'><a className="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>
                                         <div className='profile-cont'>
                                             <p className='mb-0 profilename'>Welcome <span className='username'>{userName}</span></p>
                                             <p className='mb-1 profilename'>{userFlowAddress}</p>
-                                            <p className='lastlogin mb-0'><button class="btn btn-light btn-sm text-primary"  onClick={logout} type="button" ><i data-eva="log-out-outline"></i> Logout</button></p>
+                                            <p className='lastlogin mb-0'><button className="btn btn-light btn-sm text-primary"  onClick={logout} type="button" ><i data-eva="log-out-outline"></i> Logout</button></p>
                                         </div>
 
                                         <div className='profile-icon'>

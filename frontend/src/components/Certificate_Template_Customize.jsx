@@ -11,7 +11,7 @@ const CertificateTemplateCustomize = () => {
         <div className='col-md-12 text-start'>
           <div className=''>
             <div className='row mb-3 align-items-center'>
-              <div className='col-md-6'><h4 class="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>cert templates</a> > New templates</h4></div>
+              <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>cert templates</a> > New templates</h4></div>
               <div className='col-md-6 text-end'>
                 <div className='btngrouprht'>
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="edit-outline"></i> Edit</a>
@@ -29,9 +29,9 @@ const CertificateTemplateCustomize = () => {
                   <div className='row'>
                     <div className='col-md-8'>
                       <div className='form-group'>
-                        <div class="input-group has-validation">
-                          <span class="input-group-text">T</span>
-                          <select class="form-control">
+                        <div className="input-group has-validation">
+                          <span className="input-group-text">T</span>
+                          <select className="form-control">
                             <option>Select font</option>
                             <option value="1">Verdana</option>
                             <option value="2">Times New Roman</option>
@@ -43,8 +43,8 @@ const CertificateTemplateCustomize = () => {
                     </div>
                     <div className='col-md-4'>
                       <div className='form-group'>
-                        <div class="input-group has-validation">
-                          <select class="form-control">
+                        <div className="input-group has-validation">
+                          <select className="form-control">
                             <option>Font Size</option>
                             <option value="1">8px</option>
                             <option value="2">9px</option>
@@ -61,12 +61,12 @@ const CertificateTemplateCustomize = () => {
                   <div className='row'>
                     <div className='col-md-6'>
                       <div className='form-group'>
-                        <div class="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
-                          <div class="btn-group me-2" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-outline-secondary bold">B</button>
-                            <button type="button" class="btn btn-outline-secondary italic">I</button>
-                            <button type="button" class="btn btn-outline-secondary underline">U</button>
-                            <button type="button" class="btn btn-outline-secondary linethrough">S</button>
+                        <div className="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
+                          <div className="btn-group me-2" role="group" aria-label="First group">
+                            <button type="button" className="btn btn-outline-secondary bold">B</button>
+                            <button type="button" className="btn btn-outline-secondary italic">I</button>
+                            <button type="button" className="btn btn-outline-secondary underline">U</button>
+                            <button type="button" className="btn btn-outline-secondary linethrough">S</button>
                           </div>
 
                         </div>
@@ -87,7 +87,7 @@ const CertificateTemplateCustomize = () => {
                 <div className='col-md-4'>
                   <div className='form-group'>
                     <label className='mb-2'>Upload background picture</label>
-                    <label for="file-upload" class="custom-file-upload form-control">Upload background picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                    <label htmlFor="file-upload" className="custom-file-upload form-control">Upload background picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                     <input id="file-upload" type="file" />
                   </div>
                   <div className='form-group'>
@@ -100,7 +100,7 @@ const CertificateTemplateCustomize = () => {
                 <div className='col-md-4'>
                   <div className='form-group'>
                     <label className='mb-2'>Upload design picture</label>
-                    <label for="file-upload" class="custom-file-upload form-control">Upload design picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                    <label htmlFor="file-upload" className="custom-file-upload form-control">Upload design picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                     <input id="file-upload" type="file" />
                   </div>
                   <div className='form-group'>
@@ -129,7 +129,7 @@ const CertificateTemplateCustomize = () => {
                 <div className='col-md-4'>
                   <div className='form-group'>
                     <label className='mb-2'>Upload cancellor signature</label>
-                    <label for="file-upload" class="custom-file-upload form-control">Upload cancellor signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                    <label htmlFor="file-upload" className="custom-file-upload form-control">Upload cancellor signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                     <input id="file-upload" type="file" />
                   </div>
                   <div className='form-group'>
@@ -143,7 +143,7 @@ const CertificateTemplateCustomize = () => {
                 <div className='col-md-4'>
                   <div className='form-group'>
                     <label className='mb-2'>Upload register signature</label>
-                    <label for="file-upload" class="custom-file-upload form-control">Upload register signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                    <label htmlFor="file-upload" className="custom-file-upload form-control">Upload register signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                     <input id="file-upload" type="file" />
                   </div>
                   <div className='form-group'>
@@ -157,7 +157,7 @@ const CertificateTemplateCustomize = () => {
                 <div className='col-md-4'>
                   <div className='form-group'>
                     <label className='mb-2'>Upload president signature</label>
-                    <label for="file-upload" class="custom-file-upload form-control">Upload president signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                    <label htmlFor="file-upload" className="custom-file-upload form-control">Upload president signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                     <input id="file-upload" type="file" />
                   </div>
                   <div className='form-group'>

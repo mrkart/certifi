@@ -20,8 +20,10 @@ const Sidemenu = () => {
     }
     
   },[walletaddress])
+
+ 
   return (
-    <nav id="sidebarMenu" className="collapse sidebar collapse pt-0 ">
+    <nav id="sidebarMenu" className="collapse sidebar collapse pt-0">
       <div className="position-sticky">
         <div className="list-group list-group-flush mx-3 mt-3 text-start sidemenupanel">
           <a className="navbar-brand" href="/">
@@ -38,7 +40,7 @@ const Sidemenu = () => {
                 <img className='headerprofilepic' src={require('../../assets/images/photo10.png')} loading="lazy" />
               </div>
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
-              <p className='mb-1 profilename'>{address}</p>
+              <p className='mb-0 profilename badge badge-light'>{address}</p>
 
             </div>
           </div>
@@ -46,8 +48,7 @@ const Sidemenu = () => {
                   data-mdb-target="#sidebarMenu"
                   aria-controls="sidebarMenu"
                   aria-expanded="false"> */}
-          <NavLink to="/" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active"
-          >
+          <NavLink to="/" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
             <div className='sidebaricons'>
               <img
                 src={require('../../assets/images/icons/airplay.png')}
@@ -56,7 +57,7 @@ const Sidemenu = () => {
             </div>
             <span>Dashboard</span>
           </NavLink>
-          <NavLink to="/students" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          <NavLink to="/students" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
           <div className='sidebaricons'>
               <img
                 src={require('../../assets/images/icons/users.png')}
@@ -65,28 +66,28 @@ const Sidemenu = () => {
             </div>            
             <span>Students</span>
           </NavLink>
-          {/* <NavLink to="/students-import" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          {/* <NavLink to="/students-import" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
             <img
               src={require('../../assets/images/icons/users-import.png')}
               className='sidebaricons me-3'
             />
             <span>Students Import</span>
           </NavLink> */}
-          {/* <NavLink to="/select-template" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          {/* <NavLink to="/select-template" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
             <img
               src={require('../../assets/images/icons/file-text.png')}
               className='sidebaricons me-3'
             />
             <span>Select Template</span>
           </NavLink>
-          <NavLink to="/customize-template" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          <NavLink to="/customize-template" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
             <img
               src={require('../../assets/images/icons/file-edit.png')}
               className='sidebaricons me-3'
             />
             <span>Customize Template</span>
           </NavLink> */}
-          <NavLink to="/issue-certificate" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">            
+          <NavLink to="/issue-certificate" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>            
           <div className='sidebaricons'>
               <img
                 src={require('../../assets/images/icons/award.png')}
@@ -95,7 +96,7 @@ const Sidemenu = () => {
             </div>                 
             <span>Issue Certificate</span>
           </NavLink>
-          {/* <NavLink to="/signer" className="list-group-item list-group-item-action px-3 py-2 text-uppercase" activeClassName="active">
+          {/* <NavLink to="/signer" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
             <img
               src={require('../../assets/images/icons/edit-3.png')}
               className='sidebaricons me-3'
@@ -104,7 +105,7 @@ const Sidemenu = () => {
           </NavLink> */}
 
 
-          <NavLink to="/login" className="list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" activeClassName="active">
+          <NavLink to="/login" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis')}>
             
           <div className='sidebaricons'>
               <img

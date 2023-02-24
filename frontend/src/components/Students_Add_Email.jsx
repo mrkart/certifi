@@ -39,7 +39,7 @@ const StudentsAddEmail = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className='col-md-4'>
-                      <div class="input-group mb-3 inputbtngroup">
+                      <div className="input-group mb-3 inputbtngroup">
                         <input type={'text'} name="email" value={email} onChange={handleInputChange} className="form-control" placeholder='Email' />
                         <button type="submit" className='btn btn-primary btn-icon'><i data-eva="plus-outline"></i> Add</button>
                       </div>
@@ -103,19 +103,19 @@ const StudentsAddEmail = () => {
               <div className='backgroundblur verifyotp'>
                 <h4 className="fw-bolder text-black text-uppercase mb-0">OTP VERIFICATION</h4>
 
-                <table class="table table-borderless verifytable">
+                <table className="table table-borderless verifytable">
                   <tbody>
                     {verifyOTP.map((user, index) => (
                       <tr key={index}>
                         <td className='align-middle'>{user}</td>
                         <td className=''>
-                          <div class="otp-input-fields">
-                            <input type="number" class="otp__digit otp__field__1" />
-                            <input type="number" class="otp__digit otp__field__2" />
-                            <input type="number" class="otp__digit otp__field__3" />
-                            <input type="number" class="otp__digit otp__field__4" />
-                            <input type="number" class="otp__digit otp__field__5" />
-                            <input type="number" class="otp__digit otp__field__6" />
+                          <div className="otp-input-fields">
+                            <input type="number" className="otp__digit otp__field__1" />
+                            <input type="number" className="otp__digit otp__field__2" />
+                            <input type="number" className="otp__digit otp__field__3" />
+                            <input type="number" className="otp__digit otp__field__4" />
+                            <input type="number" className="otp__digit otp__field__5" />
+                            <input type="number" className="otp__digit otp__field__6" />
                           </div>
                         </td>
                         <td className='text-success fw-bolder align-middle'>VERIFY</td>

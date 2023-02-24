@@ -32,7 +32,7 @@ const Students = () => {
   },[fulluserlist]);
 
   return (
-    <div className='scrolldiv'>
+    <div className='scrolldiv pb-3'>
       <div className='row '>
         <div className='col-md-12 text-start'>                  
           <div className=''>
@@ -72,7 +72,7 @@ const Students = () => {
                 <thead className="">
                   <tr>
                     {/* <th>
-                    <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" for="exampleCheck1"></label></div>
+                    <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                     </th> */}
                     <th>Student ID</th>
                     <th>Email</th>
@@ -86,7 +86,7 @@ const Students = () => {
                   {userlist.map((user, index) => (
                     <tr key={index}>
                       {/* <td>
-                        <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" for="exampleCheck2"></label></div>
+                        <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div>
                         </td> */}
                       <td>
                       <div className="d-flex align-items-center">
@@ -141,7 +141,7 @@ const Students = () => {
                     
                   </tr>
                   <tr>
-                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck3" /><label className="form-check-label" for="exampleCheck3"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck3" /><label className="form-check-label" htmlFor="exampleCheck3"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         2
@@ -165,7 +165,7 @@ const Students = () => {
                     </td>
                   </tr>
                   <tr>
-                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck4" /><label className="form-check-label" for="exampleCheck4"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck4" /><label className="form-check-label" htmlFor="exampleCheck4"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         3
@@ -189,7 +189,7 @@ const Students = () => {
                     </td>
                   </tr>
                   <tr>
-                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck5" /><label className="form-check-label" for="exampleCheck5"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck5" /><label className="form-check-label" htmlFor="exampleCheck5"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         4
@@ -213,7 +213,7 @@ const Students = () => {
                     </td>
                   </tr>
                   <tr>
-                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck6" /><label className="form-check-label" for="exampleCheck6"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck6" /><label className="form-check-label" htmlFor="exampleCheck6"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         5

@@ -24,7 +24,7 @@ tbody tr:nth-child(even) {background: rgb(255 255 255 / 35%);}
 .row .table tr td, .row .table tr th {padding: 0.6rem 1rem;}
 tbody tr td {border: 0px;}
 .barchart {height: 240px;}
-.scrolldiv {padding-right: 10px;height: calc(100vh - 145px);overflow-y: auto;overflow-x: hidden; padding-left: 5px;} 
+.scrolldiv {padding-right: 10px; height: calc(100vh - 165px);overflow-y: auto;overflow-x: hidden; padding-left: 5px;} 
 ::-webkit-scrollbar {width: 5px;}
 /* ::-webkit-scrollbar-track {background: #f1f1f1; } */
 ::-webkit-scrollbar-thumb {background: #005fff; border-radius:10px;}
@@ -273,7 +273,7 @@ input[type="file"] { display: none;}
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
 .custable .form-group{ margin: 0px;}
-.formscroldiv {height:calc(100vh - 370px); overflow: hidden; overflow-y: auto; margin-bottom: 30px;}
+.formscroldiv {height:calc(100vh - 370px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
 
 .certinfo{ padding: 30px; min-height: 100%;}
 .certinfocont{ display: flex; align-items: center; justify-content: center;}
@@ -396,6 +396,32 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .userOrg h5{ margin: 0px;}
 
 .certsteps div, .certsteps a, .certsteps span {transition: all ease 0.75s;}
+
+.checkcross{ margin-bottom: 0px;}
+.checkcross svg {width: 65px;display: block; margin: 0px auto;}
+.checkcross .path {stroke-dasharray: 1000;stroke-dashoffset: 0;}
+.checkcross .path.circle {-webkit-animation: dash 0.9s ease-in-out;animation: dash 0.9s ease-in-out;}
+.checkcross .path.line {stroke-dashoffset: 1000;-webkit-animation: dash 0.9s 0.35s ease-in-out forwards;animation: dash 0.9s 0.35s ease-in-out forwards;}
+.checkcross .path.check {stroke-dashoffset: -100;-webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;animation: dash-check 0.9s 0.35s ease-in-out forwards;}
+
+@-webkit-keyframes dash {
+0% {stroke-dashoffset: 1000;}
+100% {stroke-dashoffset: 0;}
+}
+@keyframes dash {
+0% {stroke-dashoffset: 1000;}
+100% {stroke-dashoffset: 0;}
+}
+@-webkit-keyframes dash-check {
+0% {stroke-dashoffset: -100;}
+100% {stroke-dashoffset: 900;}
+}
+@keyframes dash-check {
+0% {stroke-dashoffset: -100;}
+100% {stroke-dashoffset: 900;}
+}
+  
+
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

@@ -70,7 +70,7 @@ const StudentDashboard = () => {
 
                                 {/* <div className='ctemp' >
                                     <input type={'radio'} id="certselect-1" name='cerselect'  />
-                                    <label className='backgroundblur' for="certselect-1">
+                                    <label className='backgroundblur' htmlFor="certselect-1">
                                         <div className='img'>
                                             <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
                                         </div>
@@ -184,7 +184,7 @@ const StudentDashboard = () => {
                                     {certificateList.map((user, index) => (
                                         <div key={index} className="col-md-6">
                                             <div className='ctemp' >
-                                                <label className='backgroundblur' for="cert-1">
+                                                <label className='backgroundblur' htmlFor="cert-1">
                                                     <p className='text-end w-100 mb-3'>#{user.nftId} <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
                                                     <iframe src={user.certificateHash}></iframe>
                                                     <div className='row align-items-center'>
@@ -211,7 +211,7 @@ const StudentDashboard = () => {
 
                                     {/* <div className="col-md-6">
                                         <div className='ctemp' >
-                                            <label className='backgroundblur' for="cert-1">
+                                            <label className='backgroundblur' htmlFor="cert-1">
                                                 <p className='text-end w-100 mb-3'>#234254 <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
                                                 <iframe src={require('../assets/images/certificate-ela.pdf#toolbar=0&navpanes=0&scrollbar=0')}></iframe>
                                                 <div className='row align-items-center'>
@@ -230,7 +230,7 @@ const StudentDashboard = () => {
                                     <div className="col-md-6 " >
                                         <div className='ctemp' >
                                             <input type={'radio'} id="cert-2" name='cert-2' disabled />
-                                            <label className='backgroundblur' for="cert-2">
+                                            <label className='backgroundblur' htmlFor="cert-2">
                                                 <p className='text-end w-100 mb-3'>#234254 <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
                                                 <iframe src={require('../assets/images/certificate-shun.pdf')}></iframe>
                                                 <div className='row align-items-center'>

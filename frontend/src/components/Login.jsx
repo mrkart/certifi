@@ -79,7 +79,7 @@ const Login = () => {
     <div className='logincon'>
       <div className='loginimg'><img src={require('../assets/images/certificate-bg.png')}  alt="certifily Logo" loading="lazy" /></div>
       <div className='loginform'>
-      {/* <div class="alert alert-danger alert-top slideDown" role="alert" data-mdb-color="danger">
+      {/* <div className="alert alert-danger alert-top slideDown" role="alert" data-mdb-color="danger">
           A simple danger alert—check it out!
         </div> */}
         <div className="main-content">

@@ -1,6 +1,6 @@
 import Router from 'express';
 import { UserController } from '../../../controllers';
-import { CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../../dtos';
+import { CreateCertificateDTO, CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../../dtos';
 import { AuthenticationMiddleware } from '../../../middlewares/authentication-middleware';
 import {
     BodyValidationMiddleware,
@@ -398,8 +398,80 @@ usersRouter.post(
     '/:userId/certificate',
     AuthenticationMiddleware,
     OrgIdHeaderValidationMiddleare,
+    BodyValidationMiddleware(CreateCertificateDTO),
     async (request, response, next) => {
         await userController.createCertificate(request, response, next);
+    }
+);
+
+/**
+ * @openapi
+ * /api/users/{userId}/certificate:
+ *   get:
+ *     summary: get certificates issued to user
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: header
+ *         name: cerfi-org-id
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *       - in: path
+ *         name: userId
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *     responses:
+ *       "200":
+ *         description: Certificate List fetched
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Org user created
+ *                    data:
+ *                      type: object
+ *                      properties:
+ *                        count:
+ *                          type: integer
+ *                          description: The number of org users in list
+ *                        certificates:
+ *                          type: array
+ *                          items:
+ *                            $ref: '#/components/schemas/CertificateResponse'
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.get(
+    '/:userId/certificate',
+    AuthenticationMiddleware,
+    OrgIdHeaderValidationMiddleare,
+    async (request, response, next) => {
+        await userController.getCertificates(request, response, next);
     }
 );
 
@@ -467,6 +539,7 @@ usersRouter.post(
     '/:userId/mint',
     AuthenticationMiddleware,
     OrgIdHeaderValidationMiddleare,
+    BodyValidationMiddleware(CreateCertificateDTO),
     async (request, response, next) => {
         await userController.mintCertificate(request, response, next);
     }

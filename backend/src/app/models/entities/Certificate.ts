@@ -12,6 +12,7 @@ import { Org } from './Org';
 import { UserEmail } from './UserEmail';
 import { CertificateMetadata } from '../../helpers';
 import { Course } from './Course';
+import { Slot } from './Slot';
 
 @Index('Certificate_fk0', ['orgId'], {})
 @Index('Certificate_fk1', ['userId'], {})
@@ -144,4 +145,11 @@ export class Certificate {
     })
     @JoinColumn([{ name: 'course_id', referencedColumnName: 'id' }])
     course: Course;
+
+    @ManyToOne(() => Slot, (slot) => slot.certificates, {
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+    })
+    @JoinColumn([{ name: 'slot_id', referencedColumnName: 'id' }])
+    slot: Slot;
 }

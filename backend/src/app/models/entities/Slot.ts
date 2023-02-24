@@ -1,3 +1,4 @@
+import { Certificate } from './Certificate';
 import {
     Column,
     Entity,
@@ -60,4 +61,7 @@ export class Slot {
         cascade: ['insert']
     })
     slotHasUsers: SlotHasUser[];
+
+    @OneToMany(() => Certificate, (certificate) => certificate.slot)
+    certificates: Certificate[];
 }

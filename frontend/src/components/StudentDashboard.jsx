@@ -15,7 +15,9 @@ const StudentDashboard = () => {
     let userId = userprofile.id;
 
     const viewCertificatepage = () => {
-        setViewCertificate(true)
+        if(certificateCount > 0){
+            setViewCertificate(true);
+        }
     }
     const dismissView = () => {
         setViewCertificate(false)
@@ -183,7 +185,7 @@ const StudentDashboard = () => {
                                         <div key={index} className="col-md-6">
                                             <div className='ctemp' >
                                                 <label className='backgroundblur' for="cert-1">
-                                                    <p className='text-end w-100 mb-3'>#{user.certificateNumber} <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
+                                                    <p className='text-end w-100 mb-3'>#{user.nftId} <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
                                                     <iframe src={user.certificateHash}></iframe>
                                                     <div className='row align-items-center'>
                                                         <div className='col-md-7 text-start'>

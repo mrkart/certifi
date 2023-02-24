@@ -169,7 +169,7 @@
  *          schema:
  *            $ref: '#/components/schemas/Error'
  *     JwtVerficationFailed:
- *       description: Failed to verify JWt
+ *       description: Unauthorized Access (or) Failed to verify JWt
  *       content:
  *        application/json:
  *          schema:

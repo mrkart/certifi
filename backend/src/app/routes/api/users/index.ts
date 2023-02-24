@@ -1,12 +1,19 @@
 import Router from 'express';
 import { UserController } from '../../../controllers';
-import { CreateCertificateDTO, CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../../dtos';
+import {
+    CreateCertificateDTO,
+    CreateUserDTO,
+    UpdateUserDTO,
+    UserIdUrlPramDTO
+} from '../../../dtos';
+import { AccessControlMiddleware } from '../../../middlewares/access-control-middleware';
 import { AuthenticationMiddleware } from '../../../middlewares/authentication-middleware';
 import {
     BodyValidationMiddleware,
     OrgIdHeaderValidationMiddleare,
     UrlParamsValidationMiddleware
 } from '../../../middlewares/req-validation-middleware';
+import { AccessType } from '../../../models/entities/OrgRoles';
 import userService from '../../../services/user-service';
 import authRouter from './auth';
 
@@ -129,6 +136,11 @@ usersRouter.get(
 usersRouter.post(
     '/',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     BodyValidationMiddleware(CreateUserDTO),
     async (request, response, next) => {
@@ -196,6 +208,11 @@ usersRouter.post(
 usersRouter.get(
     '/',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     async (request, response, next) => {
         await userController.getOrgUsers(request, response, next);
@@ -338,6 +355,11 @@ usersRouter.get(
 usersRouter.put(
     '/:userId',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     BodyValidationMiddleware(UpdateUserDTO),
     async (request, response, next) => {
@@ -397,6 +419,11 @@ usersRouter.put(
 usersRouter.post(
     '/:userId/certificate',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     BodyValidationMiddleware(CreateCertificateDTO),
     async (request, response, next) => {
@@ -469,6 +496,7 @@ usersRouter.post(
 usersRouter.get(
     '/:userId/certificate',
     AuthenticationMiddleware,
+    AccessControlMiddleware([AccessType.USER]),
     OrgIdHeaderValidationMiddleare,
     async (request, response, next) => {
         await userController.getCertificates(request, response, next);
@@ -538,6 +566,11 @@ usersRouter.get(
 usersRouter.post(
     '/:userId/mint',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     BodyValidationMiddleware(CreateCertificateDTO),
     async (request, response, next) => {

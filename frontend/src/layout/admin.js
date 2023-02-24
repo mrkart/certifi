@@ -78,7 +78,10 @@ const Admin = ({ subElement }) => {
             <div className='content-header'>
               <div className='row align-items-center'>
                 <div className='col-6 text-start'>
-                  <h5 className='fw-bolder text-uppercase'>{userOrg}</h5>
+                  <div className='userOrg'>
+                     <img src={require('../assets/images/icons/college.png')} loading="lazy" />
+                    <h5 className='fw-bolder text-uppercase'>{userOrg}</h5>
+                  </div>
                 </div>
                 <div className='col-6 text-end'>
                   <div className='profile-area'>

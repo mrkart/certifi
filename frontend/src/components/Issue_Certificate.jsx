@@ -277,7 +277,14 @@ const Issue_Certificate = () => {
 
               <div>
                 <div className="certsteps mb-3">
-                  <Stepper steps={[
+                  <Stepper
+                  activeTitleColor={'#005fff'}
+                  activeColor={'#005fff'}
+                  completeColor={'#04AF15'}
+                  completeTitleColor={'#04AF15'}
+                  completeBorderColor={'#04AF15'}
+                  completeBarColor={'#04AF15'}
+                  steps={[
                     { title: 'Select students', className: 'certsteps' },
                     { title: 'Certification info', className: 'certsteps' },
                     { title: 'Select template', className: 'certsteps' },
@@ -287,13 +294,13 @@ const Issue_Certificate = () => {
                   ]} activeStep={stepper} />
                 </div>
                 {stepper === 0 &&
-                  <div>
-                    <div className='formscroldiv'>
+                  <div className=''>
+                    <div className='formscroldiv fadein'>
                       <div className='searchform border-none'>
                         <div className='fields txtfields'>Cert batch name</div>
                         <div className='fields'>
                           <select className='form-control'>
-                            <option>2022-Computer-Science-Graduation - List 1</option>
+                            <option>2023-Computer-Science-Graduation - List 1</option>
                           </select>
                         </div>
                         <div className='fields'></div>
@@ -537,8 +544,8 @@ const Issue_Certificate = () => {
                   </div>
                 }
                 {stepper === 1 &&
-                  <div>
-                    <div className='formscroldiv'>
+                  <div className=''>
+                    <div className='formscroldiv fadein'>
                       <div className='backgroundblur text-start p-15px mt-3'>
                         <div className='createcertform'>
                           <div className='row'>
@@ -599,8 +606,8 @@ const Issue_Certificate = () => {
                   </div>
                 }
                 {stepper === 2 &&
-                  <div>
-                    <div className='formscroldiv'>
+                   <div className=''>
+                    <div className='formscroldiv fadein'>
                       {/* <div className='certempfrm'>
                     <div className='row'>
                       <div className='col-md-6 text-center'>
@@ -631,7 +638,7 @@ const Issue_Certificate = () => {
                     </div>
 
                   </div> */}
-                      <div className='certtemplates mt-3'>
+                      <div className='certtemplates'>
                         <div className='row'>
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp' >
@@ -749,9 +756,9 @@ const Issue_Certificate = () => {
                   </div>
                 }
                 {stepper === 3 &&
-                  <div>
-                    <div className='formscroldiv'>
-                      <div className='createcertform backgroundblur text-start p-15px my-3'>
+                   <div className=''>
+                    <div className='formscroldiv fadein'>
+                      <div className='createcertform backgroundblur text-start p-15px mb-3'>
                         <div className='row'>
                           <div className='col-md-4'>
                             <div className='form-group'>
@@ -835,7 +842,7 @@ const Issue_Certificate = () => {
                           </div>
                           <div className='col-md-4'>
                             <div className='form-group'>
-                              <label className='mb-2'>Upload frame image</label>
+                              <label className='mb-2'>Upload border image</label>
                               <label for="file-upload1" class="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
@@ -986,7 +993,7 @@ const Issue_Certificate = () => {
                 }
 
                 {stepper === 4 &&
-                  <div>
+                   <div className='fadein'>
                     {certificatePreview ? <div className='formscroldiv'>
                       {/* <div className='backgroundblur text-center mh-auto'>
                     <div className='certinfo certpreview'>
@@ -1115,14 +1122,12 @@ const Issue_Certificate = () => {
                   </div>
                 }
                 {stepper === 5 &&
-                  <div>
-                    <div className='formscroldiv'>
-                      <div className='backgroundblur text-start mt-3'>
+                   <div className=''>
+                    <div className='formscroldiv fadein'>
+                      <div className='backgroundblur text-start'>
                         <div className='certinfo'>
                           <div className='certinfocont1'>
-                            <p>2022 - Computer Science Graduation - List 1</p>
-                            <p>Total Students - 124</p>
-                            <p>Download records for final verification</p>
+                            <p className='text-center mb-0'><b>1</b> Student from <b>2023</b> - Computer Science Graduation</p>                           
                           </div>
                         </div>
                       </div>
@@ -1133,8 +1138,8 @@ const Issue_Certificate = () => {
                             <div className='signerboxes'>
                               <h6>Preparer Sign</h6>
                               <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
-                              <p>On JUL-17-2022 11:01 EST</p>
-                              <p>By  Prof Charles Harper</p>
+                              <p>On Feb-17-2023 11:01 EST</p>
+                              <p>By <b>Prof Charles Harper</b></p>
                             </div>
                           </div>
                         </div>
@@ -1144,8 +1149,8 @@ const Issue_Certificate = () => {
                             <div className='signerboxes'>
                               <h6>Verifier Sign</h6>
                               <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
-                              <p>On JUL-17-2022 11:01 EST</p>
-                              <p>By  Prof Charles Harper</p>
+                              <p>On Feb-18-2023 08:01 EST</p>
+                              <p>By <b>David R. Martin</b></p>
                             </div>
                           </div>
                         </div>
@@ -1163,16 +1168,16 @@ const Issue_Certificate = () => {
                     </div>
 
                     <div className='row align-items-center'>
-                      <div className='col-6'>
+                      <div className='col-12'>
                         <div className='btngrouprht'>
                           <button className='btn btn-light btn-icon' onClick={() => setStepper(stepper - 1)}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
-                      <div className='col-6 text-end'>
+                      {/* <div className='col-6 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht'>Finish < i data-eva-animation="flip" data-eva="checkmark-outline"></i></button>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 }

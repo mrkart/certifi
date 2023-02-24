@@ -71,7 +71,7 @@ const Dashboard = () => {
               <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />
             </div>
           </div> */}
-      <div className='row'>
+      <div className='row fadein'>
         <div className='col-md-12 text-start'>
           <div className='foldersview'>
             <div className='row'>

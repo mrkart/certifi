@@ -6,6 +6,7 @@ export interface OrgUserInvitationRequest {
     recipientFirstName: string;
     orgName: string;
     password: string;
+    address: string;
 }
 
 export class OrgUserInviationMail {
@@ -113,8 +114,13 @@ export class OrgUserInviationMail {
                 <tr>
                 <td>
                 <p>Hi <span style="font-weight: bold;">${this.request.recipientFirstName}</span>,</p>
+                <p>Welcome to Certifi.ly, Easy way to collect & store your professional certificates, documents, memberships, cards & tickets as NFTs on Flow blockchain.
+                </p>
+                <p>
+                Opticore Engineering invited you to use certifi.ly to access your professional NFT documents from them and around the world.
+                </p>
                 <p>You have been invited to Certifi.ly by ${this.request.orgName}.</p>
-                <p> Use this password to join Certifi.ly</p>
+                <p>Credentials</p>
                 <table role="presentation" border="0" cellpadding="10" cellspacing="0" style="background: #eff5ff; width: auto; margin: 30px auto;">
                     <tbody>
                     <tr>
@@ -142,8 +148,16 @@ export class OrgUserInviationMail {
                 </tr>
                 </tbody>
                 </table>
+                <p>Every new certifi.ly user gets a walletless flow blockchain account onboarding for free. 
+                Once you login to Certifi.ly & Connected your Flow Wallet (Blocto)., 
+                Below Flow account ownership will be transferred to your connected flow account.
+                </p>
+                <p>Your Certifi.ly Flow Account for ${this.request.receipientAddress}</p>
+                <p>${this.request.address}</p>
                 <p>Regards,</p>
-                <p style="font-weight: bold;">Certifi.ly team</p>
+                <p style="font-weight: bold;">Certifi.ly Team</p>
+                <p><a href="https://www.certifi.ly">www.certifi.ly</a></p>
+                <p>reach@certifi.ly</p>
                 </td>
                 </tr>
                 </table>

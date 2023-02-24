@@ -51,7 +51,7 @@ const Students = () => {
             {userlist.length == 0 ? (
                 <TableLoader/>
               ) : (
-            <div className='tableblur mt-4'>                    
+            <div className='tableblur mt-4 fadein'>                    
               <div className='searchform'>
                 <div className='fields'>Search & Filters</div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>

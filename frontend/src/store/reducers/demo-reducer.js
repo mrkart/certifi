@@ -8,7 +8,8 @@ const initialState = {
     userlist : [],
     edituser : [],
     userbyid : [],
-    generatedCertificate : []
+    generatedCertificate : [],
+    userCertificateList : []
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -52,6 +53,11 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 generatedCertificate : action.payload
+            }
+        case types.GET_USERCERTLIST_SUCCESS:
+            return {
+                ...state,
+                userCertificateList : action.payload
             }
         default:
             return state

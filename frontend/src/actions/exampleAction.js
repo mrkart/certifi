@@ -104,3 +104,16 @@ export const generateCertificate = (orgID, userID, data) => {
       });
   };
 }
+
+// Get all certificate issued to user
+export const getUserCertList = (orgID,userID) => { 
+  return (dispatch) => {
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).get(`/api/users/${userID}/certificate`)
+      .then((response) => {
+        dispatch({ type: 'GET_USERCERTLIST_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GET_USERCERTLIST_FAILURE', payload: error });
+      });
+  };
+};

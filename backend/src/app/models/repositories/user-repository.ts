@@ -232,6 +232,9 @@ export const UserRepository = getDataSource()
                         orgId: org.id,
                         accessType: AccessType.USER
                     }
+                },
+                order: {
+                    id: 'DESC'
                 }
             });
             return new ListResponse(count, users);

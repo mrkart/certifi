@@ -15,6 +15,7 @@ import { UserEmail } from './UserEmail';
 import { User } from './User';
 import { OrgRoles } from './OrgRoles';
 import { Slot } from './Slot';
+import { Course } from './Course';
 
 @Index('Org_fk0', ['userId'], {})
 @Index('Org_fk1', ['userEmailId'], {})
@@ -75,4 +76,7 @@ export class Org {
 
     @OneToMany(() => Slot, (slots) => slots.org)
     slots: Slot[];
+
+    @OneToMany(() => Course, (course) => course.org)
+    courses: Course[];
 }

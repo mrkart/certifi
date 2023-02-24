@@ -57,10 +57,4 @@ export class AssetOrg {
     })
     @JoinColumn([{ name: 'org_id', referencedColumnName: 'id' }])
     org: Org;
-
-    @OneToMany(
-        () => Certificate,
-        (certificate) => certificate.certificateFilePath2
-    )
-    certificates: Certificate[];
 }

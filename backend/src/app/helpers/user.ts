@@ -80,3 +80,30 @@ export interface CertificateMetadata {
 
     PlatformInfo: Platform;
 }
+export interface IpfsAccessToken {
+    token_type: string;
+    issued_at: string;
+    access_token: string;
+    status: string;
+}
+
+export interface IpfsAccessRequest {
+    client_id: string;
+    client_secret: string;
+}
+
+export interface IpfsUploadResponse {
+    Name: string;
+    Hash: string;
+    Size: string;
+    error?: boolean;
+    Resp?: string;
+    resval?: string;
+}
+
+export interface MintEventData {
+    id: string;
+    content: string;
+    owner: string;
+    insitution: string;
+}

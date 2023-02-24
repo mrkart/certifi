@@ -1,29 +1,44 @@
-import { isEmpty } from 'class-validator';
+import { isEmpty, isNotEmpty } from 'class-validator';
 import { randomBytes } from 'crypto';
-import { existsSync, PathLike } from 'fs';
-import { mkdir } from 'fs/promises';
-import { resolve } from 'path';
+import { createReadStream, existsSync, PathLike } from 'fs';
+import { mkdir, stat } from 'fs/promises';
+import { basename, resolve } from 'path';
+import { Readable } from 'stream';
 import { CreateCertificateDTO, CreateUserDTO, UpdateUserDTO } from '../dtos';
-import { UnhandledError } from '../errors';
+import { ErrorDetail, InvalidRequestError, UnhandledError } from '../errors';
 import {
     AccountCreatedEventData,
     CertificateMetadata,
+    IpfsAccessRequest,
+    IpfsAccessToken,
+    IpfsUploadResponse,
     ListResponse,
+    MintEventData,
     OrgUser,
     OrgUserResponse,
     Profile,
     TransactionEvent,
+    TransactionStatusObject,
     Utility
 } from '../helpers';
+import { getContentLength, post, postForm } from '../helpers/http';
 import MailTransporterFactory from '../helpers/transporter';
 import { OrgUserInviationMail } from '../mail/org-user-invitation-mail';
 import { Org } from '../models/entities/Org';
+import { Slot } from '../models/entities/Slot';
 import { User } from '../models/entities/User';
 import OrgRepository from '../models/repositories/org-repository';
 import SlotRepository from '../models/repositories/SlotRepository';
 import { UserRepository } from '../models/repositories/user-repository';
 import fclService, { FclService } from './fcl-service';
 import pdfService, { PdfService } from './pdf-service';
+import FormData from 'form-data';
+import getDataSource from '../config/datasource';
+import { AccessType, OrgRoles } from '../models/entities/OrgRoles';
+import { Certificate } from '../models/entities/Certificate';
+import { UserEmail } from '../models/entities/UserEmail';
+import CourseRepoistory from '../models/repositories/course-repository';
+import { Not, IsNull } from 'typeorm';
 
 export class UserService {
     constructor(
@@ -156,22 +171,23 @@ export class UserService {
     ): Promise<string> {
         const org = await OrgRepository.findById(orgId);
         const user = await UserRepository.findOrgUserById(userId, orgId);
+        const slot = await SlotRepository.findOneBy({
+            id: data.slotId
+        });
         const outDir = resolve(
             `./generated_files/preview/org/${org.id}/certificates`
         );
-        return this.generateCertificateFile(org, user, data, outDir);
+        return this.generateCertificateFile(org, user, slot, data, outDir);
     }
 
     private async generateCertificateFile(
         org: Org,
         user: User,
+        slot: Slot,
         data: CreateCertificateDTO,
         outDir: PathLike
     ): Promise<string> {
         const templatePath = resolve('./templates/certificates/template1.pdf');
-        const slot = await SlotRepository.findOneBy({
-            id: data.slotId
-        });
         if (existsSync(outDir) === false) {
             await mkdir(outDir, { recursive: true });
         }
@@ -193,13 +209,181 @@ export class UserService {
         return outPath;
     }
 
-    // private async generateCertificateMetadata(
-    //     orgId: number,
-    //     user: User
-    // ): Promise<CertificateMetadata> {
-    //     const org = await OrgRepository.findById(orgId);
+    public async mintCertificate(
+        orgId: number,
+        userId: number,
+        data: CreateCertificateDTO
+    ) {
+        const org = await OrgRepository.findById(orgId);
+        const user = await UserRepository.findOrgUserById(userId, orgId);
+        const slot = await SlotRepository.findOneByOrFail({
+            id: data.slotId
+        });
+        if (user.flowAddress === null) {
+            throw new InvalidRequestError(
+                'Selected user does not contain a flow account associated with them.',
+                'Invalid User id',
+                [
+                    [
+                        'User must hav flow account associated with them to mint certificate'
+                    ]
+                ]
+            );
+        }
+        const preparer = await getDataSource()
+            .getRepository(OrgRoles)
+            .findOneOrFail({
+                where: {
+                    orgId: org.id,
+                    accessType: AccessType.PREPARER,
+                    user: {
+                        flowAddress: Not(IsNull())
+                    }
+                },
+                relations: {
+                    user: true
+                }
+            });
+        const verifier = await getDataSource()
+            .getRepository(OrgRoles)
+            .findOneOrFail({
+                where: {
+                    orgId: org.id,
+                    accessType: AccessType.VERIFIER,
+                    user: {
+                        flowAddress: Not(IsNull())
+                    }
+                },
+                relations: {
+                    user: true
+                }
+            });
+        const issuer = await getDataSource()
+            .getRepository(OrgRoles)
+            .findOneOrFail({
+                where: {
+                    orgId: org.id,
+                    accessType: AccessType.ISSUER,
+                    user: {
+                        flowAddress: Not(IsNull())
+                    }
+                },
+                relations: {
+                    user: true
+                }
+            });
+        const outDir = resolve(
+            `./generated_files/mint/org/${org.id}/certificates`
+        );
+        const certPath = await this.generateCertificateFile(
+            org,
+            user,
+            slot,
+            data,
+            outDir
+        );
+        const acessToken = await this.getIpfsAuthToken();
+        const certStream = createReadStream(certPath);
+        const uploadResponse = await this.uploadToIpfs(
+            acessToken,
+            certStream,
+            basename(certPath)
+        );
+        const ipfsEnpoint = 'https://ipfs.perma.store/content';
+        const metadta = await this.generateCertificateMetadata(
+            org,
+            user,
+            slot,
+            user,
+            user,
+            `${ipfsEnpoint}/${uploadResponse.Hash}`,
+            data
+        );
 
-    // }
+        const metadataStream = Readable.from([
+            JSON.stringify(metadta, null, 2)
+        ]);
+        const metadataUploadResponse = await this.uploadToIpfs(
+            acessToken,
+            metadataStream,
+            randomBytes(4).toString('hex') + '.json'
+        );
+        const mintResponse = await fclService.mint(
+            `${ipfsEnpoint}/${metadataUploadResponse.Hash}`,
+            'Certificate issued for course completion',
+            org.orgName,
+            user.flowAddress,
+            0,
+            `${ipfsEnpoint}/${uploadResponse.Hash}`,
+            1
+        );
+
+        return await this.persistCertificateData(
+            mintResponse,
+            metadta,
+            org,
+            user,
+            slot,
+            data,
+            certPath,
+            `${ipfsEnpoint}/${metadataUploadResponse.Hash}`
+        );
+    }
+
+    private async generateCertificateMetadata(
+        org: Org,
+        user: User,
+        slot: Slot,
+        signer1: User,
+        signer2: User,
+        certPath: string,
+        certData: CreateCertificateDTO
+    ): Promise<CertificateMetadata> {
+        const date = new Date();
+        const formatter = Intl.DateTimeFormat('en-IN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        const issDate = formatter.format(date).split(' ').join('-');
+        const metadata: CertificateMetadata = {
+            Cert: {
+                dimensions: null,
+                mimeType: 'application/pdf',
+                size: await getContentLength(certPath),
+                templateID: 'template1',
+                uri: certPath.toString()
+            },
+            CertData: {
+                batchInfo: slot.slotTitle,
+                certNumber: certData.certificateNumber,
+                course: certData.courseName,
+                gradeInfo: certData.grade
+            },
+            docType: 'application/pdf',
+            holder: user.flowAddress,
+            holderName: user.name,
+            Issuer: {
+                Description: org.orgName,
+                insitution: org.orgName,
+                institutionID: org.id.toString(),
+                issuedDate: issDate
+            },
+            PlatformInfo: {
+                Platform: 'Certifi',
+                MintedAt: 'www.certifi.ly'
+            },
+            Signer1: {
+                address: signer1.flowAddress,
+                signerID: signer1.id.toString()
+            },
+            Signer2: {
+                address: signer2.flowAddress,
+                signerID: signer2.id.toString()
+            }
+        };
+        return metadata;
+    }
 
     private async dispatchInvitation(user: OrgUser) {
         const invite = new OrgUserInviationMail(
@@ -296,6 +480,164 @@ export class UserService {
                     },
                     4
                 )
+            );
+        }
+    }
+
+    private async getIpfsAuthToken(): Promise<string> {
+        const response = await post<IpfsAccessRequest, IpfsAccessToken>(
+            'https://jason-eval-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials',
+            {
+                client_id: process.env.IPFS_API_KEY,
+                client_secret: process.env.IPFS_API_SECRET
+            }
+        );
+        const error = new Error();
+        if (response.statusCode !== 200) {
+            error.message = 'Error response received.';
+            console.error('Upload failed');
+            throw error;
+        }
+        return response.body.access_token;
+    }
+
+    private async uploadToIpfs(
+        accessToken: string,
+        fileStream: Readable,
+        fileName: string
+    ): Promise<IpfsUploadResponse> {
+        const form = new FormData();
+        form.append('file', fileStream, { filename: fileName });
+        const response = await postForm<IpfsUploadResponse>(
+            accessToken,
+            'https://ipfs.perma.store/access_token',
+            form
+        );
+        const error = new Error();
+        error.name = 'ResponseError';
+        if (response.statusCode !== 200) {
+            error.message = 'Error response received.';
+            console.error('Upload failed');
+            throw error;
+        }
+        const resBody: IpfsUploadResponse = response.body as IpfsUploadResponse;
+        if (resBody.error) {
+            error.message = resBody.Resp || 'Error response received.';
+            console.error('Upload failed');
+            throw error;
+        } else if (isNotEmpty(resBody.resval)) {
+            error.message = resBody.resval || 'Error response received.';
+            console.error('Upload failed');
+            throw error;
+        }
+        // console.log('Upload response', resBody);
+        return resBody;
+    }
+    private async persistCertificateData(
+        mintResponse: TransactionStatusObject,
+        metadata: CertificateMetadata,
+        org: Org,
+        user: User,
+        slot: Slot,
+        certData: CreateCertificateDTO,
+        certificatePath: PathLike,
+        metadataHash: string
+    ): Promise<Certificate> {
+        try {
+            const userEmail = await getDataSource()
+                .getRepository(UserEmail)
+                .findOneByOrFail({
+                    userId: user.id,
+                    isPrimary: 1
+                });
+
+            const course = await CourseRepoistory.findOrCreate(
+                org.id,
+                certData.courseName
+            );
+            const mintEventData: TransactionEvent<MintEventData> =
+                mintResponse.events.find((event) =>
+                    event.type.includes('Certifily.Mint')
+                ) as TransactionEvent<MintEventData>;
+            if (isEmpty(mintEventData)) {
+                const err = new Error();
+                err.name = 'MintPersistError';
+                err.message = 'Failed to find mint event data in mint response';
+            }
+            const preparer = await getDataSource()
+                .getRepository(OrgRoles)
+                .findOneOrFail({
+                    where: {
+                        orgId: org.id,
+                        accessType: AccessType.PREPARER,
+                        user: {
+                            flowAddress: Not(IsNull())
+                        }
+                    },
+                    relations: {
+                        user: true
+                    }
+                });
+            const verifier = await getDataSource()
+                .getRepository(OrgRoles)
+                .findOneOrFail({
+                    where: {
+                        orgId: org.id,
+                        accessType: AccessType.VERIFIER,
+                        user: {
+                            flowAddress: Not(IsNull())
+                        }
+                    },
+                    relations: {
+                        user: true
+                    }
+                });
+            const issuer = await getDataSource()
+                .getRepository(OrgRoles)
+                .findOneOrFail({
+                    where: {
+                        orgId: org.id,
+                        accessType: AccessType.ISSUER,
+                        user: {
+                            flowAddress: Not(IsNull())
+                        }
+                    },
+                    relations: {
+                        user: true
+                    }
+                });
+            const certificate = await getDataSource()
+                .getRepository(Certificate)
+                .save(
+                    getDataSource()
+                        .getRepository(Certificate)
+                        .create({
+                            certificateFilePath: certificatePath.toString(),
+                            certificateHash: metadata.Cert.uri,
+                            certificateNumber: certData.certificateNumber,
+                            courseId: course.id,
+                            grade: certData.grade,
+                            metadataHash,
+                            metadataJson: metadata,
+                            nftId: parseInt(mintEventData.data.id),
+                            orgId: org.id,
+                            signerIssuerId: issuer.id,
+                            signerPreparerId: preparer.id,
+                            signerVerifierId: verifier.id,
+                            slotId: slot.id,
+                            userEmailId: userEmail.id,
+                            userId: user.id
+                        })
+                );
+
+            return certificate;
+        } catch (e) {
+            const err = new Error();
+            err.name = 'CertificatePersistError';
+            err.message = 'Failed to Persist Certiticate data after mint';
+            throw new UnhandledError(
+                err,
+                new ErrorDetail('CertificatePersistError', e)
             );
         }
     }

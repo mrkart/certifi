@@ -5,6 +5,7 @@ export * from './utility';
 export * from './user';
 export * from './flow';
 export * from './pdf';
+export * from './http';
 export class ListResponse<Entity> {
     public count: number;
     public entity: Entity[];

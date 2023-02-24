@@ -100,12 +100,12 @@ export class FclService {
     async mint(
         metaDataUrlHash: string,
         description: string,
-        title: string,
+        orgName: string,
         minterAddress: string,
         keySlot: number,
-        thumbnailHash: string,
-        thumbnailMimeType: string
-    ) {
+        previewHash: string,
+        certificateType: number
+    ): Promise<TransactionStatusObject> {
         await this.initializePrivateKeys();
 
         const mintAuthorization = this.authorizeAdmin(keySlot, {
@@ -122,19 +122,20 @@ export class FclService {
             address: process.env.FLOW_ADMIN_ADDRESS,
             privateKey: this.adminPrivateKey
         });
-
-        let transaction = '';
         const args = [];
 
-        transaction = await readFile(join(__dirname, 'transactions/mint.cdc'), {
-            encoding: 'utf8'
-        });
-        args.push(fcl.arg(metaDataUrlHash, t.String));
-        args.push(fcl.arg(description, t.String));
-        args.push(fcl.arg(title, t.String));
+        const transaction = await readFile(
+            resolve('../transactions/mint.cdc'),
+            {
+                encoding: 'utf8'
+            }
+        );
         args.push(fcl.arg(minterAddress, t.Address));
-        args.push(fcl.arg(thumbnailHash, t.String));
-        args.push(fcl.arg(thumbnailMimeType, t.String));
+        args.push(fcl.arg(metaDataUrlHash, t.String));
+        args.push(fcl.arg(orgName, t.String));
+        args.push(fcl.arg(description, t.String));
+        args.push(fcl.arg(previewHash, t.String));
+        args.push(fcl.arg(certificateType.toString(), t.UInt8));
 
         //  Logger.log('transaction for mint\n',transaction);
 
@@ -295,7 +296,6 @@ export class FclService {
             throw new UnhandledError(e);
         }
     }
-    private;
 
     createAuthz(
         keySlot: number,

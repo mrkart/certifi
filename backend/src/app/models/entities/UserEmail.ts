@@ -1,3 +1,4 @@
+import { Certificate } from './Certificate';
 import {
     Column,
     Entity,
@@ -57,6 +58,9 @@ export class UserEmail {
 
     @OneToMany(() => CertData, (certData) => certData.userEmail)
     certData: CertData[];
+
+    @OneToMany(() => Certificate, (certificate) => certificate.userEmail)
+    certificates: Certificate[];
 
     @OneToMany(() => Org, (org) => org.userEmail)
     orgs: Org[];

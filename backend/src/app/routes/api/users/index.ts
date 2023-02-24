@@ -403,4 +403,62 @@ usersRouter.post(
     }
 );
 
+/**
+ * @openapi
+ * /api/users/{userId}/mint:
+ *   post:
+ *     summary: mint certificate
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: header
+ *         name: cerfi-org-id
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *       - in: path
+ *         name: userId
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *     requestBody:
+ *       description: Describe the certificate to be created
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateCertificateDTO'
+ *     responses:
+ *       "200":
+ *         description: Certificate generated
+ *         content:
+ *          application/pdf:
+ *            schema:
+ *              type: string
+ *              format: binary
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.post(
+    '/:userId/mint',
+    AuthenticationMiddleware,
+    OrgIdHeaderValidationMiddleare,
+    async (request, response, next) => {
+        await userController.mintCertificate(request, response, next);
+    }
+);
+
 export default usersRouter;

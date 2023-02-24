@@ -193,4 +193,31 @@ export class UserController {
             }
         }
     }
+
+    public async mintCertificate(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const orgId = request.header('cerfi-org-id');
+            const { userId } = plainToInstance(
+                UserIdUrlPramDTO,
+                request.params
+            );
+            const reqBody = plainToInstance(CreateCertificateDTO, request.body);
+            const res = await this.userService.mintCertificate(
+                parseInt(orgId),
+                parseInt(userId),
+                reqBody
+            );
+            response.status(200).send(new ApiResponse(200, { metadata: res }));
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import Certifily from 0xCERTIFILYADDRESS
 
-transaction(content:String, insitution:String, description:String,previewContent:String,certType:UInt8) {
+transaction(receiver:Address, content:String, insitution:String, description:String, previewContent:String, certType:UInt8) {
 
     let minter: &Certifily.NFTMinter
     let receiverAddrss : Address
@@ -11,7 +11,7 @@ transaction(content:String, insitution:String, description:String,previewContent
         self.minter = signer.borrow<&Certifily.NFTMinter>(from: /storage/CertifilyNFTMinter)
             ?? panic("Could not borrow a reference to the NFT minter")
 
-       self.receiverAddrss = signer.address
+       self.receiverAddrss = receiver
     }
 
     execute {

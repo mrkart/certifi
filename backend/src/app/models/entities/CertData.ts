@@ -81,7 +81,4 @@ export class CertData {
     })
     @JoinColumn([{ name: 'user_id', referencedColumnName: 'id' }])
     user: User;
-
-    @OneToMany(() => Certificate, (certificate) => certificate.certData)
-    certificates: Certificate[];
 }

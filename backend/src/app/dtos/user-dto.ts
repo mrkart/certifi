@@ -58,8 +58,31 @@ export class UpdateUserDTO {
 }
 
 export class CreateCertificateDTO {
+    @Trim()
+    @StringLength(1, 255)
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
     courseName: string;
+
+    @Trim()
+    @StringLength(1, 255)
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
     grade: string;
+
+    @Trim()
+    @StringLength(1, 255)
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
     slotId: number;
+
+    @Trim()
+    @StringLength(1, 255)
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
     certificateNumber: string;
 }

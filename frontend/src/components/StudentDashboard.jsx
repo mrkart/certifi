@@ -14,7 +14,7 @@ const StudentDashboard = () => {
     useEffect(() => { eva.replace() });
     return (
         <div className='scrolldiv'>
-            <div className='row'>
+            <div className='row fadein'>
                 <div className='col-md-12 text-start'>
 
                     {!viewCertificate ? <div className='certtemplates mintnft studentdash'>

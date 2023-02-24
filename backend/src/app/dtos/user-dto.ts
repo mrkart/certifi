@@ -1,6 +1,7 @@
 import {
     IsEmail,
     IsNotEmpty,
+    IsNumber,
     IsNumberString,
     IsOptional,
     IsPhoneNumber,
@@ -72,9 +73,7 @@ export class CreateCertificateDTO {
     @IsOptional()
     grade: string;
 
-    @Trim()
-    @StringLength(1, 255)
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     @IsOptional()
     slotId: number;

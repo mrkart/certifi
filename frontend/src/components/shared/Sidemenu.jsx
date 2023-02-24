@@ -1,14 +1,25 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 const Sidemenu = () => {
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
-  let userName = userprofile.name;
-  let userOrg = userprofile.organistaions[0]?.name;
+  let userName = userprofile && userprofile.name;
+  let userOrg = userprofile && userprofile.organistaions[0]?.name;
   console.log(userName);
   console.log(userOrg);
   const [selectType, setSelectType] = "1"
+  const [address,setAddress] = useState('')
+
   const onChangeValue = () => { }
+  const walletaddress = useSelector(state => state.demoReducer.walletAddress);
+
+  useEffect(() => {
+    if(walletaddress && walletaddress !== null){
+      setAddress(walletaddress)
+    }
+    
+  },[walletaddress])
   return (
     <nav id="sidebarMenu" className="collapse sidebar collapse pt-0 ">
       <div className="position-sticky">
@@ -27,6 +38,8 @@ const Sidemenu = () => {
                 <img className='headerprofilepic' src={require('../../assets/images/photo10.png')} loading="lazy" />
               </div>
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
+              <p className='mb-1 profilename'>{address}</p>
+
             </div>
           </div>
           {/* <div data-mdb-toggle="collapse"

@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postSignIn, getUserProfile } from '../actions/exampleAction';
+import { postSignIn, getUserProfile, resetLoginInfo, resetUserProfile, resetUserProfileFailed, resetLoginInfoFailed } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -9,19 +9,26 @@ const Login = () => {
 
   const logInInfo = useSelector(state => state.demoReducer.logInResponse);
   const userProfile = useSelector(state => state.demoReducer.userProfile);
+  const userProfilefailed = useSelector(state => state.demoReducer.userProfileFailed);
+  const logInResponseFailed = useSelector(state => state.demoReducer.logInResponseFailed);
 
+  const [isLoading,setIsLoading] = useState(false)
 
   useEffect(() => {
-    if(logInInfo.statusCode == 200 && logInInfo.data.accessToken){
+    if(logInInfo && logInInfo.statusCode == 200 && logInInfo.data.accessToken){
+      
+      dispatch(resetLoginInfo())
       console.log('logInResponse - success');
       dispatch(getUserProfile());
     }  
   },[logInInfo]);
 
   useEffect(() => {
-    if(userProfile.statusCode == 200){
+    if(userProfile && userProfile.statusCode == 200){
+      setIsLoading(false)
       // console.log('userProfile');
       // console.log(userProfile.data);
+      dispatch(resetUserProfile())
       localStorage.setItem('userprofile',JSON.stringify(userProfile.data));
       navigate("/");
     }  
@@ -41,6 +48,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true)
     const formData = { email, password };
     localStorage.setItem('user_email',formData.email);
     // console.log(formData);
@@ -50,7 +58,23 @@ const Login = () => {
     }
     dispatch(postSignIn(data));
   };
+  useEffect(() => {
+    if(userProfilefailed && typeof userProfilefailed === 'string' && userProfilefailed.length > 0){
+      setIsLoading(false)
+     
+      dispatch(resetUserProfileFailed())
 
+    }  
+  },[userProfilefailed]);
+  useEffect(() => {
+    if(logInResponseFailed && typeof logInResponseFailed === 'string' && logInResponseFailed.length > 0){
+      setIsLoading(false)
+     
+      dispatch(resetLoginInfoFailed())
+
+    }  
+  },[logInResponseFailed]);
+  
   return (
     <div className='logincon'>
       <div className='loginimg'><img src={require('../assets/images/certificate-bg.png')}  alt="certifily Logo" loading="lazy" /></div>
@@ -79,7 +103,9 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="form-group text-center">
-                  <button className="btn btn-primary text-uppercase" type="submit">Log in</button>
+                  {isLoading ? <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /> : 
+                  <button className="btn btn-primary text-uppercase" type="submit">Log in</button>}
+                  
                 </div>
               </form>             
             </div>

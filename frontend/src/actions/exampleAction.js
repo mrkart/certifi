@@ -1,6 +1,7 @@
 import api from '../services/api';
 import apiTokenOrgid, { apiTokenWithBlob } from '../services/apiTokenOrgid';
 import apiWithToken from '../services/apiWithToken';
+import { getUserAddress } from '../utils/utils';
 
 export const getSampleAPI = () => {
   return (dispatch) => {
@@ -23,7 +24,7 @@ export const postSignIn = (data) => {
         dispatch({ type: 'POST_LOGIN_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'POST_LOGIN_FAILURE', payload: error });
+        dispatch({ type: 'POST_LOGIN_FAILURE', payload: error && error.message });
       });
   };
 };
@@ -36,7 +37,7 @@ export const getUserProfile = () => {
         dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error });
+        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error && error.message});
       });
   };
 };
@@ -117,3 +118,66 @@ export const getUserCertList = (orgID,userID) => {
       });
   };
 };
+export const resetLoginInfo = () => {
+   return dispatch => {
+      dispatch({type : 'POST_LOGIN_SUCCESS',payload : []})
+}}
+export const resetUserProfile = () => {
+  return dispatch => {
+     dispatch({type : 'GET_USERPROFILE_SUCCESS',payload : []})
+}}
+export const resetUserProfileFailed = () => {
+  return dispatch => {
+     dispatch({type : 'GET_USERPROFILE_FAILURE',payload : ''})
+}}
+export const resetLoginInfoFailed = () => {
+  return dispatch => {
+     dispatch({type : 'POST_LOGIN_FAILURE',payload : ''})
+}}
+export const showInfoModal = () => {
+  return dispatch => {
+     dispatch({type : 'SHOW_MODAL',payload : true})
+}}
+export const closeInfoModal = () => {
+  return dispatch => {
+     dispatch({type : 'CLOSE_MODAL',payload : false})
+}}
+export const getWalletAddress = () => {
+
+  return dispatch => {
+      getUserAddress().then(res => {
+          if(res && res !== null){
+              dispatch({type : 'GET_WALLET_ADDRESS',payload : res})
+          }else{
+              dispatch({type : 'GET_WALLET_ADDRESS_FAILURE',payload : null})
+          }
+      },error => {
+          dispatch({typs : 'GET_WALLET_ADDRESS_FAILURE',payload : error})
+      })
+
+     
+  }
+}
+export const mintCertificate = (orgID, userID, data) => {
+  return (dispatch) => {
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).post(`/api/users/${userID}/mint`, data)
+      .then((response) => {
+        dispatch({ type: 'MINT_CERTIFICATE', payload: response.data  });
+      })
+      .catch((error) => {
+        dispatch({ type: 'MINT_CERTIFICATE_FAILURE', payload: error && error.message });
+      });
+  };
+}
+export const resetMintCertificate = () => {
+  return dispatch => {
+     dispatch({type : 'MINT_CERTIFICATE',payload : []})
+}}
+export const resetMintCertificateFailed = () => {
+  return dispatch => {
+     dispatch({type : 'MINT_CERTIFICATE_FAILURE',payload : []})
+}}
+export const resetGenerateCertificate = () => {
+  return dispatch => {
+     dispatch({type : 'GENERATE_CERTIFICATE_SUCCESS',payload : []})
+}}

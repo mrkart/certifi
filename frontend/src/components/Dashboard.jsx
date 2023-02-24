@@ -178,8 +178,8 @@ const Dashboard = () => {
                           <h2 className='fw-medium mt-5 text-center'>
                           <CountUp
                             start={0}
-                            end={5}
-                            duration={5}
+                            end={4}
+                            duration={4}
                           />
                           </h2>
                         </div>
@@ -189,8 +189,9 @@ const Dashboard = () => {
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
                         <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li> */}
                               <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
-                              <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li>
+                              <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
                               <li><span className='flpic'><img src={require('../assets/images/photo3.png')} loading="lazy" /></span></li>
+                              <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li>
                               {/* <li><span className='flpic last-count'>+25</span></li> */}
                             </ul>
                           </div>

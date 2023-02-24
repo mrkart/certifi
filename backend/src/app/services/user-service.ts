@@ -1,7 +1,7 @@
 import { isEmpty, isNotEmpty } from 'class-validator';
 import { randomBytes } from 'crypto';
 import { createReadStream, existsSync, PathLike } from 'fs';
-import { mkdir, stat } from 'fs/promises';
+import { mkdir } from 'fs/promises';
 import { basename, resolve } from 'path';
 import { Readable } from 'stream';
 import { CreateCertificateDTO, CreateUserDTO, UpdateUserDTO } from '../dtos';
@@ -9,6 +9,7 @@ import { ErrorDetail, InvalidRequestError, UnhandledError } from '../errors';
 import {
     AccountCreatedEventData,
     CertificateMetadata,
+    CertificateResponse,
     IpfsAccessRequest,
     IpfsAccessToken,
     IpfsUploadResponse,
@@ -180,6 +181,40 @@ export class UserService {
         return this.generateCertificateFile(org, user, slot, data, outDir);
     }
 
+    public async getUserCertificates(
+        orgId: number,
+        userId: number
+    ): Promise<ListResponse<CertificateResponse>> {
+        const certList = await UserRepository.findOrgUserCertificates(
+            userId,
+            orgId
+        );
+        const certRes: CertificateResponse[] = certList.entity.map((cert) => {
+            return {
+                certificateHash: cert.certificateHash,
+                certificateNumber: cert.certificateNumber,
+                course: {
+                    id: cert.course.id,
+                    name: cert.course.name
+                },
+                datetimeCreated: cert.datetimeCreated,
+                email: cert.userEmail.email,
+                grade: cert.grade,
+                id: cert.id,
+                nftId: cert.nftId,
+                org: {
+                    id: cert.org.id,
+                    name: cert.org.orgName
+                },
+                slot: {
+                    id: cert.slot.id,
+                    name: cert.slot.slotTitle
+                }
+            };
+        });
+        return new ListResponse(certList.count, certRes);
+    }
+
     private async generateCertificateFile(
         org: Org,
         user: User,
@@ -283,21 +318,22 @@ export class UserService {
             outDir
         );
         const acessToken = await this.getIpfsAuthToken();
+        console.log('✔ Ipfs accessToken');
         const certStream = createReadStream(certPath);
         const uploadResponse = await this.uploadToIpfs(
             acessToken,
             certStream,
             basename(certPath)
         );
+        console.log('✔ Uploader certificate');
         const ipfsEnpoint = 'https://ipfs.perma.store/content';
         const metadta = await this.generateCertificateMetadata(
             org,
             user,
             slot,
-            user,
-            user,
             `${ipfsEnpoint}/${uploadResponse.Hash}`,
-            data
+            data,
+            [preparer.user, verifier.user, issuer.user]
         );
 
         const metadataStream = Readable.from([
@@ -308,6 +344,7 @@ export class UserService {
             metadataStream,
             randomBytes(4).toString('hex') + '.json'
         );
+        console.log('✔ Metadata JSON uploaded');
         const mintResponse = await fclService.mint(
             `${ipfsEnpoint}/${metadataUploadResponse.Hash}`,
             'Certificate issued for course completion',
@@ -317,6 +354,7 @@ export class UserService {
             `${ipfsEnpoint}/${uploadResponse.Hash}`,
             1
         );
+        console.log('✔ Certificate minted');
 
         return await this.persistCertificateData(
             mintResponse,
@@ -326,7 +364,10 @@ export class UserService {
             slot,
             data,
             certPath,
-            `${ipfsEnpoint}/${metadataUploadResponse.Hash}`
+            `${ipfsEnpoint}/${metadataUploadResponse.Hash}`,
+            preparer.user,
+            verifier.user,
+            issuer.user
         );
     }
 
@@ -334,10 +375,9 @@ export class UserService {
         org: Org,
         user: User,
         slot: Slot,
-        signer1: User,
-        signer2: User,
         certPath: string,
-        certData: CreateCertificateDTO
+        certData: CreateCertificateDTO,
+        signers: User[]
     ): Promise<CertificateMetadata> {
         const date = new Date();
         const formatter = Intl.DateTimeFormat('en-IN', {
@@ -360,7 +400,7 @@ export class UserService {
                 course: certData.courseName,
                 gradeInfo: certData.grade
             },
-            docType: 'application/pdf',
+            docType: 'Certificate',
             holder: user.flowAddress,
             holderName: user.name,
             Issuer: {
@@ -374,12 +414,16 @@ export class UserService {
                 MintedAt: 'www.certifi.ly'
             },
             Signer1: {
-                address: signer1.flowAddress,
-                signerID: signer1.id.toString()
+                address: signers[0].flowAddress,
+                signerID: signers[0].id.toString()
             },
             Signer2: {
-                address: signer2.flowAddress,
-                signerID: signer2.id.toString()
+                address: signers[1].flowAddress,
+                signerID: signers[1].id.toString()
+            },
+            Signer3: {
+                address: signers[2].flowAddress,
+                signerID: signers[2].id.toString()
             }
         };
         return metadata;
@@ -541,7 +585,10 @@ export class UserService {
         slot: Slot,
         certData: CreateCertificateDTO,
         certificatePath: PathLike,
-        metadataHash: string
+        metadataHash: string,
+        preparer: User,
+        verifier: User,
+        issuer: User
     ): Promise<Certificate> {
         try {
             const userEmail = await getDataSource()
@@ -564,48 +611,6 @@ export class UserService {
                 err.name = 'MintPersistError';
                 err.message = 'Failed to find mint event data in mint response';
             }
-            const preparer = await getDataSource()
-                .getRepository(OrgRoles)
-                .findOneOrFail({
-                    where: {
-                        orgId: org.id,
-                        accessType: AccessType.PREPARER,
-                        user: {
-                            flowAddress: Not(IsNull())
-                        }
-                    },
-                    relations: {
-                        user: true
-                    }
-                });
-            const verifier = await getDataSource()
-                .getRepository(OrgRoles)
-                .findOneOrFail({
-                    where: {
-                        orgId: org.id,
-                        accessType: AccessType.VERIFIER,
-                        user: {
-                            flowAddress: Not(IsNull())
-                        }
-                    },
-                    relations: {
-                        user: true
-                    }
-                });
-            const issuer = await getDataSource()
-                .getRepository(OrgRoles)
-                .findOneOrFail({
-                    where: {
-                        orgId: org.id,
-                        accessType: AccessType.ISSUER,
-                        user: {
-                            flowAddress: Not(IsNull())
-                        }
-                    },
-                    relations: {
-                        user: true
-                    }
-                });
             const certificate = await getDataSource()
                 .getRepository(Certificate)
                 .save(

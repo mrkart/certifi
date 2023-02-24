@@ -1,12 +1,19 @@
 import Router from 'express';
 import { UserController } from '../../../controllers';
-import { CreateUserDTO, UpdateUserDTO, UserIdUrlPramDTO } from '../../../dtos';
+import {
+    CreateCertificateDTO,
+    CreateUserDTO,
+    UpdateUserDTO,
+    UserIdUrlPramDTO
+} from '../../../dtos';
+import { AccessControlMiddleware } from '../../../middlewares/access-control-middleware';
 import { AuthenticationMiddleware } from '../../../middlewares/authentication-middleware';
 import {
     BodyValidationMiddleware,
     OrgIdHeaderValidationMiddleare,
     UrlParamsValidationMiddleware
 } from '../../../middlewares/req-validation-middleware';
+import { AccessType } from '../../../models/entities/OrgRoles';
 import userService from '../../../services/user-service';
 import authRouter from './auth';
 
@@ -129,6 +136,11 @@ usersRouter.get(
 usersRouter.post(
     '/',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     BodyValidationMiddleware(CreateUserDTO),
     async (request, response, next) => {
@@ -196,6 +208,11 @@ usersRouter.post(
 usersRouter.get(
     '/',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     async (request, response, next) => {
         await userController.getOrgUsers(request, response, next);
@@ -338,6 +355,11 @@ usersRouter.get(
 usersRouter.put(
     '/:userId',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
     BodyValidationMiddleware(UpdateUserDTO),
     async (request, response, next) => {
@@ -397,9 +419,87 @@ usersRouter.put(
 usersRouter.post(
     '/:userId/certificate',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
+    BodyValidationMiddleware(CreateCertificateDTO),
     async (request, response, next) => {
         await userController.createCertificate(request, response, next);
+    }
+);
+
+/**
+ * @openapi
+ * /api/users/{userId}/certificate:
+ *   get:
+ *     summary: get certificates issued to user
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: header
+ *         name: cerfi-org-id
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *       - in: path
+ *         name: userId
+ *         type: integer
+ *         example: 1
+ *         required: true
+ *     responses:
+ *       "200":
+ *         description: Certificate List fetched
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Org user created
+ *                    data:
+ *                      type: object
+ *                      properties:
+ *                        count:
+ *                          type: integer
+ *                          description: The number of org users in list
+ *                        certificates:
+ *                          type: array
+ *                          items:
+ *                            $ref: '#/components/schemas/CertificateResponse'
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.get(
+    '/:userId/certificate',
+    AuthenticationMiddleware,
+    AccessControlMiddleware([AccessType.USER]),
+    OrgIdHeaderValidationMiddleare,
+    async (request, response, next) => {
+        await userController.getCertificates(request, response, next);
     }
 );
 
@@ -434,13 +534,24 @@ usersRouter.post(
  *           schema:
  *             $ref: '#/components/schemas/CreateCertificateDTO'
  *     responses:
- *       "200":
- *         description: Certificate generated
+ *       "201":
+ *         description: Certificate minting initiated
  *         content:
- *          application/pdf:
+ *          application/json:
  *            schema:
- *              type: string
- *              format: binary
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Certificate minting initiated
+ *                    data:
+ *                      type: object
  *       "400":
  *         $ref: '#/components/responses/InvalidRequest'
  *       "401":
@@ -455,7 +566,13 @@ usersRouter.post(
 usersRouter.post(
     '/:userId/mint',
     AuthenticationMiddleware,
+    AccessControlMiddleware([
+        AccessType.ISSUER,
+        AccessType.PREPARER,
+        AccessType.VERIFIER
+    ]),
     OrgIdHeaderValidationMiddleare,
+    BodyValidationMiddleware(CreateCertificateDTO),
     async (request, response, next) => {
         await userController.mintCertificate(request, response, next);
     }

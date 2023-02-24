@@ -7,6 +7,7 @@ import { CreateUserDTO, UpdateUserDTO } from '../../dtos';
 import { ResourceExistsError } from '../../errors';
 import { ResourceNotFoundError } from '../../errors/resource-not-found-error';
 import { ListResponse, OrgUser, Profile, Utility } from '../../helpers';
+import { Certificate } from '../entities/Certificate';
 import { Org } from '../entities/Org';
 import { AccessType, OrgRoles } from '../entities/OrgRoles';
 import { Slot } from '../entities/Slot';
@@ -29,6 +30,10 @@ export interface UserRepositoryInterface {
         request: UpdateUserDTO
     ) => Promise<User>;
     findOrgUserById: (userId: number, orgId: number) => Promise<User>;
+    findOrgUserCertificates: (
+        userId: number,
+        orgId: number
+    ) => Promise<ListResponse<Certificate>>;
 }
 
 type This = Repository<User> & UserRepositoryInterface;
@@ -232,6 +237,9 @@ export const UserRepository = getDataSource()
                         orgId: org.id,
                         accessType: AccessType.USER
                     }
+                },
+                order: {
+                    id: 'DESC'
                 }
             });
             return new ListResponse(count, users);
@@ -311,5 +319,53 @@ export const UserRepository = getDataSource()
                 throw new ResourceNotFoundError('User not found');
             }
             return user;
+        },
+        findOrgUserCertificates: async function (
+            this: This,
+            userId: number,
+            orgId: number
+        ): Promise<ListResponse<Certificate>> {
+            const [certificates, count] = await this.manager
+                .getRepository(Certificate)
+                .findAndCount({
+                    where: {
+                        userId,
+                        orgId
+                    },
+                    relations: {
+                        userEmail: true,
+                        course: true,
+                        slot: true,
+                        org: true
+                    },
+                    select: {
+                        certificateHash: true,
+                        certificateNumber: true,
+                        course: {
+                            id: true,
+                            name: true
+                        },
+                        datetimeCreated: true,
+                        grade: true,
+                        id: true,
+                        nftId: true,
+                        org: {
+                            id: true,
+                            orgName: true
+                        },
+                        slot: {
+                            id: true,
+                            slotTitle: true
+                        },
+                        userEmail: {
+                            id: true,
+                            email: true
+                        }
+                    },
+                    order: {
+                        datetimeCreated: 'DESC'
+                    }
+                });
+            return new ListResponse(count, certificates);
         }
     } as UserRepositoryInterface & ThisType<Repository<User> & UserRepositoryInterface>);

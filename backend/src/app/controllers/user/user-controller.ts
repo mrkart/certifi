@@ -206,12 +206,52 @@ export class UserController {
                 request.params
             );
             const reqBody = plainToInstance(CreateCertificateDTO, request.body);
-            const res = await this.userService.mintCertificate(
-                parseInt(orgId),
-                parseInt(userId),
-                reqBody
+            this.userService
+                .mintCertificate(parseInt(orgId), parseInt(userId), reqBody)
+                .catch((e) => console.error('✗ Minting Failed\n', e));
+            response
+                .status(201)
+                .send(
+                    new ApiResponse(
+                        201,
+                        {},
+                        'Certificate minting has initiated'
+                    )
+                );
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
+
+    public async getCertificates(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const orgId = request.header('cerfi-org-id');
+            const { userId } = plainToInstance(
+                UserIdUrlPramDTO,
+                request.params
             );
-            response.status(200).send(new ApiResponse(200, { metadata: res }));
+            const res = await this.userService.getUserCertificates(
+                parseInt(orgId),
+                parseInt(userId)
+            );
+            response.status(200).send(
+                new ApiResponse(
+                    200,
+                    {
+                        count: res.count,
+                        certificates: res.entity
+                    },
+                    'Certificates fetched'
+                )
+            );
         } catch (e) {
             if (e instanceof APIError) {
                 next(e);

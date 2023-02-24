@@ -199,7 +199,7 @@ export class FclService {
         address: string
     ): Promise<TransactionStatusObject> {
         await this.initializePrivateKeys();
-        console.log('Script path', resolve('../transactions/create_setup.cdc'));
+        // console.log('Script path', resolve('../transactions/create_setup.cdc'));
         const transaction = await readFile(
             resolve('../transactions/create_setup.cdc'),
             {
@@ -248,7 +248,7 @@ export class FclService {
         address: string
     ) {
         await this.initializePrivateKeys();
-        console.log('Script path', resolve('../transactions/transferflow.cdc'));
+        // console.log('Script path', resolve('../transactions/transferflow.cdc'));
         const transaction = await readFile(
             resolve('../transactions/transferflow.cdc'),
             {

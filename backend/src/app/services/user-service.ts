@@ -56,7 +56,6 @@ export class UserService {
         request: CreateUserDTO
     ): Promise<OrgUserResponse> {
         const user = await UserRepository.createOrgUser(request, orgId);
-        this.dispatchInvitation(user);
         this.createAndSetupWallet(user);
         return {
             email: user.email,
@@ -429,13 +428,14 @@ export class UserService {
         return metadata;
     }
 
-    private async dispatchInvitation(user: OrgUser) {
+    private async dispatchInvitation(user: OrgUser & { address: string }) {
         const invite = new OrgUserInviationMail(
             {
                 orgName: user.organistaions[0].name,
                 password: user.password,
                 receipientAddress: user.email,
-                recipientFirstName: user.name
+                recipientFirstName: user.name,
+                address: user.address
             },
             MailTransporterFactory.createTransporter()
         );
@@ -481,6 +481,10 @@ export class UserService {
             const { address } = flowAccountCreatedEvt.data;
             user.flowAddress = address;
             await UserRepository.save(user);
+            this.dispatchInvitation({
+                ...orgUser,
+                address
+            });
             const tokenTransferRs = await fclService.transferFlowToken(
                 0,
                 1,

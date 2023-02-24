@@ -1,17 +1,43 @@
 import { React, useState, useEffect } from 'react';
 import * as eva from 'eva-icons';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserCertList } from '../actions/exampleAction';
 
 const StudentDashboard = () => {
 
     const [viewCertificate, setViewCertificate] = useState(false)
+    const [certificateCount, setCertificateCount] = useState(0);
+    const [certificateList, setCertificateList] = useState([]);
+    const dispatch = useDispatch();
+    const userCertList = useSelector(state => state.demoReducer.userCertificateList);
+    let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+    let orgID = userprofile.organistaions[0]?.id;
+    let userId = userprofile.id;
+
     const viewCertificatepage = () => {
         setViewCertificate(true)
     }
     const dismissView = () => {
         setViewCertificate(false)
     }
+
+    useEffect(() => {
+        dispatch(getUserCertList(orgID,userId));
+    },[]);
+
+    useEffect(() => {
+        if(userCertList.statusCode == 200){
+            console.log('userCertList');
+            if(userCertList?.data?.count > 0){
+                setCertificateCount(userCertList.data.count);
+                console.log(userCertList.data.certificates);
+                setCertificateList(userCertList.data.certificates);
+            }
+        }
+    },[userCertList]);
+
     useEffect(() => { eva.replace() });
+
     return (
         <div className='scrolldiv'>
             <div className='row fadein'>
@@ -31,7 +57,7 @@ const StudentDashboard = () => {
                                     <div className="card dashboardboxContainer light-blur">
 
                                         <div className='foldcont text-center'>
-                                            <h2 className='fw-medium mt-5'>2</h2>
+                                            <h2 className='fw-medium mt-5'>{certificateCount}</h2>
                                             <h4 className='text-primary text-uppercase fw-bold'>Certificates</h4>
                                         </div>
                                         {/* <div className='foldpicshare justify-content-center'>
@@ -153,7 +179,35 @@ const StudentDashboard = () => {
                         <div>
                             <div className='certtemplates mintnft studentcert'>
                                 <div className='row'>
-                                    <div className="col-md-6">
+                                    {certificateList.map((user, index) => (
+                                        <div key={index} className="col-md-6">
+                                            <div className='ctemp' >
+                                                <label className='backgroundblur' for="cert-1">
+                                                    <p className='text-end w-100 mb-3'>#{user.certificateNumber} <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
+                                                    <iframe src={user.certificateHash}></iframe>
+                                                    <div className='row align-items-center'>
+                                                        <div className='col-md-7 text-start'>
+                                                            <p className='mt-3 mb-2'>Issued on <span>
+                                                            {
+                                                                new Date(user.datetimeCreated).toLocaleDateString('en-US', {
+                                                                    year: 'numeric',
+                                                                    month: 'short',
+                                                                    day: 'numeric'
+                                                                })
+                                                            }</span>
+                                                            </p>
+                                                            <p className=''>by {user.org['name']}</p>
+                                                        </div>
+                                                        <div className='col-md-5 text-end'>
+                                                            <span className='eva-hover d-inline-flex align-items-center'><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                    {/* <div className="col-md-6">
                                         <div className='ctemp' >
                                             <label className='backgroundblur' for="cert-1">
                                                 <p className='text-end w-100 mb-3'>#234254 <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
@@ -171,14 +225,12 @@ const StudentDashboard = () => {
                                             </label>
                                         </div>
                                     </div>
-
                                     <div className="col-md-6 " >
                                         <div className='ctemp' >
                                             <input type={'radio'} id="cert-2" name='cert-2' disabled />
                                             <label className='backgroundblur' for="cert-2">
                                                 <p className='text-end w-100 mb-3'>#234254 <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
                                                 <iframe src={require('../assets/images/certificate-shun.pdf')}></iframe>
-
                                                 <div className='row align-items-center'>
                                                     <div className='col-md-7 text-start'>
                                                         <p className='mt-3 mb-2'>Issued on Feb 23 2023</p>
@@ -190,7 +242,7 @@ const StudentDashboard = () => {
                                                 </div>
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                             <div className='row align-items-center mt-3'>

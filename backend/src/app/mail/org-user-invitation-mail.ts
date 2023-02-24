@@ -19,7 +19,7 @@ export class OrgUserInviationMail {
         const rs = await this.mailTransporter.sendMail({
             from: process.env.EMAIL_USER_NAME,
             to: this.request.receipientAddress,
-            subject: `Welcome to Certifi.ly`,
+            subject: `${this.request.orgName} has invited you to Certifi.ly`,
             html: `
                 <!doctype html>
                 <html>

@@ -122,6 +122,14 @@ export const resetLoginInfo = () => {
    return dispatch => {
       dispatch({type : 'POST_LOGIN_SUCCESS',payload : []})
 }}
+export const resetUserbyid = () => {
+  return dispatch => {
+     dispatch({type : 'GET_USERBYID_SUCCESS',payload : []})
+}}
+export const resetEdituser = () => {
+  return dispatch => {
+     dispatch({type : 'PUT_EDITUSERDETAILS_SUCCESS',payload : []})
+}}
 export const resetUserProfile = () => {
   return dispatch => {
      dispatch({type : 'GET_USERPROFILE_SUCCESS',payload : []})

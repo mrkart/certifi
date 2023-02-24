@@ -1,16 +1,4 @@
-import {
-    PDFDocument,
-    PDFName,
-    PDFNumber,
-    PDFString,
-    PDFDict,
-    PDFArray,
-    degrees,
-    Color,
-    ColorTypes,
-    rgb,
-    StandardFonts
-} from 'pdf-lib';
+import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs/promises';
 import { PdfData } from '../helpers';
 
@@ -54,22 +42,56 @@ export class PdfService {
             color: rgb(184 / 255, 140 / 255, 47 / 255)
         });
 
-        // Add the certification details
+        // Get the width and height of the page
+        const { width, height } = page.getSize();
+
+        // Add the font for the detail content
         const detailFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-        page.drawText(
-            `in recognition of successful completion of the course ${data.courseName}\n` +
-                `with a final grade of ${data.grade}.\n` +
-                `Institution: ${data.instituionName}\n` +
-                `Batch: ${data.batchName}\n` +
-                `Certificate Number: ${data.certificateNumber}`,
-            {
-                x: nameX,
-                y: nameY - 38,
+
+        const courseText =
+            `for successfully completing ${data.courseName} ` +
+            `with a passing grade of ${data.grade}\n` +
+            `in the batch of ${data.batchName}\n`;
+        courseText.split('\n').forEach((line, index) => {
+            // calculate the position of the text
+            const textWidth = detailFont.widthOfTextAtSize(line, 16);
+            const textHeight = detailFont.heightAtSize(16);
+            const detailX = width / 2 - textWidth / 2;
+            const detailY =
+                350 - 38 - index * (textHeight + 10) - textHeight / 2;
+
+            // Add the certification details
+            page.drawText(line, {
+                x: detailX,
+                y: detailY,
                 size: 16,
                 font: detailFont,
                 color: rgb(51 / 255, 51 / 255, 51 / 255)
-            }
-        );
+            });
+        });
+
+        const issuerText =
+            `ISSUED BY\n` +
+            `${data.instituionName}\n` +
+            `Certificate Number: ${data.certificateNumber}`;
+
+        issuerText.split('\n').forEach((line, index) => {
+            // calculate the position of the text
+            const textWidth = detailFont.widthOfTextAtSize(line, 16);
+            const textHeight = detailFont.heightAtSize(16);
+            const detailX = width / 2 - textWidth / 2;
+            const detailY =
+                350 - 38 - 80 - index * (textHeight + 10) - textHeight / 2;
+
+            // Add the certification details
+            page.drawText(line, {
+                x: detailX,
+                y: detailY,
+                size: 16,
+                font: detailFont,
+                color: rgb(51 / 255, 51 / 255, 51 / 255)
+            });
+        });
 
         // Save the updated PDF document to a file
         const pdfBytes = await pdfDoc.save();

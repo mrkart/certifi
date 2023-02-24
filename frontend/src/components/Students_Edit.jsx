@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { putUserDetails, getUserByID } from '../actions/exampleAction';
+import { putUserDetails, getUserByID, resetUserbyid, resetEdituser } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
 
 const StudentsEdit = () => {
@@ -25,6 +25,8 @@ const StudentsEdit = () => {
 
   useEffect(() => {
     if(edituser.statusCode == 200){
+      dispatch(resetUserbyid());
+      dispatch(resetEdituser());
       navigate("/students");
     }
   },[edituser]);

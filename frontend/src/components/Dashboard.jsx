@@ -2,6 +2,8 @@ import { React, useEffect, useMyCustomStuff } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useNavigate } from 'react-router'
 import * as eva from 'eva-icons';
+import CountUp from 'react-countup';
+
 const data = [
   {
     name: 'Page A',
@@ -127,7 +129,13 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Good</p>
                     <p className=" cpartitle">CLINICAL PRACTICES</p> */}
-                          <h2 className='fw-medium mt-5 text-center'>486</h2>
+                          <h2 className='fw-medium mt-5 text-center'>
+                            <CountUp
+                              start={0}
+                              end={189}
+                              duration={5}
+                            />
+                          </h2>
                         </div>
                         <div className='foldpicshare'>
                           <div className='foldpics'>
@@ -158,7 +166,13 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Best</p>
                     <p className=" cpartitle">Distribution Practices</p> */}
-                          <h2 className='fw-medium mt-5 text-center'>6866</h2>
+                          <h2 className='fw-medium mt-5 text-center'>
+                            <CountUp
+                              start={0}
+                              end={1657}
+                              duration={5}
+                            />
+                          </h2>
                         </div>
                         <div className='foldpicshare'>
                           <div className='foldpics'>
@@ -189,7 +203,13 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Awesome</p>
                     <p className=" cpartitle">Interior Design</p> */}
-                          <h2 className='fw-medium mt-5 text-center'>3</h2>
+                          <h2 className='fw-medium mt-5 text-center'>
+                          <CountUp
+                            start={0}
+                            end={5}
+                            duration={5}
+                          />
+                          </h2>
                         </div>
                         <div className='foldpicshare'>
                           <div className='foldpics'>

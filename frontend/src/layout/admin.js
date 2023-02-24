@@ -4,6 +4,8 @@ import * as eva from 'eva-icons';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { mainRoles,userRoles } from '../components/shared/Roles';
 import { getUserAddress } from '../utils/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { getWalletAddress } from '../actions/exampleAction';
 
 const Admin = ({ subElement }) => {
 
@@ -13,9 +15,9 @@ const Admin = ({ subElement }) => {
   let userRole = userprofile && userprofile.roles && userprofile.roles[0]?.name
   const [address,setAddress] = useState('')
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const walletaddress = useSelector(state => state.demoReducer.walletAddress);
 
-  console.log(userName);
-  console.log(userOrg);
 
   function logout(){
     localStorage.removeItem('accessToken');
@@ -24,13 +26,13 @@ const Admin = ({ subElement }) => {
   }
   
   useEffect(() => {
-    getUserAddress().then(res => {
-      if(res && res !== undefined && res !== null){
-        setAddress(res)
-      }
-    }).catch(e => {
-      setAddress('')
-    })
+    if(walletaddress && walletaddress !== null){
+      setAddress(walletaddress)
+    }
+    
+  },[walletaddress])
+  useEffect(() => {
+    dispatch(getWalletAddress())
   },[])
   useEffect(() => { eva.replace() });
   return (
@@ -87,9 +89,11 @@ const Admin = ({ subElement }) => {
                   <div className='profile-area'>
                     <div className='profile-cont'>
                       <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
+                      <p className='mb-1 profilename'>{address}</p>
+
                       {/* {address ? <p>{address}</p> : ''} */}
                       {/* <p className='lastlogin mb-0'>Last Login: Jul-17-2022 | 10:00</p> */}
-                      <p className='lastlogin mb-0'><a class="btn btn-light btn-sm text-primary" onClick={logout} href=""><i data-eva="log-out-outline"></i> Logout</a></p>
+                      <p className='lastlogin mb-0'><button class="btn btn-light btn-sm text-primary" onClick={logout} ><i data-eva="log-out-outline"></i> Logout</button></p>
                     </div>
                     {/* <div class="dropdown">
                         <span 

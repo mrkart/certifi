@@ -73,7 +73,7 @@ const StudentLayout = ({ subElement }) => {
                                         <div className='profile-cont'>
                                             <p className='mb-0 profilename'>Welcome <span className='username'>{userName}</span></p>
                                             <p className='mb-1 profilename'>{userFlowAddress}</p>
-                                            <p className='lastlogin mb-0'><a class="btn btn-light btn-sm text-primary"  onClick={logout} href=""><i data-eva="log-out-outline"></i> Logout</a></p>
+                                            <p className='lastlogin mb-0'><button class="btn btn-light btn-sm text-primary"  onClick={logout} type="button" ><i data-eva="log-out-outline"></i> Logout</button></p>
                                         </div>
 
                                         <div className='profile-icon'>

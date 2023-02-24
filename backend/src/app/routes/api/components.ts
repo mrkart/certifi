@@ -93,6 +93,44 @@
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/OrgSlot'
+ *     Course:
+ *       type: object
+ *       properties:
+ *           id:
+ *               type: integer
+ *           name:
+ *               type: string
+ *     CertificateResponse:
+ *       type: object
+ *       properties:
+ *           certificateHash:
+ *               type: string
+ *           certificateNumber:
+ *               type: string
+ *           course:
+ *             type: object
+ *             properties:
+ *             $ref: '#/components/schemas/Course'
+ *           datetimeCreated:
+ *             type: string
+ *             format: date-time
+ *           email:
+ *             type: string
+ *             format: email
+ *           grade:
+ *             type: string
+ *           id:
+ *             type: integer
+ *           nftId:
+ *             type: integer
+ *           org:
+ *             type: object
+ *             properties:
+ *             $ref: '#/components/schemas/Course'
+ *           slot:
+ *             type: object
+ *             properties:
+ *             $ref: '#/components/schemas/ProfileOrg'
  *     UpdateUserDTO:
  *       type: object
  *       properties:
@@ -104,13 +142,13 @@
  *       type: object
  *       properties:
  *           courseName:
- *               type: string
+ *             type: string
  *           grade:
- *               type: string
+ *             type: string
  *           slotId:
- *               type: integer
+ *             type: integer
  *           certificateNumber:
- *               type: string
+ *             type: string
  *   responses:
  *     NotFound:
  *       description: The specified resource does not exsist
@@ -131,7 +169,7 @@
  *          schema:
  *            $ref: '#/components/schemas/Error'
  *     JwtVerficationFailed:
- *       description: Failed to verify JWt
+ *       description: Unauthorized Access (or) Failed to verify JWt
  *       content:
  *        application/json:
  *          schema:

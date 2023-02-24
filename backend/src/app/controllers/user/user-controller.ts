@@ -226,4 +226,38 @@ export class UserController {
             }
         }
     }
+
+    public async getCertificates(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const orgId = request.header('cerfi-org-id');
+            const { userId } = plainToInstance(
+                UserIdUrlPramDTO,
+                request.params
+            );
+            const res = await this.userService.getUserCertificates(
+                parseInt(orgId),
+                parseInt(userId)
+            );
+            response.status(200).send(
+                new ApiResponse(
+                    200,
+                    {
+                        count: res.count,
+                        certificates: res.entity
+                    },
+                    'Certificates fetched'
+                )
+            );
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
 }

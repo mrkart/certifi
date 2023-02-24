@@ -1,3 +1,4 @@
+import { Course } from '../models/entities/Course';
 import { Slot } from '../models/entities/Slot';
 
 export interface Role {
@@ -108,4 +109,17 @@ export interface MintEventData {
     content: string;
     owner: string;
     insitution: string;
+}
+
+export interface CertificateResponse {
+    certificateHash: string;
+    certificateNumber: string;
+    course: Pick<Course, 'id' | 'name'>;
+    datetimeCreated: Date;
+    email: string;
+    grade: string;
+    id: number;
+    nftId: number;
+    org: Organisation;
+    slot: OrgUserSlot;
 }

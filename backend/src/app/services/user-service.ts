@@ -1,7 +1,7 @@
 import { isEmpty, isNotEmpty } from 'class-validator';
 import { randomBytes } from 'crypto';
 import { createReadStream, existsSync, PathLike } from 'fs';
-import { mkdir, stat } from 'fs/promises';
+import { mkdir } from 'fs/promises';
 import { basename, resolve } from 'path';
 import { Readable } from 'stream';
 import { CreateCertificateDTO, CreateUserDTO, UpdateUserDTO } from '../dtos';
@@ -9,6 +9,7 @@ import { ErrorDetail, InvalidRequestError, UnhandledError } from '../errors';
 import {
     AccountCreatedEventData,
     CertificateMetadata,
+    CertificateResponse,
     IpfsAccessRequest,
     IpfsAccessToken,
     IpfsUploadResponse,
@@ -178,6 +179,40 @@ export class UserService {
             `./generated_files/preview/org/${org.id}/certificates`
         );
         return this.generateCertificateFile(org, user, slot, data, outDir);
+    }
+
+    public async getUserCertificates(
+        orgId: number,
+        userId: number
+    ): Promise<ListResponse<CertificateResponse>> {
+        const certList = await UserRepository.findOrgUserCertificates(
+            userId,
+            orgId
+        );
+        const certRes: CertificateResponse[] = certList.entity.map((cert) => {
+            return {
+                certificateHash: cert.certificateHash,
+                certificateNumber: cert.certificateNumber,
+                course: {
+                    id: cert.course.id,
+                    name: cert.course.name
+                },
+                datetimeCreated: cert.datetimeCreated,
+                email: cert.userEmail.email,
+                grade: cert.grade,
+                id: cert.id,
+                nftId: cert.nftId,
+                org: {
+                    id: cert.org.id,
+                    name: cert.org.orgName
+                },
+                slot: {
+                    id: cert.slot.id,
+                    name: cert.slot.slotTitle
+                }
+            };
+        });
+        return new ListResponse(certList.count, certRes);
     }
 
     private async generateCertificateFile(

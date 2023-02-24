@@ -95,7 +95,7 @@ const Admin = ({ subElement }) => {
                           aria-expanded="false"
                         > */}
                     <div className='profile-icon'>
-                      <img className='headerprofilepic' src={require('../assets/images/photo4.png')} loading="lazy" />
+                      <img className='headerprofilepic' src={require('../assets/images/photo10.png')} loading="lazy" />
                     </div>
                     {/* </span> */}
                     {/* <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">

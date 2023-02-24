@@ -65,7 +65,7 @@ const Dashboard = () => {
   }
   useEffect(() => { eva.replace() });
   return (
-    <div className='scrolldiv'>
+    <div className='scrolldiv'>  
       {/* <div className='cert-loader'>
             <div className='backgroundblur'>
               <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />

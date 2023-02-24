@@ -23,8 +23,8 @@ const Issue_Certificate = () => {
   const [course, setCourse] = useState('Bachelor of engineering')
   const [grade, setGrade] = useState('A')
   const [batch, setBatch] = useState('2023')
-  const [selectedUser,setSelectedUser] = useState(0)
-  const [selectedUserDetail,setSelectedUserDetail] = useState({})
+  const [selectedUser, setSelectedUser] = useState(0)
+  const [selectedUserDetail, setSelectedUserDetail] = useState({})
 
   const dispatch = useDispatch();
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
@@ -34,8 +34,8 @@ const Issue_Certificate = () => {
   const downloadCertificate = useSelector(state => state.demoReducer.generatedCertificate);
 
   const [userlist, setUserlist] = useState([]);
-  const [certificatePreview,setCertificatePreview] = useState('')
-  const [blobData,setBlobData] = useState({})
+  const [certificatePreview, setCertificatePreview] = useState('')
+  const [blobData, setBlobData] = useState({})
   const [coursename, setCoursename] = useState('');
   const [stuGrad, setStuGrad] = useState('');
   const [batchno, setBatchno] = useState('');
@@ -44,8 +44,8 @@ const Issue_Certificate = () => {
 
   const [fineToSelectUser, setFineToSelectUser] = useState(false)
   const [fineToGetCertInfo, setFineToGetCertInfo] = useState(false)
-  const [fineToSelectCertificate,setFineToSelectCertificate] = useState(false)
-  const [callBack,setCallBack] = useState(false)
+  const [fineToSelectCertificate, setFineToSelectCertificate] = useState(false)
+  const [callBack, setCallBack] = useState(false)
   useEffect(() => {
     eva.replace()
   })
@@ -69,17 +69,17 @@ const Issue_Certificate = () => {
     }
   }, [fulluserlist]);
   const handleselectUser = (user) => {
-    if(user && user.id){
+    if (user && user.id) {
       setSelectedUser(user.id)
       setSelectedUserDetail(user)
       setFineToSelectUser(true)
-      localStorage.setItem('selectedStudent',JSON.stringify(user))
-      if(user && user.slot && user.slot[0] && user.slot[0].name){
+      localStorage.setItem('selectedStudent', JSON.stringify(user))
+      if (user && user.slot && user.slot[0] && user.slot[0].name) {
         setBatchno(user.slot[0].name)
       }
-      
+
     }
-    
+
   }
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -105,29 +105,29 @@ const Issue_Certificate = () => {
       "batch": formData.batchno,
       "certificateNumber": formData.cnumber
     }
-    localStorage.setItem('certInfo',JSON.stringify(data))
+    localStorage.setItem('certInfo', JSON.stringify(data))
     setStepper(stepper + 1)
 
   }
   useEffect(() => {
-    if(downloadCertificate && downloadCertificate.status === 200){
-      var blob = new Blob([downloadCertificate.data], {type: "application/pdf"});
+    if (downloadCertificate && downloadCertificate.status === 200) {
+      var blob = new Blob([downloadCertificate.data], { type: "application/pdf" });
       var blob_url = URL.createObjectURL(blob);
       setCertificatePreview(blob_url)
       setBlobData(downloadCertificate.data)
     }
-    
-  },[downloadCertificate])
+
+  }, [downloadCertificate])
 
   const moveWithCertificatePreview = () => {
     console.log(selectedUserDetail)
     let userDetail = JSON.parse(localStorage.getItem('selectedStudent'));
     let certDetail = JSON.parse(localStorage.getItem('certInfo'));
 
-    if(userDetail && userDetail.id){
+    if (userDetail && userDetail.id) {
       const userId = userDetail.id
       const slotId = userDetail.slot && userDetail.slot[0]?.id
-      if(certDetail && certDetail.coursename){
+      if (certDetail && certDetail.coursename) {
         let obj = {
           "courseName": certDetail.coursename,
           "grade": certDetail.grade,
@@ -135,10 +135,10 @@ const Issue_Certificate = () => {
           "certificateNumber": certDetail.certificateNumber
         }
         setCertificatePreview('')
-        dispatch(generateCertificate(orgID,userId,obj))
+        dispatch(generateCertificate(orgID, userId, obj))
       }
-      
-      
+
+
     }
     setStepper(stepper + 1)
 
@@ -154,13 +154,13 @@ const Issue_Certificate = () => {
 
   useEffect(() => {
     setCallBack(false)
-    if(coursename && stuGrad && batchno && cnumber){
+    if (coursename && stuGrad && batchno && cnumber) {
       setFineToGetCertInfo(true)
-      
-    }else{
+
+    } else {
       setFineToGetCertInfo(false)
     }
-  },[callBack])
+  }, [callBack])
 
   const handleSelectCertificatetheme = () => {
     setFineToSelectCertificate(true)
@@ -289,7 +289,7 @@ const Issue_Certificate = () => {
                 {stepper === 0 &&
                   <div>
                     <div className='formscroldiv'>
-                      <div className='searchform border-none mt-3'>
+                      <div className='searchform border-none'>
                         <div className='fields txtfields'>Cert batch name</div>
                         <div className='fields'>
                           <select className='form-control'>
@@ -301,8 +301,8 @@ const Issue_Certificate = () => {
                       {userlist.length == 0 ? (
                         <TableLoader />
                       ) : (
-                        <div className='tableblur mt-4'>
-                          <div className='searchform'>
+                        <div className='tableblur'>
+                          <div className='searchform pt-0'>
                             <div className='fields'>Search & Filters</div>
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year' /></div>
@@ -334,7 +334,7 @@ const Issue_Certificate = () => {
                                 {userlist.map((user, index) => (
                                   <tr key={index}>
                                     <td>
-                                      <div className="form-group"><input type="checkbox" className="form-check-input" id={`exampleCheck${index}`} checked={selectedUser === user.id} onChange={() => handleselectUser(user)}/><label className="form-check-label" for={`exampleCheck${index}`}></label></div>
+                                      <div className="form-group"><input type="checkbox" className="form-check-input" id={`exampleCheck${index}`} checked={selectedUser === user.id} onChange={() => handleselectUser(user)} /><label className="form-check-label" for={`exampleCheck${index}`}></label></div>
                                     </td>
                                     <td>
                                       <div className="d-flex align-items-center">
@@ -555,12 +555,12 @@ const Issue_Certificate = () => {
 
                               <div className='form-group'>
                                 <label className='mb-2'>Batch</label>
-                                <input type={'text'} className="form-control" placeholder='Batch' onChange={handleInputChange} value={batchno} name="batchno" readOnly/>
+                                <input type={'text'} className="form-control" placeholder='Batch' onChange={handleInputChange} value={batchno} name="batchno" readOnly />
                               </div>
 
                               <div className='form-group'>
                                 <label className='mb-2'>Certificate Number</label>
-                                <input type={'text'} className="form-control" placeholder='Certificate Number' onChange={handleInputChange} value={cnumber} name="cnumber"/>
+                                <input type={'text'} className="form-control" placeholder='Certificate Number' onChange={handleInputChange} value={cnumber} name="cnumber" />
                               </div>
                             </div>
                           </div>
@@ -635,7 +635,7 @@ const Issue_Certificate = () => {
                         <div className='row'>
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp' >
-                              <input type={'radio'} id="certselect-1" name='cerselect' checked={isCertificateSelect} onChange={handleSelectCertificatetheme}/>
+                              <input type={'radio'} id="certselect-1" name='cerselect' checked={isCertificateSelect} onChange={handleSelectCertificatetheme} />
                               <label className='backgroundblur' for="certselect-1">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
@@ -759,70 +759,70 @@ const Issue_Certificate = () => {
                               <input type={'text'} className="form-control" placeholder='Title' value={title} onChange={onChangeValue} />
                             </div>
                             <div className='txtsfont'>
-                            <div className='row'>
-                              <div className='col-md-8'>
-                                <div className='form-group'>
-                                  <div class="input-group has-validation">
-                                    <span class="input-group-text">T</span>
-                                    <select class="form-control" value={fontOption} onChange={onChangeValue}>
-                                      <option>Select font</option>
-                                      <option value="1">Verdana</option>
-                                      <option value="2">Times New Roman</option>
-                                      <option value="3">Open Sans</option>
-                                    </select>
+                              <div className='row'>
+                                <div className='col-md-8'>
+                                  <div className='form-group'>
+                                    <div class="input-group has-validation">
+                                      <span class="input-group-text">T</span>
+                                      <select class="form-control" value={fontOption} onChange={onChangeValue}>
+                                        <option>Select font</option>
+                                        <option value="1">Verdana</option>
+                                        <option value="2">Times New Roman</option>
+                                        <option value="3">Open Sans</option>
+                                      </select>
 
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div className='col-md-4'>
-                                <div className='form-group'>
-                                  <div class="input-group has-validation">
-                                    <select class="form-control" value={fontSize} onChange={onChangeValue}>
-                                      <option>Font Size</option>
-                                      <option value="1">8px</option>
-                                      <option value="2">9px</option>
-                                      <option value="3">10px</option>
-                                    </select>
+                                <div className='col-md-4'>
+                                  <div className='form-group'>
+                                    <div class="input-group has-validation">
+                                      <select class="form-control" value={fontSize} onChange={onChangeValue}>
+                                        <option>Font Size</option>
+                                        <option value="1">8px</option>
+                                        <option value="2">9px</option>
+                                        <option value="3">10px</option>
+                                      </select>
 
+                                    </div>
                                   </div>
-                                </div>
 
+                                </div>
                               </div>
-                            </div>
                             </div>
 
                             <div className='txtsstyle'>
-                            <div className='row'>
-                              <div className='col-md-6'>
-                                <div className='form-group'>
-                                  <div class="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
-                                    <div class="btn-group me-2" role="group" aria-label="First group">
-                                      <button type="button" class="btn btn-outline-secondary bold">B</button>
-                                      <button type="button" class="btn btn-outline-secondary italic">I</button>
-                                      <button type="button" class="btn btn-outline-secondary underline">U</button>
-                                      <button type="button" class="btn btn-outline-secondary linethrough">S</button>
+                              <div className='row'>
+                                <div className='col-md-6'>
+                                  <div className='form-group'>
+                                    <div class="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
+                                      <div class="btn-group me-2" role="group" aria-label="First group">
+                                        <button type="button" class="btn btn-outline-secondary bold">B</button>
+                                        <button type="button" class="btn btn-outline-secondary italic">I</button>
+                                        <button type="button" class="btn btn-outline-secondary underline">U</button>
+                                        <button type="button" class="btn btn-outline-secondary linethrough">S</button>
+                                      </div>
+
                                     </div>
 
+                                  </div>
+                                </div>
+                                <div className='col-md-2'>
+                                  <span className='pickclr' style={{ backgroundColor: '#005FFF' }}></span>
+                                </div>
+                                <div className='col-md-4'>
+                                  <div className='form-group'>
+                                    <input type={'text'} className="form-control" placeholder='#005FFF' value={color} onChange={onChangeValue} />
                                   </div>
 
                                 </div>
                               </div>
-                              <div className='col-md-2'>
-                                <span className='pickclr' style={{ backgroundColor: '#005FFF' }}></span>
-                              </div>
-                              <div className='col-md-4'>
-                                <div className='form-group'>
-                                  <input type={'text'} className="form-control" placeholder='#005FFF' value={color} onChange={onChangeValue} />
-                                </div>
-
-                              </div>
-                            </div>
                             </div>
                           </div>
                           <div className='col-md-4'>
                             <div className='form-group'>
-                              <label className='mb-2'>Upload background picture</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label className='mb-2'>Upload background image</label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -835,8 +835,8 @@ const Issue_Certificate = () => {
                           </div>
                           <div className='col-md-4'>
                             <div className='form-group'>
-                              <label className='mb-2'>Upload design picture</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload picture <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                              <label className='mb-2'>Upload frame image</label>
+                              <label for="file-upload1" class="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                               <input id="file-upload" type="file" />
                             </div>
                             <div className='form-group'>
@@ -849,7 +849,7 @@ const Issue_Certificate = () => {
                             </div>
                           </div>
 
-                          <div className='col-md-8'>
+                          <div className='col-md-4'>
                             <div className='form-group'>
                               <div className='imgpreviewbox draganddrop'>
                                 <img src={require('../assets/images/cert/cert1-split/cert-cont.png')} className="mw-100 mh-100" loading="lazy" />
@@ -858,48 +858,57 @@ const Issue_Certificate = () => {
                               </div>
                             </div>
                           </div>
-                          <div className='col-md-4'>
+                          <div className='col-md-8'>
                             <div className='row'>
-                            <div className='col-md-12'>
-                            <div className='form-group'>
-                              <h4 className='formsubhead'>Manage signature</h4>
-                            </div>
-                          </div>
+                              <div className='col-md-12'>
+                                <div className='form-group'>
+                                  <h4 className='formsubhead'>Manage signature</h4>
+                                </div>
+                              </div>
 
-                          <div className='col-md-12'>
-                            <div className='form-group'>
-                              <label className='mb-2'>Upload chief executive officer signature</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
-                              <input id="file-upload" type="file" />
-                            </div>
-                            <div className='form-group'>
-                              <div className='imgpreviewbox h-auto p-2'>
-                                <img src={require('../assets/images/cert/cert1-split/chief-executive-officer.png')} className="mw-100 mh-100" loading="lazy" />
+                              <div className='col-md-6'>
+                                <div className='form-group'>
+                                  <label className='mb-2'>Chief executive officer name</label>
+                                  <input type={'text'} className="form-control" placeholder='Name' value="Ruby D. Huffman" />
+                                  </div>
+                                <div className='form-group'>
+                                  <label className='mb-2'>Upload chief executive officer signature</label>
+                                  <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                                  <input id="file-upload" type="file" />
+                                </div>
+                                <div className='form-group'>
+                                  <div className='imgpreviewbox h-auto p-2'>
+                                    <img src={require('../assets/images/cert/cert1-split/chief-executive-officer.png')} className="mw-100 mh-100" loading="lazy" />
 
-                                {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
+                                    {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
                               <p>Cancellor signature</p> */}
+                                  </div>
+                                  
+                                </div>
                               </div>
-                            </div>
-                          </div>
 
-                          <div className='col-md-12'>
-                            <div className='form-group'>
-                              <label className='mb-2'>Upload department head signature</label>
-                              <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
-                              <input id="file-upload" type="file" />
-                            </div>
-                            <div className='form-group'>
-                              <div className='imgpreviewbox h-auto p-2'>
-                                <img src={require('../assets/images/cert/cert1-split/department-head.png')} className="mw-100 mh-100" loading="lazy" />
+                              <div className='col-md-6'>
+                              <div className='form-group'>
+                                  <label className='mb-2'>Department head name</label>
+                                  <input type={'text'} className="form-control" placeholder='Name' value="David P. Liriano" />
+                                  </div>
+                                <div className='form-group'>
+                                  <label className='mb-2'>Upload department head signature</label>
+                                  <label for="file-upload1" class="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                                  <input id="file-upload" type="file" />
+                                </div>
+                                <div className='form-group'>
+                                  <div className='imgpreviewbox h-auto p-2'>
+                                    <img src={require('../assets/images/cert/cert1-split/department-head.png')} className="mw-100 mh-100" loading="lazy" />
 
-                                {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
+                                    {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
                               <p>Register signature</p> */}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                            </div>
-                          </div>
-                         
+
 
                           {/* <div className='col-md-4'>
                           <div className='form-group'>
@@ -917,7 +926,7 @@ const Issue_Certificate = () => {
                           </div>
                         </div> */}
 
-                          <div className='col-md-12'>
+                          {/* <div className='col-md-12'>
                             <div className='form-group'>
                               <h4 className='formsubhead'>Manage Parameters</h4>
                             </div>
@@ -955,7 +964,7 @@ const Issue_Certificate = () => {
                             <div className='form-group'>
                               <input type={'text'} className="form-control" placeholder='{batch}' value={batch} onChange={onChangeValue} />
                             </div>
-                          </div>
+                          </div> */}
 
 
                         </div>
@@ -1030,7 +1039,7 @@ const Issue_Certificate = () => {
                           </h2>
                           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
                             <div class="accordion-body text-center">
-                              <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} height={"300px"} width="70%"></iframe>
+                              <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} className="iframe" ></iframe>
                               {/* <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" /> */}
                             </div>
                           </div>
@@ -1087,7 +1096,7 @@ const Issue_Certificate = () => {
                     </div> */}
                       </div>
 
-                    </div> : <TableLoader/>}
+                    </div> : <div className='formscroldiv'><TableLoader /></div>}
 
                     <div className='row align-items-center'>
                       {/* <div className='col-12 text-center'>You will be prompted to initiate your blockchain signature in next step</div> */}
@@ -1096,7 +1105,7 @@ const Issue_Certificate = () => {
                           <button className='btn btn-light btn-icon' onClick={() => setStepper(stepper - 1)}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
-                      
+
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht' onClick={() => setStepper(stepper + 1)}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
@@ -1158,7 +1167,7 @@ const Issue_Certificate = () => {
                         <div className='btngrouprht'>
                           <button className='btn btn-light btn-icon' onClick={() => setStepper(stepper - 1)}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
-                      </div>                      
+                      </div>
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
                           <button className='btn btn-primary btn-icon icon-rht'>Finish < i data-eva-animation="flip" data-eva="checkmark-outline"></i></button>

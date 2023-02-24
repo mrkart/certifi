@@ -24,7 +24,7 @@ const StudentSidemenu = () => {
           <div className='mobileprofile'>
             <div className='profile-area'>
               <div className='profile-icon'>
-                <img className='headerprofilepic' src={require('../../assets/images/photo4.png')} loading="lazy" />
+                <img className='headerprofilepic' src={require('../../assets/images/photo10.png')} loading="lazy" />
               </div>
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
             </div>

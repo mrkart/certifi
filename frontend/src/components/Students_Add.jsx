@@ -134,7 +134,7 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
-                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Submit</button>
+                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create Student</button>
                       </div>
                     </div>
                   </div>

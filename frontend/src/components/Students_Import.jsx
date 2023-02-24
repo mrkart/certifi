@@ -20,7 +20,7 @@ const StudentsImport = () => {
                 </div>
               </div>
 
-              <div className='searchform border-none'>
+              <div className='searchform border-none pt-0'>
                 <div className='fields'>Create import slot</div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>
                 <div className='fields'>
@@ -56,8 +56,8 @@ const StudentsImport = () => {
             </div>
           </div>
 
-            <div className='tableblur mt-4'>                    
-              <div className='searchform'>
+            <div className='tableblur mt-3'>                    
+              <div className='searchform pt-0'>
                 <div className='fields'>Search & Filters</div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Updated date'/></div>

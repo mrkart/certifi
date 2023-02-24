@@ -206,12 +206,18 @@ export class UserController {
                 request.params
             );
             const reqBody = plainToInstance(CreateCertificateDTO, request.body);
-            const res = await this.userService.mintCertificate(
-                parseInt(orgId),
-                parseInt(userId),
-                reqBody
-            );
-            response.status(200).send(new ApiResponse(200, { metadata: res }));
+            this.userService
+                .mintCertificate(parseInt(orgId), parseInt(userId), reqBody)
+                .catch((e) => console.error('✗ Minting Failed\n', e));
+            response
+                .status(201)
+                .send(
+                    new ApiResponse(
+                        201,
+                        {},
+                        'Certificate minting has initiated'
+                    )
+                );
         } catch (e) {
             if (e instanceof APIError) {
                 next(e);

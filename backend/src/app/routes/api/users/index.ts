@@ -434,13 +434,24 @@ usersRouter.post(
  *           schema:
  *             $ref: '#/components/schemas/CreateCertificateDTO'
  *     responses:
- *       "200":
- *         description: Certificate generated
+ *       "201":
+ *         description: Certificate minting initiated
  *         content:
- *          application/pdf:
+ *          application/json:
  *            schema:
- *              type: string
- *              format: binary
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Certificate minting initiated
+ *                    data:
+ *                      type: object
  *       "400":
  *         $ref: '#/components/responses/InvalidRequest'
  *       "401":

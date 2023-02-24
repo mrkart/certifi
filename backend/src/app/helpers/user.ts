@@ -78,6 +78,8 @@ export interface CertificateMetadata {
 
     Signer2: Signer;
 
+    Signer3: Signer;
+
     PlatformInfo: Platform;
 }
 export interface IpfsAccessToken {

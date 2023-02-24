@@ -3,9 +3,15 @@ import { Tooltip, ResponsiveContainer } from 'recharts';
 import Stepper from "react-stepper-horizontal";
 import * as eva from 'eva-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { generateCertificate, getUserList } from '../actions/exampleAction';
+import { generateCertificate, getUserList, getWalletAddress, mintCertificate, resetGenerateCertificate, resetMintCertificate, resetMintCertificateFailed } from '../actions/exampleAction';
 import TableLoader from './shared/TableLoader';
 import { signMessage } from '../utils/generateSign';
+import SuccessModal from './shared/MintSuccessModal';
+import FullLoader from './shared/FullLoader';
+import { useNavigate } from 'react-router-dom';
+import FailureModal from './shared/MintFailureModal';
+import { getUserAddress } from '../utils/utils';
+import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
 
 
 const Issue_Certificate = () => {
@@ -23,16 +29,18 @@ const Issue_Certificate = () => {
   const [course, setCourse] = useState('Bachelor of engineering')
   const [grade, setGrade] = useState('A')
   const [batch, setBatch] = useState('2023')
-  const [selectedUser, setSelectedUser] = useState(0)
-  const [selectedUserDetail, setSelectedUserDetail] = useState({})
-
+  const [selectedUser,setSelectedUser] = useState(0)
+  const [selectedUserDetail,setSelectedUserDetail] = useState({})
   const dispatch = useDispatch();
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile && userprofile.organistaions[0]?.id;
 
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
   const downloadCertificate = useSelector(state => state.demoReducer.generatedCertificate);
+  const mintCertificateRes = useSelector(state => state.demoReducer.mintResponse);
+  const mintCertificateFailed = useSelector(state => state.demoReducer.mintFailed);
 
+  
   const [userlist, setUserlist] = useState([]);
   const [certificatePreview, setCertificatePreview] = useState('')
   const [blobData, setBlobData] = useState({})
@@ -46,6 +54,14 @@ const Issue_Certificate = () => {
   const [fineToGetCertInfo, setFineToGetCertInfo] = useState(false)
   const [fineToSelectCertificate, setFineToSelectCertificate] = useState(false)
   const [callBack, setCallBack] = useState(false)
+
+  //mint
+  const [isMintInitiated, setIsMintInitiated] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [approveToMint, setApproveToMint] = useState(false)
+  const [mintFailed, setMintFailed] = useState(false)
+  const navigate = useNavigate();
+
   useEffect(() => {
     eva.replace()
   })
@@ -62,10 +78,9 @@ const Issue_Certificate = () => {
   useEffect(() => {
     if (fulluserlist && fulluserlist.statusCode == 200 && fulluserlist.data && fulluserlist.data.orgUsers) {
       let data = fulluserlist.data.orgUsers;
-      console.log(data);
-      setTimeout(() => {
+      // setTimeout(() => {
         setUserlist(data);
-      }, 1000);
+      // }, 1000);
     }
   }, [fulluserlist]);
   const handleselectUser = (user) => {
@@ -115,12 +130,12 @@ const Issue_Certificate = () => {
       var blob_url = URL.createObjectURL(blob);
       setCertificatePreview(blob_url)
       setBlobData(downloadCertificate.data)
+      dispatch(resetGenerateCertificate())
     }
 
   }, [downloadCertificate])
 
   const moveWithCertificatePreview = () => {
-    console.log(selectedUserDetail)
     let userDetail = JSON.parse(localStorage.getItem('selectedStudent'));
     let certDetail = JSON.parse(localStorage.getItem('certInfo'));
 
@@ -144,9 +159,29 @@ const Issue_Certificate = () => {
 
 
   }
-  const generateSign = () => {
-    signMessage()
+  const generateSign = async () => {
+    
+    if(isConnectWallet()){
+      initiateSignScript()
+    }else{
+      const wallet = await connectBlocto()
+      if(wallet && wallet.walletAddress){
+        initiateSignScript()
+      }
+    }
+    
+    
 
+  }
+  const initiateSignScript = async () => {
+    const response = await signMessage()
+    if(response){
+      dispatch(getWalletAddress())
+    }
+    if(response && response[0] && response[0].addr){
+      setApproveToMint(true)
+      mintCert()
+    }
   }
   const backtoSelectStuStep = () => {
     setStepper(stepper - 1)
@@ -165,6 +200,78 @@ const Issue_Certificate = () => {
   const handleSelectCertificatetheme = () => {
     setFineToSelectCertificate(true)
     setIsCertificateSelect(true)
+  }
+  const mintCert = () => {
+    let userDetail = JSON.parse(localStorage.getItem('selectedStudent'));
+    let certDetail = JSON.parse(localStorage.getItem('certInfo'));
+
+    if(userDetail && userDetail.id){
+      const userId = userDetail.id
+      const slotId = userDetail.slot && userDetail.slot[0]?.id
+      if(certDetail && certDetail.coursename){
+        let obj = {
+          "courseName": certDetail.coursename,
+          "grade": certDetail.grade,
+          "slotId": slotId,
+          "certificateNumber": certDetail.certificateNumber
+        }
+        dispatch(mintCertificate(orgID,userId,obj))
+        setIsLoading(true)
+      }
+      
+      
+    }
+  }
+  useEffect(() => {
+    if(mintCertificateRes && mintCertificateRes.statusCode === 201){
+      dispatch(resetMintCertificate())
+      setIsLoading(false)
+      setIsMintInitiated(true)
+      localStorage.removeItem('selectedStudent')
+      localStorage.removeItem('certInfo')
+    }
+  },[mintCertificateRes])
+  useEffect(() => {
+    if(mintCertificateFailed && typeof mintCertificateFailed === 'string' && mintCertificateFailed.length > 0){
+      dispatch(resetMintCertificateFailed())
+      setIsLoading(false)
+      setMintFailed(true)
+    }
+  })
+
+  const closeModal = () => {
+    setIsMintInitiated(false)
+    setSelectedType(false)
+    setApproveToMint(false)
+    setCertificatePreview(false)
+    setCoursename('')
+    setStuGrad('')
+    setBatchno('')
+    setCNumber('')
+    setIsCertificateSelect(false)
+    setFineToSelectUser(false)
+    setFineToGetCertInfo(false)
+    setFineToSelectCertificate(false)
+    setMintFailed(false)
+    setStepper(0)
+    navigate('/')
+  }
+  const closefailedModal = () => {
+    setIsMintInitiated(false)
+    setSelectedType(false)
+    setApproveToMint(false)
+    setCertificatePreview(false)
+    setCoursename('')
+    setStuGrad('')
+    setBatchno('')
+    setCNumber('')
+    setIsCertificateSelect(false)
+    setFineToSelectUser(false)
+    setFineToGetCertInfo(false)
+    setFineToSelectCertificate(false)
+    setMintFailed(false)
+    setStepper(0)
+    navigate('/')
   }
   return (
     <Fragment>
@@ -276,6 +383,9 @@ const Issue_Certificate = () => {
               </div>
 
               <div>
+              {isMintInitiated ? <SuccessModal closemodal={closeModal}/> : ''}
+              {isLoading ? <FullLoader/> : ''}
+              {mintFailed ? <FailureModal closemodal={closefailedModal}/> : ''}
                 <div className="certsteps mb-3">
                   <Stepper
                   activeTitleColor={'#005fff'}
@@ -1175,7 +1285,7 @@ const Issue_Certificate = () => {
                       </div>
                       {/* <div className='col-6 text-end'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-primary btn-icon icon-rht'>Finish < i data-eva-animation="flip" data-eva="checkmark-outline"></i></button>
+                          <button className='btn btn-primary btn-icon icon-rht' type="button" onClick={mintCert} disabled={!approveToMint}>Finish < i data-eva-animation="flip" data-eva="checkmark-outline"></i></button>
                         </div>
                       </div> */}
                     </div>

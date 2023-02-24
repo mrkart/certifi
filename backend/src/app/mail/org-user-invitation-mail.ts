@@ -124,7 +124,7 @@ export class OrgUserInviationMail {
                 <table role="presentation" border="0" cellpadding="10" cellspacing="0" style="background: #eff5ff; width: auto; margin: 30px auto;">
                     <tbody>
                     <tr>
-                        <td style="width: 75px; border: 1px solid #fff; border-right: none; border-bottom: none;">Email Id</td>
+                        <td style="width: 75px; border: 1px solid #fff; border-right: none; border-bottom: none;">Username</td>
                         <td style="font-weight: bold; border: 1px solid #fff;  border-bottom: none; min-width: 150px;">${this.request.receipientAddress}</td>
                     </tr>
                     <tr>

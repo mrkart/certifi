@@ -130,7 +130,7 @@ const Dashboard = () => {
                       <div className='foldercut'>
                         <div className='cltitle'>
                           <div className='climgcont'>
-                            <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />  Students
+                            <img src={require('../assets/images/icons/students.png')} loading="lazy" />  Students
                           </div>
                         </div>
                       </div>
@@ -167,7 +167,7 @@ const Dashboard = () => {
                       <div className='foldercut'>
                         <div className='cltitle'>
                           <div className='climgcont'>
-                            <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />  Signers
+                            <img src={require('../assets/images/icons/signers.png')} loading="lazy" />  Signers
                           </div>
                         </div>
                       </div>

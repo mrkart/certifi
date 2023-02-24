@@ -127,7 +127,7 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Good</p>
                     <p className=" cpartitle">CLINICAL PRACTICES</p> */}
-                          <h2 className='fw-medium mt-5'>486</h2>
+                          <h2 className='fw-medium mt-5 text-center'>486</h2>
                         </div>
                         <div className='foldpicshare'>
                           <div className='foldpics'>
@@ -140,7 +140,7 @@ const Dashboard = () => {
                         <li><span className='flpic last-count'>+25</span></li>
                       </ul> */}
                           </div>
-                          <div className='foldshare eva-hover'> <i data-eva="eye-outline" data-eva-animation="flip"></i> View all</div>
+                          <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
                         </div>
                       </div>
                     </div>
@@ -158,7 +158,7 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Best</p>
                     <p className=" cpartitle">Distribution Practices</p> */}
-                          <h2 className='fw-medium mt-5'>6866</h2>
+                          <h2 className='fw-medium mt-5 text-center'>6866</h2>
                         </div>
                         <div className='foldpicshare'>
                           <div className='foldpics'>
@@ -170,8 +170,8 @@ const Dashboard = () => {
                               <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
                               <li><span className='flpic last-count'>+100</span></li>
                             </ul>
-                          </div>
-                          <div className='foldshare eva-hover'> <i data-eva="grid-outline" data-eva-animation="flip" data-eva-infinite="true"></i> Manage</div>
+                          </div>                          
+                          <div className='foldshare eva-hover icon-rht' >Manage <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
                         </div>
                       </div>
                     </div>
@@ -189,7 +189,7 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Awesome</p>
                     <p className=" cpartitle">Interior Design</p> */}
-                          <h2 className='fw-medium mt-5'>3</h2>
+                          <h2 className='fw-medium mt-5 text-center'>3</h2>
                         </div>
                         <div className='foldpicshare'>
                           <div className='foldpics'>
@@ -202,7 +202,7 @@ const Dashboard = () => {
                               {/* <li><span className='flpic last-count'>+25</span></li> */}
                             </ul>
                           </div>
-                          <div className='foldshare eva-hover'> <i data-eva="eye-outline" data-eva-animation="flip"></i> View all</div>
+                          <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
                         </div>
                       </div>
                     </div>

@@ -61,7 +61,7 @@ nav#sidebarMenu {box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.35), 0 0px 2px 
 span.badge-approved {background: #005fff;color: #ffffff;padding: 7px 11px;border-radius: 15px;min-width: 77px;box-shadow: 0em 0em 0.2em 0em #000000;}
 span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-radius: 15px;min-width: 77px;box-shadow: 0em 0em 0.2em 0em #000000;}
 .list-group-item-action:active {background: none;}
-.dashboardboxContainer {min-height: 230px; width: 100%; padding: 15px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 4px 5px rgba(0,0,0,0.15); z-index: 2;}
+.dashboardboxContainer {min-height: 230px; width: 100%; padding: 15px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 2px 4px 5px rgba(0,0,0,0.15); z-index: 1; border-left: 1px solid #f2f2f2; }
 .dashboardsideContainer {min-height: 770px;}
 .tableblur{border-radius: 20px;box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15); background: rgb(255 255 255 / 50%); overflow: hidden; padding: 15px;}
 .height100per {height: 100%;}
@@ -102,12 +102,16 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 }.profile-area .profile-icon:hover{box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25);   background: linear-gradient(to top, rgba(0,95, 255, 0.6), rgba(0,95, 255, 0.3)); border: 2px solid #fff;}
 .profile-area p.profilename {font-size: 14px;}
 .folder {padding: 27px 0 0px;display: flex;justify-content: space-around;align-items: center;flex-direction: column;position: relative; margin-top: 5px;}
-.folder::before {content: "";width: 210px;height: 27px;border-radius: 27px 0px 0 0; box-shadow:0px 0px 10px rgba(0,0,0,0.05);   background: linear-gradient(to right, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15)); backdrop-filter: blur(10px); position: absolute;top: 1px;left: 0; z-index: 2;}
-.folder::after {top: 0px;left: 182px;content: '';display: block;position: absolute;width: 40px;height: 27px;z-index: 1;transform: skewX(41deg); box-shadow:2px 0px 1px rgba(0,0,0,0.05);   background: linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); backdrop-filter: blur(10px);z-index: 1; }
+.folder::before {content: ""; width: 210px;height: 27px;border-radius: 27px 0px 0 0; box-shadow:0px 0px 10px rgba(0,0,0,0.05);   background: linear-gradient(to right, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15)); backdrop-filter: blur(10px); position: absolute;top: 1px;left: 0; z-index: 2; display: none; }
+.folder::after { top: 0px;left: 182px;content: '';display: none;position: absolute;width: 40px;height: 27px;z-index: 1;transform: skewX(41deg); box-shadow:2px 0px 1px rgba(0,0,0,0.05);   background: linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); backdrop-filter: blur(10px);z-index: 1; }
+
+.foldercut{border-left: 1px solid #ececec;  width:100%;  border-radius: 27px 0px 0 0;  overflow: hidden; display: inline-flex; align-items: center; align-self: flex-start; }
+.foldercut .cltitle {border-top: 1px solid #f2f2f2; padding: 0px 15px 0px 35px;  margin: 0 0 0 -20px; width: 75%; height: 35px; box-shadow:0px 0px 10px rgba(0,0,0,0.05); -webkit-transform: skew(40deg); -moz-transform: skew(40deg); -o-transform: skew(40deg); background: rgba(255,255,255, 0.30); backdrop-filter: blur(10px); }
+.climgcont{-webkit-transform: skew(-40deg); -moz-transform: skew(-40deg); -o-transform: skew(-40deg); }
 
 .folder .light-blur{ border-radius: 0px 27px 27px;}
 
-.cltitle{ position: absolute; top: -20px; display: flex; align-items: center; font-size: 12px; text-transform: uppercase; z-index: 1; color: #6c6c6c;}
+.cltitle{ display: flex; align-items: center; font-size: 12px; text-transform: uppercase; z-index: 1; color: #6c6c6c;}
 .cltitle img{ width: 18px; margin-right: 3px;  left: 0px;}
 
 .cpartitle{ font-weight: 600; text-transform: uppercase; font-size: 20px;}

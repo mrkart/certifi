@@ -6,77 +6,49 @@ import CountUp from 'react-countup';
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    month: 'Jan',
+    certificate: 23
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    month: 'Feb',
+    certificate: 45
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    month: 'Mar',
+    certificate: 67
   },
   {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    month: 'Apr',
+    certificate: 55
   },
   {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    month: 'Jun',
+    certificate: 33
   },
   {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    month: 'Jul',
+    certificate: 61
   },
   {
-    name: 'Page G',
-    uv: 2290,
-    pv: 4300,
-    amt: 2100,
+    month: 'Aug',
+    certificate: 45
   },
-  {
-    name: 'Page G',
-    uv: 1790,
-    pv: 4300,
-    amt: 2100,
+    {
+    month: 'Sept',
+    certificate: 78
   },
-  {
-    name: 'Page G',
-    uv: 1590,
-    pv: 4300,
-    amt: 2100,
+    {
+    month: 'Oct',
+    certificate: 88
   },
-  {
-    name: 'Page G',
-    uv: 3290,
-    pv: 4300,
-    amt: 2100,
+    {
+    month: 'Nov',
+    certificate: 77
   },
-  {
-    name: 'Page G',
-    uv: 3790,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Page G',
-    uv: 3190,
-    pv: 3300,
-    amt: 1800,
-  },
+    {
+    month: 'Dec',
+    certificate: 92
+  }
 ];
 
 const Dashboard = () => {
@@ -132,7 +104,7 @@ const Dashboard = () => {
                           <h2 className='fw-medium mt-5 text-center'>
                             <CountUp
                               start={0}
-                              end={189}
+                              end={765}
                               duration={5}
                             />
                           </h2>
@@ -444,19 +416,39 @@ const Dashboard = () => {
                         Last 12 months
                       </button>
                       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a className="dropdown-item" selected>Last 1 year</a></li>
-                        <li><a className="dropdown-item">Last 5 year</a></li>
+                        <li><a className="dropdown-item" selected>Last 3 years</a></li>
+                        <li><a className="dropdown-item">Last 5 years</a></li>
                       </ul>
                     </div>
                   </div>
                   <div className='col-md-9'>
                     <div className='row'>
                       <div className='col-md-6 barchart'>
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart width={150} height={40} data={data}>
-                            <Bar dataKey="uv" fill="#005fff" radius={[20, 20, 0, 0]} label={{ value: "index", fontSize: '100%', color: "#005FFF", position: "top", angle: 0, dy: 0 }} />
-                          </BarChart>
-                        </ResponsiveContainer>
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          width={150}
+                          height={40}
+                          data={data}
+                          margin={{
+                            top: 40,
+                            right: 10,
+                            left: 0,
+                            bottom: 0,
+                          }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="month" />
+                          <YAxis/>
+                          <Tooltip />
+                        <Bar 
+                          barSize={28}
+                          dataKey="certificate" 
+                          fill="#005fff" 
+                          radius={[10, 10, 0, 0]} 
+                          label={{ value: "index", fontSize: '100%', color: "#005fff", position: "top", angle: 0, dy: 0 }} 
+                        />
+                        </BarChart>
+                      </ResponsiveContainer>
                       </div>
                       <div className='col-md-6 borderleft2pxwhite'>
                         <div className='row'>

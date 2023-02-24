@@ -20,7 +20,7 @@ const StudentDashboard = () => {
                     {!viewCertificate ? <div className='certtemplates mintnft studentdash'>
                         <div className='row'>
                             <div className="col-sm-6 col-md-4">
-                                <div className='folder mb-3'>
+                                <div className='folder mb-3' onClick={viewCertificatepage}>
                                     <div className='foldercut'>
                                         <div className='cltitle'>
                                             <div className='climgcont'>
@@ -34,9 +34,9 @@ const StudentDashboard = () => {
                                             <h2 className='fw-medium mt-5'>2</h2>
                                             <h4 className='text-primary text-uppercase fw-bold'>Certificates</h4>
                                         </div>
-                                        <div className='foldpicshare justify-content-center'>
-                                            <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
-                                        </div>
+                                        {/* <div className='foldpicshare justify-content-center'>
+                                            <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                                        </div> */}
                                     </div>
                                 </div>
 
@@ -69,9 +69,9 @@ const StudentDashboard = () => {
                                             </div>
                                             <h4 className='text-primary text-uppercase fw-bold'>Documents</h4>
                                         </div>
-                                        <div className='foldpicshare justify-content-center'>
-                                            {/* <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                                        </div>
+                                        {/* <div className='foldpicshare justify-content-center'>
+                                            <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -93,9 +93,9 @@ const StudentDashboard = () => {
                                             </div>
                                             <h4 className='text-primary text-uppercase fw-bold'>Memberships</h4>
                                         </div>
-                                        <div className='foldpicshare justify-content-center'>
-                                            {/* <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                                        </div>
+                                        {/* <div className='foldpicshare justify-content-center'>
+                                            <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -117,9 +117,9 @@ const StudentDashboard = () => {
                                             </div>
                                             <h4 className='text-primary text-uppercase fw-bold'>Cards</h4>
                                         </div>
-                                        <div className='foldpicshare justify-content-center'>
-                                            {/* <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                                        </div>
+                                        {/* <div className='foldpicshare justify-content-center'>
+                                            <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -140,9 +140,9 @@ const StudentDashboard = () => {
                                             </div>
                                             <h4 className='text-primary text-uppercase fw-bold'>Tickets</h4>
                                         </div>
-                                        <div className='foldpicshare justify-content-center'>
-                                            {/* <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                                        </div>
+                                        {/* <div className='foldpicshare justify-content-center'>
+                                            <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>

@@ -383,15 +383,15 @@ input[type="file"] { display: none;}
 .fadein{animation: fadeIn 0.75s ease-in both;}
 
 @keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translate3d(0, -5%, 0);
-	}
-	to {
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
-	}
+from {opacity: 0;transform: translate3d(0, -5%, 0);}
+to {opacity: 1;transform: translate3d(0, 0, 0);}
 }
+
+.userOrg{ display: flex; flex-direction: row; align-items: center;}
+.userOrg img {height: 28px; margin-right: 10px; }
+.userOrg h5{ margin: 0px;}
+
+.certsteps div, .certsteps a, .certsteps span {transition: all ease 0.75s;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

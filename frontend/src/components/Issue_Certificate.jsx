@@ -300,7 +300,7 @@ const Issue_Certificate = () => {
                         <div className='fields txtfields'>Cert batch name</div>
                         <div className='fields'>
                           <select className='form-control'>
-                            <option>2022-Computer-Science-Graduation - List 1</option>
+                            <option>2023-Computer-Science-Graduation - List 1</option>
                           </select>
                         </div>
                         <div className='fields'></div>
@@ -638,7 +638,7 @@ const Issue_Certificate = () => {
                     </div>
 
                   </div> */}
-                      <div className='certtemplates mt-3'>
+                      <div className='certtemplates'>
                         <div className='row'>
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
                             <div className='ctemp' >
@@ -758,7 +758,7 @@ const Issue_Certificate = () => {
                 {stepper === 3 &&
                    <div className=''>
                     <div className='formscroldiv fadein'>
-                      <div className='createcertform backgroundblur text-start p-15px my-3'>
+                      <div className='createcertform backgroundblur text-start p-15px mb-3'>
                         <div className='row'>
                           <div className='col-md-4'>
                             <div className='form-group'>
@@ -1124,10 +1124,10 @@ const Issue_Certificate = () => {
                 {stepper === 5 &&
                    <div className=''>
                     <div className='formscroldiv fadein'>
-                      <div className='backgroundblur text-start mt-3'>
+                      <div className='backgroundblur text-start'>
                         <div className='certinfo'>
                           <div className='certinfocont1'>
-                            <p className='text-center mb-0'><b>1</b> Student from <b>2022</b> - Computer Science Graduation - List 1</p>                           
+                            <p className='text-center mb-0'><b>1</b> Student from <b>2023</b> - Computer Science Graduation</p>                           
                           </div>
                         </div>
                       </div>
@@ -1138,8 +1138,8 @@ const Issue_Certificate = () => {
                             <div className='signerboxes'>
                               <h6>Preparer Sign</h6>
                               <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
-                              <p>On JUL-17-2022 11:01 EST</p>
-                              <p>By  Prof Charles Harper</p>
+                              <p>On Feb-17-2023 11:01 EST</p>
+                              <p>By <b>Prof Charles Harper</b></p>
                             </div>
                           </div>
                         </div>
@@ -1149,8 +1149,8 @@ const Issue_Certificate = () => {
                             <div className='signerboxes'>
                               <h6>Verifier Sign</h6>
                               <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
-                              <p>On JUL-17-2022 11:01 EST</p>
-                              <p>By  Prof Charles Harper</p>
+                              <p>On Feb-18-2023 08:01 EST</p>
+                              <p>By <b>David R. Martin</b></p>
                             </div>
                           </div>
                         </div>

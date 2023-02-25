@@ -389,7 +389,7 @@ const Issue_Certificate = () => {
                   <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0">Issue Certs</h4></div>
                 </div>
               </div>
-              <div>              
+              <div>   
               {isMintInitiated ? <SuccessModal closemodal={closeModal}/> : ''}
               {isLoading ? <FullLoader/> : ''}
               {mintFailed ? <FailureModal closemodal={closefailedModal}/> : ''}
@@ -1192,7 +1192,7 @@ const Issue_Certificate = () => {
                             </button>
                           </h2>
                           <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
-                            <div className="accordion-body text-center">
+                            <div className="accordion-body text-center accbodyiframe">
                               <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} className="iframe"></iframe>
                               {/* <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" /> */}
                             </div>

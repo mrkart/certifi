@@ -22,6 +22,7 @@ const StudentsAdd = () => {
   useEffect(() => {
     if(addNewStudentFailed && typeof addNewStudentFailed === 'string' && addNewStudentFailed.length > 0){
       dispatch(resetAddStudentFailed());
+      setIsLoading(false);
       setErroMessage(addNewStudentFailed);
     }
   },[addNewStudentFailed]);
@@ -34,6 +35,7 @@ const StudentsAdd = () => {
   const [slot, setSlot] = useState('');
   const [number, setNumber] = useState('');
   const [erroMessage,setErroMessage] = useState("");
+  const [isLoading,setIsLoading] = useState(false)
 
   const handleSubmit = (event) => {
     setErroMessage("");
@@ -44,6 +46,7 @@ const StudentsAdd = () => {
       setErroMessage("Please fill out all below fields");
       return;
     }
+    setIsLoading(true);
     let data = {
       "email": formData.email,
       "name": formData.name,
@@ -154,7 +157,9 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
+                      {isLoading ? <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /> : 
                         <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create Student</button>
+                      }
                       </div>
                     </div>
                   </div>

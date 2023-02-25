@@ -54,6 +54,11 @@ const Login = () => {
     const formData = { email, password };
     localStorage.setItem('user_email',formData.email);
     // console.log(formData);
+    if(!formData.email || !formData.password){
+      setErroMessage("Please fill out all below fields");
+      setIsLoading(false)
+      return;
+    }
     let data = {
       "email": formData.email,
       "password": formData.password

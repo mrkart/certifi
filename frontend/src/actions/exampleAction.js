@@ -50,7 +50,7 @@ export const postCreateStudent = (data,orgID) => {
         dispatch({ type: 'POST_CREATESTUDENT_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'POST_CREATESTUDENT_FAILURE', payload: error });
+        dispatch({ type: 'POST_CREATESTUDENT_FAILURE', payload: error && error.message && error.response.data.message });
       });
   };
 };
@@ -146,6 +146,11 @@ export const resetLoginInfoFailed = () => {
 export const resetAddStudent = () => {
   return dispatch => {
      dispatch({type : 'POST_CREATESTUDENT_SUCCESS',payload : []})
+  }
+}
+export const resetAddStudentFailed = () => {
+  return dispatch => {
+     dispatch({type : 'POST_CREATESTUDENT_FAILURE',payload : ''})
   }
 }
 

@@ -10,6 +10,7 @@ const initialState = {
     userbyid : [],
     generatedCertificate : [],
     logInResponseFailed : '',
+    addNewStudentFailed : '',
     userProfileFailed : '',
     isInfoModal : false,
     walletAddress : null,
@@ -39,6 +40,11 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 addStudent : action.payload
+            }
+        case types.POST_CREATESTUDENT_FAILURE:
+            return {
+                ...state,
+                addNewStudentFailed : action.payload
             }
         case types.GET_USERLIST_SUCCESS:
             return {

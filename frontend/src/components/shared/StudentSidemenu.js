@@ -32,7 +32,7 @@ const StudentSidemenu = () => {
                 <img className='headerprofilepic' src={require('../../assets/images/photo10.png')} loading="lazy" />
               </div>
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
-              <p className='mb-0 profilename badge badge-light'>{userFlowAddress}</p>
+              <p className='mb-0 profilename mt-3'>{userFlowAddress}</p>
             </div>
           </div>
           <div className="accordion accordion-borderless" id="accordionFlushExampleX">

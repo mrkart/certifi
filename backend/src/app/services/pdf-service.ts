@@ -2,6 +2,7 @@ import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs/promises';
 import { PdfData } from '../helpers';
 import QRCode from 'qrcode';
+import { isEmpty } from 'class-validator';
 
 export class PdfService {
     public async createCertificate(
@@ -9,6 +10,13 @@ export class PdfService {
         templatePath: string,
         outputPath: string
     ): Promise<void> {
+        if (isEmpty(process.env.CERTIFICATE_VERIFIACTION_URL)) {
+            const error = new Error(
+                'Invallid certificate configuration received. Please proivde correct configuration'
+            );
+            error.name = 'InvalidConfigurationError';
+            throw error;
+        }
         // Load the existing PDF template
         const templateBytes = await fs.readFile(templatePath);
 
@@ -95,7 +103,7 @@ export class PdfService {
         });
 
         // Generate the QR code image
-        const qrCodeData = 'https://alpha.certifi.ly/';
+        const qrCodeData = process.env.CERTIFICATE_VERIFIACTION_URL;
         const qrCodeImage = await QRCode.toDataURL(qrCodeData, {
             errorCorrectionLevel: 'H',
             color: {

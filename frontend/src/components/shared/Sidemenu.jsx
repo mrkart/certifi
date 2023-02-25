@@ -96,6 +96,46 @@ const Sidemenu = () => {
             </div>                 
             <span>Issue Certificate</span>
           </NavLink>
+
+                    <div className="accordion-item">
+              <h2 className="accordion-header" id="flush-headingOneX">
+                <button className="list-group-item list-group-item-action text-uppercase accordion-button" type="button" data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseOneX" aria-expanded="fasle" aria-controls="flush-collapseOneX">                  
+                  <div className='sidebaricons'>
+                  <img
+                    src={require('../../assets/images/icons/user.png')}
+                    className=''
+                  />
+                  </div>
+                  <span>Developer</span>
+                </button>
+              </h2>
+              <div id="flush-collapseOneX" className="accordion-collapse collapse" aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
+                <div className="accordion-body p-0 ps-3">
+                  {/* <NavLink to="/claim-flow-account" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <img
+                      src={require('../../assets/images/icons/claim.png')}
+                      className='sidebaricons me-3'
+                    />
+                    <span>Claim Flow Account</span>
+                  </NavLink> */}
+                  <NavLink to="https://api.certifi.ly/api-docs/" target="_blank" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <div className='sidebaricons'>
+                  <img
+                    src={require('../../assets/images/icons/claim.png')}
+                    className=''
+                  />
+                  </div>                   
+                    <span>API DOCS</span>
+                  </NavLink>
+                </div>
+              </div>
+              
+            </div>
+
+
+
+
           {/* <NavLink to="/signer" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
             <img
               src={require('../../assets/images/icons/edit-3.png')}

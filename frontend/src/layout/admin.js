@@ -22,6 +22,9 @@ const Admin = ({ subElement }) => {
   function logout(){
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userprofile');
+    localStorage.removeItem('certInfo');
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('selectedStudent');
     navigate("/login");
   }
   
@@ -118,7 +121,7 @@ const Admin = ({ subElement }) => {
           </div>
         </main>
       </div>
-    </div> : userRoles.includes(userRole) ? <Navigate to="/student-dashboard" /> : <Navigate to="/login" />)
+    </div> : userRoles.includes(userRole) ? <Navigate to="/dashboard" /> : <Navigate to="/login" />)
   );
 }
 

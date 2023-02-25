@@ -39,7 +39,7 @@ const StudentSidemenu = () => {
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingOneX1">
                 <div  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOneX1" aria-expanded="true" aria-controls="flush-collapseOneX1">
-                <NavLink to="/student-dashboard" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                <NavLink to="/dashboard" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                   <div className='sidebaricons'>
                   <img
                     src={require('../../assets/images/icons/airplay.png')}

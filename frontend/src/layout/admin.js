@@ -22,6 +22,9 @@ const Admin = ({ subElement }) => {
   function logout(){
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userprofile');
+    localStorage.removeItem('certInfo');
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('selectedStudent');
     navigate("/login");
   }
   

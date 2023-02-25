@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import * as eva from 'eva-icons';
 import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecentCertificate } from '../actions/exampleAction';
+import { getRecentCertificate, reseRecentCertificate } from '../actions/exampleAction';
 import TableLoader from './shared/TableLoader';
 
 const data = [
@@ -72,7 +72,8 @@ const Dashboard = () => {
       let recentCert = recentcertificate.data.certificates;
       setTimeout(() => {
         setRecentCertData(recentCert);
-      }, 3000);
+        dispatch(reseRecentCertificate());
+      }, 1500);
     }
   },[recentcertificate]);
 

@@ -201,6 +201,10 @@ export const resetGenerateCertificate = () => {
   return dispatch => {
      dispatch({type : 'GENERATE_CERTIFICATE_SUCCESS',payload : []})
 }}
+export const reseRecentCertificate = () => {
+  return dispatch => {
+     dispatch({type : 'POST_RECENTCERTIFICATE_SUCCESS',payload : []})
+}}
 
 // Recent certificate
 export const getRecentCertificate = (orgID) => {

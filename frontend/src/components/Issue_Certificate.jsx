@@ -438,7 +438,7 @@ const Issue_Certificate = () => {
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
                             <div className='fields'>
                               <select className="form-control">
-                                <option selected>Import slot</option>
+                                <option defaultValue>Import slot</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -471,7 +471,7 @@ const Issue_Certificate = () => {
                                           checked={selectedUser === user.id} 
                                           onChange={() => handleselectUser(user)} 
                                         />
-                                        <label className="form-check-label" for={`exampleCheck${index}`}></label>
+                                        <label className="form-check-label" htmlFor={`exampleCheck${index}`}></label>
                                       </div>
                                     </td>
                                     <td>

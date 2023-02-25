@@ -112,6 +112,14 @@ const Issue_Certificate = () => {
       setCallBack(true)
     }
   };
+  const SelectStudent = (event) => {
+    // let classname = event.currentTarget.getAttribute('class');
+    let dataUser = JSON.parse(event.currentTarget.getAttribute('data-user'));
+    // const checkbox = document.getElementById(classname);
+    handleselectUser(dataUser)
+    // console.log(dataUser);
+    // checkbox.checked = true;
+  }
   const movewithInfo = () => {
     const formData = { coursename, stuGrad, batchno, cnumber };
     let data = {
@@ -381,7 +389,7 @@ const Issue_Certificate = () => {
                   <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0">Issue Certs</h4></div>
                 </div>
               </div>
-              <div>              
+              <div>   
               {isMintInitiated ? <SuccessModal closemodal={closeModal}/> : ''}
               {isLoading ? <FullLoader/> : ''}
               {mintFailed ? <FailureModal closemodal={closefailedModal}/> : ''}
@@ -430,7 +438,7 @@ const Issue_Certificate = () => {
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
                             <div className='fields'>
                               <select className="form-control">
-                                <option selected>Import slot</option>
+                                <option defaultValue>Import slot</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -453,9 +461,18 @@ const Issue_Certificate = () => {
                               </thead>
                               <tbody>
                                 {userlist.map((user, index) => (
-                                  <tr key={index}>
+                                  <tr key={index} onClick={SelectStudent} data-user={JSON.stringify(user)}>
                                     <td>
-                                      <div className="form-group"><input type="checkbox" className="form-check-input" id={`exampleCheck${index}`} checked={selectedUser === user.id} onChange={() => handleselectUser(user)} /><label className="form-check-label" for={`exampleCheck${index}`}></label></div>
+                                      <div className="form-group">
+                                        <input 
+                                          type="checkbox" 
+                                          className="form-check-input" 
+                                          id={`exampleCheck${index}`} 
+                                          checked={selectedUser === user.id} 
+                                          onChange={() => handleselectUser(user)} 
+                                        />
+                                        <label className="form-check-label" htmlFor={`exampleCheck${index}`}></label>
+                                      </div>
                                     </td>
                                     <td>
                                       <div className="d-flex align-items-center">
@@ -1175,7 +1192,7 @@ const Issue_Certificate = () => {
                             </button>
                           </h2>
                           <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
-                            <div className="accordion-body text-center">
+                            <div className="accordion-body text-center accbodyiframe">
                               <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} className="iframe"></iframe>
                               {/* <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" /> */}
                             </div>

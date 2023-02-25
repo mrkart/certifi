@@ -63,7 +63,7 @@ const StudentsAddEmail = () => {
                           <th>Email Id</th>
                           <th>Flow Address</th>
                           <th>Verification</th>
-                          <th className='text-center'>Action</th>
+                          {/* <th className='text-center d-none'>Action</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -78,17 +78,17 @@ const StudentsAddEmail = () => {
                             {user_email}
                           </td>
                           <td>
-                            {userFlowAddress}
+                            <a target="_blank" href={`https://testnet.flowview.app/account/${userFlowAddress}/collection`}> {userFlowAddress} </a>
                           </td>
                           <td>
                             <span className='badge badge-success'>VERIFIED</span>
                           </td>
 
-                          <td className='text-center'>
+                          {/* <td className='text-center'>
                             <div className='btngrouprht'>
                               <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                             </div>
-                          </td>
+                          </td> */}
                         </tr>
 
                       </tbody>

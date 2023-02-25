@@ -15,7 +15,7 @@ const StudentDashboard = () => {
     let userId = userprofile.id;
 
     const viewCertificatepage = () => {
-        if(certificateCount > 0){
+        if (certificateCount > 0) {
             setViewCertificate(true);
         }
     }
@@ -24,19 +24,19 @@ const StudentDashboard = () => {
     }
 
     useEffect(() => {
-        dispatch(getUserCertList(orgID,userId));
-    },[]);
+        dispatch(getUserCertList(orgID, userId));
+    }, []);
 
     useEffect(() => {
-        if(userCertList.statusCode == 200){
+        if (userCertList.statusCode == 200) {
             console.log('userCertList');
-            if(userCertList?.data?.count > 0){
+            if (userCertList?.data?.count > 0) {
                 setCertificateCount(userCertList.data.count);
                 console.log(userCertList.data.certificates);
                 setCertificateList(userCertList.data.certificates);
             }
         }
-    },[userCertList]);
+    }, [userCertList]);
 
     useEffect(() => { eva.replace() });
 
@@ -48,19 +48,61 @@ const StudentDashboard = () => {
                     {!viewCertificate ? <div className='certtemplates mintnft studentdash'>
                         <div className='row'>
                             <div className="col-sm-6 col-md-4">
+                                <div className='createcetr'>
+                                    <h5>Welcome</h5>
+                                    <h4 className='fw-bolder text-primary'>William Anderson</h4>                                    
+                                    <div className='lastestnfts'>
+                                        <h5>Latest NFTs</h5>
+                                        <ul className='list-unstyled'>
+                                            <li>
+                                                <a href=''>
+                                                <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
+                                                <span className='lnftscont'>
+                                                    <p>2 days ago</p>
+                                                    <h6>Certificate from Madurai Kamarajar University</h6>
+                                                </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                            <a href=''>
+                                                <span className='img'><img src={require('../assets/images/icons/documents.png')} loading="lazy" /></span>
+                                                <span className='lnftscont'>
+                                                    <p>2 months ago</p>
+                                                    <h6>Document from Blaze</h6>
+                                                </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                            <a href=''>
+                                                <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
+                                                <span className='lnftscont'>
+                                                    <p>3 months ago</p>
+                                                    <h6>Certificate from Coursera</h6>
+                                                </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-6 col-md-4">
                                 <div className='folder mb-3' onClick={viewCertificatepage}>
                                     <div className='foldercut'>
                                         <div className='cltitle'>
-                                            <div className='climgcont'>
+                                            {/* <div className='climgcont'>
                                                 <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="card dashboardboxContainer light-blur">
 
-                                        <div className='foldcont text-center'>
-                                            <h2 className='fw-medium mt-5'>{certificateCount}</h2>
-                                            <h4 className='text-primary text-uppercase fw-bold'>Certificates</h4>
+                                        <div className='foldcont text-center justify-content-center'>
+                                            <div className='img mb-3'>
+                                                <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
+                                            </div>
+
+                                            <h4 className='text-primary text-uppercase fw-bold mb-3'>Certificates</h4>
+                                            <h2 className='fw-bold mb-0'>{certificateCount}</h2>
                                         </div>
                                         {/* <div className='foldpicshare justify-content-center'>
                                             <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
@@ -81,21 +123,23 @@ const StudentDashboard = () => {
                             </div>
 
 
-                            <div className="col-sm-6 col-md-4 btn-disabled">
+                            <div className="col-sm-6 col-md-4 ">
                                 <div className='folder mb-3'>
                                     <div className='foldercut'>
                                         <div className='cltitle'>
-                                            <div className='climgcont'>
+                                            {/* <div className='climgcont'>
+                                                <img src={require('../assets/images/icons/documents.png')} loading="lazy" />
+                                            </div> */}
+                                        </div>
+                                    </div>
+                                    <div className="card dashboardboxContainer light-blur">
+                                        <div className='foldcont text-center justify-content-center'>
+                                            <div className='img mb-3'>
                                                 <img src={require('../assets/images/icons/documents.png')} loading="lazy" />
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="card dashboardboxContainer light-blur">
-                                        <div className='foldcont text-center justify-content-center'>
-                                            <div className='img mb-2'>
-                                                <img src={require('../assets/images/icons/documents.png')} loading="lazy" />
-                                            </div>
-                                            <h4 className='text-primary text-uppercase fw-bold'>Documents</h4>
+                                            <h4 className='text-primary text-uppercase fw-bold mb-3'>Documents</h4>
+
+                                            <h2 className='fw-bold mb-0'>0</h2>
                                         </div>
                                         {/* <div className='foldpicshare justify-content-center'>
                                             <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
@@ -105,21 +149,22 @@ const StudentDashboard = () => {
                             </div>
 
 
-                            <div className="col-sm-6 col-md-4 btn-disabled">
+                            <div className="col-sm-6 col-md-4 ">
                                 <div className='folder mb-3'>
                                     <div className='foldercut'>
                                         <div className='cltitle'>
-                                            <div className='climgcont'>
+                                            {/* <div className='climgcont'>
+                                                <img src={require('../assets/images/icons/Group-16.png')} loading="lazy" />
+                                            </div> */}
+                                        </div>
+                                    </div>
+                                    <div className="card dashboardboxContainer light-blur">
+                                        <div className='foldcont text-center justify-content-center'>
+                                            <div className='img mb-3'>
                                                 <img src={require('../assets/images/icons/Group-16.png')} loading="lazy" />
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="card dashboardboxContainer light-blur">
-                                        <div className='foldcont text-center justify-content-center'>
-                                            <div className='img mb-2'>
-                                                <img src={require('../assets/images/icons/Group-16.png')} loading="lazy" />
-                                            </div>
-                                            <h4 className='text-primary text-uppercase fw-bold'>Memberships</h4>
+                                            <h4 className='text-primary text-uppercase fw-bold mb-3'>Memberships</h4>
+                                            <h2 className='fw-bold mb-0'>0</h2>
                                         </div>
                                         {/* <div className='foldpicshare justify-content-center'>
                                             <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
@@ -129,21 +174,22 @@ const StudentDashboard = () => {
                             </div>
 
 
-                            <div className="col-sm-6 col-md-4 btn-disabled">
+                            <div className="col-sm-6 col-md-4 ">
                                 <div className='folder mb-3'>
                                     <div className='foldercut'>
                                         <div className='cltitle'>
-                                            <div className='climgcont'>
+                                            {/* <div className='climgcont'>
                                                 <img src={require('../assets/images/icons/Group-16-2.png')} loading="lazy" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="card dashboardboxContainer light-blur">
                                         <div className='foldcont text-center justify-content-center'>
-                                            <div className='img mb-2'>
+                                            <div className='img mb-3'>
                                                 <img src={require('../assets/images/icons/Group-16-2.png')} loading="lazy" />
                                             </div>
-                                            <h4 className='text-primary text-uppercase fw-bold'>Cards</h4>
+                                            <h4 className='text-primary text-uppercase fw-bold mb-3'>Cards</h4>
+                                            <h2 className='fw-bold mb-0'>0</h2>
                                         </div>
                                         {/* <div className='foldpicshare justify-content-center'>
                                             <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
@@ -152,21 +198,22 @@ const StudentDashboard = () => {
                                 </div>
                             </div>
 
-                            <div className="col-sm-6 col-md-4 btn-disabled">
+                            <div className="col-sm-6 col-md-4 ">
                                 <div className='folder mb-3'>
                                     <div className='foldercut'>
                                         <div className='cltitle'>
-                                            <div className='climgcont'>
+                                            {/* <div className='climgcont'>
                                                 <img src={require('../assets/images/icons/Group-16-3.png')} loading="lazy" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="card dashboardboxContainer light-blur">
                                         <div className='foldcont text-center justify-content-center'>
-                                            <div className='img mb-2'>
+                                            <div className='img mb-3'>
                                                 <img src={require('../assets/images/icons/Group-16-3.png')} loading="lazy" />
                                             </div>
-                                            <h4 className='text-primary text-uppercase fw-bold'>Tickets</h4>
+                                            <h4 className='text-primary text-uppercase fw-bold mb-3'>Tickets</h4>
+                                            <h2 className='fw-bold mb-0'>0</h2>
                                         </div>
                                         {/* <div className='foldpicshare justify-content-center'>
                                             <div className='foldshare eva-hover icon-rht' onClick={viewCertificatepage}>View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
@@ -180,8 +227,8 @@ const StudentDashboard = () => {
                     </div> :
                         <div>
                             <div className='certtemplates mintnft studentcert'>
-                            <div className="row mb-3 align-items-center"><div className="col-md-6"><h4 className="fw-bolder text-black text-uppercase mb-0">Certificates</h4></div>
-                            <div className="col-md-6 text-end"><div className='btngrouprht'>
+                                <div className="row mb-3 align-items-center"><div className="col-md-6"><h4 className="fw-bolder text-black text-uppercase mb-0"><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={30} /> Certificates</h4></div>
+                                    <div className="col-md-6 text-end"><div className='btngrouprht'>
                                         <button className='btn btn-light btn-icon ' type="button" onClick={dismissView} >< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back </button>
                                     </div></div></div>
                                 <div className='row'>
@@ -194,13 +241,13 @@ const StudentDashboard = () => {
                                                     <div className='row align-items-center'>
                                                         <div className='col-md-7 text-start'>
                                                             <p className='mt-3 mb-2'>Issued on <span>
-                                                            {
-                                                                new Date(user.datetimeCreated).toLocaleDateString('en-US', {
-                                                                    year: 'numeric',
-                                                                    month: 'short',
-                                                                    day: 'numeric'
-                                                                })
-                                                            }</span>
+                                                                {
+                                                                    new Date(user.datetimeCreated).toLocaleDateString('en-US', {
+                                                                        year: 'numeric',
+                                                                        month: 'short',
+                                                                        day: 'numeric'
+                                                                    })
+                                                                }</span>
                                                             </p>
                                                             <p className=''>by {user.org['name']}</p>
                                                         </div>
@@ -250,7 +297,7 @@ const StudentDashboard = () => {
                                         </div>
                                     </div> */}
                                 </div>
-                            </div>                            
+                            </div>
                         </div>}
 
 

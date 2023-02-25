@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
 import { useDispatch, useSelector } from 'react-redux';
-import { postCreateStudent } from '../actions/exampleAction';
+import { postCreateStudent, resetAddStudent } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
 
 const StudentsAdd = () => {
@@ -13,6 +13,7 @@ const StudentsAdd = () => {
 
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
+      dispatch(resetAddStudent());
       navigate("/students");
     }
   },[addStudentRes]);

@@ -118,6 +118,7 @@ export const getUserCertList = (orgID,userID) => {
       });
   };
 };
+
 export const resetLoginInfo = () => {
    return dispatch => {
       dispatch({type : 'POST_LOGIN_SUCCESS',payload : []})
@@ -142,6 +143,12 @@ export const resetLoginInfoFailed = () => {
   return dispatch => {
      dispatch({type : 'POST_LOGIN_FAILURE',payload : ''})
 }}
+export const resetAddStudent = () => {
+  return dispatch => {
+     dispatch({type : 'POST_CREATESTUDENT_SUCCESS',payload : []})
+  }
+}
+
 export const showInfoModal = () => {
   return dispatch => {
      dispatch({type : 'SHOW_MODAL',payload : true})

@@ -222,3 +222,32 @@ export const getRecentCertificate = (orgID) => {
       });
   };
 };
+
+export function getCertificateByNftId(nftId) {
+  return (dispatch) => {
+    api.get(`/api/certificates/${nftId}`)
+      .then((response) => {
+        console.log('GET %s', `/api/certificates/${nftId}`, response.data)
+        dispatch({
+          type: 'GET_CERTIFICATE_NFT_ID_SUCCESS',
+          payload: response.data
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: 'GET_CERTIFICATE_NFT_ID_FAILURE',
+          payload: error && error.message && error.response.data.message
+        });
+      });
+  };
+}
+export function getCertificateFailed() {
+  return dispatch => {
+    dispatch({ type: 'GET_CERTIFICATE_NFT_ID_FAILURE', payload: '' })
+  }
+}
+export function resetGetCertificate() {
+  return dispatch => {
+    dispatch({ type: 'GET_CERTIFICATE_NFT_ID_SUCCESS', payload: {} })
+  }
+}

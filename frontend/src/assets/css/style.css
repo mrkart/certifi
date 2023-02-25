@@ -364,11 +364,11 @@ input[type="file"] { display: none;}
 .btngrouprht {min-width: 100px;}
 
 .studentdash .ctemp .backgroundblur{min-height: 260px;}
-.sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: transparent;color: #717274;}
+.sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: transparent;color: #4f4f4f;}
 .sidebar .accordion-button::after{transform: rotate(0deg) !important;filter: grayscale(1); transition: all ease 0.75s; margin-right: 10px;} 
 .sidebar .accordion-button:not(.collapsed)::after{ }
 .sidebar .accordion-button[aria-expanded="true"]::after{transform: rotate(180deg) !important;}
-.sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: transparent;color: #717274;}
+.sidebar .accordion-borderless .accordion-item .accordion-button:not(.collapsed) {background: transparent;color: #4f4f4f;}
 .sidebar .accordion-button[aria-expanded="true"] {background: #cee0ff !important;}
 
 .addemailaccount .backgroundblur{ padding: 15px; margin-bottom: 15px;}
@@ -441,6 +441,10 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .listcorgrade .badge{padding: 5px 10px; font-size: 12px; cursor: pointer; transition: all ease 0.75s; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2); margin-bottom: 10px;} 
 .listcorgrade .badge:hover{ background: #fff; color: #005fff;}
 .listcorgrade .badge:not(:last-child){ margin-right: 10px; }
+
+.pnf{ display: flex; align-items: center; flex-direction: column; justify-content: center; height: calc(100% - 95px);}
+.pnf img{ max-width: 30%; margin-bottom: 30px;}
+.pnf h6{ font-size: 20px;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

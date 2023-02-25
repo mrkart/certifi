@@ -17,7 +17,9 @@ const initialState = {
     mintResponse : [],
     mintFailed : '',
     userCertificateList : [],
-    recentcertificate : []
+    recentcertificate : [],
+    getCertificateFailed:'',
+    getCertificate: {}
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -111,6 +113,16 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 recentcertificate : action.payload
+            }
+        case types.GET_CERTIFICATE_NFT_ID_SUCCESS:
+            return {
+                ...state,
+                getCertificate: action.payload
+            }
+        case types.GET_CERTIFICATE_NFT_ID_FAILURE:
+            return {
+                ...state,
+                getCertificateFailed: action.payload
             }
         
         default:

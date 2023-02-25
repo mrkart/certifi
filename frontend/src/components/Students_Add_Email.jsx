@@ -30,12 +30,13 @@ const StudentsAddEmail = () => {
   useEffect(() => { eva.replace() });
   return (
     <div className='scrolldiv'>
+       <div className="row mb-3"><div className="col-md-12 text-start"><h4 className="fw-bolder text-black text-uppercase mb-0">Synu Accounts</h4></div></div>
       <div className='row'>
         <div className='col-md-12 text-start'>
           <div className='row mb-3 align-items-center addemailaccount'>
             <div className='col-md-12 mb-3'>
               <div className='backgroundblur'>
-                <h4 className="fw-bolder text-black text-uppercase">Email Accounts</h4>
+                <h6 className="fw-bolder text-black text-uppercase">Email Accounts</h6>
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className='col-md-4'>
@@ -51,7 +52,7 @@ const StudentsAddEmail = () => {
 
             <div className='col-md-12 mb-3'>
               <div className='backgroundblur'>
-                <h4 className="fw-bolder text-black text-uppercase">Verified Emails</h4>
+                <h6 className="fw-bolder text-black text-uppercase">Verified Emails</h6>
 
                 <div className='tableblur mt-4'>
                   <div className='table-responsive'>
@@ -101,7 +102,7 @@ const StudentsAddEmail = () => {
 
             <div className='col-md-12 mb-3'>
               <div className='backgroundblur verifyotp'>
-                <h4 className="fw-bolder text-black text-uppercase mb-0">OTP VERIFICATION</h4>
+                <h6 className="fw-bolder text-black text-uppercase mb-0">OTP VERIFICATION</h6>
 
                 <table className="table table-borderless verifytable">
                   <tbody>

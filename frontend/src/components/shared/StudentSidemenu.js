@@ -1,17 +1,21 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 
 const StudentSidemenu = () => {
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let userName = userprofile.name;
   let userOrg = userprofile.organistaions[0]?.name;
   let userFlowAddress = userprofile && userprofile.flowAddress;
+  let show = '';
   console.log(userName);
   console.log(userOrg);
   const [selectType, setSelectType] = "1"
   const onChangeValue = () => { }
+
+  
   return (
-    <nav id="sidebarMenu" className="collapse sidebar collapse pt-0 ">
+    <nav id="sidebarMenu" className='collapse sidebar pt-0 '>      
       <div className="position-sticky">
         <div className="list-group list-group-flush mx-2 mt-3 text-start sidemenupanel">
           <a className="navbar-brand" href="/">

@@ -94,7 +94,7 @@ const Login = () => {
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label>
-                    User Name <input type="text" name="email" value={email} onChange={handleInputChange} maxLength="80" minLength="6" className='form-control' />
+                    Email <input type="text" name="email" value={email} onChange={handleInputChange} maxLength="80" minLength="6" className='form-control' />
                   </label>
                 </div>
                 <div className="form-group">
@@ -103,8 +103,10 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="form-group text-center">
-                  {isLoading ? <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /> : 
-                  <button className="btn btn-primary text-uppercase" type="submit">Log in</button>}
+                  
+                  <button className="btn btn-primary text-uppercase" type="submit">Log in 
+                  {isLoading ? <span className='loaderbtn fadein'><img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /></span>: ''}
+                   </button>
                   
                 </div>
               </form>             

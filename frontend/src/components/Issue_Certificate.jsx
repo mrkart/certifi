@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import FailureModal from './shared/MintFailureModal';
 import { getUserAddress } from '../utils/utils';
 import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
-
+import { NavLink } from 'react-router-dom';
 
 const Issue_Certificate = () => {
 
@@ -290,8 +290,8 @@ const Issue_Certificate = () => {
             <div className='certtemplates mintnft'>
               <div className='row'>
                 <div className="col-6 col-md-4">
-                  <div className='ctemp' >
-                    <input type={'radio'} id="certselect-1" name='cerselect' onClick={handleSelectMinType} />
+                  <div className='ctemp' onClick={handleSelectMinType}>
+                    <input type={'radio'} id="certselect-1" name='cerselect'  />
                     <label className='backgroundblur' htmlFor="certselect-1">
                       <div className='img'>
                         <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
@@ -302,7 +302,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-6 col-md-4 btn-disabled" >
+                <div className="col-6 col-md-4 " >
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-1">
@@ -315,7 +315,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 ">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-1">
@@ -328,7 +328,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 ">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-1">
@@ -341,7 +341,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 ">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-1">
@@ -354,7 +354,7 @@ const Issue_Certificate = () => {
                   </div>
                 </div>
 
-                <div className="col-6 col-md-4 btn-disabled">
+                <div className="col-6 col-md-4 ">
                   <div className='ctemp' >
                     <input type={'radio'} id="certselect-1" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-1">
@@ -389,10 +389,10 @@ const Issue_Certificate = () => {
                   <Stepper
                   activeTitleColor={'#005fff'}
                   activeColor={'#005fff'}
-                  completeColor={'#04AF15'}
-                  completeTitleColor={'#04AF15'}
-                  completeBorderColor={'#04AF15'}
-                  completeBarColor={'#04AF15'}
+                  completeColor={'#111'}
+                  completeTitleColor={'#111'}
+                  completeBorderColor={'#111'}
+                  completeBarColor={'#111'}
                   steps={[
                     { title: 'Select students', className: 'certsteps' },
                     { title: 'Certification info', className: 'certsteps' },
@@ -409,10 +409,15 @@ const Issue_Certificate = () => {
                         <div className='fields txtfields'>Cert batch name</div>
                         <div className='fields'>
                           <select className='form-control'>
-                            <option>2023-Computer-Science-Graduation - List 1</option>
+                            <option>2023-Computer-Science-Graduation - List 1 (300 Students)</option>
                           </select>
                         </div>
-                        <div className='fields'></div>
+                        <div className='fields text-end'>
+                        <div className='btngrouprht'>
+                            <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
+                            <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>                           
+                          </div>
+                        </div>
                       </div>
                       {userlist.length == 0 ? (
                         <TableLoader />
@@ -465,7 +470,7 @@ const Issue_Certificate = () => {
                                     </td>
                                     <td> {user.slot[0].name} </td>
                                     <td>
-                                      <span className="text-success">Approved</span>
+                                      <span className="text-primary">Approved</span>
                                     </td>
                                     {/* <td className='text-center'>
                                       <div className='btngrouprht'>                                      
@@ -527,7 +532,7 @@ const Issue_Certificate = () => {
                                 </td>
                                 <td> 2022 </td>
                                 <td>
-                                  <span className="text-success">Approved</span>
+                                  <span className="text-primary">Approved</span>
                                 </td>
                                 <td className='text-center'>
                                   <div className='btngrouprht'>
@@ -552,7 +557,7 @@ const Issue_Certificate = () => {
                                 </td>
                                 <td> 2021 </td>
                                 <td>
-                                  <span className="text-success">Approved</span>
+                                  <span className="text-primary">Approved</span>
                                 </td>
                                 <td className='text-center'>
                                   <div className='btngrouprht'>
@@ -576,7 +581,7 @@ const Issue_Certificate = () => {
                                 </td>
                                 <td> 2020 </td>
                                 <td>
-                                  <span className="text-success">Approved</span>
+                                  <span className="text-primary">Approved</span>
                                 </td>
                                 <td className='text-center'>
                                   <div className='btngrouprht'>
@@ -600,7 +605,7 @@ const Issue_Certificate = () => {
                                 </td>
                                 <td> 2019 </td>
                                 <td>
-                                  <span className="text-success">Approved</span>
+                                  <span className="text-primary">Approved</span>
                                 </td>
                                 <td className='text-center'>
                                   <div className='btngrouprht'>
@@ -749,13 +754,13 @@ const Issue_Certificate = () => {
                       <div className='certtemplates'>
                         <div className='row'>
                           <div className="col-sm-6 col-md-4 6 col-lg-3">
-                            <div className='ctemp' >
+                            <div className='ctemp' onClick={() => setStepper(stepper + 1)}>
                               <input type={'radio'} id="certselect-1" name='cerselect' checked={isCertificateSelect} onChange={handleSelectCertificatetheme} />
                               <label className='backgroundblur' htmlFor="certselect-1">
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Golden Border</div>
                               </label>
                             </div>
                           </div>
@@ -767,7 +772,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert2.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Filled Header</div>
                               </label>
                             </div>
                           </div>
@@ -779,7 +784,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert3.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Corner Frame</div>
                               </label>
                             </div>
                           </div>
@@ -791,7 +796,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert4.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Bottom Corner Badge</div>
                               </label>
                             </div>
                           </div>
@@ -803,7 +808,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert5.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Badge with Ribben</div>
                               </label>
                             </div>
                           </div>
@@ -815,7 +820,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert6.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Classic</div>
                               </label>
                             </div>
                           </div>
@@ -827,7 +832,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert7.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Filled header and Badge with Ribben</div>
                               </label>
                             </div>
                           </div>
@@ -839,7 +844,7 @@ const Issue_Certificate = () => {
                                 <div className='img'>
                                   <img src={require('../assets/images/cert/cert8.png')} loading="lazy" />
                                 </div>
-                                <div className='cername'>Course certificate</div>
+                                <div className='cername'>Outer Frame</div>
                               </label>
                             </div>
                           </div>
@@ -872,11 +877,14 @@ const Issue_Certificate = () => {
                             <div className='form-group'>
                               <label className='mb-2'>Title</label>
                               <input type={'text'} className="form-control" placeholder='Title' value={title} onChange={onChangeValue} />
-                            </div>
-                            <div className='txtsfont'>
+                            </div></div>
+
+                          <div className='col-md-4'>
+                          <div className='txtsfont'>
                               <div className='row'>
                                 <div className='col-md-8'>
                                   <div className='form-group'>
+                                    <label className='mb-2'>Select font</label>
                                     <div className="input-group has-validation">
                                       <span className="input-group-text">T</span>
                                       <select className="form-control" value={fontOption} onChange={onChangeValue}>
@@ -889,8 +897,11 @@ const Issue_Certificate = () => {
                                     </div>
                                   </div>
                                 </div>
+                                
+
                                 <div className='col-md-4'>
                                   <div className='form-group'>
+                                  <label className='mb-2'>Font size</label>
                                     <div className="input-group has-validation">
                                       <select className="form-control" value={fontSize} onChange={onChangeValue}>
                                         <option>Font Size</option>
@@ -905,11 +916,14 @@ const Issue_Certificate = () => {
                                 </div>
                               </div>
                             </div>
+                                </div>
 
-                            <div className='txtsstyle'>
+                                <div className='col-md-4'>
+                                <div className='txtsstyle'>
                               <div className='row'>
-                                <div className='col-md-6'>
+                                <div className='col-md-7'>
                                   <div className='form-group'>
+                                  <label className='mb-2'>Font style</label>
                                     <div className="btn-toolbar mb-3 form-control" role="toolbar" aria-label="Toolbar with button groups">
                                       <div className="btn-group me-2" role="group" aria-label="First group">
                                         <button type="button" className="btn btn-outline-secondary bold">B</button>
@@ -922,18 +936,18 @@ const Issue_Certificate = () => {
 
                                   </div>
                                 </div>
-                                <div className='col-md-2'>
-                                  <span className='pickclr' style={{ backgroundColor: '#005FFF' }}></span>
-                                </div>
-                                <div className='col-md-4'>
-                                  <div className='form-group'>
-                                    <input type={'text'} className="form-control" placeholder='#005FFF' value={color} onChange={onChangeValue} />
+                                <div className='col-md-5'>                                  
+                                <div className='form-group'>
+                                <label className='mb-2'>Font color</label>                                 
+                                <div className="input-group has-validation">                                      
+                                      <span className='pickclr input-group-text' style={{ backgroundColor: '#005FFF' }}></span>
+                                      <input type={'text'} className="form-control" placeholder='#005FFF' value={color} onChange={onChangeValue} />         
+                                    </div>              
                                   </div>
-
                                 </div>
                               </div>
                             </div>
-                          </div>
+                                </div>
                           <div className='col-md-4'>
                             <div className='form-group'>
                               <label className='mb-2'>Upload background image</label>
@@ -942,6 +956,7 @@ const Issue_Certificate = () => {
                             </div>
                             <div className='form-group'>
                               <div className='imgpreviewbox'>
+                                <span className='imagename'>White-bg.png</span>
                                 {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
                               <p>Background picture</p> */}
                                 <img src={require('../assets/images/cert/cert1-split/bg.png')} className="mw-100 mh-100" loading="lazy" />
@@ -956,6 +971,7 @@ const Issue_Certificate = () => {
                             </div>
                             <div className='form-group'>
                               <div className='imgpreviewbox'>
+                              <span className='imagename'>golden-frame.png</span>
                                 <img src={require('../assets/images/cert/cert1-split/frame.png')} className="mw-100 mh-100" loading="lazy" />
 
                                 {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
@@ -965,8 +981,14 @@ const Issue_Certificate = () => {
                           </div>
 
                           <div className='col-md-4'>
+                          <div className='form-group'>
+                                  <label className='mb-2'>Upload header image</label>
+                                  <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload image <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                                  <input id="file-upload" type="file" />
+                                </div>
                             <div className='form-group'>
-                              <div className='imgpreviewbox draganddrop'>
+                              <div className='imgpreviewbox'>
+                              <span className='imagename'>header-image.png</span>
                                 <img src={require('../assets/images/cert/cert1-split/cert-cont.png')} className="mw-100 mh-100" loading="lazy" />
                                 {/* <i data-eva-animation="flip" data-eva="image-outline"></i>
                                 <p>Drag drop interface to drag uploaded design pictures above</p> */}
@@ -977,17 +999,17 @@ const Issue_Certificate = () => {
                             <div className='row'>
                               <div className='col-md-12'>
                                 <div className='form-group'>
-                                  <h4 className='formsubhead'>Manage signature</h4>
+                                  <h4 className='formsubhead mt-3 mb-4'>Manage signatures</h4>
                                 </div>
                               </div>
 
                               <div className='col-md-6'>
                                 <div className='form-group'>
-                                  <label className='mb-2'>Chief executive officer name</label>
+                                  <label className='mb-2'>Name of <span className='text-uppercase fw-bold'>Chief executive officer</span> </label>
                                   <input type={'text'} className="form-control" placeholder='Name' value="Ruby D. Huffman" />
                                   </div>
                                 <div className='form-group'>
-                                  <label className='mb-2'>Upload chief executive officer signature</label>
+                                  <label className='mb-2'>Upload <span className='text-uppercase'>Chief executive officer</span> signature</label>
                                   <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                                   <input id="file-upload" type="file" />
                                 </div>
@@ -1004,11 +1026,11 @@ const Issue_Certificate = () => {
 
                               <div className='col-md-6'>
                               <div className='form-group'>
-                                  <label className='mb-2'>Department head name</label>
+                                  <label className='mb-2'>Name of <span className='fw-bold text-uppercase'>Department head</span> </label>
                                   <input type={'text'} className="form-control" placeholder='Name' value="David P. Liriano" />
                                   </div>
                                 <div className='form-group'>
-                                  <label className='mb-2'>Upload department head signature</label>
+                                  <label className='mb-2'>Upload <span className='text-uppercase'>Department head</span> signature</label>
                                   <label htmlFor="file-upload1" className="custom-file-upload form-control">Upload signature <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                                   <input id="file-upload" type="file" />
                                 </div>
@@ -1154,7 +1176,7 @@ const Issue_Certificate = () => {
                           </h2>
                           <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
                             <div className="accordion-body text-center">
-                              <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} className="iframe" ></iframe>
+                              <iframe src={certificatePreview ? `${certificatePreview}#toolbar=0&navpanes=0&scrollbar=0` : ''} className="iframe"></iframe>
                               {/* <img src={require('../assets/images/cert/cert1sig.png')} loading="lazy" /> */}
                             </div>
                           </div>
@@ -1246,7 +1268,7 @@ const Issue_Certificate = () => {
                             <div className='signerboxes'>
                               <h6>Preparer Sign</h6>
                               <button type="button" className="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
-                              <p>On Feb-17-2023 11:01 EST</p>
+                              <p>On Feb-25-2023 11:01 EST</p>
                               <p>By <b>Prof Charles Harper</b></p>
                             </div>
                           </div>
@@ -1257,7 +1279,7 @@ const Issue_Certificate = () => {
                             <div className='signerboxes'>
                               <h6>Verifier Sign</h6>
                               <button type="button" className="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
-                              <p>On Feb-18-2023 08:01 EST</p>
+                              <p>On Feb-25-2023 08:01 EST</p>
                               <p>By <b>David R. Martin</b></p>
                             </div>
                           </div>
@@ -1359,7 +1381,7 @@ const Issue_Certificate = () => {
                             </td>
                             <td> 2022 </td>
                             <td>
-                              <span className="text-success">Approved</span>
+                              <span className="text-primary">Approved</span>
                             </td>
                             <td className='text-center'>
                               <div className='btngrouprht'>
@@ -1384,7 +1406,7 @@ const Issue_Certificate = () => {
                             </td>
                             <td> 2021 </td>
                             <td>
-                              <span className="text-success">Approved</span>
+                              <span className="text-primary">Approved</span>
                             </td>
                             <td className='text-center'>
                               <div className='btngrouprht'>
@@ -1408,7 +1430,7 @@ const Issue_Certificate = () => {
                             </td>
                             <td> 2020 </td>
                             <td>
-                              <span className="text-success">Approved</span>
+                              <span className="text-primary">Approved</span>
                             </td>
                             <td className='text-center'>
                               <div className='btngrouprht'>
@@ -1432,7 +1454,7 @@ const Issue_Certificate = () => {
                             </td>
                             <td> 2019 </td>
                             <td>
-                              <span className="text-success">Approved</span>
+                              <span className="text-primary">Approved</span>
                             </td>
                             <td className='text-center'>
                               <div className='btngrouprht'>

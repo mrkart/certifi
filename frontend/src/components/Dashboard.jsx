@@ -120,7 +120,10 @@ const Dashboard = () => {
                         <li><span className='flpic last-count'>+25</span></li>
                       </ul> */}
                           </div>
-                          <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                          <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>View all</span>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -157,7 +160,10 @@ const Dashboard = () => {
                               <li><span className='flpic last-count'>+100</span></li>
                             </ul>
                           </div>                          
-                          <div className='foldshare eva-hover icon-rht' >Manage <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                          <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>Manage</span>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -195,7 +201,11 @@ const Dashboard = () => {
                               {/* <li><span className='flpic last-count'>+25</span></li> */}
                             </ul>
                           </div>
-                          <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div>
+                          {/* <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
+                          <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>View all</span>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -207,13 +217,13 @@ const Dashboard = () => {
           <div className=''>
             <div className='tableblur mt-4'>
               <div className='row align-items-center mb-3'>
-                <div className='col-7'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
-                <div className='col-5 text-right'>
+                <div className='col-12'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
+                {/* <div className='col-5 text-right'>
                   <span className='icontext pull-right viewall'>
                     <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
                     <span className='text'>View all</span>
                   </span>
-                </div>
+                </div> */}
               </div>
 
               <div className='table-responsive'>
@@ -244,7 +254,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2022 </td>
                       <td>
-                        <span className="text-success">Approved</span>
+                        <span className="text-primary">Approved</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -277,7 +287,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2021 </td>
                       <td>
-                        <span className="text-success">Approved</span>
+                        <span className="text-primary">Approved</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -310,7 +320,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2020 </td>
                       <td>
-                        <span className="text-success">Approved</span>
+                        <span className="text-primary">Approved</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -343,7 +353,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2019 </td>
                       <td>
-                        <span className="text-success">Approved</span>
+                        <span className="text-primary">Approved</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>

@@ -180,6 +180,10 @@ const StudentDashboard = () => {
                     </div> :
                         <div>
                             <div className='certtemplates mintnft studentcert'>
+                            <div className="row mb-3 align-items-center"><div className="col-md-6"><h4 className="fw-bolder text-black text-uppercase mb-0">Certificates</h4></div>
+                            <div className="col-md-6 text-end"><div className='btngrouprht'>
+                                        <button className='btn btn-light btn-icon ' type="button" onClick={dismissView} >< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back </button>
+                                    </div></div></div>
                                 <div className='row'>
                                     {certificateList.map((user, index) => (
                                         <div key={index} className="col-md-6">
@@ -246,15 +250,7 @@ const StudentDashboard = () => {
                                         </div>
                                     </div> */}
                                 </div>
-                            </div>
-                            <div className='row align-items-center mt-3'>
-
-                                <div className='col-12 text-center'>
-                                    <div className='btngrouprht'>
-                                        <button className='btn btn-light btn-icon ' type="button" onClick={dismissView} >< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back </button>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                            
                         </div>}
 
 

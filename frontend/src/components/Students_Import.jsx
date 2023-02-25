@@ -9,7 +9,7 @@ const StudentsImport = () => {
         <div className='col-md-12 text-start'>                  
           <div className=''>
           <div className='row mb-3 align-items-center'>
-                <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Import</h4></div>
+                <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0"><span className='text-dark'>Students</span> {'>'} Import</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btngrouprht'>
                     <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
@@ -24,7 +24,8 @@ const StudentsImport = () => {
                 <div className='fields'>Create import slot</div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>
                 <div className='fields'>
-                  <label htmlFor="file-upload" className="custom-file-upload form-control">Upload file <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                  {/* <label htmlFor="file-upload" className="custom-file-upload form-control">Upload file <i data-eva-animation="flip" data-eva="upload-outline"></i></label> */}
+                  <label className="custom-file-upload form-control">Upload file <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                   <input id="file-upload" type="file"/>
                 </div>                        
                 <div className='fields'><button type='button' className='btn btn-primary'>Submit</button></div>
@@ -96,8 +97,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>                           
                   </tr>
@@ -118,8 +119,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>                           
                   </tr>
@@ -140,8 +141,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>                           
                   </tr>
@@ -162,8 +163,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>                           
                   </tr>
@@ -184,8 +185,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
+                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
                     </div>
                     </td>                           
                   </tr>

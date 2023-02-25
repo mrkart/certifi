@@ -13,6 +13,7 @@ const Login = () => {
   const logInResponseFailed = useSelector(state => state.demoReducer.logInResponseFailed);
 
   const [isLoading,setIsLoading] = useState(false)
+  const [erroMessage,setErroMessage] = useState("");
 
   useEffect(() => {
     if(logInInfo && logInInfo.statusCode == 200 && logInInfo.data.accessToken){
@@ -47,11 +48,17 @@ const Login = () => {
   };
 
   const handleSubmit = (event) => {
+    setErroMessage("");
     event.preventDefault();
     setIsLoading(true)
     const formData = { email, password };
     localStorage.setItem('user_email',formData.email);
     // console.log(formData);
+    if(!formData.email || !formData.password){
+      setErroMessage("Please fill out all below fields");
+      setIsLoading(false)
+      return;
+    }
     let data = {
       "email": formData.email,
       "password": formData.password
@@ -61,17 +68,15 @@ const Login = () => {
   useEffect(() => {
     if(userProfilefailed && typeof userProfilefailed === 'string' && userProfilefailed.length > 0){
       setIsLoading(false)
-     
+      setErroMessage(userProfilefailed);
       dispatch(resetUserProfileFailed())
-
     }  
   },[userProfilefailed]);
   useEffect(() => {
     if(logInResponseFailed && typeof logInResponseFailed === 'string' && logInResponseFailed.length > 0){
       setIsLoading(false)
-     
+      setErroMessage(logInResponseFailed);
       dispatch(resetLoginInfoFailed())
-
     }  
   },[logInResponseFailed]);
   
@@ -79,9 +84,11 @@ const Login = () => {
     <div className='logincon'>
       <div className='loginimg'><img src={require('../assets/images/certificate-bg.png')}  alt="certifily Logo" loading="lazy" /></div>
       <div className='loginform'>
-      {/* <div className="alert alert-danger alert-top slideDown" role="alert" data-mdb-color="danger">
-          A simple danger alert—check it out!
-        </div> */}
+        {erroMessage && 
+          <div className="alert alert-danger alert-top slideDown" role="alert" data-mdb-color="danger">
+            {erroMessage}
+          </div>
+        }
         <div className="main-content">
           <div className="main-logo main-logo--cert">
             <a href="">

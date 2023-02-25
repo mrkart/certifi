@@ -101,7 +101,7 @@ const StudentsEdit = () => {
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Email</label>
-                      <input name="email" onChange={handleInputChange} value={email} type={'text'} className="form-control" placeholder='Email' />
+                      <input name="email" onChange={handleInputChange} value={email} type={'text'} className="form-control" placeholder='Email' disabled/>
                     </div>
                   </div>
                   <div className='col-md-4'>
@@ -120,7 +120,7 @@ const StudentsEdit = () => {
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Batch</label>
-                      <input name="batch" onChange={handleInputChange} value={batch} type={'text'} className="form-control" placeholder='Batch' />
+                      <input name="batch" onChange={handleInputChange} value={batch} type={'text'} className="form-control" placeholder='Batch' disabled/>
                     </div>
                   </div>
 

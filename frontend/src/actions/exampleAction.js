@@ -24,7 +24,7 @@ export const postSignIn = (data) => {
         dispatch({ type: 'POST_LOGIN_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'POST_LOGIN_FAILURE', payload: error && error.message });
+        dispatch({ type: 'POST_LOGIN_FAILURE', payload: error && error.message && error.response.data.message });
       });
   };
 };
@@ -37,7 +37,7 @@ export const getUserProfile = () => {
         dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error && error.message});
+        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error && error.message && error.response.data.message });
       });
   };
 };
@@ -50,7 +50,7 @@ export const postCreateStudent = (data,orgID) => {
         dispatch({ type: 'POST_CREATESTUDENT_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'POST_CREATESTUDENT_FAILURE', payload: error });
+        dispatch({ type: 'POST_CREATESTUDENT_FAILURE', payload: error && error.message && error.response.data.message });
       });
   };
 };
@@ -118,6 +118,7 @@ export const getUserCertList = (orgID,userID) => {
       });
   };
 };
+
 export const resetLoginInfo = () => {
    return dispatch => {
       dispatch({type : 'POST_LOGIN_SUCCESS',payload : []})
@@ -142,6 +143,17 @@ export const resetLoginInfoFailed = () => {
   return dispatch => {
      dispatch({type : 'POST_LOGIN_FAILURE',payload : ''})
 }}
+export const resetAddStudent = () => {
+  return dispatch => {
+     dispatch({type : 'POST_CREATESTUDENT_SUCCESS',payload : []})
+  }
+}
+export const resetAddStudentFailed = () => {
+  return dispatch => {
+     dispatch({type : 'POST_CREATESTUDENT_FAILURE',payload : ''})
+  }
+}
+
 export const showInfoModal = () => {
   return dispatch => {
      dispatch({type : 'SHOW_MODAL',payload : true})

@@ -149,6 +149,23 @@
  *             type: integer
  *           certificateNumber:
  *             type: string
+ *     CertificateDataResponse:
+ *       allOf:
+ *         - $ref: '#/components/schemas/CertificateResponse'
+ *         - type: object
+ *           properties:
+ *             issuer:
+ *               type: object
+ *               $ref: '#/components/schemas/Course'
+ *             verifier:
+ *               type: object
+ *               $ref: '#/components/schemas/Course'
+ *             preparer:
+ *               type: object
+ *               $ref: '#/components/schemas/Course'
+ *             user:
+ *               type: object
+ *               $ref: '#/components/schemas/Course'
  *   responses:
  *     NotFound:
  *       description: The specified resource does not exsist

@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getUserList } from '../actions/exampleAction';
+import { getUserList, resetUserlist } from '../actions/exampleAction';
 import { useDispatch, useSelector } from 'react-redux';
 import TableLoader from './shared/TableLoader';
 import * as eva from 'eva-icons';
@@ -26,6 +26,7 @@ const Students = () => {
       let data = fulluserlist.data.orgUsers;
       console.log(data);
       setTimeout(() => {
+        dispatch(resetUserlist());
         setUserlist(data);
       }, 1000);
     }

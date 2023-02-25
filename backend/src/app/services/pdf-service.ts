@@ -1,6 +1,7 @@
 import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs/promises';
 import { PdfData } from '../helpers';
+import QRCode from 'qrcode';
 
 export class PdfService {
     public async createCertificate(
@@ -91,6 +92,26 @@ export class PdfService {
                 font: detailFont,
                 color: rgb(51 / 255, 51 / 255, 51 / 255)
             });
+        });
+
+
+        // Generate the QR code image
+        const qrCodeData = 'https://alpha.certifi.ly/';
+        const qrCodeImage = await QRCode.toDataURL(qrCodeData, { errorCorrectionLevel: 'H' });
+        const qrCodeImageBuffer = Buffer.from(qrCodeImage.split(',')[1], 'base64');
+
+        // Load the QR code image into a PDF image object
+        const qrCodeImageDims = { width: 100, height: 100 };
+        const qrCodeImageObject = await pdfDoc.embedPng(qrCodeImageBuffer);
+
+        // Add the QR code image to the first page of the PDF document
+        const qrCodeImagePage = pages[0];
+        qrCodeImagePage.drawImage(qrCodeImageObject, {
+        //x: 100,
+        x: page.getWidth() - qrCodeImageDims.width - 100,
+        y: page.getHeight() - qrCodeImageDims.height - 170,
+        width: qrCodeImageDims.width,
+        height: qrCodeImageDims.height,
         });
 
         // Save the updated PDF document to a file

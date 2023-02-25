@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
 import { useDispatch, useSelector } from 'react-redux';
-import { postCreateStudent } from '../actions/exampleAction';
+import { postCreateStudent, resetAddStudent, resetAddStudentFailed } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
 
 const StudentsAdd = () => {
@@ -10,12 +10,22 @@ const StudentsAdd = () => {
   const navigate = useNavigate();
 
   const addStudentRes = useSelector(state => state.demoReducer.addStudent);
+  const addNewStudentFailed = useSelector(state => state.demoReducer.addNewStudentFailed);
 
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
+      dispatch(resetAddStudent());
       navigate("/students");
     }
   },[addStudentRes]);
+
+  useEffect(() => {
+    if(addNewStudentFailed && typeof addNewStudentFailed === 'string' && addNewStudentFailed.length > 0){
+      dispatch(resetAddStudentFailed());
+      setIsLoading(false);
+      setErroMessage(addNewStudentFailed);
+    }
+  },[addNewStudentFailed]);
 
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile.organistaions[0]?.id;
@@ -24,11 +34,19 @@ const StudentsAdd = () => {
   const [name, setName] = useState('');
   const [slot, setSlot] = useState('');
   const [number, setNumber] = useState('');
+  const [erroMessage,setErroMessage] = useState("");
+  const [isLoading,setIsLoading] = useState(false)
 
   const handleSubmit = (event) => {
+    setErroMessage("");
     event.preventDefault();
     const formData = { email, name, slot, number };
     console.log(formData);
+    if(!formData.email || !formData.name || !formData.number || !formData.slot){
+      setErroMessage("Please fill out all below fields");
+      return;
+    }
+    setIsLoading(true);
     let data = {
       "email": formData.email,
       "name": formData.name,
@@ -57,7 +75,7 @@ const StudentsAdd = () => {
         <div className='col-md-12 text-start'>
           <div className=''>
             <div className='row mb-3 align-items-center'>
-              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Add Students</h4></div>
+              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><span className='text-dark'>Students</span> {'>'} Add Students</h4></div>
               {/* <div className='col-md-6 text-end'>
                 <div className='btngrouprht'>
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
@@ -69,6 +87,11 @@ const StudentsAdd = () => {
               <div className='searchform border-none d-block'>
                 <form onSubmit={handleSubmit}>
                   <div className='formscroldiv'>
+                    {erroMessage &&
+                      <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
+                        {erroMessage}
+                      </div>
+                    }
                     <h6 className='mb-3 fw-bold'>Student Details</h6>
                     <div className='row'>
                       <div className='col-md-4'>
@@ -134,7 +157,9 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
+                      {isLoading ? <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /> : 
                         <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create Student</button>
+                      }
                       </div>
                     </div>
                   </div>

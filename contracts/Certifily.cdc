@@ -1,14 +1,13 @@
-// Certifily NFT Smart Contract
+/ Certifily NFT Smart Contract
 // NFT             : www.Certifi.ly
 // Version         : 0.0.1
 // Blockchain      : Flow www.onFlow.org
 
 import NonFungibleToken from 0x631e88ae7f1d7c20
 import MetadataViews from 0x631e88ae7f1d7c20
-import FungibleToken from 0x9a0766d93b6608b7
 
 pub contract Certifily: NonFungibleToken {
-   certT
+   
     // Total number of token supply
     pub var totalSupply: UInt64
 
@@ -100,7 +99,7 @@ pub contract Certifily: NonFungibleToken {
                 case Type<MetadataViews.NFTCollectionDisplay>():
                     let media = MetadataViews.Media(
                         file: MetadataViews.HTTPFile(
-                            url: "https://alpha.certifi.ly/Certifily-icon.png"
+                            url: "https://alpha.certifi.ly/logo512.png"
                         ),
                         mediaType: "image/png"
                     )

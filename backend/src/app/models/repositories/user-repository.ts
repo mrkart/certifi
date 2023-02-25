@@ -168,7 +168,7 @@ export const UserRepository = getDataSource()
                 this.create({
                     name: request.name,
                     password: await hash(password, 16),
-                    phone: request.phone
+                    phone: request.phone || null
                 })
             );
             const userEmail = await this.createUserEmail(

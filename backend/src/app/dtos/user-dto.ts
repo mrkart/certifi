@@ -31,9 +31,9 @@ export class CreateUserDTO {
 
     @Trim()
     @StringLength(1, 30)
-    @IsPhoneNumber()
     @IsNotEmpty()
-    phone: string;
+    @IsOptional()
+    phone?: string;
 
     @Trim()
     @StringLength(1, 255)
@@ -52,7 +52,6 @@ export class UpdateUserDTO {
 
     @Trim()
     @StringLength(1, 30)
-    @IsPhoneNumber()
     @IsNotEmpty()
     @IsOptional()
     phone?: string;

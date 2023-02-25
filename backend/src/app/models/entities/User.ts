@@ -39,9 +39,10 @@ export class User {
     @Column('varchar', {
         name: 'phone',
         comment: 'Mobile no of the user',
-        length: 30
+        length: 30,
+        nullable: true
     })
-    phone: string;
+    phone: string | null;
 
     @Column('varchar', {
         name: 'password',

@@ -31,12 +31,11 @@ const StudentSidemenu = () => {
               <p className='mb-0 profilename badge badge-light'>{userFlowAddress}</p>
             </div>
           </div>
-          <div class="accordion accordion-borderless" id="accordionFlushExampleX">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingOneX1">
+          <div className="accordion accordion-borderless" id="accordionFlushExampleX">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="flush-headingOneX1">
                 <div  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOneX1" aria-expanded="true" aria-controls="flush-collapseOneX1">
-                <NavLink to="/student-dashboard" className="list-group-item list-group-item-action text-uppercase" activeClassName="active"                
-                >
+                <NavLink to="/student-dashboard" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                   <div className='sidebaricons'>
                   <img
                     src={require('../../assets/images/icons/airplay.png')}
@@ -47,14 +46,14 @@ const StudentSidemenu = () => {
                 </NavLink>
                 </div>
               </h2>
-              <div id="flush-collapseOneX1" class="accordion-collapse collapse show" aria-labelledby="flush-collapseOneX1" data-mdb-parent="#accordionFlushExampleX"></div>
+              <div id="flush-collapseOneX1" className="accordion-collapse collapse show" aria-labelledby="flush-collapseOneX1" data-mdb-parent="#accordionFlushExampleX"></div>
             </div>
 
 
 
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingOneX">
-                <button class="list-group-item list-group-item-action text-uppercase accordion-button" type="button" data-mdb-toggle="collapse"
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="flush-headingOneX">
+                <button className="list-group-item list-group-item-action text-uppercase accordion-button" type="button" data-mdb-toggle="collapse"
                   data-mdb-target="#flush-collapseOneX" aria-expanded="fasle" aria-controls="flush-collapseOneX">                  
                   <div className='sidebaricons'>
                   <img
@@ -65,16 +64,16 @@ const StudentSidemenu = () => {
                   <span>Account</span>
                 </button>
               </h2>
-              <div id="flush-collapseOneX" class="accordion-collapse collapse" aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
-                <div class="accordion-body p-0 ps-3">
-                  {/* <NavLink to="/claim-flow-account" className="list-group-item list-group-item-action text-uppercase" activeClassName="active">
+              <div id="flush-collapseOneX" className="accordion-collapse collapse" aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
+                <div className="accordion-body p-0 ps-3">
+                  {/* <NavLink to="/claim-flow-account" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <img
                       src={require('../../assets/images/icons/claim.png')}
                       className='sidebaricons me-3'
                     />
                     <span>Claim Flow Account</span>
                   </NavLink> */}
-                  <NavLink to="/add-email" className="list-group-item list-group-item-action text-uppercase" activeClassName="active">
+                  <NavLink to="/add-email" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                   <div className='sidebaricons'>
                   <img
                     src={require('../../assets/images/icons/claim.png')}
@@ -85,29 +84,12 @@ const StudentSidemenu = () => {
                   </NavLink>
                 </div>
               </div>
-
-              <div class="accordion-item mobvis">
-              <h2 class="accordion-header" id="flush-headingOneX1">
-                <div  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOneX1" aria-expanded="true" aria-controls="flush-collapseOneX1">
-                <NavLink to="/login" className="list-group-item list-group-item-action text-uppercase" activeClassName="active"                
-                >
-                  <div className='sidebaricons'>
-                  <img
-                    src={require('../../assets/images/icons/log-out-outline.png')}
-                    className=''
-                  />
-                  </div>
-                  <span>Logout</span>
-                </NavLink>
-                </div>
-              </h2>
-              <div id="flush-collapseOneX1" class="accordion-collapse collapse show" aria-labelledby="flush-collapseOneX1" data-mdb-parent="#accordionFlushExampleX"></div>
-            </div>
+              
             </div>
 
 
           </div>
-          <NavLink to="/login" className="list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" activeClassName="active">
+          <NavLink to="/login" className={({isActive}) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis')}>
             
           <div className='sidebaricons'>
               <img
@@ -123,7 +105,7 @@ const StudentSidemenu = () => {
       </div>
       <div className="sidebarbottom light-blur text-center">
         <p className='mt-0 mb-1'> Blockchain network status</p>
-        <select class="form-control mb-1" value={selectType} onChange={onChangeValue}>
+        <select className="form-control mb-1" value={selectType} onChange={onChangeValue}>
           <option value="1">Testnet</option>
           <option value="2">Mainnet</option>
         </select>

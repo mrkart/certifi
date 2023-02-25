@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { putUserDetails, getUserByID } from '../actions/exampleAction';
+import { putUserDetails, getUserByID, resetUserbyid, resetEdituser } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
 
 const StudentsEdit = () => {
@@ -25,6 +25,8 @@ const StudentsEdit = () => {
 
   useEffect(() => {
     if(edituser.statusCode == 200){
+      dispatch(resetUserbyid());
+      dispatch(resetEdituser());
       navigate("/students");
     }
   },[edituser]);
@@ -75,7 +77,7 @@ const StudentsEdit = () => {
         <div className='col-md-12 text-start'>
           <div className=''>
             <div className='row mb-3 align-items-center'>
-              <div className='col-md-12'><h4 class="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Edit Students</h4></div>
+              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Edit Students</h4></div>
               {/* <div className='col-md-6 text-end'>
                 <div className='btngrouprht'>
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
@@ -135,7 +137,7 @@ const StudentsEdit = () => {
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Batch</label>
-                      <select class="form-control">
+                      <select className="form-control">
                             <option>Select Batch</option>
                             <option value="1" selected>2020</option>
                             <option value="2">2021</option>
@@ -147,7 +149,7 @@ const StudentsEdit = () => {
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Department</label>
-                      <select class="form-control">
+                      <select className="form-control">
                             <option>Select Department</option>
                             <option value="1">B.Sc</option>
                             <option value="2">B.Com</option>

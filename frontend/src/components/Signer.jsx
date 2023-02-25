@@ -29,7 +29,7 @@ const Signer = () => {
                      <div className='backgroundblur text-center'>
                       <div className='signerboxes'>
                         <h6>Preparer Sign</h6>
-                        <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
+                        <button type="button" className="btn btn-primary btn-icon icon-rht btn-abs btn-disabled" >Signed <i data-eva="checkmark-outline"></i></button>
                         <p>On JUL-17-2022 11:01 EST</p>
                         <p>By  Prof Charles Harper</p>
                       </div>
@@ -40,7 +40,7 @@ const Signer = () => {
                      <div className='backgroundblur text-center'>
                       <div className='signerboxes'>
                         <h6>Verifier Sign</h6>
-                        <button type="button" class="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
+                        <button type="button" className="btn btn-primary btn-icon icon-rht btn-abs btn-disabled">Signed <i data-eva="checkmark-outline"></i></button>
                         <p>On JUL-17-2022 11:01 EST</p>
                         <p>By  Prof Charles Harper</p>
                       </div>
@@ -51,8 +51,8 @@ const Signer = () => {
                      <div className='backgroundblur text-center'>
                       <div className='signerboxes'>
                         <h6>Issuer Sign</h6>
-                        <button type="button" class="btn btn-light text-primary">Sign</button>                       
-                        <button type="button" class="btn btn-danger">Reject</button>
+                        <button type="button" className="btn btn-light text-primary">Sign</button>                       
+                        <button type="button" className="btn btn-danger">Reject</button>
                       </div>
                      </div>
                     </div>

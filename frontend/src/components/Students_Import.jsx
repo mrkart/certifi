@@ -9,7 +9,7 @@ const StudentsImport = () => {
         <div className='col-md-12 text-start'>                  
           <div className=''>
           <div className='row mb-3 align-items-center'>
-                <div className='col-md-6'><h4 class="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Import</h4></div>
+                <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Import</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btngrouprht'>
                     <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
@@ -24,7 +24,7 @@ const StudentsImport = () => {
                 <div className='fields'>Create import slot</div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>
                 <div className='fields'>
-                  <label for="file-upload" class="custom-file-upload form-control">Upload file <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
+                  <label htmlFor="file-upload" className="custom-file-upload form-control">Upload file <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
                   <input id="file-upload" type="file"/>
                 </div>                        
                 <div className='fields'><button type='button' className='btn btn-primary'>Submit</button></div>
@@ -69,7 +69,7 @@ const StudentsImport = () => {
                 <thead className="">
                   <tr>
                     <th>
-                    <div class="form-group"><input type="checkbox" class="form-check-input" id="exampleCheck1" /><label class="form-check-label" for="exampleCheck1"></label></div>
+                    <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                     </th>
                     <th>Slot name</th>
                     <th>Updated date</th>
@@ -80,7 +80,7 @@ const StudentsImport = () => {
                 </thead>
                 <tbody>
                   <tr>
-                  <td><div class="form-group"><input type="checkbox" class="form-check-input" id="exampleCheck2" /><label class="form-check-label" for="exampleCheck2"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         1
@@ -102,7 +102,7 @@ const StudentsImport = () => {
                     </td>                           
                   </tr>
                   <tr>
-                  <td><div class="form-group"><input type="checkbox" class="form-check-input" id="exampleCheck2" /><label class="form-check-label" for="exampleCheck2"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         2
@@ -124,7 +124,7 @@ const StudentsImport = () => {
                     </td>                           
                   </tr>
                   <tr>
-                  <td><div class="form-group"><input type="checkbox" class="form-check-input" id="exampleCheck2" /><label class="form-check-label" for="exampleCheck2"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         3
@@ -146,7 +146,7 @@ const StudentsImport = () => {
                     </td>                           
                   </tr>
                   <tr>
-                  <td><div class="form-group"><input type="checkbox" class="form-check-input" id="exampleCheck2" /><label class="form-check-label" for="exampleCheck2"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         4
@@ -168,7 +168,7 @@ const StudentsImport = () => {
                     </td>                           
                   </tr>
                   <tr>
-                  <td><div class="form-group"><input type="checkbox" class="form-check-input" id="exampleCheck2" /><label class="form-check-label" for="exampleCheck2"></label></div></td>
+                  <td><div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div></td>
                     <td>
                       <div className="d-flex align-items-center">
                         5

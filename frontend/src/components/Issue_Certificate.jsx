@@ -112,6 +112,14 @@ const Issue_Certificate = () => {
       setCallBack(true)
     }
   };
+  const SelectStudent = (event) => {
+    // let classname = event.currentTarget.getAttribute('class');
+    let dataUser = JSON.parse(event.currentTarget.getAttribute('data-user'));
+    // const checkbox = document.getElementById(classname);
+    handleselectUser(dataUser)
+    // console.log(dataUser);
+    // checkbox.checked = true;
+  }
   const movewithInfo = () => {
     const formData = { coursename, stuGrad, batchno, cnumber };
     let data = {
@@ -453,9 +461,18 @@ const Issue_Certificate = () => {
                               </thead>
                               <tbody>
                                 {userlist.map((user, index) => (
-                                  <tr key={index}>
+                                  <tr key={index} onClick={SelectStudent} data-user={JSON.stringify(user)}>
                                     <td>
-                                      <div className="form-group"><input type="checkbox" className="form-check-input" id={`exampleCheck${index}`} checked={selectedUser === user.id} onChange={() => handleselectUser(user)} /><label className="form-check-label" for={`exampleCheck${index}`}></label></div>
+                                      <div className="form-group">
+                                        <input 
+                                          type="checkbox" 
+                                          className="form-check-input" 
+                                          id={`exampleCheck${index}`} 
+                                          checked={selectedUser === user.id} 
+                                          onChange={() => handleselectUser(user)} 
+                                        />
+                                        <label className="form-check-label" for={`exampleCheck${index}`}></label>
+                                      </div>
                                     </td>
                                     <td>
                                       <div className="d-flex align-items-center">

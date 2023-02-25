@@ -18,6 +18,7 @@ import StudentLayout from './layout/studentslayout';
 import StudentDashboard from './components/StudentDashboard';
 import ClaimFlowAccount from './components/Claim_Flow_Account';
 import StudentsAddEmail from './components/Students_Add_Email';
+import CertificateVerification from './components/Certificate_Verification';
 
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
     <div className="App dashboard-light-bg">
       <Routes >
         <Route path="/login" element={ <Login /> } />
+        <Route path="/verify" element={ <CertificateVerification/> } />
         <Route path="/" element={ 
           <PrivateRoute> 
             <Admin subElement={ <Dashboard /> } /> 

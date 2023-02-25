@@ -24,7 +24,7 @@ export const postSignIn = (data) => {
         dispatch({ type: 'POST_LOGIN_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'POST_LOGIN_FAILURE', payload: error && error.message });
+        dispatch({ type: 'POST_LOGIN_FAILURE', payload: error && error.message && error.response.data.message });
       });
   };
 };
@@ -37,7 +37,7 @@ export const getUserProfile = () => {
         dispatch({ type: 'GET_USERPROFILE_SUCCESS', payload: response.data });
       })
       .catch((error) => {
-        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error && error.message});
+        dispatch({ type: 'GET_USERPROFILE_FAILURE', payload: error && error.message && error.response.data.message });
       });
   };
 };

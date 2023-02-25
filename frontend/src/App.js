@@ -73,7 +73,7 @@ function App() {
             <Admin  subElement={ <Signer /> } /> 
           </PrivateRoute>
         } />
-        <Route path="/student-dashboard" element={ 
+        <Route path="/dashboard" element={ 
           <PrivateRoute>
             <StudentLayout  subElement={ <StudentDashboard /> } /> 
           </PrivateRoute>

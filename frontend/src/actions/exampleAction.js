@@ -201,3 +201,24 @@ export const resetGenerateCertificate = () => {
   return dispatch => {
      dispatch({type : 'GENERATE_CERTIFICATE_SUCCESS',payload : []})
 }}
+export const reseRecentCertificate = () => {
+  return dispatch => {
+     dispatch({type : 'POST_RECENTCERTIFICATE_SUCCESS',payload : []})
+}}
+export const resetUserlist = () => {
+  return dispatch => {
+     dispatch({type : 'GET_USERLIST_SUCCESS',payload : []})
+}}
+
+// Recent certificate
+export const getRecentCertificate = (orgID) => {
+  return (dispatch) => {
+    apiTokenOrgid(localStorage.getItem('accessToken'),orgID).get(`/api/certificates/recent`)
+      .then((response) => {
+        dispatch({ type: 'POST_RECENTCERTIFICATE_SUCCESS', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'POST_RECENTCERTIFICATE_FAILURE', payload: error && error.message && error.response.data.message });
+      });
+  };
+};

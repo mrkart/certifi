@@ -16,7 +16,8 @@ const initialState = {
     walletAddress : null,
     mintResponse : [],
     mintFailed : '',
-    userCertificateList : []
+    userCertificateList : [],
+    recentcertificate : []
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -105,6 +106,11 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 mintFailed : action.payload
+            }
+        case types.POST_RECENTCERTIFICATE_SUCCESS:
+            return {
+                ...state,
+                recentcertificate : action.payload
             }
         
         default:

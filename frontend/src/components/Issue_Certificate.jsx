@@ -684,12 +684,39 @@ const Issue_Certificate = () => {
                                 <label className='mb-2'>Course</label>
                                 <input type={'text'} className="form-control" placeholder='Course' onChange={handleInputChange} value={coursename} name="coursename" />
                               </div>
+                              </div>
 
+                              {/* <div className='col-md-4 fadein'>
+                              <div className='form-group'>
+                                <label className='mb-2 fw-bold'>Recent Course</label>
+                                <div className='listcorgrade'>
+                                  <span className='badge badge-primary'>B.Sc</span>
+                                  <span className='badge badge-primary'>BCA</span>
+                                  <span className='badge badge-primary'>MCA</span>
+                                  <span className='badge badge-primary'>M.Sc</span>
+                                  <span className='badge badge-primary'>B.Com</span>
+                                </div>
+                              </div>
+                              </div> */}
+                              <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
                                 <label className='mb-2'>Grade</label>
                                 <input type={'text'} className="form-control" placeholder='Grade' onChange={handleInputChange} value={stuGrad} name="stuGrad" />
                               </div>
-
+                              </div>
+                              {/* <div className='col-md-4 fadein'>
+                              <div className='form-group'>
+                                <label className='mb-2 fw-bold'>Recent Grade</label>
+                                <div className='listcorgrade'>
+                                  <span className='badge badge-primary'>A</span>
+                                  <span className='badge badge-primary'>B</span>
+                                  <span className='badge badge-primary'>C</span>
+                                  <span className='badge badge-primary'>D</span>
+                                  <span className='badge badge-primary'>E</span>
+                                </div>
+                              </div>
+                              </div> */}
+                              <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
                                 <label className='mb-2'>Batch</label>
                                 <input type={'text'} className="form-control" placeholder='Batch' onChange={handleInputChange} value={batchno} name="batchno" readOnly />
@@ -699,8 +726,8 @@ const Issue_Certificate = () => {
                                 <label className='mb-2'>Certificate Number</label>
                                 <input type={'text'} className="form-control" placeholder='Certificate Number' onChange={handleInputChange} value={cnumber} name="cnumber" />
                               </div>
-                            </div>
-                          </div>
+                            
+                          
                         </div>
                         {/* <div className='certinfo'>
                       <p>Upload a CSV/XLS file with student ID & their certification info</p>
@@ -721,10 +748,12 @@ const Issue_Certificate = () => {
                     </div> */}
                       </div>
                     </div>
+                    </div>
+                    </div>
                     <div className='row align-items-center'>
                       <div className='col-6'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-light btn-icon' onClick={backtoSelectStuStep}>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
+                          <button className='btn btn-light btn-icon' onClick={backtoSelectStuStep}><i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
                       <div className='col-6 text-end'>

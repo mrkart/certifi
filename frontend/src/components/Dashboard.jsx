@@ -1,8 +1,11 @@
-import { React, useEffect, useMyCustomStuff } from 'react';
+import { React, useEffect, useState, useMyCustomStuff } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useNavigate } from 'react-router'
 import * as eva from 'eva-icons';
 import CountUp from 'react-countup';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRecentCertificate } from '../actions/exampleAction';
+import TableLoader from './shared/TableLoader';
 
 const data = [
   {
@@ -53,24 +56,32 @@ const data = [
 
 const Dashboard = () => {
   let navigate = useNavigate()
+  const dispatch = useDispatch();
+  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
+  let orgID = userprofile.organistaions[0]?.id;
+  const [recentCertData, setRecentCertData] = useState([]);
 
-  // const dispatch = useDispatch();
-  // const sampleApi = useSelector(state => state.demoReducer.sampleApi);
-  // console.log(sampleApi);
-  // useEffect(() => {
-  //   dispatch(getSampleAPI());
-  // }, []);  
+  const recentcertificate = useSelector(state => state.demoReducer.recentcertificate);
+  useEffect(() => {
+    dispatch(getRecentCertificate(orgID));
+  }, []);
+
+  useEffect(() => {
+    //console.log(recentcertificate.data.certificates);
+    if(recentcertificate.statusCode == 200){
+      let recentCert = recentcertificate.data.certificates;
+      setTimeout(() => {
+        setRecentCertData(recentCert);
+      }, 3000);
+    }
+  },[recentcertificate]);
+
   const gotoIssueCert = () => {
     navigate('/issue-certificate')
   }
   useEffect(() => { eva.replace() });
   return (
     <div className='scrolldiv'>  
-      {/* <div className='cert-loader'>
-            <div className='backgroundblur'>
-              <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />
-            </div>
-          </div> */}
       <div className='row fadein'>
         <div className='col-md-12 text-start'>
           <div className='foldersview'>
@@ -215,6 +226,11 @@ const Dashboard = () => {
             </div>
           </div>
           <div className=''>
+            {recentCertData.length == 0 ? (
+              <div className="mt-4">
+                <TableLoader/>
+              </div>
+            ) : (
             <div className='tableblur mt-4'>
               <div className='row align-items-center mb-3'>
                 <div className='col-12'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
@@ -231,8 +247,8 @@ const Dashboard = () => {
                   <thead className="">
                     <tr>
                       <th>Student ID</th>
-                      <th>Email</th>
                       <th>Name</th>
+                      <th>Course</th>
                       <th>Batch</th>
                       <th>Status</th>
                       <th></th>
@@ -240,7 +256,41 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {recentCertData.map((user, index) => (
+                      <tr key={index}>
+                        <td>
+                          <div className="d-flex align-items-center">
+                          {user.id}
+                          </div>
+                        </td>
+                        <td>
+                          <span className="text-dark">{user.user.name}</span>
+                        </td>
+                        <td>
+                          <p className="fw-normal mb-1">{user.course.name}</p>
+                        </td>
+                        <td> {user.slot.name} </td>
+                        <td>
+                          <span className="text-primary">Approved</span>
+                        </td>
+                        <td className='text-center'>
+                          <a href={user.certificateHash} target="_blank" className='text-primary'><i data-eva="link-outline"></i></a>
+                        </td>
+                        <td className='text-center'>
+                          <span className="dropdown">
+                            <a href="#" className='text-secondary dropdown-toggle' type="button"
+                              id="dropdownMenuButton"
+                              data-mdb-toggle="dropdown"
+                              aria-expanded="false"><i data-eva="more-vertical-outline"></i></a>
+                            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                              <li><a className="dropdown-item" href="#">Edit</a></li>
+                              <li><a className="dropdown-item" href="#">View</a></li>
+                            </ul>
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                    {/* <tr>
                       <td>
                         <div className="d-flex align-items-center">
                           1
@@ -404,11 +454,12 @@ const Dashboard = () => {
                           </ul>
                         </span>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
             </div>
+              )}
           </div>
           <div className='row'>
             <div className='col-md-12 mt-4'>

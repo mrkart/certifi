@@ -18,6 +18,7 @@ import StudentLayout from './layout/studentslayout';
 import StudentDashboard from './components/StudentDashboard';
 import ClaimFlowAccount from './components/Claim_Flow_Account';
 import StudentsAddEmail from './components/Students_Add_Email';
+import CreateApiToken from './components/Create_Api_Token';
 import CertificateVerification from './components/Certificate_Verification';
 
 function App() {
@@ -73,6 +74,11 @@ function App() {
         <Route path="/signer" element={ 
           <PrivateRoute>
             <Admin  subElement={ <Signer /> } /> 
+          </PrivateRoute>
+        } />
+        <Route path="/create-token" element={ 
+          <PrivateRoute>
+            <Admin  subElement={ <CreateApiToken /> } /> 
           </PrivateRoute>
         } />
         <Route path="/dashboard" element={ 

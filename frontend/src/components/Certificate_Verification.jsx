@@ -76,7 +76,22 @@ export default function CertificateVerification() {
     });
     return (
         <div className="container-fluid height100per">
-            <div className="row fadein align-items-center justify-conten-center h-100">
+            <div className='row mt-3'>
+            <div div className="col-md-6 offset-md-3 ">
+                <div className='row'>
+                    <div className='col-md-6 text-start'> 
+                    <a href="/"><img src={require('../assets/images/logo.png')} alt="certifily Logo" loading="lazy" className='sidebarlogo'/></a></div>
+                    <div className='col-md-6 text-end'>
+                        <div className='vtlinks'>
+                            <a href=''>Verify</a>
+                            <a href='/login'>Login</a>
+                            <a href='/register'>Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div className="row fadein align-items-center">
                 <div div className="col-md-6 offset-md-3 text-start">
                     <div className="backgroundblur p-3 my-3">
                         <VerificationFrom
@@ -122,28 +137,31 @@ export default function CertificateVerification() {
                                         </div>
                                         <div className="col-md-4 text-end">
                                             {' '}
-                                            <p className="text-end w-100 mb-3">
-                                                #{certificate.nftId}{' '}
+                                            <p className="text-end w-100 mb-1">
+                                                <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={16} /> NFT #{certificate.nftId}{' '}
                                                 <span className="badge badge-success ms-2 text-uppercase">
                                                     Verified
                                                 </span>
                                             </p>
-                                            <span className="text-end w-100 mb-3">
-                                                <a
-                                                    href={
-                                                        certificate.certificateHash
-                                                    }
-                                                >
-                                                    view on ipfs
-                                                </a>{' '}
-                                            </span>
-                                            <span className="eva-hover d-inline-flex align-items-center text-primary">
-                                                <i
-                                                    className="mr-2"
-                                                    data-eva="share-outline"
-                                                    data-eva-animation="flip"
-                                                ></i>{' '}
-                                                Share
+                                            <span className='vtxtlinks'>
+                                                
+                                                    <a className="d-inline-flex align-items-center text-primary eva-hover me-2"
+                                                        href={
+                                                            certificate.certificateHash
+                                                        }
+                                                    >
+                                                        <i data-eva="external-link-outline" data-eva-animation="flip"></i> 
+                                                        <span className='ms-1'>View on ipfs</span>
+                                                    </a>{' '}
+                                                
+                                                <span className="eva-hover d-inline-flex align-items-center text-primary">
+                                                    <i
+                                                        className="me-2"
+                                                        data-eva="share-outline"
+                                                        data-eva-animation="flip"
+                                                    ></i>{' '}
+                                                    <span className='ms-1'>Share</span>
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
@@ -174,7 +192,7 @@ export function VerificationFrom({
         <div className="searchform border-none d-block p-0">
             <form onSubmit={handleSubmit}>
                 <div className="fom-group">
-                    <label className="mb-2 fw-bold">Certificate number</label>
+                    <label className="mb-2 fw-bold w-100 text-uppercase text-center">Certificate number</label>
                     <div class="input-group mb-3 inputbtngroup">
                         <input
                             name="nftId"
@@ -188,7 +206,7 @@ export function VerificationFrom({
                             type="submit"
                             className="btn btn-primary btn-icon"
                         >
-                            Verifiy
+                            Verify
                             {isLoading ? (
                                 <span className="loaderbtn fadein">
                                     <img

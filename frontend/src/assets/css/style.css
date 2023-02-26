@@ -285,7 +285,7 @@ input[type="file"] { display: none;}
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
 .custable .form-group{ margin: 0px;}
-.formscroldiv {height:calc(100vh - 285px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
+.formscroldiv {height:calc(100vh - 345px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
 
 .certinfo{ padding: 30px; min-height: 100%;}
 .certinfocont{ display: flex; align-items: center; justify-content: center;}
@@ -458,8 +458,12 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .btn-tran{ box-shadow: none !important; padding: 0px 5px; height: auto; font-size: 11px; text-transform: uppercase; color: #005fff;}
 .btn-tran .eva{ width: 16px; fill: #005FFF;}
 
-.mar-top {margin-top: -65px;}
+/* .mar-top {margin-top: -65px;} */
 
+.vtlinks{ height: 100%; display: flex; justify-content: flex-end; align-items: center;}
+.vtlinks a{ color: #005FFF; transition: all ease 0.75s; font-weight: bold; text-transform: uppercase; padding: 0px 15px; }
+.vtlinks a:hover{ color: #000;}
+.vtlinks a:not(:last-child){ border-right: 1px solid #a7a7a7;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

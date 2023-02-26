@@ -117,7 +117,7 @@ const Sidemenu = () => {
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingOneX3">
                 <div data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOneX3" aria-expanded="true" aria-controls="flush-collapseOneX3">
-                  <NavLink to="/issue-certificate" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink to="/mint-certificate" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'>
                       <img
                         src={require('../../assets/images/icons/award.png')}
@@ -188,7 +188,7 @@ const Sidemenu = () => {
                   <NavLink to="/domains" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/web.png')} className=''/></div> <span>Domains</span>
                   </NavLink>
-                  <NavLink to="/apikeys" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink to="/create-token" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/key.png')} className=''/></div> <span>API Keys</span>
                   </NavLink>
                   <NavLink to="https://api.certifi.ly/api-docs/" target="_blank" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>

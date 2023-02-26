@@ -78,7 +78,7 @@ const Dashboard = () => {
   },[recentcertificate]);
 
   const gotoIssueCert = () => {
-    navigate('/issue-certificate')
+    navigate('/mint-certificate')
   }
   useEffect(() => { eva.replace() });
   return (

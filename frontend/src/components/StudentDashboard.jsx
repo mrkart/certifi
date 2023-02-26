@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import * as eva from 'eva-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserCertList } from '../actions/exampleAction';
+import ReactTimeAgo from 'react-time-ago';
 
 const StudentDashboard = () => {
 
@@ -69,46 +70,23 @@ const StudentDashboard = () => {
                                     <h4 className='fw-bolder text-primary'>{userName}</h4>                                    
                                     <div className='lastestnfts'>
                                         <h5>Latest NFTs</h5>
-                                        <ul className='list-unstyled'>
-                                            {certificateList.map((user, index) => (
-                                                <li key={index}>
-                                                    <a href=''>
-                                                    <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
-                                                    <span className='lnftscont'>
-                                                        <p>2 days ago</p>
-                                                        <h6>Certificate from {user.org.name}</h6>
-                                                    </span>
-                                                    </a>
-                                                </li>
-                                            ))}
-                                            {/* <li>
-                                                <a href=''>
-                                                <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
-                                                <span className='lnftscont'>
-                                                    <p>2 days ago</p>
-                                                    <h6>Certificate from Madurai Kamarajar University</h6>
-                                                </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                            <a href=''>
-                                                <span className='img'><img src={require('../assets/images/icons/documents.png')} loading="lazy" /></span>
-                                                <span className='lnftscont'>
-                                                    <p>2 months ago</p>
-                                                    <h6>Document from Blaze</h6>
-                                                </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                            <a href=''>
-                                                <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
-                                                <span className='lnftscont'>
-                                                    <p>3 months ago</p>
-                                                    <h6>Certificate from Coursera</h6>
-                                                </span>
-                                                </a>
-                                            </li> */}
-                                        </ul>
+                                        {certificateCount == 0 ?
+                                            <p>There are no additional NFTs generated</p>
+                                            :
+                                            <ul className='list-unstyled'>
+                                                {certificateList.map((user, index) => (
+                                                    <li key={index}>
+                                                        <a href={user.certificateHash} target="_blank">
+                                                        <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
+                                                        <span className='lnftscont'>
+                                                            <ReactTimeAgo date={user.datetimeCreated} locale="en-US"/>
+                                                            <h6>Certificate from {user.org.name}</h6>
+                                                        </span>
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        }
                                     </div>
                                 </div>
                             </div>

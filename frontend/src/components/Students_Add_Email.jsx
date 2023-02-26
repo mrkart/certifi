@@ -30,7 +30,7 @@ const StudentsAddEmail = () => {
   useEffect(() => { eva.replace() });
   return (
     <div className='scrolldiv'>
-       <div className="row mb-3"><div className="col-md-12 text-start"><h4 className="fw-bolder text-black text-uppercase mb-0">Synu Accounts</h4></div></div>
+       <div className="row mb-3"><div className="col-md-12 text-start"><h4 className="fw-bolder text-black text-uppercase mb-0">Sync Accounts</h4></div></div>
       <div className='row'>
         <div className='col-md-12 text-start'>
           <div className='row mb-3 align-items-center addemailaccount'>

@@ -31,6 +31,7 @@ function App() {
       <Routes >
         <Route path="/login" element={ <Login /> } />
         <Route path="/verify" element={ <CertificateVerification/> } />
+        <Route path="/verify/:certificateNumber" element={ <CertificateVerification/> } />
         <Route path="/" element={ 
           <PrivateRoute> 
             <Admin subElement={ <Dashboard /> } /> 

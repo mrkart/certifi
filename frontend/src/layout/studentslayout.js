@@ -17,6 +17,7 @@ const StudentLayout = ({ subElement }) => {
     function logout() {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userprofile');
+        localStorage.removeItem('user_email');
         navigate("/login");
     }
     useEffect(() => { eva.replace() });

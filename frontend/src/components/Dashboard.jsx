@@ -89,12 +89,12 @@ const Dashboard = () => {
             <div className='row'>
               <div className='col-md-3'>
                 <div className='createcetr'>
-                  <h5>Create</h5>
-                  <h4 className='fw-bolder text-black'>CERTIFICATE</h4>
-                  <p >Create a new certificate on Certifily. Collabrate and Share to your certificates</p>
+                  <h5>Create a</h5>
+                  <h4 className='fw-bolder text-black'>DOCUMENT NFT</h4>
+                  <p>MInt documents as NFTs on flow blockchain & share with pepole</p>
                   <span className='icontext eva-hover' onClick={gotoIssueCert}>
                     <span className='icon'><i data-eva="plus-outline" data-eva-animation="flip"></i></span>
-                    <span className='text'>Create</span>
+                    <span className='text'>Mint</span>
                   </span>
                 </div>
               </div>

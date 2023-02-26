@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5007/',
+  baseURL: 'https://api.certifi.ly/',
   headers: {
     'Content-Type': 'application/json',
   },

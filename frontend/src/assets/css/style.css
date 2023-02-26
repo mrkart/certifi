@@ -389,7 +389,7 @@ input[type="file"] { display: none;}
 .cert-full-loader .backgroundblur{ display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.1);}
 
 .fadein{animation: fadeIn 0.75s ease-in both;}
-.eva-hover {display: inline-flex;}
+.icontext.eva-hover {display: inline-flex;}
 
 
 @keyframes fadeIn {

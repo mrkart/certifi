@@ -91,7 +91,7 @@ const Dashboard = () => {
                 <div className='createcetr'>
                   <h5>Create a</h5>
                   <h4 className='fw-bolder text-black'>DOCUMENT NFT</h4>
-                  <p>MInt documents as NFTs on flow blockchain & share with pepole</p>
+                  <p className='pe-md-5'>Mint documents as NFTs on flow blockchain & share with people</p>
                   <span className='icontext eva-hover' onClick={gotoIssueCert}>
                     <span className='icon'><i data-eva="plus-outline" data-eva-animation="flip"></i></span>
                     <span className='text'>Mint</span>
@@ -161,7 +161,11 @@ const Dashboard = () => {
                             />
                           </h2>
                         </div>
-                        <div className='foldpicshare'>
+                        <div className='foldpicshare row-reverse'>
+                        <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>Manage</span>
+                          </span>
                           <div className='foldpics'>
                             <ul className='list-unstyled'>
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li> */}
@@ -172,10 +176,7 @@ const Dashboard = () => {
                               <li><span className='flpic last-count'>+100</span></li>
                             </ul>
                           </div>                          
-                          <span className='icontext viewall eva-hover'>
-                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
-                            <span className='text'>Manage</span>
-                          </span>
+                          
                         </div>
                       </div>
                     </div>
@@ -201,11 +202,17 @@ const Dashboard = () => {
                           />
                           </h2>
                         </div>
-                        <div className='foldpicshare'>
+                        <div className='foldpicshare row-reverse'>
+                          
+                          {/* <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
+                          <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>View all</span>
+                          </span>
                           <div className='foldpics'>
                             <ul className='list-unstyled'>
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
-                        <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li> */}
+                              <li><span className='flpic'><img src={require('../assets/images/photo4.png')} loading="lazy" /></span></li> */}
                               <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
                               <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
                               <li><span className='flpic'><img src={require('../assets/images/photo3.png')} loading="lazy" /></span></li>
@@ -213,11 +220,6 @@ const Dashboard = () => {
                               {/* <li><span className='flpic last-count'>+25</span></li> */}
                             </ul>
                           </div>
-                          {/* <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                          <span className='icontext viewall eva-hover'>
-                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
-                            <span className='text'>View all</span>
-                          </span>
                         </div>
                       </div>
                     </div>

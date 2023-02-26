@@ -108,12 +108,20 @@ const StudentSidemenu = () => {
         </div>
       </div>
       <div className="sidebarbottom light-blur text-center">
-        <p className='mt-0 mb-1'> Blockchain network status</p>
+        
+        <p className='mt-0 mb-1'>
+        <img
+              src={require('../../assets/images/flow.png')}
+              alt="flow"
+              loading="lazy"             
+            />
+        </p>
         <select className="form-control mb-1" value={selectType} onChange={onChangeValue}>
           <option value="1">Testnet</option>
           <option value="2">Mainnet</option>
         </select>
-        <p className=' mb-0 text-uppercase fw-bolder networkstatus text-success'>Online</p>
+
+        <p className=' mb-0 text-uppercase fw-bolder networkstatus text-primary'>Online</p>
       </div>
     </nav>
   );

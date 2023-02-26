@@ -13,6 +13,7 @@ const StudentDashboard = () => {
     let userprofile = JSON.parse(localStorage.getItem('userprofile'));
     let orgID = userprofile.organistaions[0]?.id;
     let userId = userprofile.id;
+    let userName = userprofile.name;
 
     const viewCertificatepage = () => {
         if (certificateCount > 0) {
@@ -40,6 +41,21 @@ const StudentDashboard = () => {
 
     useEffect(() => { eva.replace() });
 
+
+    const shareOnLinkedIn = (mycert) => {
+        const message = "Certifily";
+      
+        // Replace this with your LinkedIn share URL
+        const shareUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(mycert) + "&title=" + encodeURIComponent(message);
+      
+        window.open(shareUrl, "_blank");
+    }
+
+    const buttonStyle = {
+        cursor: 'pointer'
+    };
+    
+
     return (
         <div className='scrolldiv'>
             <div className='row fadein'>
@@ -50,11 +66,22 @@ const StudentDashboard = () => {
                             <div className="col-sm-6 col-md-4">
                                 <div className='createcetr'>
                                     <h5>Welcome</h5>
-                                    <h4 className='fw-bolder text-primary'>William Anderson</h4>                                    
+                                    <h4 className='fw-bolder text-primary'>{userName}</h4>                                    
                                     <div className='lastestnfts'>
                                         <h5>Latest NFTs</h5>
                                         <ul className='list-unstyled'>
-                                            <li>
+                                            {certificateList.map((user, index) => (
+                                                <li key={index}>
+                                                    <a href=''>
+                                                    <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
+                                                    <span className='lnftscont'>
+                                                        <p>2 days ago</p>
+                                                        <h6>Certificate from {user.org.name}</h6>
+                                                    </span>
+                                                    </a>
+                                                </li>
+                                            ))}
+                                            {/* <li>
                                                 <a href=''>
                                                 <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
                                                 <span className='lnftscont'>
@@ -80,7 +107,7 @@ const StudentDashboard = () => {
                                                     <h6>Certificate from Coursera</h6>
                                                 </span>
                                                 </a>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                 </div>
@@ -252,7 +279,7 @@ const StudentDashboard = () => {
                                                             <p className=''>by {user.org['name']}</p>
                                                         </div>
                                                         <div className='col-md-5 text-end'>
-                                                            <span className='eva-hover d-inline-flex align-items-center'><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                            <span className='eva-hover d-inline-flex align-items-center' style={buttonStyle} onClick={() => shareOnLinkedIn(user.certificateHash)}><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
                                                         </div>
                                                     </div>
                                                 </label>

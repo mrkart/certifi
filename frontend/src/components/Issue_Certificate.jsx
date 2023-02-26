@@ -25,6 +25,7 @@ const Issue_Certificate = () => {
   const [color, setColor] = useState('#005FFF')
   const [certificateNo, setCertificateNo] = useState('9210')
   const [firstName, setFirstName] = useState('William')
+  const [userName, setUserName] = useState('')
   const [lastName, setLastName] = useState('a. Young')
   const [course, setCourse] = useState('Bachelor of engineering')
   const [grade, setGrade] = useState('A')
@@ -54,6 +55,8 @@ const Issue_Certificate = () => {
   const [fineToGetCertInfo, setFineToGetCertInfo] = useState(false)
   const [fineToSelectCertificate, setFineToSelectCertificate] = useState(false)
   const [callBack, setCallBack] = useState(false)
+  const [recentCourse, setRecentCourse] = useState(false);
+  const [recentGrade, setRecentGrade] = useState(false);
 
   //mint
   const [isMintInitiated, setIsMintInitiated] = useState(false)
@@ -71,6 +74,31 @@ const Issue_Certificate = () => {
   }
   const onChangeValue = (e) => { }
 
+  const triggerCourseChange = (event) => {
+    console.log(event.target.innerText);
+    setCoursename(event.target.innerText);
+  }
+  const triggerGradeChange = (event) => {
+    console.log(event.target.innerText);
+    setStuGrad(event.target.innerText);
+  }
+  const handleInputFocusCourse = () => {
+    setRecentCourse(true);
+  }
+  const handleInputBlurCourse = () => {
+    setTimeout(() => {
+      setRecentCourse(false);
+    }, 500);
+  }
+  const handleInputFocusGrade = () => {
+    setRecentGrade(true);
+  }
+  const handleInputBlurGrade = () => {
+    setTimeout(() => {
+      setRecentGrade(false);
+    }, 500);
+  }
+  
   // useEffect(() => {
   //   dispatch(getUserList(orgID));
   // }, []);
@@ -150,6 +178,7 @@ const Issue_Certificate = () => {
     if (userDetail && userDetail.id) {
       const userId = userDetail.id
       const slotId = userDetail.slot && userDetail.slot[0]?.id
+      setUserName(userDetail.name);
       if (certDetail && certDetail.coursename) {
         let obj = {
           "courseName": certDetail.coursename,
@@ -682,40 +711,62 @@ const Issue_Certificate = () => {
                             <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
                                 <label className='mb-2'>Course</label>
-                                <input type={'text'} className="form-control" placeholder='Course' onChange={handleInputChange} value={coursename} name="coursename" />
+                                <input 
+                                  type={'text'} 
+                                  className="form-control" 
+                                  placeholder='Course' 
+                                  onChange={handleInputChange} 
+                                  value={coursename} 
+                                  name="coursename"
+                                  onBlur={handleInputBlurCourse} 
+                                  onFocus={handleInputFocusCourse} 
+                                />
                               </div>
                               </div>
 
-                              {/* <div className='col-md-4 fadein'>
-                              <div className='form-group'>
-                                <label className='mb-2 fw-bold'>Recent Course</label>
-                                <div className='listcorgrade'>
-                                  <span className='badge badge-primary'>B.Sc</span>
-                                  <span className='badge badge-primary'>BCA</span>
-                                  <span className='badge badge-primary'>MCA</span>
-                                  <span className='badge badge-primary'>M.Sc</span>
-                                  <span className='badge badge-primary'>B.Com</span>
+                              { recentCourse &&
+                                <div className='col-md-4 fadein'>
+                                  <div className='form-group'>
+                                    <label className='mb-2 fw-bold'>Recent Course</label>
+                                    <div className='listcorgrade'>
+                                      <span className='badge badge-primary' onClick={triggerCourseChange}>B.Sc</span>
+                                      <span className='badge badge-primary' onClick={triggerCourseChange}>BCA</span>
+                                      <span className='badge badge-primary' onClick={triggerCourseChange}>MCA</span>
+                                      <span className='badge badge-primary' onClick={triggerCourseChange}>M.Sc</span>
+                                      <span className='badge badge-primary' onClick={triggerCourseChange}>B.Com</span>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                              </div> */}
+                              }
                               <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
                                 <label className='mb-2'>Grade</label>
-                                <input type={'text'} className="form-control" placeholder='Grade' onChange={handleInputChange} value={stuGrad} name="stuGrad" />
+                                <input 
+                                  type={'text'} 
+                                  className="form-control" 
+                                  placeholder='Grade' 
+                                  onChange={handleInputChange} 
+                                  value={stuGrad} 
+                                  name="stuGrad"
+                                  onBlur={handleInputBlurGrade} 
+                                  onFocus={handleInputFocusGrade} 
+                                />
                               </div>
                               </div>
-                              {/* <div className='col-md-4 fadein'>
-                              <div className='form-group'>
-                                <label className='mb-2 fw-bold'>Recent Grade</label>
-                                <div className='listcorgrade'>
-                                  <span className='badge badge-primary'>A</span>
-                                  <span className='badge badge-primary'>B</span>
-                                  <span className='badge badge-primary'>C</span>
-                                  <span className='badge badge-primary'>D</span>
-                                  <span className='badge badge-primary'>E</span>
+                              { recentGrade &&
+                              <div className='col-md-4 fadein'>
+                                <div className='form-group'>
+                                  <label className='mb-2 fw-bold'>Recent Grade</label>
+                                  <div className='listcorgrade'>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>A</span>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>B</span>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>C</span>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>D</span>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>E</span>
+                                  </div>
                                 </div>
                               </div>
-                              </div> */}
+                              }
                               <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
                                 <label className='mb-2'>Batch</label>
@@ -1211,11 +1262,11 @@ const Issue_Certificate = () => {
                               aria-expanded="true"
                               aria-controls="collapseOne"
                             >
-                              <span className='listviewtxts'>
-                                <span className='studid'>#12455</span>
-                                <span className='studname'>Laura Wheeler</span>
-                                <span className='studbetch'>2022</span>
-                                <span className='studdep'>Computer science</span>
+                              <span className='listviewtxts'> 
+                                <span className='studid'>#{cnumber}</span>
+                                <span className='studname'>{userName}</span>
+                                <span className='studbetch'>{batchno}</span>
+                                <span className='studdep'>{coursename}</span>
                               </span>
 
                             </button>

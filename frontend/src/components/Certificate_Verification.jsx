@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCertificateByNftId } from '../actions/exampleAction';
+import { getCertificateByCertificateNumber } from '../actions/exampleAction';
 import { getCertificateFailed } from '../actions/exampleAction';
 import * as eva from 'eva-icons';
 
@@ -36,7 +36,7 @@ export default function CertificateVerification() {
 
     useEffect(() => {
         if (getSucceeded.statusCode === 200) {
-            console.log('getSucceeded', getSucceeded);
+            // console.log('getSucceeded', getSucceeded);
             setCertifcate({
                 ...getSucceeded.data.certificate,
             });
@@ -54,7 +54,7 @@ export default function CertificateVerification() {
             return;
         }
         setIsLoading(true);
-        dispatch(getCertificateByNftId(nftId));
+        dispatch(getCertificateByCertificateNumber(nftId));
     }
 
     function handleInputChange(event) {
@@ -156,9 +156,9 @@ export function VerificationFrom({
         <div className="searchform border-none d-block p-0">
             <form onSubmit={handleSubmit}>
                 <div className="fom-group">
-                    <label className="mb-2 fw-bold">NFT ID</label>
+                    <label className="mb-2 fw-bold">Certificate number</label>
                     <div class="input-group mb-3 inputbtngroup">
-                        <input name="nftId" type={'text'} value={nftId} onChange={handleInputChange} className="form-control" placeholder="NFT ID" />
+                        <input name="nftId" type={'text'} value={nftId} onChange={handleInputChange} className="form-control" placeholder="Certificate number" />
                         <button type="submit" className="btn btn-primary btn-icon">Verifiy                         
                         {isLoading ? (
                                 <span className='loaderbtn fadein'>

@@ -97,7 +97,7 @@ const Sidemenu = () => {
                         className=''
                       />
                     </div>
-                    <span>Issue Certificate</span>
+                    <span>Mint</span>
                   </NavLink>
                 </div>
               </h2>

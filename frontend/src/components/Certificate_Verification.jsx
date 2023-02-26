@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCertificateByNftId } from '../actions/exampleAction';
+import { getCertificateByCertificateNumber } from '../actions/exampleAction';
 import { getCertificateFailed } from '../actions/exampleAction';
 
 export default function CertificateVerification() {
@@ -35,7 +35,7 @@ export default function CertificateVerification() {
 
     useEffect(() => {
         if (getSucceeded.statusCode === 200) {
-            console.log('getSucceeded', getSucceeded);
+            // console.log('getSucceeded', getSucceeded);
             setCertifcate({
                 ...getSucceeded.data.certificate,
             });
@@ -53,7 +53,7 @@ export default function CertificateVerification() {
             return;
         }
         setIsLoading(true);
-        dispatch(getCertificateByNftId(nftId));
+        dispatch(getCertificateByCertificateNumber(nftId));
     }
 
     function handleInputChange(event) {

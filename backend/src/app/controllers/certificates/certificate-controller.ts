@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { NextFunction } from 'express-serve-static-core';
-import { NftIdUrlParamDTO } from '../../dtos';
+import { CertificaeNumberUrlParamDTO } from '../../dtos';
 import { APIError, UnhandledError } from '../../errors';
 import { ApiResponse } from '../../helpers/api-response';
 import { CertificateService } from '../../services';
@@ -44,9 +44,12 @@ export class CertificateController {
         next: NextFunction
     ): Promise<void> {
         try {
-            const { nftId } = plainToInstance(NftIdUrlParamDTO, request.params);
+            const { certificateNumber } = plainToInstance(
+                CertificaeNumberUrlParamDTO,
+                request.params
+            );
             const certificate = await this.certificateService.getCertificate(
-                parseInt(nftId)
+                certificateNumber
             );
             response.status(200).send(
                 new ApiResponse(

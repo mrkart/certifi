@@ -1,4 +1,5 @@
-import { isEmpty } from 'class-validator';
+import { isEmpty, isNumber } from 'class-validator';
+import { FindOptionsWhere } from 'typeorm';
 import getDataSource from '../config/datasource';
 import { ResourceNotFoundError } from '../errors';
 import { CertificateDataResponse } from '../helpers';
@@ -71,13 +72,13 @@ export class CertificateService {
     }
 
     public async getCertificate(
-        nftId: number
+        certificateNumber: string
     ): Promise<CertificateDataResponse> {
         const certificate = await getDataSource()
             .getRepository(Certificate)
             .findOne({
                 where: {
-                    nftId
+                    certificateNumber
                 },
                 relations: {
                     course: true,

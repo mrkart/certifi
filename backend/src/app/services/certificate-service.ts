@@ -1,4 +1,6 @@
+import { isEmpty } from 'class-validator';
 import getDataSource from '../config/datasource';
+import { ResourceNotFoundError } from '../errors';
 import { CertificateDataResponse } from '../helpers';
 import { Certificate } from '../models/entities/Certificate';
 
@@ -35,6 +37,8 @@ export class CertificateService {
                     id: cert.course.id,
                     name: cert.course.name
                 },
+                datetimeCreated: cert.datetimeCreated,
+                grade: cert.grade,
                 id: cert.id,
                 issuer: {
                     id: cert.signerIssuer.id,
@@ -64,6 +68,69 @@ export class CertificateService {
                 }
             } as CertificateDataResponse;
         });
+    }
+
+    public async getCertificate(
+        nftId: number
+    ): Promise<CertificateDataResponse> {
+        const certificate = await getDataSource()
+            .getRepository(Certificate)
+            .findOne({
+                where: {
+                    nftId
+                },
+                relations: {
+                    course: true,
+                    org: true,
+                    signerIssuer: true,
+                    signerPreparer: true,
+                    signerVerifier: true,
+                    user: true,
+                    userEmail: true,
+                    slot: true
+                }
+            });
+        if (isEmpty(certificate)) {
+            throw new ResourceNotFoundError('Certificate not found');
+        }
+        const res: CertificateDataResponse = {
+            certificateHash: certificate.certificateHash,
+            certificateNumber: certificate.certificateNumber,
+            course: {
+                id: certificate.course.id,
+                name: certificate.course.name
+            },
+            datetimeCreated: certificate.datetimeCreated,
+            grade: certificate.grade,
+            id: certificate.id,
+            issuer: {
+                id: certificate.signerIssuer.id,
+                name: certificate.signerIssuer.name
+            },
+            metadataHash: certificate.metadataHash,
+            nftId: certificate.nftId,
+            org: {
+                id: certificate.org.id,
+                name: certificate.org.orgName
+            },
+            preparer: {
+                id: certificate.signerPreparer.id,
+                name: certificate.signerPreparer.name
+            },
+            slot: {
+                id: certificate.slot.id,
+                name: certificate.slot.slotTitle
+            },
+            user: {
+                id: certificate.user.id,
+                name: certificate.user.name
+            },
+            verifier: {
+                id: certificate.signerVerifier.id,
+                name: certificate.signerVerifier.name
+            }
+        };
+        return res;
     }
 }
 

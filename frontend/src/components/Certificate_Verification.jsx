@@ -61,84 +61,81 @@ export default function CertificateVerification() {
         setNftId(value);
     }
     return (
-        <main className="height100per">
-            <div className="container-fluid height100per pt-3 ps-4">
-                <div className="scrolldiv">
-                    <div className="row fadein">
-                        <div div className="col-sm-12 text-start">
-                            <div className="row">
-                                <div className="col-12 text-center">
-                                    <div className="backgroundblur">
-                                        {viewCertificate ? (
-                                            <div className="ctemp height100per">
-                                                <label htmlFor="cert-1">
-                                                    <p className="text-end w-100 mb-3">
-                                                        #{certificate.nftId}
-                                                    </p>
-                                                    <embed
-                                                        src={
-                                                            certificate.certificateHash
-                                                        }
-                                                    />
-                                                    <div className="row align-items-center">
-                                                        <div className="col-md-7 text-start">
-                                                            <p className="mt-3 mb-2">
-                                                                Issued on{' '}
-                                                                <span>
-                                                                    {new Date(
-                                                                        certificate.datetimeCreated
-                                                                    ).toLocaleDateString(
-                                                                        'en-US',
-                                                                        {
-                                                                            year: 'numeric',
-                                                                            month: 'short',
-                                                                            day: 'numeric',
-                                                                        }
-                                                                    )}
-                                                                </span>
-                                                            </p>
-                                                            <p className="">
-                                                                by{' '}
-                                                                {
-                                                                    certificate
-                                                                        .org[
-                                                                        'name'
-                                                                    ]
-                                                                }
-                                                            </p>
-                                                        </div>
-                                                        <div className="col-md-5 text-end">
-                                                            <span className="eva-hover d-inline-flex align-items-center">
-                                                                <i
-                                                                    className="mr-2"
-                                                                    data-eva="share-outline"
-                                                                    data-eva-animation="flip"
-                                                                ></i>{' '}
-                                                                Share
+        <div className="container-fluid height100per pt-3 ps-4">
+            <div className="scrolldiv">
+                <div className="row fadein">
+                    <div div className="col-sm-12 col-md-8 offset-md-2 text-start">
+                        <div className="row">
+                            <div className="col-12 text-center">
+                                <div className="backgroundblur">
+                                    {viewCertificate ? (
+                                        <div className="ctemp height100per">
+                                            <label htmlFor="cert-1">
+                                                <p className="text-end w-100 mb-3">
+                                                    #{certificate.nftId}
+                                                </p>
+                                                <embed
+                                                    src={
+                                                        certificate.certificateHash
+                                                    }
+                                                />
+                                                <div className="row align-items-center">
+                                                    <div className="col-md-7 text-start">
+                                                        <p className="mt-3 mb-2">
+                                                            Issued on{' '}
+                                                            <span>
+                                                                {new Date(
+                                                                    certificate.datetimeCreated
+                                                                ).toLocaleDateString(
+                                                                    'en-US',
+                                                                    {
+                                                                        year: 'numeric',
+                                                                        month: 'short',
+                                                                        day: 'numeric',
+                                                                    }
+                                                                )}
                                                             </span>
-                                                        </div>
+                                                        </p>
+                                                        <p className="">
+                                                            by{' '}
+                                                            {
+                                                                certificate.org[
+                                                                    'name'
+                                                                ]
+                                                            }
+                                                        </p>
                                                     </div>
-                                                </label>
-                                            </div>
-                                        ) : (
-                                            <VerificationFrom
-                                                erroMessage={erroMessage}
-                                                handleInputChange={
-                                                    handleInputChange
-                                                }
-                                                handleSubmit={handleSubmit}
-                                                isLoading={isLoading}
-                                                nftId={nftId}
-                                            />
-                                        )}
-                                    </div>
+                                                    <div className="col-md-5 text-end">
+                                                        <span className="eva-hover d-inline-flex align-items-center">
+                                                            <i
+                                                                className="mr-2"
+                                                                data-eva="share-outline"
+                                                                data-eva-animation="flip"
+                                                            ></i>{' '}
+                                                            Share
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    ) : (
+                                        <VerificationFrom
+                                            erroMessage={erroMessage}
+                                            handleInputChange={
+                                                handleInputChange
+                                            }
+                                            handleSubmit={handleSubmit}
+                                            isLoading={isLoading}
+                                            nftId={nftId}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     );
 }
 

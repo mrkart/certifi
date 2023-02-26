@@ -86,18 +86,39 @@ export class PdfService {
 
         issuerText.split('\n').forEach((line, index) => {
             // calculate the position of the text
-            const textWidth = detailFont.widthOfTextAtSize(line, 16);
-            const textHeight = detailFont.heightAtSize(16);
-            const detailX = width / 2 - textWidth / 2;
-            const detailY =
+            let textWidth = detailFont.widthOfTextAtSize(line, 16);
+            let textHeight = detailFont.heightAtSize(16);
+            let detailX = width / 2 - textWidth / 2;
+            let detailY =
                 350 - 38 - 80 - index * (textHeight + 10) - textHeight / 2;
+            let fontStyle = detailFont;
+            let fontSize = 16;
+            if (index === 0) {
+                fontStyle = detailFont;
+                textWidth = detailFont.widthOfTextAtSize(line, 16);
+                textHeight = detailFont.heightAtSize(16);
+                detailX = width / 2 - textWidth / 2;
+                detailY =
+                    350 - 38 - 85 - index * (textHeight + 5) - textHeight / 2;
+                fontSize = 12;
+            }
+
+            if (index === 1) {
+                fontStyle = font;
+                textWidth = font.widthOfTextAtSize(line, 16);
+                textHeight = font.heightAtSize(16);
+                detailX = width / 2 - textWidth / 2;
+                detailY =
+                    350 - 38 - 80 - index * (textHeight + 10) - textHeight / 2;
+                fontSize = 16;
+            }
 
             // Add the certification details
             page.drawText(line, {
                 x: detailX,
                 y: detailY,
-                size: 16,
-                font: detailFont,
+                size: fontSize,
+                font: fontStyle,
                 color: rgb(51 / 255, 51 / 255, 51 / 255)
             });
         });

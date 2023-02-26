@@ -9,11 +9,11 @@ img.sidebarlogo {max-width: 180px;margin: 0 auto;}
 .dashboard-light-bg {background: url("../images/bg-light.jpg") no-repeat; background-size: cover; background-attachment: fixed;}
 .ptb15{padding-top: 15px; padding-bottom: 15px;}
 .h100vh{ height: 100vh;}
-.profile-area{ display: flex; align-items: center; justify-content: flex-end;}
+.profile-area{ display: flex; align-items: center; justify-content: flex-end; position: relative; z-index: 1;}
 .profile-area p {font-size: 12px;}
 .profile-area p span{color: #005fff; font-weight: 700 ;}
 .lastlogin{ font-size: 12px; font-weight: 600;}
-.sidemenupanel .list-group-item .sidebaricons{ height: 40px; width: 50px; display: flex; align-items: center; justify-content: center; padding: 0px 10px 0px 15px;}
+.sidemenupanel .list-group-item .sidebaricons{ height: 40px; width: 42px; display: flex; align-items: center; justify-content: center; padding: 0px 10px 0px 15px;}
 .sidemenupanel .list-group-item .sidebaricons img{ max-width: 100%; max-height: 100%;}
 .sidemenupanel .list-group-item.active .sidebaricons img{filter: brightness(0) invert(1);}
 .backgroundblur { height: 100%;  border-radius: 27px; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15); background: linear-gradient(to top, rgba(255,255,255, 0.4), rgba(255,255,255, 0.1)); backdrop-filter: blur(10px);}
@@ -39,6 +39,7 @@ tbody tr td {border: 0px;}
 .text-secondary{ color: #636b79;}
 .text-secondary svg{ fill: #636b79;}
 
+.badge-primary { background-color: #e3edff; color: #005FFF;}
 .btn{box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25) !important;  text-transform: none; padding: 0px 15px; height: 45px; border-radius: 10px; line-height: normal; display: inline-flex; align-items:  center; transition: all ease 0.75s; border: none; justify-content: center; font-size: 13px; font-weight: 600;}
 .btn:hover .eva { animation-name: eva-flipInY;}
 .btn-primary{  background: linear-gradient(to top, #005FFF 75%, #005FFF 95%);}
@@ -65,7 +66,7 @@ nav#sidebarMenu {box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.35), 0 0px 2px 
 span.badge-approved {background: #005fff;color: #ffffff;padding: 7px 11px;border-radius: 15px;min-width: 77px;box-shadow: 0em 0em 0.2em 0em #000000;}
 span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-radius: 15px;min-width: 77px;box-shadow: 0em 0em 0.2em 0em #000000;}
 .list-group-item-action:active {background: none;}
-.dashboardboxContainer {min-height: 230px; width: 100%; padding: 15px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 2px 4px 5px rgba(0,0,0,0.15); z-index: 1; border-left: 1px solid #f2f2f2;  transition: all ease 0.75s;}
+.dashboardboxContainer {min-height: 230px; width: 100%; padding: 15px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0px 2px 5px rgba(0,0,0,0.15); z-index: 1; border-left: 1px solid #f2f2f2;  transition: all ease 0.75s; overflow: hidden;}
 .dashboardsideContainer {min-height: 770px;}
 .tableblur{border-radius: 20px;box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15); background: rgb(255 255 255 / 50%); overflow: hidden; padding: 15px;}
 .height100per {height: 100%;}
@@ -112,20 +113,24 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .folder::after { top: 0px;left: 182px;content: '';display: none;position: absolute;width: 40px;height: 27px;z-index: 1;transform: skewX(41deg); box-shadow:2px 0px 1px rgba(0,0,0,0.05);   background: linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); backdrop-filter: blur(10px);z-index: 1; }
 
 .foldercut{border-left: 1px solid #ececec;  width:100%;  border-radius: 27px 0px 0 0;  overflow: hidden; display: inline-flex; align-items: center; align-self: flex-start; }
-.foldercut .cltitle { transition: all ease 0.1s; border-top: 1px solid #f2f2f2; padding: 0px 15px 0px 35px;  margin: 0 0 0 -20px; width: 75%; height: 35px; box-shadow:0px 0px 10px rgba(0,0,0,0.05); -webkit-transform: skew(40deg); -moz-transform: skew(40deg); -o-transform: skew(40deg); background: rgba(255,255,255, 0.30); backdrop-filter: blur(10px); }
+.foldercut .cltitle { transition: all ease 0.75s; border-top: 1px solid #f2f2f2; padding: 0px 15px 0px 35px;  margin: 0 0 0 -20px; width: 75%; height: 35px; box-shadow:0px 0px 10px rgba(0,0,0,0.05); -webkit-transform: skew(40deg); -moz-transform: skew(40deg); -o-transform: skew(40deg); background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(10px); }
 .climgcont{-webkit-transform: skew(-40deg); -moz-transform: skew(-40deg); -o-transform: skew(-40deg); }
 
 .folder .light-blur{ border-radius: 0px 27px 27px;}
 
-.cltitle{ display: flex; align-items: center; font-size: 12px; text-transform: uppercase; z-index: 1; color: #1c1c1c;}
+.cltitle{ display: flex; align-items: center; font-size: 12px; text-transform: uppercase; z-index: 1; color: #1c1c1c; transition: all ease 0.75s;}
 .cltitle img{ width: 18px; margin-right: 3px;  left: 0px;}
 
+.folder:hover .cltitle{ background: rgb(227, 237, 255);}
+.folder:hover .dashboardboxContainer{background: #cfe0ff;}
+
 .cpartitle{ font-weight: 600; text-transform: uppercase; font-size: 20px;}
-.foldcont{ display: flex; flex: 1;  flex-direction: column;}
+.foldcont{ display: flex; flex: 1;  flex-direction: column; justify-content: center;}
+.foldcont h2{ margin: 0px;}
 .foldpicshare{ min-height: 44px;display: flex; justify-content: space-between; flex-direction: row; align-items: center;}
 .row-reverse{flex-direction: row-reverse;}
-.foldpics{ position: relative; bottom: -50%; opacity: 0; transition: all ease 0.75s;}
-.row-reverse .icontext:hover + .foldpics{ bottom: 0; opacity: 1;}
+.foldpicshare{ position: relative; bottom: -50%; opacity: 0; transition: all ease 0.75s;}
+.folder:hover .foldpicshare{ bottom: 0; opacity: 1;}
 .foldpics ul{ display: flex; flex-direction: row; margin: 0px;}
 .foldpics li:not(:first-child){ margin-left: -22px;}
 .flpic{ transition: all ease 0.75s; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; backdrop-filter: blur(10px); background: transparent; display: flex; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.15); background: linear-gradient(to top, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15)); backdrop-filter: blur(10px); overflow: hidden; padding: 1px; align-items: center; justify-content: center; transition: all ease 0.75s;}
@@ -154,7 +159,7 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .viewall .icon svg{transition: all ease 0.75s; fill: #464646; width: 15px; height: 15px;}
 
 .custable th{ font-size: 12px;   border-bottom: 1px solid #E0E3E4 !important; color: #666666; font-weight: 600; white-space: nowrap;}
-.custable td{ color: #464646; font-weight: 500;}
+.custable td{ color: #222; font-weight: 500; font-size: 13px;}
 .custable .text-success, .custable .text-danger, .custable .text-primary{ font-size: 11px;}
 .custable .text-success{ color: #04AF15 !important;}
 .custable .text-danger{ color: #F96262 !important;}
@@ -162,7 +167,7 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .custable .dropdown-toggle::after{ display: none;}
 
 .btngrouprht a:not(:first-child), .btngrouprht button:not(:first-child){ margin-left: 15px;}
-.searchform{ display: flex; padding: 15px; align-items: center; border-bottom: 1px solid #E0E3E4;}
+.searchform{ display: flex; padding: 15px 0px; align-items: center; border-bottom: 1px solid #E0E3E4;}
 .searchform .fields{ flex: 1;}
 .searchform .fields:not(:last-child){ margin-right: 15px; }
 .searchform .fields:not(:first-child){ margin-left: 15px; }
@@ -200,13 +205,13 @@ input[type="file"] { display: none;}
 .custom-file-upload .eva{ fill: rgba(51, 51, 51, 0.5);}
 
 .greenbox{ display: flex; flex-direction: column; border-radius: 27px; overflow: hidden; box-shadow:0 0px 5px rgba(0,0,0,0.1); margin-bottom: 15px;}
-.greencont{background: linear-gradient(to right, #005FFF 0%, #00EF76 95%); min-height: 46px; color: #fff; padding: 15px; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25);} 
-.mapimportdata{ display: flex; background: #fff; padding: 15px;}
+.greencont{background: linear-gradient(to right, #005FFF 0%, #3A80FF 95%); min-height: 46px; color: #fff; padding: 15px; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25);} 
+.mapimportdata{ display: flex; background: rgb(255 255 255 / 50%); padding: 15px;}
 .mapimportdata .data{ flex: 1;}
 .mapimportdata .data p{font-size: 12px; margin-bottom: 10px;}
 .mapimportdata .data h5{font-size: 13px; margin-bottom: 0px;}
 
-.table th{ color: #464646;}
+.table th{ color: #464646; text-transform: uppercase;}
 .table tr:not(:last-child){ transition: all ease 0.75s; border-bottom: 1px solid #e0e3e4;}
 
 .table-hover > tbody > tr:hover{background: rgb(255, 255, 255); position: relative; z-index: 1; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);}
@@ -280,7 +285,7 @@ input[type="file"] { display: none;}
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
 .custable .form-group{ margin: 0px;}
-.formscroldiv {height:calc(100vh - 370px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
+.formscroldiv {height:calc(100vh - 285px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
 
 .certinfo{ padding: 30px; min-height: 100%;}
 .certinfocont{ display: flex; align-items: center; justify-content: center;}
@@ -310,7 +315,7 @@ input[type="file"] { display: none;}
 .studdep{ flex: 1;}
 .listview .accordion-item{ margin-bottom: 15px; border-radius: 27px; overflow: hidden;border: none; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25); transition: all ease 0.75s;}
 .listview .accordion-button{padding: 15px; min-height: 46px;}
-.listview .accordion-button[aria-expanded="true"], .listview .accordion-button:hover{background: linear-gradient(to right, #005FFF 0%, #00EF76 95%); color: #fff; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35);}
+.listview .accordion-button[aria-expanded="true"], .listview .accordion-button:hover{background: linear-gradient(to right, #005FFF 0%, #3A80FF 95%); color: #fff; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35);}
 .listview .accordion-button:not(.collapsed)::after, .listview .accordion-button:hover::after{filter: brightness(0) invert(1);}
 
 .signerboxes{padding: 30px; display: flex; flex-direction: column; align-items: center;  margin-top: 30px;}
@@ -386,8 +391,6 @@ input[type="file"] { display: none;}
 .tableblur .fields .form-control {height: 40px !important;}
 
 .studentdash .folder{cursor: pointer;}
-.studentdash .folder:hover .dashboardboxContainer{background: linear-gradient(to top, rgba(0, 95, 255, 0.28), rgba(0, 95, 255, 0.12));}
-.studentdash .folder:hover .cltitle{background: rgba(0, 95, 255, 0.12);}
 
 .cert-full-loader{ position: fixed; width: 100%; height: 100%; z-index: 9; top: 0px; left: 0px;}
 .cert-full-loader .backgroundblur{ display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.1);}
@@ -450,6 +453,14 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .pnf img{ max-width: 30%; margin-bottom: 30px;}
 .pnf h6{ font-size: 20px;}
 
+.institle{ font-size: 14px; padding: 7px 15px;}
+
+.btn-tran{ box-shadow: none !important; padding: 0px 5px; height: auto; font-size: 11px; text-transform: uppercase; color: #005fff;}
+.btn-tran .eva{ width: 16px; fill: #005FFF;}
+
+.mar-top {margin-top: -65px;}
+
+
 @media (min-width: 992px) {
 main {padding-left: 270px;}
 .mobile-header{padding: 0px;}
@@ -475,7 +486,8 @@ main.height100per .container-fluid {padding-left: 15px !important; padding-top: 
 .content-header{ display: none;}
 nav#sidebarMenu{ background: #fff;}
 .mobileprofile{ display: flex; justify-content: center;}
-.formscroldiv {height: calc(100vh - 325px);}
+.formscroldiv {height: calc(100vh - 320px);}
+.mar-top {margin-top: 0;}
 }
 
 @media (max-width: 1199px) {

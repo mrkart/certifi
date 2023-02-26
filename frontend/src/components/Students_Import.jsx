@@ -1,10 +1,12 @@
 import { React, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
 import { NavLink } from 'react-router-dom';
+import * as eva from 'eva-icons';
 
 const StudentsImport = () => {
+  useEffect(() => {eva.replace()})
   return (
-    <div className='scrolldiv'>
+    <div className='scrolldiv mar-top'>
       <div className='row '>
         <div className='col-md-12 text-start'>                  
           <div className=''>
@@ -12,14 +14,14 @@ const StudentsImport = () => {
                 <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0"><span className='text-dark'>Students</span> {'>'} Import</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btngrouprht'>
-                    <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
-                    <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
+                    {/* <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
+                    <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink> */}
                     {/* <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
                     <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a> */}
                   </div>
                 </div>
               </div>
-
+              <div className='formscroldiv'>
               <div className='searchform border-none pt-0'>
                 <div className='fields'>Create import slot</div>
                 <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>
@@ -193,6 +195,7 @@ const StudentsImport = () => {
                 </tbody>
               </table>
               </div>
+            </div>
             </div>
           </div>
         </div>

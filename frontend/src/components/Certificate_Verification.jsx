@@ -63,81 +63,86 @@ export default function CertificateVerification() {
     }
     useEffect(() => { eva.replace() });
     return (
-        <div className="container-fluid height100per">              
-            <div className="row fadein align-items-center justify-conten-center h-100">
+        <div className="container-fluid height100per">
+            <div className='row'>
                 <div div className="col-md-6 offset-md-3 text-start">
-                <div className="backgroundblur p-3 my-3">
+                    <a className="navbar-brand" href="/"><img src={require('../assets/images/logo.png')} alt="certifily Logo" loading="lazy" className='sidebarlogo mb-3'/></a>
+                </div>
+            </div>
+            <div className="row fadein align-items-center">
+                <div div className="col-md-6 offset-md-3 text-start">
+                    <div className="backgroundblur p-3 my-3">
 
-                            <VerificationFrom
-                                        erroMessage={erroMessage}
-                                        handleInputChange={
-                                            handleInputChange
+                        <VerificationFrom
+                            erroMessage={erroMessage}
+                            handleInputChange={
+                                handleInputChange
+                            }
+                            handleSubmit={handleSubmit}
+                            isLoading={isLoading}
+                            nftId={nftId}
+                        />
+
+                    </div>
+                    {viewCertificate ? (
+                        <div className="backgroundblur p-3 mb-3">
+
+
+
+                            <div className="ctemp height100per mb-0">
+                                <label htmlFor="cert-1" className='w-100'>
+                                    <p className="text-end w-100 mb-3">
+                                        #{certificate.nftId}
+                                    </p>
+                                    <embed className='iframe'
+                                        src={
+                                            certificate.certificateHash
                                         }
-                                        handleSubmit={handleSubmit}
-                                        isLoading={isLoading}
-                                        nftId={nftId}
                                     />
-
-                           </div>
-                           {viewCertificate ? (
-                           <div className="backgroundblur p-3 mb-3">
-        
-                               
-                                   
-                                    <div className="ctemp height100per mb-0">
-                                        <label htmlFor="cert-1" className='w-100'>
-                                            <p className="text-end w-100 mb-3">
-                                                #{certificate.nftId}
-                                            </p>
-                                            <embed className='iframe'
-                                                src={
-                                                    certificate.certificateHash
-                                                }
-                                            />
-                                            <div className="row align-items-center">
-                                                <div className="col-md-7 text-start">
-                                                    <p className="mt-3 mb-2">
-                                                        Issued on{' '}
-                                                        <span className='fw-bold'>
-                                                            {new Date(
-                                                                certificate.datetimeCreated
-                                                            ).toLocaleDateString(
-                                                                'en-US',
-                                                                {
-                                                                    year: 'numeric',
-                                                                    month: 'short',
-                                                                    day: 'numeric',
-                                                                }
-                                                            )}
-                                                        </span>
-                                                    </p>
-                                                    <p className="">
-                                                        by{' '}
-                                                        <span className='fw-bold text-primary'>{
-                                                            certificate.org[
-                                                            'name'
-                                                            ]
+                                    <div className="row align-items-center">
+                                        <div className="col-md-7 text-start">
+                                            <p className="mt-3 mb-2">
+                                                Issued on{' '}
+                                                <span className='fw-bold'>
+                                                    {new Date(
+                                                        certificate.datetimeCreated
+                                                    ).toLocaleDateString(
+                                                        'en-US',
+                                                        {
+                                                            year: 'numeric',
+                                                            month: 'short',
+                                                            day: 'numeric',
                                                         }
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                <div className="col-md-5 text-end">
-                                                    <span className="eva-hover d-inline-flex align-items-center text-primary">
-                                                        <i
-                                                            className="mr-2"
-                                                            data-eva="share-outline"
-                                                            data-eva-animation="flip"
-                                                        ></i>{' '}
-                                                        Share
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </label>
+                                                    )}
+                                                </span>
+                                            </p>
+                                            <p className="">
+                                                by{' '}
+                                                <span className='fw-bold text-primary'>{
+                                                    certificate.org[
+                                                    'name'
+                                                    ]
+                                                }
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div className="col-md-5 text-end">
+                                            <span className="eva-hover d-inline-flex align-items-center text-primary">
+                                                <i
+                                                    className="mr-2"
+                                                    data-eva="share-outline"
+                                                    data-eva-animation="flip"
+                                                ></i>{' '}
+                                                Share
+                                            </span>
+                                        </div>
                                     </div>
+                                </label>
                             </div>
-                            ) : (''
-                                    
-                            )}
+                        </div>
+                    ) : (''
+
+                    )}
                 </div>
             </div>
 
@@ -156,21 +161,21 @@ export function VerificationFrom({
         <div className="searchform border-none d-block p-0">
             <form onSubmit={handleSubmit}>
                 <div className="fom-group">
-                    <label className="mb-2 fw-bold">Certificate number</label>
+                    <label className="mb-2 fw-bold text-center text-uppercase w-100">Certificate number</label>
                     <div class="input-group mb-3 inputbtngroup">
                         <input name="nftId" type={'text'} value={nftId} onChange={handleInputChange} className="form-control" placeholder="Certificate number" />
-                        <button type="submit" className="btn btn-primary btn-icon">Verifiy                         
-                        {isLoading ? (
+                        <button type="submit" className="btn btn-primary btn-icon">Verifiy
+                            {isLoading ? (
                                 <span className='loaderbtn fadein'>
-                                <img
-                                    src={require('../assets/images/certifi-loader.gif')}
-                                    loading="lazy"
-                                    alt="Loading..."
-                                />
+                                    <img
+                                        src={require('../assets/images/certifi-loader.gif')}
+                                        loading="lazy"
+                                        alt="Loading..."
+                                    />
                                 </span>
                             ) : ''}</button>
-                    </div>                   
-                </div>                
+                    </div>
+                </div>
                 {erroMessage && (
                     <div class="alert alert-danger text-center col-sm-6 mx-auto fadein" role="alert">{erroMessage}</div>
                 )}

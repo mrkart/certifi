@@ -312,7 +312,7 @@ const Issue_Certificate = () => {
   }
   return (
     <Fragment>
-      {!selectedType ? <div className='scrolldiv'>
+      {!selectedType ? <div className='scrolldiv mar-top'>
         <div className='row '>
           <div className='col-md-12 text-start'>
             <div className=''>
@@ -410,12 +410,17 @@ const Issue_Certificate = () => {
           </div>
         </div>
       </div> :
-        <div className='scrolldiv1'>
+        <div className='scrolldiv1 mar-top'>
           <div className='row '>
             <div className='col-md-12 text-start'>
               <div className=''>
                 <div className='row mb-3 align-items-center'>
-                  <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0">Issue Certs</h4></div>
+                  <div className='col-md-12'>
+                    <div className='userOrg'>
+                      <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
+                      <h4 className="fw-bolder text-black text-uppercase mb-0">Mint Certificate</h4>
+                    </div>
+                      </div>
                 </div>
               </div>
               <div>   
@@ -710,7 +715,7 @@ const Issue_Certificate = () => {
                           <div className='row'>
                             <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
-                                <label className='mb-2'>Course</label>
+                                <label className='mb-2'>Course <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input 
                                   type={'text'} 
                                   className="form-control" 
@@ -727,7 +732,7 @@ const Issue_Certificate = () => {
                               { recentCourse &&
                                 <div className='col-md-4 fadein'>
                                   <div className='form-group'>
-                                    <label className='mb-2 fw-bold'>Recent Course</label>
+                                    <label className='mb-2 fw-bold'>Recent Courses </label>
                                     <div className='listcorgrade'>
                                       <span className='badge badge-primary' onClick={triggerCourseChange}>B.Sc</span>
                                       <span className='badge badge-primary' onClick={triggerCourseChange}>BCA</span>
@@ -740,7 +745,7 @@ const Issue_Certificate = () => {
                               }
                               <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
-                                <label className='mb-2'>Grade</label>
+                                <label className='mb-2'>Grade <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input 
                                   type={'text'} 
                                   className="form-control" 
@@ -756,7 +761,7 @@ const Issue_Certificate = () => {
                               { recentGrade &&
                               <div className='col-md-4 fadein'>
                                 <div className='form-group'>
-                                  <label className='mb-2 fw-bold'>Recent Grade</label>
+                                  <label className='mb-2 fw-bold'>Recent Grades</label>
                                   <div className='listcorgrade'>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>A</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>B</span>
@@ -769,12 +774,12 @@ const Issue_Certificate = () => {
                               }
                               <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
-                                <label className='mb-2'>Batch</label>
+                                <label className='mb-2'>Batch <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input type={'text'} className="form-control" placeholder='Batch' onChange={handleInputChange} value={batchno} name="batchno" readOnly />
                               </div>
 
                               <div className='form-group'>
-                                <label className='mb-2'>Certificate Number</label>
+                                <label className='mb-2'>Certificate Number <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input type={'text'} className="form-control" placeholder='Certificate Number' onChange={handleInputChange} value={cnumber} name="cnumber" />
                               </div>
                             
@@ -986,9 +991,16 @@ const Issue_Certificate = () => {
                                       <span className="input-group-text">T</span>
                                       <select className="form-control" value={fontOption} onChange={onChangeValue}>
                                         <option>Select font</option>
-                                        <option value="1">Verdana</option>
-                                        <option value="2">Times New Roman</option>
-                                        <option value="3">Open Sans</option>
+                                        <option value="1">Arial </option>
+                                        <option value="2">Verdana </option>
+                                        <option value="3">Tahoma</option> 
+                                        <option value="4">Trebuchet MS </option>
+                                        <option value="5">Times New Roman</option>
+                                        <option value="6">Georgia</option>
+                                        <option value="7">Garamond</option>
+                                        <option value="8">Courier New</option>
+                                        <option value="9">Brush Script MT</option>
+                                        <option value="10">Open sans</option>
                                       </select>
 
                                     </div>
@@ -1005,6 +1017,12 @@ const Issue_Certificate = () => {
                                         <option value="1">8px</option>
                                         <option value="2">9px</option>
                                         <option value="3">10px</option>
+                                        <option value="4">11px</option>
+                                        <option value="5">12px</option>
+                                        <option value="6">13px</option>
+                                        <option value="7">14px</option>
+                                        <option value="8">15px</option>
+                                        <option value="9">16px</option>
                                       </select>
 
                                     </div>

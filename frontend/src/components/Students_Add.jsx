@@ -70,7 +70,7 @@ const StudentsAdd = () => {
   };
 
   return (
-    <div className='scrolldiv1'>
+    <div className='scrolldiv1 mar-top'>
       <div className='row '>
         <div className='col-md-12 text-start'>
           <div className=''>
@@ -86,7 +86,7 @@ const StudentsAdd = () => {
             <div className='backgroundblur'>
               <div className='searchform border-none d-block'>
                 <form onSubmit={handleSubmit}>
-                  <div className='formscroldiv'>
+                  <div className='formscroldiv1 px-3'>
                     {erroMessage &&
                       <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
                         {erroMessage}
@@ -152,7 +152,7 @@ const StudentsAdd = () => {
                     </div>
                   </div>
                   </div> */}
-                  </div>
+                  </div>                  
                   <hr className='light-brd'/>
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>

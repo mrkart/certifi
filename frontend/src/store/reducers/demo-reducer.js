@@ -114,12 +114,12 @@ export function demoReducer(state = initialState, action) {
                 ...state,
                 recentcertificate : action.payload
             }
-        case types.GET_CERTIFICATE_NFT_ID_SUCCESS:
+        case types.GET_CERTIFICATE_CERT_NO_SUCCESS:
             return {
                 ...state,
                 getCertificate: action.payload
             }
-        case types.GET_CERTIFICATE_NFT_ID_FAILURE:
+        case types.GET_CERTIFICATE_CERT_NO_FAILURE:
             return {
                 ...state,
                 getCertificateFailed: action.payload

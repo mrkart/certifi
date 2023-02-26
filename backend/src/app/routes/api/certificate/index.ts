@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { CertificateController } from '../../../controllers';
-import { NftIdUrlParamDTO } from '../../../dtos';
+import { CertificaeNumberUrlParamDTO } from '../../../dtos';
 import { AccessControlMiddleware } from '../../../middlewares/access-control-middleware';
 import { AuthenticationMiddleware } from '../../../middlewares/authentication-middleware';
 import {
@@ -83,7 +83,7 @@ certificateRouter.get(
 
 /**
  * @openapi
- * /api/certificates/{nftId}:
+ * /api/certificates/{certificateNumber}:
  *   get:
  *     summary: Get certificate
  *     security:
@@ -96,8 +96,8 @@ certificateRouter.get(
  *       - application/json
  *     parameters:
  *       - in: path
- *         name: nftId
- *         type: integer
+ *         name: certificateNumber
+ *         type: string
  *         example: 1
  *         required: true
  *     responses:
@@ -133,8 +133,8 @@ certificateRouter.get(
  *         $ref: '#/components/responses/UnhandledError'
  */
 certificateRouter.get(
-    '/:nftId',
-    UrlParamsValidationMiddleware(NftIdUrlParamDTO),
+    '/:certificateNumber',
+    UrlParamsValidationMiddleware(CertificaeNumberUrlParamDTO),
     async (request, response, next) => {
         await controller.getCertificate(request, response, next);
     }

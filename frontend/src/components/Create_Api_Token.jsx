@@ -4,11 +4,13 @@ import { React, useState } from 'react';
 const CreateApiToken = () => {
 
   const user_email = localStorage.getItem('user_email');
+  const accessToken = localStorage.getItem('accessToken');
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   const userFlowAddress = userprofile.flowAddress;
 
   const [email, setEmail] = useState('');
   const [verifyOTP, setVerifyOTP] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -28,6 +30,12 @@ const CreateApiToken = () => {
     // console.log(verifyOTP);
   };
 
+  const handleCopy = () => {
+    const input = document.querySelector('input');
+    input.select();
+    document.execCommand('copy');
+  };
+
   return (
     <div className='scrolldiv'>
        <div className="row mb-3"><div className="col-md-12 text-start"><h4 className="fw-bolder text-black text-uppercase mb-0">API Tokens</h4></div></div>
@@ -39,10 +47,20 @@ const CreateApiToken = () => {
                 <h6 className="fw-bolder text-black text-uppercase">Create Token</h6>
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className='col-md-4'>
-                      <div className="input-group mb-3 inputbtngroup">
-                        <input type={'text'} name="email" value={email} onChange={handleInputChange} className="form-control" placeholder='' />
-                        <button type="submit" className='btn btn-primary btn-icon'><i data-eva="plus-outline"></i> Generate</button>
+                    <div className='col-md-6'>
+                      <div className="mb-3 inputbtngroup">
+                        <button type="submit" className='btn btn-primary btn-icon'> Generate Public Token</button>
+                      </div>
+                      <div className="mb-3 inputbtngroup">
+                        <button type="submit" className='btn btn-primary btn-icon'> Generate Private Token</button>
+                      </div>
+                    </div>
+                    <div className='col-md-12'>
+                      <div className=' col-md-4'>
+                        <div className="input-group mb-3 inputbtngroup">
+                          <input type={'text'} name="email" value={inputValue} onChange={e => setInputValue(e.target.value)} className="form-control" placeholder='' />
+                          <button onClick={handleCopy} type="submit" className='btn btn-primary btn-icon'><i data-eva="copy-outline"></i> Copy Token</button>
+                        </div>
                       </div>
                     </div>
                   </div>

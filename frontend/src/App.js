@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App dashboard-light-bg">
+    <div className="App h-100">
       <Routes >
         <Route path="/login" element={ <Login /> } />
         <Route path="/verify" element={ <CertificateVerification/> } />

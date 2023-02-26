@@ -42,6 +42,21 @@ const StudentDashboard = () => {
 
     useEffect(() => { eva.replace() });
 
+
+    const shareOnLinkedIn = (mycert) => {
+        const message = "Certifily";
+      
+        // Replace this with your LinkedIn share URL
+        const shareUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(mycert) + "&title=" + encodeURIComponent(message);
+      
+        window.open(shareUrl, "_blank");
+    }
+
+    const buttonStyle = {
+        cursor: 'pointer'
+    };
+    
+
     return (
         <div className='scrolldiv'>
             <div className='row fadein'>
@@ -242,7 +257,7 @@ const StudentDashboard = () => {
                                                             <p className=''>by {user.org['name']}</p>
                                                         </div>
                                                         <div className='col-md-5 text-end'>
-                                                            <span className='eva-hover d-inline-flex align-items-center'><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                            <span className='eva-hover d-inline-flex align-items-center' style={buttonStyle} onClick={() => shareOnLinkedIn(user.certificateHash)}><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
                                                         </div>
                                                     </div>
                                                 </label>

@@ -223,19 +223,19 @@ export const getRecentCertificate = (orgID) => {
   };
 };
 
-export function getCertificateByNftId(nftId) {
+export function getCertificateByCertificateNumber(certificateNumber) {
   return (dispatch) => {
-    api.get(`/api/certificates/${nftId}`)
+    api.get(`/api/certificates/${certificateNumber}`)
       .then((response) => {
-        console.log('GET %s', `/api/certificates/${nftId}`, response.data)
+        console.log('GET %s', `/api/certificates/${certificateNumber}`, response.data)
         dispatch({
-          type: 'GET_CERTIFICATE_NFT_ID_SUCCESS',
+          type: 'GET_CERTIFICATE_CERT_NO_SUCCESS',
           payload: response.data
         });
       })
       .catch((error) => {
         dispatch({
-          type: 'GET_CERTIFICATE_NFT_ID_FAILURE',
+          type: 'GET_CERTIFICATE_CERT_NO_FAILURE',
           payload: error && error.message && error.response.data.message
         });
       });
@@ -243,11 +243,11 @@ export function getCertificateByNftId(nftId) {
 }
 export function getCertificateFailed() {
   return dispatch => {
-    dispatch({ type: 'GET_CERTIFICATE_NFT_ID_FAILURE', payload: '' })
+    dispatch({ type: 'GET_CERTIFICATE_CERT_NO_FAILURE', payload: '' })
   }
 }
 export function resetGetCertificate() {
   return dispatch => {
-    dispatch({ type: 'GET_CERTIFICATE_NFT_ID_SUCCESS', payload: {} })
+    dispatch({ type: 'GET_CERTIFICATE_CERT_NO_SUCCESS', payload: {} })
   }
 }

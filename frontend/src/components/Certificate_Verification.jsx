@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCertificateByNftId } from '../actions/exampleAction';
+import { getCertificateByCertificateNumber } from '../actions/exampleAction';
 import { getCertificateFailed } from '../actions/exampleAction';
 
 export default function CertificateVerification() {
@@ -35,7 +35,7 @@ export default function CertificateVerification() {
 
     useEffect(() => {
         if (getSucceeded.statusCode === 200) {
-            console.log('getSucceeded', getSucceeded);
+            // console.log('getSucceeded', getSucceeded);
             setCertifcate({
                 ...getSucceeded.data.certificate,
             });
@@ -53,7 +53,7 @@ export default function CertificateVerification() {
             return;
         }
         setIsLoading(true);
-        dispatch(getCertificateByNftId(nftId));
+        dispatch(getCertificateByCertificateNumber(nftId));
     }
 
     function handleInputChange(event) {
@@ -64,10 +64,20 @@ export default function CertificateVerification() {
         <div className="container-fluid height100per pt-3 ps-4">
             <div className="scrolldiv">
                 <div className="row fadein">
-                    <div div className="col-sm-12 col-md-8 offset-md-2 text-start">
+                    <div
+                        div
+                        className="col-sm-12 col-md-8 offset-md-2 text-start"
+                    >
                         <div className="row">
                             <div className="col-12 text-center">
                                 <div className="backgroundblur">
+                                    <VerificationFrom
+                                        erroMessage={erroMessage}
+                                        handleInputChange={handleInputChange}
+                                        handleSubmit={handleSubmit}
+                                        isLoading={isLoading}
+                                        nftId={nftId}
+                                    />
                                     {viewCertificate ? (
                                         <div className="ctemp height100per">
                                             <label htmlFor="cert-1">
@@ -119,15 +129,7 @@ export default function CertificateVerification() {
                                             </label>
                                         </div>
                                     ) : (
-                                        <VerificationFrom
-                                            erroMessage={erroMessage}
-                                            handleInputChange={
-                                                handleInputChange
-                                            }
-                                            handleSubmit={handleSubmit}
-                                            isLoading={isLoading}
-                                            nftId={nftId}
-                                        />
+                                        ''
                                     )}
                                 </div>
                             </div>
@@ -149,7 +151,7 @@ export function VerificationFrom({
     return (
         <div className="searchform border-none d-block">
             <form onSubmit={handleSubmit}>
-                <div className="formscroldiv">
+                <div>
                     {erroMessage && (
                         <div
                             class="alert alert-danger text-center col-sm-6 mx-auto py-3"
@@ -161,14 +163,16 @@ export function VerificationFrom({
                     <div className="row align-items-cente">
                         <div className="col-12 text-center">
                             <div className="fom-container">
-                                <label className="mb-2">NFT ID</label>
+                                <label className="mb-2">
+                                    Certificate number
+                                </label>
                                 <input
                                     name="nftId"
                                     type={'text'}
                                     value={nftId}
                                     onChange={handleInputChange}
                                     className="form-control"
-                                    placeholder="NFT ID"
+                                    placeholder="Certificate number"
                                 />
                             </div>
                         </div>

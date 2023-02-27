@@ -17,6 +17,7 @@ const StudentDashboard = () => {
     let orgID = userprofile.organistaions[0]?.id;
     let userId = userprofile.id;
     let userName = userprofile.name;
+    let flowAddress = userprofile.flowAddress;
 
     const viewCertificatepage = () => {
         if (certificateCount > 0) {
@@ -256,7 +257,15 @@ const StudentDashboard = () => {
                                         <div key={index} className="col-md-6">
                                             <div className='ctemp' >
                                                 <label className='backgroundblur' htmlFor="cert-1">
-                                                    <p className='text-end w-100 mb-3'>#{user.nftId} <span className='badge badge-success ms-2 text-uppercase'>Verify</span></p>
+                                                    <p className='text-end w-100 mb-3'>
+                                                    <a href={"https://testnet.flowview.app/account/"+flowAddress+"/collection/CertifilyNFTCollection/"+user.nftId} target="_blank">
+                                                        #{user.nftId} 
+                                                    </a>
+                                                    <a href={"https://alpha.certifi.ly/verify/"+user.certificateNumber} target="_blank">
+                                                    <span className='badge badge-success ms-2 text-uppercase'>
+                                                        Verify
+                                                    </span>
+                                                    </a></p>
                                                     <iframe src={user.certificateHash}></iframe>
                                                     <div className='row align-items-center'>
                                                         <div className='col-md-7 text-start'>

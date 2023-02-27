@@ -13,6 +13,8 @@ import FailureModal from './shared/MintFailureModal';
 import { getUserAddress } from '../utils/utils';
 import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
 import { NavLink } from 'react-router-dom';
+import ProfileArea from '../components/shared/ProfileArea';
+import { SketchPicker } from 'react-color';
 
 const Issue_Certificate = () => {
 
@@ -35,6 +37,45 @@ const Issue_Certificate = () => {
   const dispatch = useDispatch();
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile && userprofile.organistaions[0]?.id;
+
+  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+  const [colorr, setColorr] = useState('#005FFF');
+  const styles = {
+    color: {
+      width: '36px',
+      backgroundColor: colorr,
+    },
+    swatch: {
+      padding: '5px',
+      backgroundColor: '#fff',
+      borderRadius: '1px',
+      boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+      display: 'inline-block',
+      cursor: 'pointer',
+    },
+    popover: {
+      position: 'absolute',
+      zIndex: '2',
+      top: '50px',
+      right: '0px'
+    },
+    cover: {
+      position: 'fixed',
+      top: '0px',
+      right: '0px',
+      bottom: '0px',
+      left: '0px',
+    },
+  };
+  function handleColorClick() {
+    setDisplayColorPicker(!displayColorPicker);
+  }
+  function handleColorClose() {
+    setDisplayColorPicker(false);
+  }
+  function handleColorChange(newColor) {
+    setColorr(newColor.hex);
+  }
 
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
   const downloadCertificate = useSelector(state => state.demoReducer.generatedCertificate);
@@ -65,9 +106,8 @@ const Issue_Certificate = () => {
   const [mintFailed, setMintFailed] = useState(false)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    eva.replace()
-  })
+  useEffect(() => {eva.replace()})
+  
   const handleSelectMinType = () => {
     setSelectedType(true)
     dispatch(getUserList(orgID));
@@ -312,17 +352,23 @@ const Issue_Certificate = () => {
   }
   return (
     <Fragment>
-      {!selectedType ? <div className='scrolldiv'>
+      {!selectedType ? <div className='scrolldiv mar-top'>
         <div className='row '>
           <div className='col-md-12 text-start'>
-            <div className=''>
+            
+            <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
-                <div className='col-md-12 text-center'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-2">Mint</h4>
-                  <h6 className='mb-3'>Select a document type to be minted as NFT</h6>
+                <div className='col-md-6'>
+                <h4 className="fw-bolder text-black text-uppercase mb-2">Mint</h4>
+                  <h6 className='mb-0'>Select a document type to be minted as NFT</h6>
+                  </div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
                 </div>
               </div>
-            </div>
+            </div> 
 
             <div className='certtemplates mintnft'>
               <div className='row'>
@@ -410,14 +456,26 @@ const Issue_Certificate = () => {
           </div>
         </div>
       </div> :
-        <div className='scrolldiv1'>
+        <div className='scrolldiv1 mar-top'>
           <div className='row '>
             <div className='col-md-12 text-start'>
-              <div className=''>
-                <div className='row mb-3 align-items-center'>
-                  <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0">Issue Certs</h4></div>
+
+            <div className='pageheader'>
+              <div className='row mb-3 align-items-center'>
+                <div className='col-md-6'>
+                  <div className='userOrg'>
+                      <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
+                      <h4 className="fw-bolder text-black text-uppercase mb-0">Mint Certificate</h4>
+                    </div>
+                  </div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
                 </div>
               </div>
+            </div> 
+             
               <div>   
               {isMintInitiated ? <SuccessModal closemodal={closeModal}/> : ''}
               {isLoading ? <FullLoader/> : ''}
@@ -710,7 +768,7 @@ const Issue_Certificate = () => {
                           <div className='row'>
                             <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
-                                <label className='mb-2'>Course</label>
+                                <label className='mb-2'>Course <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input 
                                   type={'text'} 
                                   className="form-control" 
@@ -727,7 +785,7 @@ const Issue_Certificate = () => {
                               { recentCourse &&
                                 <div className='col-md-4 fadein'>
                                   <div className='form-group'>
-                                    <label className='mb-2 fw-bold'>Recent Course</label>
+                                    <label className='mb-2 fw-bold'>Recent Courses </label>
                                     <div className='listcorgrade'>
                                       <span className='badge badge-primary' onClick={triggerCourseChange}>B.Sc</span>
                                       <span className='badge badge-primary' onClick={triggerCourseChange}>BCA</span>
@@ -740,7 +798,7 @@ const Issue_Certificate = () => {
                               }
                               <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
-                                <label className='mb-2'>Grade</label>
+                                <label className='mb-2'>Grade <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input 
                                   type={'text'} 
                                   className="form-control" 
@@ -756,25 +814,25 @@ const Issue_Certificate = () => {
                               { recentGrade &&
                               <div className='col-md-4 fadein'>
                                 <div className='form-group'>
-                                  <label className='mb-2 fw-bold'>Recent Grade</label>
+                                  <label className='mb-2 fw-bold'>Recent Grades</label>
                                   <div className='listcorgrade'>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>S</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>A</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>B</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>C</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>D</span>
-                                    <span className='badge badge-primary' onClick={triggerGradeChange}>E</span>
                                   </div>
                                 </div>
                               </div>
                               }
                               <div className='col-md-4 offset-md-4'>
                               <div className='form-group'>
-                                <label className='mb-2'>Batch</label>
+                                <label className='mb-2'>Batch <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input type={'text'} className="form-control" placeholder='Batch' onChange={handleInputChange} value={batchno} name="batchno" readOnly />
                               </div>
 
                               <div className='form-group'>
-                                <label className='mb-2'>Certificate Number</label>
+                                <label className='mb-2'>Certificate Number <span className='btn btn-light btn-tran'><i data-eva="edit-outline"></i> Edit</span></label>
                                 <input type={'text'} className="form-control" placeholder='Certificate Number' onChange={handleInputChange} value={cnumber} name="cnumber" />
                               </div>
                             
@@ -986,9 +1044,16 @@ const Issue_Certificate = () => {
                                       <span className="input-group-text">T</span>
                                       <select className="form-control" value={fontOption} onChange={onChangeValue}>
                                         <option>Select font</option>
-                                        <option value="1">Verdana</option>
-                                        <option value="2">Times New Roman</option>
-                                        <option value="3">Open Sans</option>
+                                        <option value="1">Arial </option>
+                                        <option value="2">Verdana </option>
+                                        <option value="3">Tahoma</option> 
+                                        <option value="4">Trebuchet MS </option>
+                                        <option value="5">Times New Roman</option>
+                                        <option value="6">Georgia</option>
+                                        <option value="7">Garamond</option>
+                                        <option value="8">Courier New</option>
+                                        <option value="9">Brush Script MT</option>
+                                        <option value="10">Open sans</option>
                                       </select>
 
                                     </div>
@@ -1005,6 +1070,12 @@ const Issue_Certificate = () => {
                                         <option value="1">8px</option>
                                         <option value="2">9px</option>
                                         <option value="3">10px</option>
+                                        <option value="4">11px</option>
+                                        <option value="5">12px</option>
+                                        <option value="6">13px</option>
+                                        <option value="7">14px</option>
+                                        <option value="8">15px</option>
+                                        <option value="9">16px</option>
                                       </select>
 
                                     </div>
@@ -1036,10 +1107,23 @@ const Issue_Certificate = () => {
                                 <div className='col-md-5'>                                  
                                 <div className='form-group'>
                                 <label className='mb-2'>Font color</label>                                 
-                                <div className="input-group has-validation">                                      
+                                {/* <div className="input-group has-validation">                                      
                                       <span className='pickclr input-group-text' style={{ backgroundColor: '#005FFF' }}></span>
                                       <input type={'text'} className="form-control" placeholder='#005FFF' value={color} onChange={onChangeValue} />         
-                                    </div>              
+                                    </div>               */}
+                                  <div className="input-group has-validation">
+                                    {/* <div style={styles.swatch} onClick={handleClick}>
+                                      <div style={styles.color} />
+                                    </div> */}
+                                    <span className='pickclr input-group-text' style={styles.color} onClick={handleColorClick}></span>
+                                    {displayColorPicker ? (
+                                      <div style={styles.popover}>
+                                        <div style={styles.cover} onClick={handleColorClose} />
+                                        <SketchPicker color={colorr} onChange={handleColorChange} />
+                                      </div>
+                                    ) : null}
+                                    <input type={'text'} className="form-control" placeholder='#005FFF' value={colorr}  /> 
+                                  </div>
                                   </div>
                                 </div>
                               </div>

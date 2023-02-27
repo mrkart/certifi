@@ -103,7 +103,9 @@ export class PdfService {
         });
 
         // Generate the QR code image
-        const qrCodeData = process.env.CERTIFICATE_VERIFIACTION_URL;
+        const qrCodeData =
+            process.env.CERTIFICATE_VERIFIACTION_URL +
+            `/${data.certificateNumber}`;
         const qrCodeImage = await QRCode.toDataURL(qrCodeData, {
             errorCorrectionLevel: 'H',
             color: {

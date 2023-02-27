@@ -3,6 +3,7 @@ import * as eva from 'eva-icons';
 import StudentSidemenu from '../components/shared/StudentSidemenu';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { mainRoles, userRoles } from '../components/shared/Roles';
+import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
 
 const StudentLayout = ({ subElement }) => {
 
@@ -70,7 +71,7 @@ const StudentLayout = ({ subElement }) => {
                                 </div>
                                 <div className='col-6 text-end'>
                                     <div className='profile-area'>
-                                        <p className='mb-0 p-2 profile-cont'><a className="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>
+                                        <p className='mb-0 p-2 profile-cont' onClick={connectBlocto}><a className="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>
                                         {/*  <div className='profile-cont'>
                                            <p className='mb-0 profilename'>Welcome <span className='username'>{userName}</span></p>
                                             <p className='mb-1 profilename'>{userFlowAddress}</p> 

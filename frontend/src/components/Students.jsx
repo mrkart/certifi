@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import TableLoader from './shared/TableLoader';
 import * as eva from 'eva-icons';
 import ProfileArea from '../components/shared/ProfileArea';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltipb from 'react-bootstrap/Tooltip';
 
 const Students = () => {
 
@@ -115,10 +117,14 @@ const Students = () => {
                             </td>
                             <td className='text-center'>
                               <div className='btngrouprht'>
+                              <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}>
                                 <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-student/" + user.id}>
                                   < i data-eva-animation="flip" data-eva="edit-outline"></i>
                                 </NavLink>
+                              </OverlayTrigger>
+                              <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Delete</Tooltipb>}>
                                 <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                                </OverlayTrigger>
                               </div>
                             </td>
                           </tr>

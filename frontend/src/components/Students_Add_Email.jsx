@@ -1,5 +1,12 @@
 import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import * as eva from 'eva-icons';
+import * as fcl from '@onflow/fcl';
+import {Buffer} from 'buffer'
+// const { getAccount } = require('@onflow/sdk');
+import * as t from "@onflow/types";
+
+// import * as sdk from "@onflow/sdk"
+// const { getAccount } = require('@onflow/fcl');
 
 const StudentsAddEmail = () => {
 
@@ -28,6 +35,49 @@ const StudentsAddEmail = () => {
     // console.log(verifyOTP);
   };
   useEffect(() => { eva.replace() });
+
+  
+  const addOwnership = async () => {
+
+    const address = await fcl.currentUser().authenticate();
+    const account = await fcl.send([fcl.getAccount(address.addr)]) 
+    console.log(account.account.keys)
+    const mykey =  account.account.keys.find(item => item.weight === 1000 & item.revoked === false);
+
+    console.log(mykey)
+
+
+  }
+
+  const removeCustodial = async () => {
+    const removeKeyScript = `
+        transaction(keyId: Int) {
+          prepare(acct: AuthAccount) {
+            acct.keys.revoke(keyIndex:keyId)
+          }
+        }`;
+    try {
+      const blockResponse = await fcl.send([
+        fcl.getBlock(),
+      ])
+      const txId = await fcl.send([
+        fcl.transaction(removeKeyScript),
+        fcl.args([fcl.arg(0, t.Int)]),
+        fcl.proposer(fcl.currentUser().authorization),
+            fcl.authorizations([
+                fcl.currentUser().authorization
+            ]),
+            fcl.payer(fcl.currentUser().authorization),
+            fcl.ref(blockResponse["block"].id),
+            fcl.limit(9999)
+      ]).then(fcl.decode);
+  
+      console.log("Transaction ID:", txId);
+    } catch (error) {
+      console.error("Transaction error:", error);
+    }
+  }
+
   return (
     <div className='scrolldiv'>
        <div className="row mb-3"><div className="col-md-12 text-start"><h4 className="fw-bolder text-black text-uppercase mb-0">Sync Accounts</h4></div></div>
@@ -44,6 +94,10 @@ const StudentsAddEmail = () => {
                         <input type={'text'} name="email" value={email} onChange={handleInputChange} className="form-control" placeholder='Email' />
                         <button type="submit" className='btn btn-primary btn-icon'><i data-eva="plus-outline"></i> Add</button>
                       </div>
+                    </div>
+                    <div className='col-md-4'>
+                    <button type="submit" className='btn btn-primary btn-icon' onClick={addOwnership} ><i data-eva="plus-outline"></i> Add Ownership </button>
+                    <button type="submit" className='btn btn-primary btn-icon' onClick={removeCustodial} ><i data-eva="plus-outline"></i> Remove Custodial </button>
                     </div>
                   </div>
                 </form>

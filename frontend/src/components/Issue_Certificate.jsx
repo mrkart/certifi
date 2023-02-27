@@ -14,6 +14,7 @@ import { getUserAddress } from '../utils/utils';
 import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
 import { NavLink } from 'react-router-dom';
 import ProfileArea from '../components/shared/ProfileArea';
+import { SketchPicker } from 'react-color';
 
 const Issue_Certificate = () => {
 
@@ -36,6 +37,45 @@ const Issue_Certificate = () => {
   const dispatch = useDispatch();
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile && userprofile.organistaions[0]?.id;
+
+  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+  const [colorr, setColorr] = useState('#005FFF');
+  const styles = {
+    color: {
+      width: '36px',
+      backgroundColor: colorr,
+    },
+    swatch: {
+      padding: '5px',
+      backgroundColor: '#fff',
+      borderRadius: '1px',
+      boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+      display: 'inline-block',
+      cursor: 'pointer',
+    },
+    popover: {
+      position: 'absolute',
+      zIndex: '2',
+      top: '50px',
+      right: '0px'
+    },
+    cover: {
+      position: 'fixed',
+      top: '0px',
+      right: '0px',
+      bottom: '0px',
+      left: '0px',
+    },
+  };
+  function handleColorClick() {
+    setDisplayColorPicker(!displayColorPicker);
+  }
+  function handleColorClose() {
+    setDisplayColorPicker(false);
+  }
+  function handleColorChange(newColor) {
+    setColorr(newColor.hex);
+  }
 
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
   const downloadCertificate = useSelector(state => state.demoReducer.generatedCertificate);
@@ -776,11 +816,11 @@ const Issue_Certificate = () => {
                                 <div className='form-group'>
                                   <label className='mb-2 fw-bold'>Recent Grades</label>
                                   <div className='listcorgrade'>
+                                    <span className='badge badge-primary' onClick={triggerGradeChange}>S</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>A</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>B</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>C</span>
                                     <span className='badge badge-primary' onClick={triggerGradeChange}>D</span>
-                                    <span className='badge badge-primary' onClick={triggerGradeChange}>E</span>
                                   </div>
                                 </div>
                               </div>
@@ -1067,10 +1107,23 @@ const Issue_Certificate = () => {
                                 <div className='col-md-5'>                                  
                                 <div className='form-group'>
                                 <label className='mb-2'>Font color</label>                                 
-                                <div className="input-group has-validation">                                      
+                                {/* <div className="input-group has-validation">                                      
                                       <span className='pickclr input-group-text' style={{ backgroundColor: '#005FFF' }}></span>
                                       <input type={'text'} className="form-control" placeholder='#005FFF' value={color} onChange={onChangeValue} />         
-                                    </div>              
+                                    </div>               */}
+                                  <div className="input-group has-validation">
+                                    {/* <div style={styles.swatch} onClick={handleClick}>
+                                      <div style={styles.color} />
+                                    </div> */}
+                                    <span className='pickclr input-group-text' style={styles.color} onClick={handleColorClick}></span>
+                                    {displayColorPicker ? (
+                                      <div style={styles.popover}>
+                                        <div style={styles.cover} onClick={handleColorClose} />
+                                        <SketchPicker color={colorr} onChange={handleColorChange} />
+                                      </div>
+                                    ) : null}
+                                    <input type={'text'} className="form-control" placeholder='#005FFF' value={colorr}  /> 
+                                  </div>
                                   </div>
                                 </div>
                               </div>

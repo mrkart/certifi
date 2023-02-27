@@ -12,7 +12,7 @@ export type CertificateDataResponse = Pick<
     | 'certificateNumber'
     | 'grade'
 > & {
-    user: Pick<User, 'id' | 'name'>;
+    user: Pick<User, 'id' | 'name' | 'flowAddress'>;
 } & { preparer: Pick<User, 'id' | 'name'> } & {
     verifier: Pick<User, 'id' | 'name'>;
 } & { issuer: Pick<User, 'id' | 'name'> } & {

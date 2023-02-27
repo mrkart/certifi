@@ -11,3 +11,9 @@ export class CertificaeNumberUrlParamDTO {
     @IsNotEmpty()
     certificateNumber: string;
 }
+
+export class CertificaeFileNameUrlParamDTO {
+    @IsString()
+    @IsNotEmpty()
+    fileName: string;
+}

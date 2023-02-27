@@ -61,7 +61,7 @@ const CreateApiToken = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="row">                   
                     <div className='col-md-6'>
-                    <div className="mb-3 btngrouprht">
+                    <div className="mb-3 btngrouprht resbtn">
                         <button type="submit" className='btn btn-primary btn-icon'> Generate Public Token</button>
                         <button type="submit" className='btn btn-primary btn-icon'> Generate Private Token</button>
                       </div>
@@ -85,7 +85,7 @@ const CreateApiToken = () => {
                       <thead className="">
                         <tr>
                           <th></th>
-                          <th>Token</th>
+                          <th width="700">Token</th>
                           <th>Created on</th>
                           <th>Verification</th>
                           {/* <th className='text-center d-none'>Action</th> */}
@@ -99,9 +99,9 @@ const CreateApiToken = () => {
                               1
                             </div>
                           </td>
-                          <td>
+                          <td className='accessToken'>
                             {/* {"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNDU2Nzg5LCJuzI1NiIsInR5cCI6IkpXLCJuzI1NiIsInR5cCI6I"} */}
-                            {accessToken}
+                            <span>{accessToken}</span>
                           </td>
                           <td>
                             {"February 25, 2023"}

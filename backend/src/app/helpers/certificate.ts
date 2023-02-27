@@ -19,4 +19,4 @@ export type CertificateDataResponse = Pick<
     slot: { id: number; name: string };
 } & { course: Pick<Course, 'id' | 'name'> } & {
     org: { id: number; name: string };
-};
+} & { thumbnailPath: string };

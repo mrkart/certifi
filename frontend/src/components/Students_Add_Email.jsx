@@ -154,34 +154,33 @@ const StudentsAddEmail = () => {
             </div>
 
 
-            <div className='col-md-12 mb-3'>
-              <div className='backgroundblur verifyotp'>
-                <h6 className="fw-bolder text-black text-uppercase mb-0">OTP VERIFICATION</h6>
-
-                <table className="table table-borderless verifytable">
-                  <tbody>
-                    {verifyOTP.map((user, index) => (
-                      <tr key={index}>
-                        <td className='align-middle'>{user}</td>
-                        <td className=''>
-                          <div className="otp-input-fields">
-                            <input type="number" className="otp__digit otp__field__1" />
-                            <input type="number" className="otp__digit otp__field__2" />
-                            <input type="number" className="otp__digit otp__field__3" />
-                            <input type="number" className="otp__digit otp__field__4" />
-                            <input type="number" className="otp__digit otp__field__5" />
-                            <input type="number" className="otp__digit otp__field__6" />
-                          </div>
-                        </td>
-                        <td className='text-success fw-bolder align-middle'>VERIFY</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-
+            {verifyOTP.length != 0 &&
+              <div className='col-md-12 mb-3'>
+                <div className='backgroundblur verifyotp'>
+                  <h6 className="fw-bolder text-black text-uppercase mb-0">OTP VERIFICATION</h6>
+                  <table className="table table-borderless verifytable">
+                    <tbody>
+                      {verifyOTP.map((user, index) => (
+                        <tr key={index}>
+                          <td className='align-middle'>{user}</td>
+                          <td className=''>
+                            <div className="otp-input-fields">
+                              <input type="number" className="otp__digit otp__field__1" />
+                              <input type="number" className="otp__digit otp__field__2" />
+                              <input type="number" className="otp__digit otp__field__3" />
+                              <input type="number" className="otp__digit otp__field__4" />
+                              <input type="number" className="otp__digit otp__field__5" />
+                              <input type="number" className="otp__digit otp__field__6" />
+                            </div>
+                          </td>
+                          <td className='text-success fw-bolder align-middle'>VERIFY</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-
+            }
           </div>
 
         </div>

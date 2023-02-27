@@ -66,9 +66,8 @@ const Issue_Certificate = () => {
   const [mintFailed, setMintFailed] = useState(false)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    eva.replace()
-  })
+  useEffect(() => {eva.replace()})
+  
   const handleSelectMinType = () => {
     setSelectedType(true)
     dispatch(getUserList(orgID));

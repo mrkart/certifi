@@ -96,7 +96,7 @@ const StudentsAddEmail = () => {
                       </div>
                     </div>
                     <div className='col-md-4'>
-                    <button type="submit" className='btn btn-primary btn-icon' onClick={addOwnership} ><i data-eva="plus-outline"></i> Add Ownership </button>
+                    <button type="submit" className='btn btn-primary btn-icon me-4' onClick={addOwnership} ><i data-eva="plus-outline"></i> Add Ownership </button>
                     <button type="submit" className='btn btn-primary btn-icon' onClick={removeCustodial} ><i data-eva="plus-outline"></i> Remove Custodial </button>
                     </div>
                   </div>

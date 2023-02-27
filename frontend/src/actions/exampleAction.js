@@ -251,3 +251,8 @@ export function resetGetCertificate() {
     dispatch({ type: 'GET_CERTIFICATE_CERT_NO_SUCCESS', payload: {} })
   }
 }
+export function resetUserCertList() {
+  return dispatch => {
+    dispatch({ type: 'GET_USERCERTLIST_SUCCESS', payload: {} })
+  }
+}

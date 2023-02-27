@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import * as eva from 'eva-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserCertList } from '../actions/exampleAction';
+import { getUserCertList, resetUserCertList } from '../actions/exampleAction';
 import ReactTimeAgo from 'react-time-ago';
 
 const StudentDashboard = () => {
@@ -9,6 +9,8 @@ const StudentDashboard = () => {
     const [viewCertificate, setViewCertificate] = useState(false)
     const [certificateCount, setCertificateCount] = useState(0);
     const [certificateList, setCertificateList] = useState([]);
+    const [apiLoading, setApiLoading] = useState(true);
+    
     const dispatch = useDispatch();
     const userCertList = useSelector(state => state.demoReducer.userCertificateList);
     let userprofile = JSON.parse(localStorage.getItem('userprofile'));
@@ -31,11 +33,13 @@ const StudentDashboard = () => {
 
     useEffect(() => {
         if (userCertList.statusCode == 200) {
-            console.log('userCertList');
+            setApiLoading(false);
+            // console.log('userCertList');
             if (userCertList?.data?.count > 0) {
                 setCertificateCount(userCertList.data.count);
-                console.log(userCertList.data.certificates);
+                // console.log(userCertList.data.certificates);
                 setCertificateList(userCertList.data.certificates);
+                dispatch(resetUserCertList());
             }
         }
     }, [userCertList]);
@@ -70,22 +74,30 @@ const StudentDashboard = () => {
                                     <h4 className='fw-bolder text-primary'>{userName}</h4>
                                     <div className='lastestnfts'>
                                         <h5>Latest NFTs</h5>
-                                        {certificateCount == 0 ?
-                                            <p>There are no additional NFTs generated</p>
+                                        { apiLoading ?
+                                            <div className="text-center">
+                                                <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" />
+                                            </div>
                                             :
-                                            <ul className='list-unstyled'>
-                                                {certificateList.map((user, index) => (
-                                                    <li key={index}>
-                                                        <a href={user.certificateHash} target="_blank">
-                                                            <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
-                                                            <span className='lnftscont'>
-                                                                <ReactTimeAgo date={user.datetimeCreated} locale="en-US" />
-                                                                <h6>Certificate from {user.org.name}</h6>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                            <div>
+                                                {certificateCount == 0 ?
+                                                    <p>There are no additional NFTs generated</p>
+                                                    :
+                                                    <ul className='list-unstyled'>
+                                                        {certificateList.map((user, index) => (
+                                                            <li key={index}>
+                                                                <a href={user.certificateHash} target="_blank">
+                                                                    <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
+                                                                    <span className='lnftscont'>
+                                                                        <ReactTimeAgo date={user.datetimeCreated} locale="en-US" />
+                                                                        <h6>Certificate from {user.org.name}</h6>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                }
+                                            </div>
                                         }
                                     </div>
                                 </div>

@@ -13,6 +13,7 @@ import FailureModal from './shared/MintFailureModal';
 import { getUserAddress } from '../utils/utils';
 import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
 import { NavLink } from 'react-router-dom';
+import ProfileArea from '../components/shared/ProfileArea';
 
 const Issue_Certificate = () => {
 
@@ -65,9 +66,8 @@ const Issue_Certificate = () => {
   const [mintFailed, setMintFailed] = useState(false)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    eva.replace()
-  })
+  useEffect(() => {eva.replace()})
+  
   const handleSelectMinType = () => {
     setSelectedType(true)
     dispatch(getUserList(orgID));
@@ -315,14 +315,20 @@ const Issue_Certificate = () => {
       {!selectedType ? <div className='scrolldiv mar-top'>
         <div className='row '>
           <div className='col-md-12 text-start'>
-            <div className=''>
+            
+            <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
-                <div className='col-md-12 text-center'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-2">Mint</h4>
-                  <h6 className='mb-3'>Select a document type to be minted as NFT</h6>
+                <div className='col-md-6'>
+                <h4 className="fw-bolder text-black text-uppercase mb-2">Mint</h4>
+                  <h6 className='mb-0'>Select a document type to be minted as NFT</h6>
+                  </div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
                 </div>
               </div>
-            </div>
+            </div> 
 
             <div className='certtemplates mintnft'>
               <div className='row'>
@@ -413,16 +419,23 @@ const Issue_Certificate = () => {
         <div className='scrolldiv1 mar-top'>
           <div className='row '>
             <div className='col-md-12 text-start'>
-              <div className=''>
-                <div className='row mb-3 align-items-center'>
-                  <div className='col-md-12'>
-                    <div className='userOrg'>
+
+            <div className='pageheader'>
+              <div className='row mb-3 align-items-center'>
+                <div className='col-md-6'>
+                  <div className='userOrg'>
                       <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
                       <h4 className="fw-bolder text-black text-uppercase mb-0">Mint Certificate</h4>
                     </div>
-                      </div>
+                  </div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
                 </div>
               </div>
+            </div> 
+             
               <div>   
               {isMintInitiated ? <SuccessModal closemodal={closeModal}/> : ''}
               {isLoading ? <FullLoader/> : ''}

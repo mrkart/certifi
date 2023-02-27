@@ -6,6 +6,10 @@ import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecentCertificate, reseRecentCertificate } from '../actions/exampleAction';
 import TableLoader from './shared/TableLoader';
+import ProfileArea from '../components/shared/ProfileArea';
+
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltipb from 'react-bootstrap/Tooltip';
 
 const data = [
   {
@@ -36,19 +40,19 @@ const data = [
     month: 'Aug',
     certificate: 45
   },
-    {
+  {
     month: 'Sept',
     certificate: 78
   },
-    {
+  {
     month: 'Oct',
     certificate: 88
   },
-    {
+  {
     month: 'Nov',
     certificate: 77
   },
-    {
+  {
     month: 'Dec',
     certificate: 92
   }
@@ -68,21 +72,28 @@ const Dashboard = () => {
 
   useEffect(() => {
     //console.log(recentcertificate.data.certificates);
-    if(recentcertificate.statusCode == 200){
+    if (recentcertificate.statusCode == 200) {
       let recentCert = recentcertificate.data.certificates;
       setTimeout(() => {
         setRecentCertData(recentCert);
         dispatch(reseRecentCertificate());
       }, 1500);
     }
-  },[recentcertificate]);
+  }, [recentcertificate]);
 
   const gotoIssueCert = () => {
     navigate('/mint-certificate')
   }
   useEffect(() => { eva.replace() });
+
+
   return (
-    <div className='scrolldiv'>  
+    <div className='scrolldiv'>
+      <div className='row'>
+        <div className='col-md-12 text-end'>
+          <ProfileArea />
+        </div>
+      </div>
       <div className='row fadein'>
         <div className='col-md-12 text-start'>
           <div className='foldersview'>
@@ -162,7 +173,7 @@ const Dashboard = () => {
                           </h2>
                         </div>
                         <div className='foldpicshare'>
-                        
+
                           <div className='foldpics'>
                             <ul className='list-unstyled'>
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li> */}
@@ -172,13 +183,13 @@ const Dashboard = () => {
                               <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
                               <li><span className='flpic last-count'>+100</span></li>
                             </ul>
-                          </div>  
+                          </div>
 
                           <span className='icontext viewall eva-hover'>
                             <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
                             <span className='text'>Manage</span>
-                          </span>                        
-                          
+                          </span>
+
                         </div>
                       </div>
                     </div>
@@ -197,17 +208,17 @@ const Dashboard = () => {
                           {/* <p className="card-text mb-1 ccondi">Awesome</p>
                     <p className=" cpartitle">Interior Design</p> */}
                           <h2 className='fw-medium text-center'>
-                          <CountUp
-                            start={0}
-                            end={4}
-                            duration={4}
-                          />
+                            <CountUp
+                              start={0}
+                              end={4}
+                              duration={4}
+                            />
                           </h2>
                         </div>
                         <div className='foldpicshare'>
-                          
+
                           {/* <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                         
+
                           <div className='foldpics'>
                             <ul className='list-unstyled'>
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
@@ -235,69 +246,70 @@ const Dashboard = () => {
           <div className=''>
             {recentCertData.length == 0 ? (
               <div className="mt-4">
-                <TableLoader/>
+                <TableLoader />
               </div>
             ) : (
-            <div className='tableblur mt-4'>
-              <div className='row align-items-center mb-3'>
-                <div className='col-12'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
-                {/* <div className='col-5 text-right'>
+              <div className='tableblur mt-4'>
+                <div className='row align-items-center mb-3'>
+                  <div className='col-12'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
+                  {/* <div className='col-5 text-right'>
                   <span className='icontext pull-right viewall'>
                     <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
                     <span className='text'>View all</span>
                   </span>
                 </div> */}
-              </div>
+                </div>
 
-              <div className='table-responsive'>
-                <table className="table align-middle mb-0 custable table-hover">
-                  <thead className="">
-                    <tr>
-                      <th>Student ID</th>
-                      <th>Name</th>
-                      <th>Course</th>
-                      <th>Batch</th>
-                      <th>Status</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentCertData.map((user, index) => (
-                      <tr key={index}>
-                        <td>
-                          <div className="d-flex align-items-center">
-                          {user.id}
-                          </div>
-                        </td>
-                        <td>
-                          <span className="text-dark">{user.user.name}</span>
-                        </td>
-                        <td>
-                          <p className="fw-normal mb-1">{user.course.name}</p>
-                        </td>
-                        <td> {user.slot.name} </td>
-                        <td>
-                          <span className="text-primary">Approved</span>
-                        </td>
-                        <td className='text-center'>
-                          <a href={user.certificateHash} target="_blank" className='text-primary'><i data-eva="link-outline"></i></a>
-                        </td>
-                        <td className='text-center'>
-                          <span className="dropdown">
-                            <a href="#" className='text-secondary dropdown-toggle' type="button"
-                              id="dropdownMenuButton"
-                              data-mdb-toggle="dropdown"
-                              aria-expanded="false"><i data-eva="more-vertical-outline"></i></a>
-                            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                              <li><a className="dropdown-item" href="#">Edit</a></li>
-                              <li><a className="dropdown-item" href="#">View</a></li>
-                            </ul>
-                          </span>
-                        </td>
+                <div className='table-responsive'>
+                  <table className="table align-middle mb-0 custable table-hover">
+                    <thead className="">
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Batch</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
                       </tr>
-                    ))}
-                    {/* <tr>
+                    </thead>
+                    <tbody>
+                      {recentCertData.map((user, index) => (
+                        <tr key={index}>
+                          <td>
+                            <div className="d-flex align-items-center">
+                              {user.id}
+                            </div>
+                          </td>
+                          <td>
+                            <span className="text-dark">{user.user.name}</span>
+                          </td>
+                          <td>
+                            <p className="fw-normal mb-1">{user.course.name}</p>
+                          </td>
+                          <td> {user.slot.name} </td>
+                          <td>
+                            <span className="text-primary text-uppercase">Verified</span>
+                          </td>
+                          <td className='text-center' >
+                            <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">IPFS Link</Tooltipb>}>
+                              <a href={user.certificateHash} target="_blank" className='text-primary' ><i data-eva="link-outline"></i></a></OverlayTrigger>
+                          </td>
+                          <td className='text-center'>
+                            <span className="dropdown">
+                              <a href="#" className='text-secondary dropdown-toggle' type="button"
+                                id="dropdownMenuButton"
+                                data-mdb-toggle="dropdown"
+                                aria-expanded="false"><i data-eva="more-vertical-outline"></i></a>
+                              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                <li><a className="dropdown-item" href="#">Edit</a></li>
+                                <li><a className="dropdown-item" href="#">View</a></li>
+                              </ul>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                      {/* <tr>
                       <td>
                         <div className="d-flex align-items-center">
                           1
@@ -311,7 +323,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2022 </td>
                       <td>
-                        <span className="text-primary">Approved</span>
+                        <span className="text-primary text-uppercase">Verified</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -344,7 +356,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2021 </td>
                       <td>
-                        <span className="text-primary">Approved</span>
+                        <span className="text-primary text-uppercase">Verified</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -377,7 +389,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2020 </td>
                       <td>
-                        <span className="text-primary">Approved</span>
+                        <span className="text-primary text-uppercase">Verified</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -410,7 +422,7 @@ const Dashboard = () => {
                       </td>
                       <td> 2019 </td>
                       <td>
-                        <span className="text-primary">Approved</span>
+                        <span className="text-primary text-uppercase">Verified</span>
                       </td>
                       <td className='text-center'>
                         <a href="" className='text-primary'><i data-eva="link-outline"></i></a>
@@ -462,11 +474,11 @@ const Dashboard = () => {
                         </span>
                       </td>
                     </tr> */}
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-              )}
+            )}
           </div>
           <div className='row'>
             <div className='col-md-12 mt-4'>
@@ -493,31 +505,31 @@ const Dashboard = () => {
                   <div className='col-md-9'>
                     <div className='row'>
                       <div className='col-md-6 barchart'>
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                          width={150}
-                          height={40}
-                          data={data}
-                          margin={{
-                            top: 40,
-                            right: 10,
-                            left: 0,
-                            bottom: 0,
-                          }}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="month" />
-                          <YAxis/>
-                          <Tooltip />
-                        <Bar 
-                          barSize={28}
-                          dataKey="certificate" 
-                          fill="#005fff" 
-                          radius={[10, 10, 0, 0]} 
-                          label={{ value: "index", fontSize: '100%', color: "#005fff", position: "top", angle: 0, dy: 0 }} 
-                        />
-                        </BarChart>
-                      </ResponsiveContainer>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart
+                            width={150}
+                            height={40}
+                            data={data}
+                            margin={{
+                              top: 40,
+                              right: 10,
+                              left: 0,
+                              bottom: 0,
+                            }}
+                          >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="month" />
+                            <YAxis />
+                            <Tooltip />
+                            <Bar
+                              barSize={28}
+                              dataKey="certificate"
+                              fill="#005fff"
+                              radius={[10, 10, 0, 0]}
+                              label={{ value: "index", fontSize: '100%', color: "#005fff", position: "top", angle: 0, dy: 0 }}
+                            />
+                          </BarChart>
+                        </ResponsiveContainer>
                       </div>
                       <div className='col-md-6 borderleft2pxwhite'>
                         <div className='row'>

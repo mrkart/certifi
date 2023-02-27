@@ -3,6 +3,7 @@ import { Tooltip, ResponsiveContainer } from 'recharts';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateStudent, resetAddStudent, resetAddStudentFailed } from '../actions/exampleAction';
 import { useNavigate } from "react-router-dom";
+import ProfileArea from '../components/shared/ProfileArea';
 
 const StudentsAdd = () => {
 
@@ -74,15 +75,17 @@ const StudentsAdd = () => {
       <div className='row '>
         <div className='col-md-12 text-start'>
           <div className=''>
-            <div className='row mb-3 align-items-center'>
-              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><span className='text-dark'>Students</span> {'>'} Add Students</h4></div>
-              {/* <div className='col-md-6 text-end'>
-                <div className='btngrouprht'>
-                  <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
-                  <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
+          <div className='pageheader'>
+              <div className='row mb-3 align-items-center'>
+                <div className='col-md-6'>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0">Add Students</h4></div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
                 </div>
-              </div> */}
               </div>
+            </div>            
             <div className='backgroundblur'>
               <div className='searchform border-none d-block'>
                 <form onSubmit={handleSubmit}>

@@ -24,7 +24,7 @@ nav#sidebarMenu {border-radius: 27px;}
 .row .table tr td, .row .table tr th {padding: 0.6rem 1rem;}
 tbody tr td {border: 0px;}
 .barchart {height: 240px;}
-.scrolldiv {padding-right: 10px; height: calc(100vh - 165px);overflow-y: auto;overflow-x: hidden; padding-left: 5px;} 
+.scrolldiv {padding-right: 10px; height: calc(100vh - 60px);overflow-y: auto;overflow-x: hidden; padding-left: 5px;} 
 ::-webkit-scrollbar {width: 5px;}
 /* ::-webkit-scrollbar-track {background: #f1f1f1; } */
 ::-webkit-scrollbar-thumb {background: #005fff; border-radius:10px;}
@@ -285,7 +285,7 @@ input[type="file"] { display: none;}
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
 .custable .form-group{ margin: 0px;}
-.formscroldiv {height:calc(100vh - 345px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
+.formscroldiv {height: calc(100vh - 285px); overflow: hidden; overflow-y: auto; margin-bottom: 15px;}
 
 .certinfo{ padding: 30px; min-height: 100%;}
 .certinfocont{ display: flex; align-items: center; justify-content: center;}
@@ -405,8 +405,8 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 }
 
 .userOrg{ display: flex; flex-direction: row; align-items: center;}
-.userOrg img {height: 28px; margin-right: 10px; }
-.userOrg h5{ margin: 0px;}
+.userOrg img {height: 20px; margin-right: 7px; }
+.userOrg h5{ margin: 0px; font-size: 16px;}
 
 .certsteps div, .certsteps a, .certsteps span {transition: all ease 0.75s;}
 
@@ -464,6 +464,15 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .vtlinks a{ color: #005FFF; transition: all ease 0.75s; font-weight: bold; text-transform: uppercase; padding: 0px 15px; }
 .vtlinks a:hover{ color: #000;}
 .vtlinks a:not(:last-child){ border-right: 1px solid #a7a7a7;}
+
+.btnwithpro{ display: flex; flex-direction: row; align-items: center; justify-content: flex-end;}
+.btnwithpro .content-header{ margin-left: 30px;}
+.table-scroller{ height:calc(100vh - 220px); overflow-y:auto ;}
+
+
+.bs-tooltip-bottom .tooltip-inner{background: #fff; border-radius: 10px; color: #000; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); opacity: 0; position: relative; bottom:-10px; transition: all ease 0.75s; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;}
+.bs-tooltip-bottom.show .tooltip-inner{opacity: 1; bottom: 0px;}
+
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}
@@ -526,7 +535,7 @@ nav#sidebarMenu{ background: #fff;}
 .foldersview .row .col-md-9{ width: 100%; margin-top: 30px;}
 .createcetr h4{ margin-bottom: 15px;}
 .mobnav .cmpname h5{ font-size: 18px; }
-.searchform{ flex-wrap: wrap;  padding: 0px; padding-bottom: 15px;}
+.searchform{ flex-wrap: wrap; }
 .tableblur .searchform .fields:first-child {flex: 0 auto; width: 100%; margin: 0px 0px 15px 0px;}
 .tableblur .searchform .fields:not(:first-child){ width: 50%; flex: 0 auto; margin: 0px; margin-bottom: 15px;}
 .tableblur .searchform .fields:nth-child(2), .tableblur .searchform .fields:nth-child(4){ padding-right: 15px;}
@@ -545,6 +554,9 @@ nav#sidebarMenu{ background: #fff;}
 .verifytable tr:nth-child(even) {background: #fff;}
 .verifytable tr:nth-child(odd) {background: #dde9ff;}
 .verifytable td {display: block;}
+.pageheader .col-md-4{text-align: center; margin-bottom: 15px;}
+.pageheader h4{text-align: center;}
+.pageheader .btnwithpro{justify-content: center;}
 }
 
 @media (max-width:575px) {
@@ -573,4 +585,7 @@ nav#sidebarMenu{ background: #fff;}
 @media (max-width:414px) {
     .studentcert .ctemp .backgroundblur iframe, .iframe {min-height: inherit;}
     .loginform{ padding-left: 30px; padding-right: 30px;}
+    .btngrouprht a:not(:first-child), .btngrouprht button:not(:first-child) {margin-left: 5px;}
+    .btn{padding: 0px 10px; font-size: 12px}
+    .btn-icon .eva{width: 20px;}
 }

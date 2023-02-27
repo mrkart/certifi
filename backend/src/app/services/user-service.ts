@@ -218,7 +218,8 @@ export class UserService {
                 slot: {
                     id: cert.slot.id,
                     name: cert.slot.slotTitle
-                }
+                },
+                thumbnailPath: `/api/certificates/img-preview/${cert.thumbnailFileName}`
             };
         });
         return new ListResponse(certList.count, certRes);

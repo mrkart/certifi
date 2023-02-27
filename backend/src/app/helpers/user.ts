@@ -1,5 +1,4 @@
 import { Course } from '../models/entities/Course';
-import { Slot } from '../models/entities/Slot';
 
 export interface Role {
     id: number;
@@ -122,4 +121,5 @@ export interface CertificateResponse {
     nftId: number;
     org: Organisation;
     slot: OrgUserSlot;
+    thumbnailPath: string;
 }

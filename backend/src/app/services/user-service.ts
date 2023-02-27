@@ -1,6 +1,6 @@
 import { isEmpty, isNotEmpty } from 'class-validator';
 import { randomBytes } from 'crypto';
-import { createReadStream, existsSync, PathLike } from 'fs';
+import { createReadStream, existsSync } from 'fs';
 import { mkdir } from 'fs/promises';
 import { basename, resolve } from 'path';
 import { Readable } from 'stream';
@@ -56,7 +56,10 @@ export class UserService {
         request: CreateUserDTO
     ): Promise<OrgUserResponse> {
         const user = await UserRepository.createOrgUser(request, orgId);
-        this.createAndSetupWallet(user);
+        this.createAndSetupWallet(user).then(
+            () => {},
+            () => {}
+        );
         return {
             email: user.email,
             id: user.id,
@@ -177,7 +180,14 @@ export class UserService {
         const outDir = resolve(
             `./generated_files/preview/org/${org.id}/certificates`
         );
-        return this.generateCertificateFile(org, user, slot, data, outDir);
+        const certPath = await this.generateCertificateFile(
+            org,
+            user,
+            slot,
+            data,
+            outDir
+        );
+        return certPath;
     }
 
     public async getUserCertificates(
@@ -212,35 +222,6 @@ export class UserService {
             };
         });
         return new ListResponse(certList.count, certRes);
-    }
-
-    private async generateCertificateFile(
-        org: Org,
-        user: User,
-        slot: Slot,
-        data: CreateCertificateDTO,
-        outDir: PathLike
-    ): Promise<string> {
-        const templatePath = resolve('./templates/certificates/template1.pdf');
-        if (existsSync(outDir) === false) {
-            await mkdir(outDir, { recursive: true });
-        }
-        const fileName: string =
-            `${org.id}_${user.id}_` + randomBytes(4).toString('hex') + '.pdf';
-        const outPath: string = `${outDir}/${fileName}`;
-        await this.pdfService.createCertificate(
-            {
-                batchName: slot.slotTitle,
-                certificateNumber: data.certificateNumber,
-                courseName: data.courseName,
-                grade: data.grade,
-                instituionName: org.orgName,
-                name: user.name
-            },
-            templatePath,
-            outPath
-        );
-        return outPath;
     }
 
     public async mintCertificate(
@@ -309,12 +290,19 @@ export class UserService {
         const outDir = resolve(
             `./generated_files/mint/org/${org.id}/certificates`
         );
+        const thumbnailOutDir = resolve(
+            `./generated_files/mint/org/${org.id}/certificates/thumbnails`
+        );
         const certPath = await this.generateCertificateFile(
             org,
             user,
             slot,
             data,
             outDir
+        );
+        const certThumbnailPath = await this.generateCertificateThumbnail(
+            certPath,
+            thumbnailOutDir
         );
         const acessToken = await this.getIpfsAuthToken();
         console.log('✔ Ipfs accessToken');
@@ -363,11 +351,55 @@ export class UserService {
             slot,
             data,
             certPath,
+            certThumbnailPath,
             `${ipfsEnpoint}/${metadataUploadResponse.Hash}`,
             preparer.user,
             verifier.user,
             issuer.user
         );
+    }
+
+    private async generateCertificateFile(
+        org: Org,
+        user: User,
+        slot: Slot,
+        data: CreateCertificateDTO,
+        outDir: string
+    ): Promise<string> {
+        const templatePath = resolve('./templates/certificates/template1.pdf');
+        if (existsSync(outDir) === false) {
+            await mkdir(outDir, { recursive: true });
+        }
+        const fileName: string =
+            `${org.id}_${user.id}_` + randomBytes(4).toString('hex') + '.pdf';
+        const outPath = `${outDir}/${fileName}`;
+        await this.pdfService.createCertificate(
+            {
+                batchName: slot.slotTitle,
+                certificateNumber: data.certificateNumber,
+                courseName: data.courseName,
+                grade: data.grade,
+                instituionName: org.orgName,
+                name: user.name
+            },
+            templatePath,
+            outPath
+        );
+        return outPath;
+    }
+
+    private async generateCertificateThumbnail(
+        certificatePath: string,
+        outDir: string
+    ): Promise<string> {
+        if (existsSync(outDir) === false) {
+            await mkdir(outDir, { recursive: true });
+        }
+        const outPath = await this.pdfService.createCertificateThumbnail(
+            certificatePath,
+            outDir
+        );
+        return outPath;
     }
 
     private async generateCertificateMetadata(
@@ -460,7 +492,9 @@ export class UserService {
             });
             if (isEmpty(user)) {
                 throw new UnhandledError(
-                    new Error('Could not find user for id: ' + orgUser.id)
+                    new Error(
+                        'Could not find user for id: ' + orgUser.id.toString()
+                    )
                 );
             }
             const userTx = await this.fclService.createUser(0);
@@ -484,25 +518,13 @@ export class UserService {
             this.dispatchInvitation({
                 ...orgUser,
                 address
-            });
-            const tokenTransferRs = await fclService.transferFlowToken(
-                0,
-                1,
-                address
+            }).then(
+                () => {},
+                () => {}
             );
-            // console.log(
-            //     'Transfer token response\n',
-            //     JSON.stringify(tokenTransferRs, null, 4)
-            // );
+            await fclService.transferFlowToken(0, 1, address);
             console.log('✓ Flow Token transferred');
-            const setupAccountStatus = await this.fclService.setupAccount(
-                0,
-                address
-            );
-            // console.log(
-            //     'Flow account setup\n',
-            //     JSON.stringify(setupAccountStatus, null, 4)
-            // );
+            await this.fclService.setupAccount(0, address);
             console.log('✓ Collection created');
             user.flowAccSetupStatus = 1;
             await UserRepository.save(user);
@@ -513,18 +535,18 @@ export class UserService {
                     e,
                     (key, val) => {
                         if (val instanceof Error) {
-                            var error = {};
+                            const error = {};
 
                             Object.getOwnPropertyNames(val).forEach(function (
                                 propName
                             ) {
-                                error[propName] = val[propName];
+                                error[propName] = val[propName] as unknown;
                             });
 
                             return error;
                         }
 
-                        return val;
+                        return val as unknown;
                     },
                     4
                 )
@@ -588,7 +610,8 @@ export class UserService {
         user: User,
         slot: Slot,
         certData: CreateCertificateDTO,
-        certificatePath: PathLike,
+        certificatePath: string,
+        certificateThumbnailPath: string,
         metadataHash: string,
         preparer: User,
         verifier: User,
@@ -621,9 +644,13 @@ export class UserService {
                     getDataSource()
                         .getRepository(Certificate)
                         .create({
-                            certificateFilePath: certificatePath.toString(),
+                            certificateFilePath: certificatePath,
                             certificateHash: metadata.Cert.uri,
                             certificateNumber: certData.certificateNumber,
+                            thumbnailFileName: basename(
+                                certificateThumbnailPath
+                            ),
+                            thumbnailPath: certificateThumbnailPath,
                             courseId: course.id,
                             grade: certData.grade,
                             metadataHash,

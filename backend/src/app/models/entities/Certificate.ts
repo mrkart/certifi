@@ -64,6 +64,12 @@ export class Certificate {
     @Column('varchar', { name: 'certificate_file_path', length: 255 })
     certificateFilePath: string;
 
+    @Column('varchar', { name: 'thumbnail_path', length: 255 })
+    thumbnailPath: string;
+
+    @Column('varchar', { name: 'thumbnail_file_name', length: 70 })
+    thumbnailFileName: string;
+
     @Column('varchar', { name: 'certificate_hash', length: 255 })
     certificateHash: string;
 

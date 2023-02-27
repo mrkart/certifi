@@ -1,8 +1,11 @@
 import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
-import fs from 'fs/promises';
+import fs, { writeFile } from 'fs/promises';
 import { PdfData } from '../helpers';
 import QRCode from 'qrcode';
 import { isEmpty } from 'class-validator';
+import { existsSync } from 'fs';
+import { pdf } from 'pdf-to-img';
+import { createHash } from 'crypto';
 
 export class PdfService {
     public async createCertificate(
@@ -155,6 +158,31 @@ export class PdfService {
         // Save the updated PDF document to a file
         const pdfBytes = await pdfDoc.save();
         await fs.writeFile(outputPath, pdfBytes);
+    }
+
+    public async createCertificateThumbnail(
+        certificatePath: string,
+        outputDir: string
+    ): Promise<string> {
+        if (existsSync(certificatePath) === false) {
+            const err = new Error('Invalid certificate path');
+            err.name = 'PathError';
+            throw err;
+        }
+        if (existsSync(outputDir) === false) {
+            const err = new Error('Invalid thumbnail output path');
+            err.name = 'PathError';
+            throw err;
+        }
+        const thumbnail = await pdf(certificatePath.toString());
+        const thumbnailHash = createHash('sha256');
+        for await (const byte of thumbnail) {
+            thumbnailHash.update(byte);
+        }
+        const fileName: string = thumbnailHash.digest('hex');
+        const outPath = `${outputDir}/${fileName}.png`;
+        await writeFile(outPath, thumbnail);
+        return outPath;
     }
 }
 

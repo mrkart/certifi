@@ -160,9 +160,9 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
-                      {isLoading ? <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /> : 
-                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create Student</button>
-                      }
+                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create Student
+                          {isLoading ? <span className='loaderbtn fadein'><img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /></span>: ''}
+                        </button>
                       </div>
                     </div>
                   </div>

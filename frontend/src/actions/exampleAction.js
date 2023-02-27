@@ -256,3 +256,24 @@ export function resetUserCertList() {
     dispatch({ type: 'GET_USERCERTLIST_SUCCESS', payload: {} })
   }
 }
+export const addOwnershipForAccount = (data) => { 
+  return (dispatch) => {
+    apiWithToken(localStorage.getItem('accessToken')).post(`/api/users/self/public-key`, data)
+      .then((response) => {
+        dispatch({ type: 'ADD_OWNERSHIP_FLOW_ACCOUNT', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'ADD_OWNERSHIP_FLOW_ACCOUNT_FAILURE', payload: error && error.message && error.response.data.message });
+      });
+  };
+};
+export function resetAddOwnership() {
+  return dispatch => {
+    dispatch({ type: 'ADD_OWNERSHIP_FLOW_ACCOUNT', payload: {} })
+  }
+}
+export function resetAddOwnershipFailed() {
+  return dispatch => {
+    dispatch({ type: 'ADD_OWNERSHIP_FLOW_ACCOUNT_FAILURE', payload: '' })
+  }
+}

@@ -45,17 +45,17 @@ const StudentDashboard = () => {
 
     const shareOnLinkedIn = (mycert) => {
         const message = "Certifily";
-      
+
         // Replace this with your LinkedIn share URL
         const shareUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(mycert) + "&title=" + encodeURIComponent(message);
-      
+
         window.open(shareUrl, "_blank");
     }
 
     const buttonStyle = {
         cursor: 'pointer'
     };
-    
+
 
     return (
         <div className='scrolldiv'>
@@ -67,7 +67,7 @@ const StudentDashboard = () => {
                             <div className="col-sm-6 col-md-4">
                                 <div className='createcetr'>
                                     <h5>Welcome</h5>
-                                    <h4 className='fw-bolder text-primary'>{userName}</h4>                                    
+                                    <h4 className='fw-bolder text-primary'>{userName}</h4>
                                     <div className='lastestnfts'>
                                         <h5>Latest NFTs</h5>
                                         {certificateCount == 0 ?
@@ -77,11 +77,11 @@ const StudentDashboard = () => {
                                                 {certificateList.map((user, index) => (
                                                     <li key={index}>
                                                         <a href={user.certificateHash} target="_blank">
-                                                        <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
-                                                        <span className='lnftscont'>
-                                                            <ReactTimeAgo date={user.datetimeCreated} locale="en-US"/>
-                                                            <h6>Certificate from {user.org.name}</h6>
-                                                        </span>
+                                                            <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
+                                                            <span className='lnftscont'>
+                                                                <ReactTimeAgo date={user.datetimeCreated} locale="en-US" />
+                                                                <h6>Certificate from {user.org.name}</h6>
+                                                            </span>
                                                         </a>
                                                     </li>
                                                 ))}
@@ -232,10 +232,13 @@ const StudentDashboard = () => {
                     </div> :
                         <div>
                             <div className='certtemplates mintnft studentcert'>
-                                <div className="row mb-3 align-items-center"><div className="col-md-6"><h4 className="fw-bolder text-black text-uppercase mb-0"><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={30} /> Certificates</h4></div>
-                                    <div className="col-md-6 text-end"><div className='btngrouprht'>
+                                <div className="row mb-3 align-items-center"><div className="col-md-12">
+                                    <div className='backtit'>
                                         <button className='btn btn-light btn-icon ' type="button" onClick={dismissView} >< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back </button>
-                                    </div></div></div>
+                                        <h4 className="fw-bolder text-black text-uppercase mb-0"><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={30} /> Certificates</h4>
+                                    </div>
+                                </div>
+                                </div>
                                 <div className='row'>
                                     {certificateList.map((user, index) => (
                                         <div key={index} className="col-md-6">

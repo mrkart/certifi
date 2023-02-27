@@ -41,7 +41,11 @@ const Sidemenu = () => {
                 <img className='headerprofilepic' src={require('../../assets/images/photo10.png')} loading="lazy" />
               </div>
               <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
-              <p className='mb-0 profilename mt-3'>{address}</p>
+              <p className='mb-0 profilename'>{address}</p>
+              <div className='userOrg'>
+          <img src={require('../../assets/images/icons/college.png')} loading="lazy" />
+          <h5 className='fw-bolder text-uppercase'>{userOrg}</h5>
+        </div>
 
             </div>
           </div>
@@ -124,7 +128,7 @@ const Sidemenu = () => {
                         className=''
                       />
                     </div>
-                    <span>Mint</span>
+                    <span>Create</span>
                   </NavLink>
                 </div>
               </h2>

@@ -359,7 +359,7 @@ const Issue_Certificate = () => {
             <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-6'>
-                <h4 className="fw-bolder text-black text-uppercase mb-2">Mint</h4>
+                <h4 className="fw-bolder text-black text-uppercase mb-2">Create</h4>
                   <h6 className='mb-0'>Select a document type to be minted as NFT</h6>
                   </div>
                 <div className='col-md-6 text-end'>
@@ -379,7 +379,7 @@ const Issue_Certificate = () => {
                       <div className='img'>
                         <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
                       </div>
-                      <h4>Mint a</h4>
+                      <h4>Create a</h4>
                       <h3>Certificate</h3>
                     </label>
                   </div>
@@ -392,7 +392,7 @@ const Issue_Certificate = () => {
                       <div className='img'>
                         <img src={require('../assets/images/icons/Certifily-icon-1.png')} loading="lazy" />
                       </div>
-                      <h4>Mint a</h4>
+                      <h4>Create a</h4>
                       <h3>Agreement | Contract</h3>
                     </label>
                   </div>
@@ -405,7 +405,7 @@ const Issue_Certificate = () => {
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16.png')} loading="lazy" />
                       </div>
-                      <h4>Mint a</h4>
+                      <h4>Create a</h4>
                       <h3>Membership</h3>
                     </label>
                   </div>
@@ -418,7 +418,7 @@ const Issue_Certificate = () => {
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16-1.png')} loading="lazy" />
                       </div>
-                      <h4>Mint a</h4>
+                      <h4>Create a</h4>
                       <h3>Letter</h3>
                     </label>
                   </div>
@@ -431,7 +431,7 @@ const Issue_Certificate = () => {
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16-2.png')} loading="lazy" />
                       </div>
-                      <h4>Mint a</h4>
+                      <h4>Create a</h4>
                       <h3>Cards</h3>
                     </label>
                   </div>
@@ -444,7 +444,7 @@ const Issue_Certificate = () => {
                       <div className='img'>
                         <img src={require('../assets/images/icons/Group-16-3.png')} loading="lazy" />
                       </div>
-                      <h4>Mint a</h4>
+                      <h4>Create a</h4>
                       <h3>Tickets</h3>
                     </label>
                   </div>
@@ -465,7 +465,7 @@ const Issue_Certificate = () => {
                 <div className='col-md-6'>
                   <div className='userOrg'>
                       <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" />
-                      <h4 className="fw-bolder text-black text-uppercase mb-0">Mint Certificate</h4>
+                      <h4 className="fw-bolder text-black text-uppercase mb-0">Create Certificate</h4>
                     </div>
                   </div>
                 <div className='col-md-6 text-end'>

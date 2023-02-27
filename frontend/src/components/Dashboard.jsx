@@ -102,10 +102,10 @@ const Dashboard = () => {
                 <div className='createcetr'>
                   <h5>Create a</h5>
                   <h4 className='fw-bolder text-black'>DOCUMENT NFT</h4>
-                  <p className='pe-md-5'>Mint documents as NFTs on flow blockchain & share with people</p>
+                  <p className='pe-md-5'>Create documents as NFTs on flow blockchain & share with people</p>
                   <span className='icontext eva-hover' onClick={gotoIssueCert}>
                     <span className='icon'><i data-eva="plus-outline" data-eva-animation="flip"></i></span>
-                    <span className='text'>Mint</span>
+                    <span className='text'>Create</span>
                   </span>
                 </div>
               </div>

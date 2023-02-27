@@ -282,6 +282,15 @@ input[type="file"] { display: none;}
 .issuecerttabs .nav-pills .nav-item:last-child{z-index: 6;}
 .issuecerttabs .nav-pills .nav-item .nav-link.finished{border-color: #5992F1; box-shadow: inset 0 0 10px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25); background: linear-gradient(to top, #005FFF 75%, #005FFF 95%); color: #fff;}
 .issuecerttabs .nav-pills .nav-item .nav-link.finished .eva{ opacity: 1;}
+li .nftlistborder {
+    border-bottom: 1px solid #a6c5f9;
+    padding-bottom: 13px;
+    min-width: 300px;
+}
+li:last-child .nftlistborder {
+    border-bottom: 0px;
+    padding-bottom: 5px;
+}
 
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}

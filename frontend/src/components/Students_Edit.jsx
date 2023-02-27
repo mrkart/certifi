@@ -89,7 +89,7 @@ const StudentsEdit = () => {
             
               <div className='searchform border-none d-block'>
               <form onSubmit={handleSubmit}>
-              <div className='formscroldiv'>
+              <div className='formscroldiv px-3'>
               <h6 className='mb-3 fw-bold'>Student Details</h6>
                 <div className='row'>
                 <div className='col-md-4'>

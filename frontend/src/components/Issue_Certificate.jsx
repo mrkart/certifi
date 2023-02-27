@@ -1031,7 +1031,7 @@ const Issue_Certificate = () => {
                           <div className='col-md-4'>
                             <div className='form-group'>
                               <label className='mb-2'>Title</label>
-                              <input type={'text'} className="form-control" placeholder='Title' value={title} onChange={onChangeValue} />
+                              <input type={'text'} className="form-control" placeholder='Title' value={title} onChange={onChangeValue} disabled />
                             </div></div>
 
                           <div className='col-md-4'>

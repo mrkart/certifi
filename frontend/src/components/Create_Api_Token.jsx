@@ -11,7 +11,7 @@ const CreateApiToken = () => {
 
   const [email, setEmail] = useState('');
   const [verifyOTP, setVerifyOTP] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(accessToken);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Sidemenu = () => {
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
@@ -10,6 +11,7 @@ const Sidemenu = () => {
   console.log(userOrg);
   const [selectType, setSelectType] = "1"
   const [address, setAddress] = useState('')
+  const navigate = useNavigate();
 
   const onChangeValue = () => { }
   const walletaddress = useSelector(state => state.demoReducer.walletAddress);
@@ -21,6 +23,14 @@ const Sidemenu = () => {
 
   }, [walletaddress])
 
+  function logout(){
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('userprofile');
+    localStorage.removeItem('certInfo');
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('selectedStudent');
+    navigate("/login");
+  }
 
   return (
     <nav id="sidebarMenu" className="collapse sidebar collapse pt-0">
@@ -238,7 +248,7 @@ const Sidemenu = () => {
           </NavLink> */}
 
 
-          <NavLink to="/login" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis')}>
+          <NavLink to="#" onClick={logout} className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase mobvis')}>
 
             <div className='sidebaricons'>
               <img

@@ -477,6 +477,13 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 
 .accessToken {word-break: break-all;    white-space: normal;  transition: all ease 0.75s;  }
 
+.backtit{ display: flex; flex-direction: row; align-items: center; margin-bottom: 15px;}
+.backtit .btn {margin-right: 15px;transition: all ease 0.75s;width: 40px;overflow: hidden;justify-content: flex-start;padding-left: 10px;}
+.backtit .btn .eva{ margin-right: 30px; transition: all ease 0.75s;} 
+.backtit .btn:hover{ width: 100px; padding-left: 15px; }
+.backtit .btn:hover .eva{ margin-right: 10px;}
+
+
 @media (min-width: 992px) {
 main {padding-left: 270px;}
 .mobile-header{padding: 0px;}

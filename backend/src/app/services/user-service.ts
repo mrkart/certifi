@@ -218,7 +218,8 @@ export class UserService {
                 slot: {
                     id: cert.slot.id,
                     name: cert.slot.slotTitle
-                }
+                },
+                thumbnailPath: `/api/certificates/img-preview/${cert.thumbnailFileName}`
             };
         });
         return new ListResponse(certList.count, certRes);
@@ -357,6 +358,38 @@ export class UserService {
             verifier.user,
             issuer.user
         );
+    }
+
+    public async addPublicKey(
+        orgId: number,
+        userId: number,
+        key: string,
+        signAlg: number,
+        hashAlg: number
+    ): Promise<TransactionStatusObject> {
+        const { flowAddress } = await UserRepository.findOrgUserById(
+            userId,
+            orgId
+        );
+        if (isEmpty(flowAddress)) {
+            throw new InvalidRequestError(
+                'Selected user does not contain a flow account associated with them.',
+                'Invalid User id',
+                [
+                    [
+                        'User must hav flow account associated with them to add public key'
+                    ]
+                ]
+            );
+        }
+
+        const rs = await fclService.addPublicKey(
+            flowAddress,
+            key,
+            signAlg,
+            hashAlg
+        );
+        return rs;
     }
 
     private async generateCertificateFile(

@@ -4,7 +4,6 @@ import {
     IsNumber,
     IsNumberString,
     IsOptional,
-    IsPhoneNumber,
     IsString
 } from 'class-validator';
 import { Trim } from '../sanitizers/trim-sanitizer';
@@ -83,4 +82,20 @@ export class CreateCertificateDTO {
     @IsNotEmpty()
     @IsOptional()
     certificateNumber: string;
+}
+
+export class AddPublicKeyDTO {
+
+    @Trim()
+    @IsString()
+    @IsNotEmpty()
+    key: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    hashAlg: number;
+
+    @IsNumber()
+    @IsNotEmpty()
+    signAlg: number;
 }

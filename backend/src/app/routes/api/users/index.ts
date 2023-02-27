@@ -1,4 +1,4 @@
-import Router from 'express';
+import Router, { RequestHandler } from 'express';
 import { UserController } from '../../../controllers';
 import {
     CreateCertificateDTO,
@@ -70,10 +70,10 @@ usersRouter.use('/auth', authRouter);
  */
 usersRouter.get(
     '/profile/self',
-    AuthenticationMiddleware,
-    async (request, response, next) => {
+    AuthenticationMiddleware as RequestHandler,
+    (async (request, response, next) => {
         await userController.getProfile(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -135,17 +135,17 @@ usersRouter.get(
  */
 usersRouter.post(
     '/',
-    AuthenticationMiddleware,
+    AuthenticationMiddleware as RequestHandler,
     AccessControlMiddleware([
         AccessType.ISSUER,
         AccessType.PREPARER,
         AccessType.VERIFIER
-    ]),
-    OrgIdHeaderValidationMiddleare,
-    BodyValidationMiddleware(CreateUserDTO),
-    async (request, response, next) => {
+    ]) as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    BodyValidationMiddleware(CreateUserDTO) as RequestHandler,
+    (async (request, response, next) => {
         await userController.createOrgUser(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -207,16 +207,16 @@ usersRouter.post(
  */
 usersRouter.get(
     '/',
-    AuthenticationMiddleware,
+    AuthenticationMiddleware as RequestHandler,
     AccessControlMiddleware([
         AccessType.ISSUER,
         AccessType.PREPARER,
         AccessType.VERIFIER
-    ]),
-    OrgIdHeaderValidationMiddleare,
-    async (request, response, next) => {
+    ]) as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    (async (request, response, next) => {
         await userController.getOrgUsers(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -277,11 +277,11 @@ usersRouter.get(
  */
 usersRouter.get(
     '/:userId',
-    AuthenticationMiddleware,
-    OrgIdHeaderValidationMiddleare,
-    async (request, response, next) => {
+    AuthenticationMiddleware as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    (async (request, response, next) => {
         await userController.getOrgUser(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -354,17 +354,17 @@ usersRouter.get(
  */
 usersRouter.put(
     '/:userId',
-    AuthenticationMiddleware,
+    AuthenticationMiddleware as RequestHandler,
     AccessControlMiddleware([
         AccessType.ISSUER,
         AccessType.PREPARER,
         AccessType.VERIFIER
-    ]),
-    OrgIdHeaderValidationMiddleare,
-    BodyValidationMiddleware(UpdateUserDTO),
-    async (request, response, next) => {
+    ]) as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    BodyValidationMiddleware(UpdateUserDTO) as RequestHandler,
+    (async (request, response, next) => {
         await userController.updateOrgUser(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -418,17 +418,17 @@ usersRouter.put(
  */
 usersRouter.post(
     '/:userId/certificate',
-    AuthenticationMiddleware,
+    AuthenticationMiddleware as RequestHandler,
     AccessControlMiddleware([
         AccessType.ISSUER,
         AccessType.PREPARER,
         AccessType.VERIFIER
-    ]),
-    OrgIdHeaderValidationMiddleare,
-    BodyValidationMiddleware(CreateCertificateDTO),
-    async (request, response, next) => {
+    ]) as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    BodyValidationMiddleware(CreateCertificateDTO) as RequestHandler,
+    (async (request, response, next) => {
         await userController.createCertificate(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -495,12 +495,12 @@ usersRouter.post(
  */
 usersRouter.get(
     '/:userId/certificate',
-    AuthenticationMiddleware,
-    AccessControlMiddleware([AccessType.USER]),
-    OrgIdHeaderValidationMiddleare,
-    async (request, response, next) => {
+    AuthenticationMiddleware as RequestHandler,
+    AccessControlMiddleware([AccessType.USER]) as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    (async (request, response, next) => {
         await userController.getCertificates(request, response, next);
-    }
+    }) as RequestHandler
 );
 
 /**
@@ -565,17 +565,77 @@ usersRouter.get(
  */
 usersRouter.post(
     '/:userId/mint',
-    AuthenticationMiddleware,
+    AuthenticationMiddleware as RequestHandler,
     AccessControlMiddleware([
         AccessType.ISSUER,
         AccessType.PREPARER,
         AccessType.VERIFIER
-    ]),
-    OrgIdHeaderValidationMiddleare,
-    BodyValidationMiddleware(CreateCertificateDTO),
-    async (request, response, next) => {
-        await userController.mintCertificate(request, response, next);
-    }
+    ]) as RequestHandler,
+    OrgIdHeaderValidationMiddleare as RequestHandler,
+    BodyValidationMiddleware(CreateCertificateDTO) as RequestHandler,
+    ((request, response, next) => {
+        userController.mintCertificate(request, response, next);
+    }) as RequestHandler
+);
+
+/**
+ * @openapi
+ * /api/users/self/public-key:
+ *   post:
+ *     summary: Add public key to flow account
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     requestBody:
+ *       description: Describe the certificate to be created
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/AddPublicKeyDTO'
+ *     responses:
+ *       "201":
+ *         description: Public key added to account
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Public key added
+ *                    data:
+ *                      type: object
+ *                      $ref: '#/components/schemas/TransactionObject'
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.post(
+    '/self/public-key',
+    AuthenticationMiddleware as RequestHandler,
+    AccessControlMiddleware([AccessType.USER]) as RequestHandler,
+    BodyValidationMiddleware(CreateCertificateDTO) as RequestHandler,
+    (async (request, response, next) => {
+        await userController.addPublicKey(request, response, next);
+    }) as RequestHandler
 );
 
 export default usersRouter;

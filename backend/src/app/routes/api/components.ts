@@ -166,6 +166,32 @@
  *             user:
  *               type: object
  *               $ref: '#/components/schemas/Course'
+ *     AddPublicKeyDTO:
+ *       type: object
+ *       properties:
+ *           key:
+ *             type: string
+ *           hashAlg:
+ *             type: integer
+ *           signAlg:
+ *             type: integer
+ *     TransactionObject:
+ *       type: object
+ *       properties:
+ *           blockId:
+ *             type: string
+ *           status:
+ *             type: integer
+ *           statusString:
+ *             type: string
+ *           errorMessage:
+ *             type: string
+ *           statusCode:
+ *             type: object
+ *             $ref: {}
+ *           events:
+ *             type: array
+ *             items: {}
  *   responses:
  *     NotFound:
  *       description: The specified resource does not exsist

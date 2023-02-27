@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { config, KMS } from 'aws-sdk';
 import * as fcl from '@onflow/fcl';
 import * as t from '@onflow/types';
@@ -8,7 +13,7 @@ import { ec as EC } from 'elliptic';
 import { template as createAccount } from '@onflow/six-create-account';
 import SHA3 from 'sha3';
 import { readFile } from 'fs/promises';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
 import { createHash } from 'crypto';
 
 const ec: EC = new EC('secp256k1');
@@ -48,33 +53,13 @@ export class FclService {
         return this.createAuthz(keySlot, authorizer, ec, 'sha2');
     }
 
-    private signWithKey(
-        privateKey: string,
-        msg: string,
-        ecAlg: EC,
-        hashAlg: HashAlgorithm
-    ) {
-        const key = ecAlg.keyFromPrivate(Buffer.from(privateKey, 'hex'));
-        const sig = key.sign(this.hashMsg(msg, hashAlg));
-        const n = 32;
-        const r = sig.r.toArrayLike(Buffer, 'be', n);
-        const s = sig.s.toArrayLike(Buffer, 'be', n);
-        return Buffer.concat([r, s]).toString('hex');
-    }
-
-    private hashMsg(msg: string, alg: HashAlgorithm) {
-        const sha = alg === 'sha2' ? createHash('sha256') : new SHA3(256);
-        sha.update(Buffer.from(msg, 'hex'));
-        return sha.digest();
-    }
-
     async sendTx({
         transaction,
         args,
         proposer,
         authorizations,
         payer
-    }): Promise<any> {
+    }): Promise<TransactionStatusObject> {
         let response: TransactionStatusObject = null;
         try {
             response = await fcl.send([
@@ -87,7 +72,9 @@ export class FclService {
                 fcl.payer(payer),
                 fcl.limit(9999)
             ]);
-            return await fcl.tx(response).onceSealed();
+            return (await fcl
+                .tx(response)
+                .onceSealed()) as TransactionStatusObject;
         } catch (e) {
             if (isNotEmpty(response)) {
                 throw new FclError(response, e, 'Transaction failed');
@@ -242,6 +229,76 @@ export class FclService {
         return response;
     }
 
+    async addPublicKey(
+        address: string,
+        key: string,
+        signAlg: number,
+        hashAlg: number
+    ): Promise<TransactionStatusObject> {
+        const transaction = await readFile(
+            resolve('../transactions/keyAdd.cdc')
+        );
+        const rs = await this.sendTx({
+            transaction,
+            args: [
+                fcl.arg(key, t.String),
+                fcl.arg(signAlg.toString(), t.Int),
+                fcl.arg(hashAlg.toString(), t.Int)
+            ],
+            authorizations: this.authorizeClient(0, {
+                address,
+                privateKey: process.env.CLIENT_PUBLIC_KEY
+            }),
+            payer: this.authorizeClient(0, {
+                address,
+                privateKey: process.env.CLIENT_PUBLIC_KEY
+            }),
+            proposer: this.authorizeClient(0, {
+                address,
+                privateKey: process.env.CLIENT_PUBLIC_KEY
+            })
+        });
+        return rs;
+    }
+
+    createAuthz(
+        keySlot: number,
+        authorizer: Authorizer,
+        signAlg: EC,
+        hashAlg: HashAlgorithm
+    ): any {
+        return async (account: any = {}) => {
+            const user = await this.getAccount(authorizer.address);
+            const key = user.keys[keySlot];
+
+            // Logger.log('Key', key);
+
+            // console.log('Key', key);
+
+            // const sign = this.signWithKey;
+            const pk = authorizer.privateKey;
+
+            return {
+                ...account,
+                tempId: `${user.address}-${key.index}`,
+                addr: fcl.sansPrefix(user.address),
+                keyId: Number(key.index),
+                signingFunction: (signable) => {
+                    return {
+                        addr: fcl.withPrefix(user.address),
+                        keyId: Number(key.index),
+                        signature: this.signWithKey(
+                            pk,
+                            signable.message,
+                            signAlg,
+                            hashAlg
+                        )
+                    };
+                }
+            } as unknown;
+        };
+    }
+
     public async transferFlowToken(
         keySlot: number,
         amount: number,
@@ -297,42 +354,24 @@ export class FclService {
         }
     }
 
-    createAuthz(
-        keySlot: number,
-        authorizer: Authorizer,
-        signAlg: EC,
+    private signWithKey(
+        privateKey: string,
+        msg: string,
+        ecAlg: EC,
         hashAlg: HashAlgorithm
     ) {
-        return async (account: any = {}) => {
-            const user = await this.getAccount(authorizer.address);
-            const key = user.keys[keySlot];
+        const key = ecAlg.keyFromPrivate(Buffer.from(privateKey, 'hex'));
+        const sig = key.sign(this.hashMsg(msg, hashAlg));
+        const n = 32;
+        const r = sig.r.toArrayLike(Buffer, 'be', n);
+        const s = sig.s.toArrayLike(Buffer, 'be', n);
+        return Buffer.concat([r, s]).toString('hex');
+    }
 
-            // Logger.log('Key', key);
-
-            // console.log('Key', key);
-
-            // const sign = this.signWithKey;
-            const pk = authorizer.privateKey;
-
-            return {
-                ...account,
-                tempId: `${user.address}-${key.index}`,
-                addr: fcl.sansPrefix(user.address),
-                keyId: Number(key.index),
-                signingFunction: (signable) => {
-                    return {
-                        addr: fcl.withPrefix(user.address),
-                        keyId: Number(key.index),
-                        signature: this.signWithKey(
-                            pk,
-                            signable.message,
-                            signAlg,
-                            hashAlg
-                        )
-                    };
-                }
-            };
-        };
+    private hashMsg(msg: string, alg: HashAlgorithm) {
+        const sha = alg === 'sha2' ? createHash('sha256') : new SHA3(256);
+        sha.update(Buffer.from(msg, 'hex'));
+        return sha.digest();
     }
 }
 

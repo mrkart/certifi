@@ -96,12 +96,13 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .content-header{ margin-bottom: 30px; padding-left: 5px; padding-right: 10px;}
 
 .teammemberprofile {border-radius: 50%;width: 55px;height: 55px;box-shadow: inset 0 0 30px 0 rgb(255 255 255 / 35%), 0 2px 5px rgb(0 0 0 / 15%);background: linear-gradient(to top, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15));backdrop-filter: blur(10px);overflow: hidden;padding: 1px;align-items: center;justify-content: center;}
-.teammemberrow {border-top: 1px solid #ffffff;padding: 5px 0px; transition: all ease 0.75s; padding: 10px; display: flex;}
+.teammemberrow {border-top: 1px solid #ffffff;padding: 5px 0px; transition: all ease 0.75s; padding: 10px; display: flex; flex-direction: row; align-items: center;}
 .temproname{ display: flex; flex: 1; align-items: center;}
 .temproname img{ margin-right: 15px;}
 .teammemberrow:hover{ background:#CCDFFF;}
 .teammembername {margin-top: 16px;font-weight: 500;}
-.teammembercert {color: #005fff;margin-top: 16px;font-weight: 500;}
+.teammembercert {color: #005fff; font-weight: 500; height: 100%; display: flex; align-items: center;}
+.teammembercert p{ margin: 0px; font-size: 12px;}
 .borderleft2pxwhite {border-left: 1px solid #ffffff;}
 .chartdropdown {border-radius: 50px;background: #ffffff;margin-top: 25px;font-weight: 600;}
 .profile-area .profile-icon{width: 45px; height: 45px; position: relative; margin-left: 15px; cursor: pointer; display: inline-flex; border-radius: 50%; overflow: hidden; transition: all ease 0.75s; box-shadow: inset 0 0 30px 0 rgb(255 255 255 / 35%), 0 2px 5px rgb(0 0 0 / 15%);background: linear-gradient(to top, rgba(255,255,255, 0.6), rgba(255,255,255, 0.15));-webkit-backdrop-filter: blur(10px);backdrop-filter: blur(10px); border: 2px solid #fff;}
@@ -357,11 +358,12 @@ input[type="file"] { display: none;}
 
 .createcetr {position: relative;}
 
-.mobileprofile{ background: #DFEBFD; padding: 30px; margin-bottom: 30px; border-radius: 10px; display: none;}
-.mobileprofile .profile-icon {margin: 0px auto 15px auto;width: 65px;height: 65px;}
+.mobileprofile{ background: #DFEBFD; padding: 15px; margin-bottom: 0px; border-radius: 10px; display: none;}
+.mobileprofile .profile-icon {margin: 0px auto 5px auto; width: 65px;height: 65px;}
 .mobileprofile .profile-icon .headerprofilepic{ height: 70px; max-width: 70px;}
 .mobileprofile .profile-area {flex-direction: column;align-items: center;justify-content: center;text-align: center;}
-.mobileprofile .profile-area p.profilename {display: flex;flex-direction: column;}
+.mobileprofile .profile-area p.profilename {display: flex;}
+.mobileprofile .profile-area p.profilename .username { margin-left: 5px;}
 
 .main-content ,.loginform .form-group label{width: 100%;}
 .certsteps div, .certsteps a {font-size: 13px !important;font-weight: 600 !important;text-transform: uppercase;}
@@ -473,6 +475,7 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .bs-tooltip-bottom .tooltip-inner{background: #fff; border-radius: 10px; color: #000; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); opacity: 0; position: relative; bottom:-10px; transition: all ease 0.75s; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;}
 .bs-tooltip-bottom.show .tooltip-inner{opacity: 1; bottom: 0px;}
 
+.accessToken {word-break: break-all;    white-space: normal;  transition: all ease 0.75s;  }
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}
@@ -501,6 +504,7 @@ nav#sidebarMenu{ background: #fff;}
 .mobileprofile{ display: flex; justify-content: center;}
 .formscroldiv {height: calc(100vh - 320px);}
 .mar-top {margin-top: 0;}
+.sidebarbottom{ margin-top: 0px;}
 }
 
 @media (max-width: 1199px) {
@@ -557,6 +561,7 @@ nav#sidebarMenu{ background: #fff;}
 .pageheader .col-md-4{text-align: center; margin-bottom: 15px;}
 .pageheader h4{text-align: center;}
 .pageheader .btnwithpro{justify-content: center;}
+.row .table tr td, .row .table tr th {white-space: nowrap;}
 }
 
 @media (max-width:575px) {
@@ -588,4 +593,5 @@ nav#sidebarMenu{ background: #fff;}
     .btngrouprht a:not(:first-child), .btngrouprht button:not(:first-child) {margin-left: 5px;}
     .btn{padding: 0px 10px; font-size: 12px}
     .btn-icon .eva{width: 20px;}
+    .resbtn .btn {margin: 0px auto 15px !important;display: block;}
 }

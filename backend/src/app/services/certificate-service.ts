@@ -1,5 +1,4 @@
-import { isEmpty, isNumber } from 'class-validator';
-import { FindOptionsWhere } from 'typeorm';
+import { isEmpty } from 'class-validator';
 import getDataSource from '../config/datasource';
 import { ResourceNotFoundError } from '../errors';
 import { CertificateDataResponse } from '../helpers';
@@ -59,6 +58,9 @@ export class CertificateService {
                     id: cert.slot.id,
                     name: cert.slot.slotTitle
                 },
+                thumbnailPath: cert.thumbnailFileName
+                    ? '/api/v1/certificates/preview/' + cert.thumbnailFileName
+                    : null,
                 user: {
                     id: cert.user.id,
                     name: cert.user.name
@@ -122,6 +124,10 @@ export class CertificateService {
                 id: certificate.slot.id,
                 name: certificate.slot.slotTitle
             },
+            thumbnailPath: certificate.thumbnailFileName
+                ? '/api/v1/certificates/preview/' +
+                  certificate.thumbnailFileName
+                : null,
             user: {
                 id: certificate.user.id,
                 name: certificate.user.name
@@ -132,6 +138,20 @@ export class CertificateService {
             }
         };
         return res;
+    }
+
+    public async getCertificateThumbnail(fileName: string) {
+        const certificate = await getDataSource()
+            .getRepository(Certificate)
+            .findOne({
+                where: {
+                    thumbnailFileName: fileName
+                }
+            });
+        if (isEmpty(certificate)) {
+            throw new ResourceNotFoundError('Certificate not found');
+        }
+        return certificate.thumbnailPath;
     }
 }
 

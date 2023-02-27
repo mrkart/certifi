@@ -18,7 +18,7 @@
         "arrow-parens": ["error", "always"],
         "prefer-const": "warn",
         "@typescript-eslint/array-type": ["error"],
-        "@typescript-eslint/explicit-member-accessibility": ["error"],
+        "@typescript-eslint/explicit-member-accessibility": "off",
         "@typescript-eslint/member-ordering": ["warn"],
         "@typescript-eslint/no-inferrable-types": ["warn"],
         "@typescript-eslint/no-empty-function": ["off"],

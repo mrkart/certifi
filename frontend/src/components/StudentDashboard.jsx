@@ -86,7 +86,7 @@ const StudentDashboard = () => {
                                                     <ul className='list-unstyled'>
                                                         {certificateList.map((user, index) => (
                                                             <li key={index}>
-                                                                <a href={user.certificateHash} target="_blank">
+                                                                <a href={"https://alpha.certifi.ly/verify/"+user.certificateNumber} target="_blank">
                                                                     <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
                                                                     <span className='lnftscont'>
                                                                         <ReactTimeAgo date={user.datetimeCreated} locale="en-US" />

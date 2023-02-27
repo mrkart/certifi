@@ -265,7 +265,7 @@ export class FclService {
     async revokePublicKey(address: string, key: number) {
         await this.initializePrivateKeys();
         const transaction = await readFile(
-            resolve('../transactions/keyAdd.cdc')
+            resolve('../transactions/removeKey.cdc')
         );
         const rs = await this.sendTx({
             transaction,

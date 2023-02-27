@@ -89,7 +89,7 @@ const StudentDashboard = () => {
                                                             <li key={index}>
                                                                 <a href={"https://alpha.certifi.ly/verify/"+user.certificateNumber} target="_blank">
                                                                     <span className='img'><img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" /></span>
-                                                                    <span className='lnftscont'>
+                                                                    <span className='lnftscont nftlistborder'>
                                                                         <ReactTimeAgo date={user.datetimeCreated} locale="en-US" />
                                                                         <h6>Certificate from {user.org.name}</h6>
                                                                     </span>

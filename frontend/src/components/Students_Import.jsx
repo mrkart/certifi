@@ -3,6 +3,8 @@ import { Tooltip, ResponsiveContainer } from 'recharts';
 import { NavLink } from 'react-router-dom';
 import * as eva from 'eva-icons';
 import ProfileArea from '../components/shared/ProfileArea';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltipb from 'react-bootstrap/Tooltip';
 
 const StudentsImport = () => {
   useEffect(() => {eva.replace()})
@@ -109,8 +111,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a></OverlayTrigger>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Delete</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a></OverlayTrigger>
                     </div>
                     </td>                           
                   </tr>
@@ -131,8 +133,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a></OverlayTrigger>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Delete</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a></OverlayTrigger>
                     </div>
                     </td>                           
                   </tr>
@@ -153,8 +155,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a></OverlayTrigger>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Delete</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a></OverlayTrigger>
                     </div>
                     </td>                           
                   </tr>
@@ -175,8 +177,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a></OverlayTrigger>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Delete</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a></OverlayTrigger>
                     </div>
                     </td>                           
                   </tr>
@@ -197,8 +199,8 @@ const StudentsImport = () => {
                     
                     <td className='text-center'>
                     <div className='btngrouprht'>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a>
-                      <a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="edit-outline"></i></a></OverlayTrigger>
+                      <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Delete</Tooltipb>}><a href="#" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a></OverlayTrigger>
                     </div>
                     </td>                           
                   </tr>

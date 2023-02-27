@@ -63,7 +63,8 @@ export class CertificateService {
                     : null,
                 user: {
                     id: cert.user.id,
-                    name: cert.user.name
+                    name: cert.user.name,
+                    flowAddress: cert.user.flowAddress
                 },
                 verifier: {
                     id: cert.signerVerifier.id,
@@ -130,7 +131,8 @@ export class CertificateService {
                 : null,
             user: {
                 id: certificate.user.id,
-                name: certificate.user.name
+                name: certificate.user.name,
+                flowAddress: certificate.user.flowAddress
             },
             verifier: {
                 id: certificate.signerVerifier.id,

@@ -4,9 +4,10 @@ import { getUserList, resetUserlist } from '../actions/exampleAction';
 import { useDispatch, useSelector } from 'react-redux';
 import TableLoader from './shared/TableLoader';
 import * as eva from 'eva-icons';
+import ProfileArea from '../components/shared/ProfileArea';
 
 const Students = () => {
-  
+
   const dispatch = useDispatch();
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile.organistaions[0]?.id;
@@ -16,13 +17,13 @@ const Students = () => {
 
   useEffect(() => {
     dispatch(getUserList(orgID));
-  },[]);
+  }, []);
   useEffect(() => {
     eva.replace();
   });
 
   useEffect(() => {
-    if(fulluserlist.statusCode == 200 && fulluserlist.data.orgUsers){
+    if (fulluserlist.statusCode == 200 && fulluserlist.data.orgUsers) {
       let data = fulluserlist.data.orgUsers;
       console.log(data);
       setTimeout(() => {
@@ -30,91 +31,99 @@ const Students = () => {
         setUserlist(data);
       }, 1000);
     }
-  },[fulluserlist]);
+  }, [fulluserlist]);
 
   return (
-    <div className='scrolldiv pb-3'>
+    <div className='scrolldiv1 pb-3'>
       <div className='row '>
-        <div className='col-md-12 text-start'>                  
+        <div className='col-md-12 text-start'>
           <div className=''>
-          <div className='row mb-3 align-items-center'>
-            <div className='col-md-6'><h4 className="fw-bolder text-black text-uppercase mb-0">Students</h4></div>
-              <div className='col-md-6 text-end'>
-                <div className='btngrouprht'>
-                  <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
-                  <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
-                  {/* <a href='/add-student' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a> 
+            <div className='pageheader'>
+              <div className='row mb-3 align-items-center'>
+                <div className='col-md-4'>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0">Students</h4></div>
+                <div className='col-md-8 text-end'>
+                  <div className='btnwithpro'>
+                    <div className='btngrouprht'>
+                      <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
+                      <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
+                      {/* <a href='/add-student' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a> 
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
                   */}
+                    </div>
+                    <ProfileArea />
+                  </div>
                 </div>
               </div>
             </div>
+
             {userlist.length == 0 ? (
-                <TableLoader/>
-              ) : (
-            <div className='tableblur mt-4 fadein'>                    
-              <div className='searchform'>
-                <div className='fields'>Search & Filters</div>
-                <div className='fields'><input type={'text'} className="form-control" placeholder='Name'/></div>
-                <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year'/></div>
-                <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email'/></div>
-                <div className='fields'>
-                  <select className="form-control"> 
+              <TableLoader />
+            ) : (
+              <div className='tableblur mt-4 fadein'>
+                <div className='searchform pt-0'>
+                  <div className='fields'>Search & Filters</div>
+                  <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
+                  <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year' /></div>
+                  <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
+                  <div className='fields'>
+                    <select className="form-control">
                       <option defaultValue>Import slot</option>
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
-                  </select>
-                  
+                    </select>
+
+                  </div>
                 </div>
-              </div>
-              <div className='table-responsive'>
-              <table className="table align-middle mb-0 custable table-hover" >
-                <thead className="">
-                  <tr>
-                    {/* <th>
+                <div className='table-scroller'>
+                  <div className='table-responsive'>
+                    <table className="table align-middle mb-0 custable table-hover" >
+                      <thead className="">
+                        <tr>
+                          {/* <th>
                     <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                     </th> */}
-                    <th>Student ID</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Batch</th>
-                    <th>Status</th>                            
-                    <th className='text-center'>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {userlist.map((user, index) => (
-                    <tr key={index}>
-                      {/* <td>
+                          <th>Student ID</th>
+                          <th>Email</th>
+                          <th>Name</th>
+                          <th>Batch</th>
+                          <th>Status</th>
+                          <th className='text-center'>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {userlist.map((user, index) => (
+                          <tr key={index}>
+                            {/* <td>
                         <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck2" /><label className="form-check-label" htmlFor="exampleCheck2"></label></div>
                         </td> */}
-                      <td>
-                      <div className="d-flex align-items-center">
-                        {user.id}
-                      </div>
-                      </td>
-                      <td>
-                      <span className="text-dark">{user.email}</span>
-                      </td>
-                      <td>
-                      <p className="fw-normal mb-1">{user.name}</p>
-                      </td>
-                      <td> {user.slot[0].name} </td>
-                      <td>
-                      <span className="text-success">Approved</span>
-                      </td>
-                      <td className='text-center'>
-                      <div className='btngrouprht'>
-                      <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-student/"+user.id}>
-                        < i data-eva-animation="flip" data-eva="edit-outline"></i>
-                      </NavLink>
-                      <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
-                      </div>
-                      </td>
-                  </tr>
-                  ))}
-                  {/* 
+                            <td>
+                              <div className="d-flex align-items-center">
+                                {user.id}
+                              </div>
+                            </td>
+                            <td>
+                              <span className="text-dark">{user.email}</span>
+                            </td>
+                            <td>
+                              <p className="fw-normal mb-1">{user.name}</p>
+                            </td>
+                            <td> {user.slot[0].name} </td>
+                            <td>
+                              <span className="text-success">Approved</span>
+                            </td>
+                            <td className='text-center'>
+                              <div className='btngrouprht'>
+                                <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-student/" + user.id}>
+                                  < i data-eva-animation="flip" data-eva="edit-outline"></i>
+                                </NavLink>
+                                <a href="" className='btn btn-outline-primary text-primary btn-sm btn-action'>< i data-eva-animation="flip" data-eva="trash-2-outline"></i></a>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                        {/* 
                   <tr>
                     <td>
                       <div className="d-flex align-items-center">
@@ -237,11 +246,12 @@ const Students = () => {
                     </div>
                     </td>
                   </tr> */}
-                </tbody>
-              </table>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-            </div>
-              )}
+            )}
           </div>
         </div>
         {/* <div className='col-md-2'>

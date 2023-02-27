@@ -6,6 +6,7 @@ import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecentCertificate, reseRecentCertificate } from '../actions/exampleAction';
 import TableLoader from './shared/TableLoader';
+import ProfileArea from '../components/shared/ProfileArea';
 
 const data = [
   {
@@ -78,11 +79,16 @@ const Dashboard = () => {
   },[recentcertificate]);
 
   const gotoIssueCert = () => {
-    navigate('/issue-certificate')
+    navigate('/mint-certificate')
   }
   useEffect(() => { eva.replace() });
   return (
     <div className='scrolldiv'>  
+    <div className='row'>
+      <div className='col-md-12 text-end'>
+      <ProfileArea/>
+      </div>
+    </div>
       <div className='row fadein'>
         <div className='col-md-12 text-start'>
           <div className='foldersview'>
@@ -113,7 +119,7 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Good</p>
                     <p className=" cpartitle">CLINICAL PRACTICES</p> */}
-                          <h2 className='fw-medium mt-5 text-center'>
+                          <h2 className='fw-medium text-center'>
                             <CountUp
                               start={0}
                               end={765}
@@ -153,7 +159,7 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Best</p>
                     <p className=" cpartitle">Distribution Practices</p> */}
-                          <h2 className='fw-medium mt-5 text-center'>
+                          <h2 className='fw-medium text-center'>
                             <CountUp
                               start={0}
                               end={1657}
@@ -161,11 +167,8 @@ const Dashboard = () => {
                             />
                           </h2>
                         </div>
-                        <div className='foldpicshare row-reverse'>
-                        <span className='icontext viewall eva-hover'>
-                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
-                            <span className='text'>Manage</span>
-                          </span>
+                        <div className='foldpicshare'>
+                        
                           <div className='foldpics'>
                             <ul className='list-unstyled'>
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo5.png')} loading="lazy" /></span></li> */}
@@ -175,7 +178,12 @@ const Dashboard = () => {
                               <li><span className='flpic'><img src={require('../assets/images/photo1.png')} loading="lazy" /></span></li>
                               <li><span className='flpic last-count'>+100</span></li>
                             </ul>
-                          </div>                          
+                          </div>  
+
+                          <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>Manage</span>
+                          </span>                        
                           
                         </div>
                       </div>
@@ -194,7 +202,7 @@ const Dashboard = () => {
                         <div className='foldcont'>
                           {/* <p className="card-text mb-1 ccondi">Awesome</p>
                     <p className=" cpartitle">Interior Design</p> */}
-                          <h2 className='fw-medium mt-5 text-center'>
+                          <h2 className='fw-medium text-center'>
                           <CountUp
                             start={0}
                             end={4}
@@ -202,13 +210,10 @@ const Dashboard = () => {
                           />
                           </h2>
                         </div>
-                        <div className='foldpicshare row-reverse'>
+                        <div className='foldpicshare'>
                           
                           {/* <div className='foldshare eva-hover icon-rht' >View all <i data-eva="arrow-ios-forward-outline" data-eva-animation="flip"></i></div> */}
-                          <span className='icontext viewall eva-hover'>
-                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
-                            <span className='text'>View all</span>
-                          </span>
+                         
                           <div className='foldpics'>
                             <ul className='list-unstyled'>
                               {/* <li><span className='flpic'><img src={require('../assets/images/photo2.png')} loading="lazy" /></span></li>
@@ -220,6 +225,11 @@ const Dashboard = () => {
                               {/* <li><span className='flpic last-count'>+25</span></li> */}
                             </ul>
                           </div>
+
+                          <span className='icontext viewall eva-hover'>
+                            <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
+                            <span className='text'>View all</span>
+                          </span>
                         </div>
                       </div>
                     </div>

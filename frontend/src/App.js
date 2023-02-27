@@ -67,7 +67,7 @@ function App() {
             <Admin  subElement={ <CertificateTemplateCustomize /> } /> 
           </PrivateRoute>
         } />
-        <Route path="/issue-certificate" element={ 
+        <Route path="/mint-certificate" element={ 
           <PrivateRoute>
             <Admin  subElement={ <Issue_Certificate /> } /> 
           </PrivateRoute>

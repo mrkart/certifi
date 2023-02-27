@@ -34,6 +34,7 @@ const Sidemenu = () => {
               className='sidebarlogo mb-3'
             />
           </a>
+          <h6 className='badge badge-primary institle'>INSTITUTION</h6>
           <div className='mobileprofile'>
             <div className='profile-area'>
               <div className='profile-icon'>
@@ -48,6 +49,8 @@ const Sidemenu = () => {
                   data-mdb-target="#sidebarMenu"
                   aria-controls="sidebarMenu"
                   aria-expanded="false"> */}
+
+
 
 
 
@@ -71,26 +74,50 @@ const Sidemenu = () => {
 
 
             <div className="accordion-item">
-              <h2 className="accordion-header" id="flush-headingOneX2">
+              <h2 className="accordion-header" id="flush-headingOneX2">                
                 <div data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOneX2" aria-expanded="true" aria-controls="flush-collapseOneX2">
-                  <NavLink to="/students" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  {/* <NavLink to="/students" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'>
                       <img
                         src={require('../../assets/images/icons/users.png')}
                         className=''
                       />
                     </div>
-                    <span>Students</span>
-                  </NavLink>
+                    <span>Users</span>
+                  </NavLink> */}
+
+                  <button className="list-group-item list-group-item-action text-uppercase accordion-button" type="button" data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseOneX2" aria-expanded="fasle" aria-controls="flush-collapseOneX2">
+                  <div className='sidebaricons'>
+                    <img
+                      src={require('../../assets/images/icons/users.png')}
+                      className=''
+                    />
+                  </div>
+                  <span>Users</span>
+                </button>
                 </div>
               </h2>
-              <div id="flush-collapseOneX2" className="accordion-collapse collapse show" aria-labelledby="flush-collapseOneX2" data-mdb-parent="#accordionFlushExampleX"></div>
+              <div id="flush-collapseOneX2" className="accordion-collapse collapse" aria-labelledby="flush-collapseOneX2" data-mdb-parent="#accordionFlushExampleX">
+              <div className="accordion-body p-0 ps-3">    
+                 <NavLink to="/students" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/users.png')} className=''/></div> <span>USERS</span>
+                  </NavLink>             
+                  <NavLink to="/add-student" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/plus.png')} className=''/></div> <span>ADD USER</span>
+                  </NavLink>
+
+                  <NavLink to="/students-import" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/import.png')} className=''/></div> <span>IMPORT USERS</span>
+                  </NavLink>
+                </div>
+              </div>
             </div>
 
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingOneX3">
                 <div data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOneX3" aria-expanded="true" aria-controls="flush-collapseOneX3">
-                  <NavLink to="/issue-certificate" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink to="/mint-certificate" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'>
                       <img
                         src={require('../../assets/images/icons/award.png')}
@@ -101,9 +128,46 @@ const Sidemenu = () => {
                   </NavLink>
                 </div>
               </h2>
-              <div id="flush-collapseOneX3" className="accordion-collapse collapse show" aria-labelledby="flush-collapseOneX3" data-mdb-parent="#accordionFlushExampleX"></div>
+              <div id="flush-collapseOneX3" className="accordion-collapse collapse show" aria-labelledby="flush-collapseOneX3" data-mdb-parent="#accordionFlushExampleX">
+              
+              </div>
             </div>
 
+
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="flush-settings">
+                <button className="list-group-item list-group-item-action text-uppercase accordion-button" type="button" data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-set" aria-expanded="fasle" aria-controls="flush-set">
+                  <div className='sidebaricons'>
+                    <img
+                      src={require('../../assets/images/icons/settings.png')}
+                      className=''
+                    />
+                  </div>
+                  <span>Settings</span>
+                </button>
+              </h2>
+              <div id="flush-set" className="accordion-collapse collapse" aria-labelledby="flush-settings" data-mdb-parent="#accordionFlushExampleX">
+                <div className="accordion-body p-0 ps-3">                 
+                  <NavLink to="/members" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/users.png')} className=''/></div> <span>Members</span>
+                  </NavLink>
+
+                  <NavLink to="/signers" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/edit-3.png')} className=''/></div> <span>Signers</span>
+                  </NavLink>
+
+                  <NavLink to="/profile" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/user.png')} className=''/></div> <span>Profile</span>
+                  </NavLink>
+
+                  <NavLink to="/security" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/verified.png')} className=''/></div> <span>Security</span>
+                  </NavLink>
+                </div>
+              </div>
+
+            </div>
 
 
             <div className="accordion-item">
@@ -121,15 +185,19 @@ const Sidemenu = () => {
               </h2>
               <div id="flush-collapseOneX" className="accordion-collapse collapse" aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
                 <div className="accordion-body p-0 ps-3">                 
-                  <NavLink to="https://api.certifi.ly/api-docs/" target="_blank" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
-                    <div className='sidebaricons'>
-                      <img
-                        src={require('../../assets/images/icons/document.png')}
-                        className=''
-                      />
-                    </div>
-                    <span>API DOCS</span>
+                  <NavLink to="/domains" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/web.png')} className=''/></div> <span>Domains</span>
                   </NavLink>
+                  <NavLink to="/create-token" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/key.png')} className=''/></div> <span>API Keys</span>
+                  </NavLink>
+                  <NavLink to="https://api.certifi.ly/api-docs/" target="_blank" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img src={require('../../assets/images/icons/document.png')} className=''/></div><span>API DOCS</span>
+                  </NavLink>
+                  <NavLink to="/smart-contract" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                    <div className='sidebaricons'><img  src={require('../../assets/images/icons/smart-contracts.png')} className=''/></div> <span>Smart Contract</span>
+                  </NavLink>
+                 
                 </div>
               </div>
 

@@ -2,6 +2,7 @@ import { plainToInstance } from 'class-transformer';
 import { NextFunction, Request, Response } from 'express';
 import { resolve } from 'path';
 import {
+    AddPublicKeyDTO,
     CreateCertificateDTO,
     CreateUserDTO,
     UpdateUserDTO,
@@ -194,7 +195,7 @@ export class UserController {
         }
     }
 
-    public async mintCertificate(
+    public mintCertificate(
         request: Request,
         response: Response,
         next: NextFunction
@@ -250,6 +251,42 @@ export class UserController {
                         certificates: res.entity
                     },
                     'Certificates fetched'
+                )
+            );
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
+
+    public async addPublicKey(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const user = plainToInstance(AuthUser, request['user']);
+            const { key, hashAlg, signAlg } = plainToInstance(
+                AddPublicKeyDTO,
+                request.body
+            );
+            const res = await this.userService.addPublicKey(
+                user.organistaions[0].id,
+                user.id,
+                key,
+                signAlg,
+                hashAlg
+            );
+            response.status(200).send(
+                new ApiResponse(
+                    200,
+                    {
+                        transaction: res
+                    },
+                    'pubic key added'
                 )
             );
         } catch (e) {

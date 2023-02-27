@@ -55,7 +55,7 @@ export class PdfService {
         });
 
         // Get the width and height of the page
-        const { width, height } = page.getSize();
+        const { width } = page.getSize();
 
         // Add the font for the detail content
         const detailFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -83,7 +83,7 @@ export class PdfService {
         });
 
         const issuerText =
-            `ISSUED BY\n` +
+            'ISSUED BY\n' +
             `${data.instituionName}\n` +
             `Certificate Number: ${data.certificateNumber}`;
 

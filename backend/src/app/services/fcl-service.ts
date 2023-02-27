@@ -247,15 +247,15 @@ export class FclService {
             ],
             authorizations: this.authorizeClient(0, {
                 address,
-                privateKey: process.env.CLIENT_PUBLIC_KEY
+                privateKey: process.env.CLIENT_AUTH_KEY
             }),
             payer: this.authorizeClient(0, {
                 address,
-                privateKey: process.env.CLIENT_PUBLIC_KEY
+                privateKey: process.env.CLIENT_AUTH_KEY
             }),
             proposer: this.authorizeClient(0, {
                 address,
-                privateKey: process.env.CLIENT_PUBLIC_KEY
+                privateKey: process.env.CLIENT_AUTH_KEY
             })
         });
         return rs;

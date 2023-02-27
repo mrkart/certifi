@@ -235,6 +235,7 @@ export class FclService {
         signAlg: number,
         hashAlg: number
     ): Promise<TransactionStatusObject> {
+        await this.initializePrivateKeys();
         const transaction = await readFile(
             resolve('../transactions/keyAdd.cdc')
         );
@@ -247,15 +248,15 @@ export class FclService {
             ],
             authorizations: this.authorizeClient(0, {
                 address,
-                privateKey: process.env.CLIENT_AUTH_KEY
+                privateKey: this.clientPrivateKey
             }),
             payer: this.authorizeClient(0, {
                 address,
-                privateKey: process.env.CLIENT_AUTH_KEY
+                privateKey: this.clientPrivateKey
             }),
             proposer: this.authorizeClient(0, {
                 address,
-                privateKey: process.env.CLIENT_AUTH_KEY
+                privateKey: this.clientPrivateKey
             })
         });
         return rs;

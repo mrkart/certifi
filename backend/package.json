@@ -46,7 +46,6 @@
         "jwk-to-pem": "^2.0.5",
         "mysql2": "^3.1.2",
         "nodemailer": "^6.9.1",
-        "pdf-img-convert": "^1.1.1",
         "pdf-lib": "^1.17.1",
         "qrcode": "^1.5.1",
         "reflect-metadata": "^0.1.13",

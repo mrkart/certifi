@@ -219,7 +219,9 @@ export class UserService {
                     id: cert.slot.id,
                     name: cert.slot.slotTitle
                 },
-                thumbnailPath: `/api/certificates/img-preview/${cert.thumbnailFileName}`
+                thumbnailPath: cert.thumbnailFileName
+                    ? `/api/certificates/img-preview/${cert.thumbnailFileName}`
+                    : null
             };
         });
         return new ListResponse(certList.count, certRes);
@@ -301,10 +303,10 @@ export class UserService {
             data,
             outDir
         );
-        const certThumbnailPath = await this.generateCertificateThumbnail(
-            certPath,
-            thumbnailOutDir
-        );
+        // const certThumbnailPath = await this.generateCertificateThumbnail(
+        //     certPath,
+        //     thumbnailOutDir
+        // );
         const acessToken = await this.getIpfsAuthToken();
         console.log('✔ Ipfs accessToken');
         const certStream = createReadStream(certPath);
@@ -352,7 +354,7 @@ export class UserService {
             slot,
             data,
             certPath,
-            certThumbnailPath,
+            null,
             `${ipfsEnpoint}/${metadataUploadResponse.Hash}`,
             preparer.user,
             verifier.user,
@@ -680,10 +682,12 @@ export class UserService {
                             certificateFilePath: certificatePath,
                             certificateHash: metadata.Cert.uri,
                             certificateNumber: certData.certificateNumber,
-                            thumbnailFileName: basename(
-                                certificateThumbnailPath
-                            ),
-                            thumbnailPath: certificateThumbnailPath,
+                            thumbnailFileName: certificateThumbnailPath
+                                ? basename(certificateThumbnailPath)
+                                : null,
+                            thumbnailPath: certificateThumbnailPath
+                                ? certificateThumbnailPath
+                                : null,
                             courseId: course.id,
                             grade: certData.grade,
                             metadataHash,

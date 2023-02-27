@@ -34,12 +34,12 @@ const StudentDashboard = () => {
     useEffect(() => {
         if (userCertList.statusCode == 200) {
             setApiLoading(false);
+            dispatch(resetUserCertList());
             // console.log('userCertList');
             if (userCertList?.data?.count > 0) {
                 setCertificateCount(userCertList.data.count);
                 // console.log(userCertList.data.certificates);
                 setCertificateList(userCertList.data.certificates);
-                dispatch(resetUserCertList());
             }
         }
     }, [userCertList]);

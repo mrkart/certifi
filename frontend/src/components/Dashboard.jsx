@@ -126,7 +126,7 @@ const Dashboard = () => {
                     <p className=" cpartitle">CLINICAL PRACTICES</p> */}
                           <h2 className='fw-medium text-center'>
                             <CountUp
-                              start={0}
+                              start={612}
                               end={765}
                               duration={5}
                             />
@@ -166,7 +166,7 @@ const Dashboard = () => {
                     <p className=" cpartitle">Distribution Practices</p> */}
                           <h2 className='fw-medium text-center'>
                             <CountUp
-                              start={0}
+                              start={1200}
                               end={1657}
                               duration={5}
                             />
@@ -209,7 +209,7 @@ const Dashboard = () => {
                     <p className=" cpartitle">Interior Design</p> */}
                           <h2 className='fw-medium text-center'>
                             <CountUp
-                              start={0}
+                              start={1}
                               end={4}
                               duration={4}
                             />

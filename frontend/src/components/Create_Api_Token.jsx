@@ -100,7 +100,8 @@ const CreateApiToken = () => {
                             </div>
                           </td>
                           <td>
-                            {"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNDU2Nzg5LCJuzI1NiIsInR5cCI6IkpXLCJuzI1NiIsInR5cCI6I"}
+                            {/* {"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNDU2Nzg5LCJuzI1NiIsInR5cCI6IkpXLCJuzI1NiIsInR5cCI6I"} */}
+                            {accessToken}
                           </td>
                           <td>
                             {"February 25, 2023"}

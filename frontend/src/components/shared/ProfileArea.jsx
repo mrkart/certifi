@@ -35,6 +35,7 @@ const ProfileArea = () => {
   },[])
 
   return (
+    <div className='content-header mb-0'>
     <div className='profile-area'>
       <div className='profile-cont'>
         <p className='mb-1 profilename'>Welcome <span className='username'>{userName}</span></p>
@@ -61,6 +62,7 @@ const ProfileArea = () => {
           <li><a className="dropdown-item text-primary" href="#" onClick={logout}><i data-eva="log-out-outline"></i> Logout</a></li>
         </ul>
       </div>
+    </div>
     </div>
   );
 }

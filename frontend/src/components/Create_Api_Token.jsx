@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-
+import ProfileArea from '../components/shared/ProfileArea';
 
 const CreateApiToken = () => {
 
@@ -38,7 +38,17 @@ const CreateApiToken = () => {
 
   return (
     <div className='scrolldiv'>
-       <div className="row mb-3"><div className="col-md-12 text-start"><h4 className="fw-bolder text-black text-uppercase mb-0">API Tokens</h4></div></div>
+      <div className='pageheader'>
+              <div className='row mb-3 align-items-center'>
+                <div className='col-md-6 text-start'>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0">API Tokens</h4></div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
+                </div>
+              </div>
+            </div>            
       <div className='row'>
         <div className='col-md-12 text-start'>
           <div className='row mb-3 align-items-center addemailaccount'>

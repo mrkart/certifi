@@ -82,17 +82,8 @@ const Admin = ({ subElement }) => {
           </nav>
         </header>
         <main className="height100per">
-          <div className="container-fluid height100per pt-3 ps-4">
-            <div className='content-header'>
-              <div className='row align-items-center'>
-                <div className='col-6 text-start'>
-                  
-                </div>
-                <div className='col-6 text-end'>
-                <ProfileArea/>
-                </div>
-              </div>
-            </div>
+          <div className="container-fluid height100per pt-3 ps-4"> 
+          {/* <ProfileArea/>           */}
             {subElement}
           </div>
         </main>

@@ -6,6 +6,7 @@ import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecentCertificate, reseRecentCertificate } from '../actions/exampleAction';
 import TableLoader from './shared/TableLoader';
+import ProfileArea from '../components/shared/ProfileArea';
 
 const data = [
   {
@@ -83,6 +84,11 @@ const Dashboard = () => {
   useEffect(() => { eva.replace() });
   return (
     <div className='scrolldiv'>  
+    <div className='row'>
+      <div className='col-md-12 text-end'>
+      <ProfileArea/>
+      </div>
+    </div>
       <div className='row fadein'>
         <div className='col-md-12 text-start'>
           <div className='foldersview'>

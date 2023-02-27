@@ -25,7 +25,6 @@ const StudentsEdit = () => {
 
   useEffect(() => {
     if(edituser.statusCode == 200){
-      dispatch(resetUserbyid());
       dispatch(resetEdituser());
       navigate("/students");
     }
@@ -33,7 +32,8 @@ const StudentsEdit = () => {
 
   useEffect(() => {
     if(userbyid.statusCode == 200){
-      console.log(userbyid.data.orgUser);
+      dispatch(resetUserbyid());
+      // console.log(userbyid.data.orgUser);
       setEmail(userbyid.data.orgUser.email);
       setName(userbyid.data.orgUser.name);
       setBatch(userbyid.data.orgUser.slot[0].name);

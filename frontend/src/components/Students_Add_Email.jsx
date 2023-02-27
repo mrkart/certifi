@@ -4,10 +4,13 @@ import * as fcl from '@onflow/fcl';
 import {Buffer} from 'buffer'
 // const { getAccount } = require('@onflow/sdk');
 import * as t from "@onflow/types";
+import { useDispatch, useSelector } from 'react-redux';
+import { addOwnershipForAccount, getWalletAddress, resetAddOwnership, resetAddOwnershipFailed } from '../actions/exampleAction';
+import FullLoader from './shared/FullLoader';
 
 // import * as sdk from "@onflow/sdk"
 // const { getAccount } = require('@onflow/fcl');
-
+var timeout;
 const StudentsAddEmail = () => {
 
   const user_email = localStorage.getItem('user_email');
@@ -16,6 +19,13 @@ const StudentsAddEmail = () => {
 
   const [email, setEmail] = useState('');
   const [verifyOTP, setVerifyOTP] = useState([]);
+  const [addSuccess,setAddSuccess] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage,setErrorMessage] = useState(false)
+  const [infoMessage,setInfoMessage] = useState(false)
+  const dispatch = useDispatch();
+  const ownershipAdded = useSelector(state => state.demoReducer.flowOwnership);
+  const ownershipFailed = useSelector(state => state.demoReducer.flowOwnershipFailed);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -38,17 +48,81 @@ const StudentsAddEmail = () => {
 
   
   const addOwnership = async () => {
-
+    setIsLoading(true)
+    
     const address = await fcl.currentUser().authenticate();
     const account = await fcl.send([fcl.getAccount(address.addr)]) 
-    console.log(account.account.keys)
-    const mykey =  account.account.keys.find(item => item.weight === 1000 & item.revoked === false);
+    const studAccount = await fcl.send([fcl.getAccount(userFlowAddress)]) 
+    dispatch(getWalletAddress())
 
+    console.log(account.account.keys)
+    const mykey =  account.account.keys.find(item => item.weight === 1000 & item.revoked === false);   
     console.log(mykey)
+
+    if(account && account.account && account.account.keys && account.account.keys[0]){
+      const key = account.account.keys[0]
+      const hashAlgStr = key.hashAlgoString
+      const signAlgStr = key.signAlgoString
+      if(key.publicKey){
+        let obj = {
+          key : key.publicKey
+        }
+        if(hashAlgStr.includes('SHA3_256')){
+          obj['hashAlg'] = 3
+        }else{
+          obj['hashAlg'] = 2
+        }
+        if(signAlgStr.includes('secp256k1')){
+          obj['signAlg'] = 2
+        }else{
+          obj['signAlg'] = 1
+        }
+        const ownerKey =  studAccount.account.keys.find(item => item.publicKey === key.publicKey);   
+        if(ownerKey && ownerKey.publicKey){
+          setInfoMessage(true)
+          setIsLoading(false)
+          clearTimeout(timeout)
+          timeout = setTimeout(() => {
+            setInfoMessage(false)
+          },4000)
+        }else{
+          dispatch(addOwnershipForAccount(obj))
+        }
+
+
+      }
+    }
+
 
 
   }
+  useEffect(() => {
+    if(ownershipAdded && ownershipAdded.statusCode === 200){
+      dispatch(resetAddOwnership())
+      setIsLoading(false)
+      setAddSuccess(true)
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        setAddSuccess(false)
+      },4000)
+      
+    }
+  },[ownershipAdded])
+  useEffect(() => {
+    if(ownershipFailed && ownershipFailed.length > 0 && typeof ownershipFailed === 'string'){
+      dispatch(resetAddOwnershipFailed())
+      setErrorMessage(true)
+      clearTimeout(timeout)
+      setIsLoading(false)
+      timeout = setTimeout(() => {
+        setErrorMessage(false)
+      },4000)
+      
 
+    }
+   
+    
+  },[ownershipFailed])
   const removeCustodial = async () => {
     const removeKeyScript = `
         transaction(keyId: Int) {
@@ -85,7 +159,24 @@ const StudentsAddEmail = () => {
         <div className='col-md-12 text-start'>
           <div className='row mb-3 align-items-center addemailaccount'>
             <div className='col-md-12 mb-3'>
+            {isLoading ? <FullLoader/> : ''}
               <div className='backgroundblur'>
+              
+              {addSuccess &&
+                      <div class="alert alert-success text-center col-sm-6 mx-auto py-3" role="alert">
+                        Ownership Added
+                      </div>
+                    }
+              {errorMessage &&
+                <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
+                  Failed to add
+                </div>
+              }
+              {infoMessage &&
+                      <div class="alert alert-warning text-center col-sm-6 mx-auto py-3" role="alert">
+                        Already added
+                      </div>
+                    }
                 <h6 className="fw-bolder text-black text-uppercase">Email Accounts</h6>
                 <form onSubmit={handleSubmit}>
                   <div className="row">

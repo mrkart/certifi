@@ -19,7 +19,9 @@ const initialState = {
     userCertificateList : [],
     recentcertificate : [],
     getCertificateFailed:'',
-    getCertificate: {}
+    getCertificate: {},
+    flowOwnership : {},
+    flowOwnershipFailed : ''
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -123,6 +125,16 @@ export function demoReducer(state = initialState, action) {
             return {
                 ...state,
                 getCertificateFailed: action.payload
+            }
+        case types.ADD_OWNERSHIP_FLOW_ACCOUNT:
+            return {
+                ...state,
+                flowOwnership: action.payload
+            }
+        case types.ADD_OWNERSHIP_FLOW_ACCOUNT_FAILURE:
+            return {
+                ...state,
+                flowOwnershipFailed: action.payload
             }
         
         default:

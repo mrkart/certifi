@@ -262,6 +262,32 @@ export class FclService {
         return rs;
     }
 
+    async revokePublicKey(address: string, key: number) {
+        await this.initializePrivateKeys();
+        const transaction = await readFile(
+            resolve('../transactions/removeKey.cdc')
+        );
+        const rs = await this.sendTx({
+            transaction,
+            args: [
+                fcl.arg(key.toString(),t.Int)
+            ],
+            authorizations: this.authorizeClient(0, {
+                address,
+                privateKey: this.clientPrivateKey
+            }),
+            payer: this.authorizeClient(0, {
+                address,
+                privateKey: this.clientPrivateKey
+            }),
+            proposer: this.authorizeClient(0, {
+                address,
+                privateKey: this.clientPrivateKey
+            })
+        });
+        return rs;
+    }
+
     createAuthz(
         keySlot: number,
         authorizer: Authorizer,

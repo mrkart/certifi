@@ -1,9 +1,11 @@
-import { React, useEffect, useMyCustomStuff } from 'react';
+import { React, useEffect, useMyCustomStuff, useState } from 'react';
 import * as eva from 'eva-icons';
 import StudentSidemenu from '../components/shared/StudentSidemenu';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { mainRoles, userRoles } from '../components/shared/Roles';
 import { connectBlocto, isConnectWallet } from '../helpers/ConnectWallet';
+import { useDispatch, useSelector } from 'react-redux';
+import { getWalletAddress } from '../actions/exampleAction';
 
 const StudentLayout = ({ subElement }) => {
 
@@ -15,6 +17,11 @@ const StudentLayout = ({ subElement }) => {
     console.log(userName);
     console.log(userOrg);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const [address,setAddress] = useState('')
+
+    const walletaddress = useSelector(state => state.demoReducer.walletAddress);
+
     function logout() {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userprofile');
@@ -22,6 +29,22 @@ const StudentLayout = ({ subElement }) => {
         navigate("/login");
     }
     useEffect(() => { eva.replace() });
+
+    useEffect(() => {
+    if(walletaddress && walletaddress !== null){
+      setAddress(walletaddress)
+    }
+    },[walletaddress])
+
+    useEffect(() => {
+        dispatch(getWalletAddress())
+    },[])
+    const connectwallet = async () => {
+        const wallet = await connectBlocto()
+      if(wallet && wallet.walletAddress){
+        dispatch(getWalletAddress())
+      }
+    }
     return (
         (userRoles.includes(userRole) ? <div className='container-fluid ptb15 h100vh'>
             <div className='backgroundblur commonbox'>
@@ -71,7 +94,8 @@ const StudentLayout = ({ subElement }) => {
                                 </div>
                                 <div className='col-6 text-end'>
                                     <div className='profile-area'>
-                                        <p className='mb-0 p-2 profile-cont' onClick={connectBlocto}><a className="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>
+                                        {address ? <p className='mb-0 p-2 profile-cont'><a className="btn btn-light btn-sm text-primary p-2" href="#">{address}</a></p> : 
+                                        <p className='mb-0 p-2 profile-cont' onClick={connectwallet}><a className="btn btn-light btn-sm text-primary p-2" href="#">Connect Wallet</a></p>}
                                         {/*  <div className='profile-cont'>
                                            <p className='mb-0 profilename'>Welcome <span className='username'>{userName}</span></p>
                                             <p className='mb-1 profilename'>{userFlowAddress}</p> 

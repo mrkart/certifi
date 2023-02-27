@@ -297,4 +297,33 @@ export class UserController {
             }
         }
     }
+
+    public async removePublicKey(
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) {
+        try {
+            const user = plainToInstance(AuthUser, request['user']);
+            const res = await this.userService.removePublicKey(
+                user.organistaions[0].id,
+                user.id
+            );
+            response.status(200).send(
+                new ApiResponse(
+                    200,
+                    {
+                        transaction: res
+                    },
+                    'pubic key removed'
+                )
+            );
+        } catch (e) {
+            if (e instanceof APIError) {
+                next(e);
+            } else {
+                next(new UnhandledError(e));
+            }
+        }
+    }
 }

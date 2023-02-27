@@ -598,7 +598,7 @@ usersRouter.post(
  *           schema:
  *             $ref: '#/components/schemas/AddPublicKeyDTO'
  *     responses:
- *       "201":
+ *       "200":
  *         description: Public key added to account
  *         content:
  *          application/json:
@@ -635,6 +635,60 @@ usersRouter.post(
     BodyValidationMiddleware(CreateCertificateDTO) as RequestHandler,
     (async (request, response, next) => {
         await userController.addPublicKey(request, response, next);
+    }) as RequestHandler
+);
+
+/**
+ * @openapi
+ * /api/users/self/public-key:
+ *   delete:
+ *     summary: Remove public key from flow account
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Users
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       "200":
+ *         description: Public key removed account
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                    message:
+ *                      type: string
+ *                      description: Success message
+ *                      example: Public key added
+ *                    data:
+ *                      type: object
+ *                      $ref: '#/components/schemas/TransactionObject'
+ *       "400":
+ *         $ref: '#/components/responses/InvalidRequest'
+ *       "401":
+ *         $ref: '#/components/responses/AuthenticationRequired'
+ *       "403":
+ *         $ref: '#/components/responses/JwtVerficationFailed'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ *       "500":
+ *         $ref: '#/components/responses/UnhandledError'
+ */
+usersRouter.delete(
+    '/self/public-key',
+    AuthenticationMiddleware as RequestHandler,
+    AccessControlMiddleware([AccessType.USER]) as RequestHandler,
+    BodyValidationMiddleware(CreateCertificateDTO) as RequestHandler,
+    (async (request, response, next) => {
+        await userController.removePublicKey(request, response, next);
     }) as RequestHandler
 );
 

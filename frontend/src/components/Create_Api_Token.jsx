@@ -104,10 +104,10 @@ const CreateApiToken = () => {
                 <h6 className="fw-bolder text-black text-uppercase">API keys</h6>
                 {copySuccess && (
                     <div
-                        class="alert alert-success text-center col-sm-6 mx-auto py-3 fade show"
+                        class="alert alert-success text-center col-sm-6 mx-auto py-3 fade show fadein"
                         role="alert"
                     >
-                        Secret key copied to clipboard!
+                        <b>Secret key</b> copied to clipboard!
                     </div>
                 )}
                 <div className='tableblur mt-4'>
@@ -133,7 +133,7 @@ const CreateApiToken = () => {
                           <td className='accessToken'>
                             {/* {"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNDU2Nzg5LCJuzI1NiIsInR5cCI6IkpXLCJuzI1NiIsInR5cCI6I"} */}
                             {/* <span>{accessToken}</span> */}
-                            <div className="input-group mb-3 inputbtngroup">
+                            <div className="input-group mb-0 inputbtngroup">
                               <input 
                                 type={'text'}
                                 name="apiKey" 

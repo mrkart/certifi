@@ -862,12 +862,12 @@ const Issue_Certificate = () => {
                     <div className='row align-items-center'>
                       <div className='col-6'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-light btn-icon' onClick={backtoSelectStuStep}><i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
+                          <button className='btn btn-light btn-icon'><i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-primary btn-icon icon-rht' onClick={movewithInfo} disabled={!fineToGetCertInfo}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
+                          <a href='/attributes' className='btn btn-primary btn-icon icon-rht'>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></a>
                         </div>
                       </div>
                     </div>

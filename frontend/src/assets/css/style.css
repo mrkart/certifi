@@ -156,9 +156,11 @@ span.badge-decline {background: #ee4b2b;color: #ffffff;padding: 7px 11px;border-
 .icontext:hover .text{ color: #005FFF; }
 
 .viewall{ flex-direction: row-reverse;}
-.viewall .icon{ margin: 0px 0px 0px 10px; width: 22px; height: 22px;}
+.viewall .icon, .icon-sm .icon{ margin: 0px 0px 0px 10px; width: 22px; height: 22px;}
+.icon-sm .icon{ margin: 0px 10px 0px 0px;}
 .viewall .text{ font-weight: 500; text-transform: none;} 
-.viewall .icon svg{transition: all ease 0.75s; fill: #464646; width: 15px; height: 15px;}
+.viewall .icon svg, .icon-sm .icon svg{transition: all ease 0.75s; fill: #464646; width: 15px; height: 15px;}
+
 
 .custable th{ font-size: 12px;   border-bottom: 1px solid #E0E3E4 !important; color: #666666; font-weight: 600; white-space: nowrap;}
 .custable td{ color: #222; font-weight: 500; font-size: 13px;}
@@ -213,7 +215,7 @@ input[type="file"] { display: none;}
 .mapimportdata .data p{font-size: 12px; margin-bottom: 10px;}
 .mapimportdata .data h5{font-size: 13px; margin-bottom: 0px;}
 
-.table th{ color: #464646; text-transform: uppercase;}
+.table th{ color: #464646; text-transform: uppercase; font-weight: 600;}
 .table tr:not(:last-child){ transition: all ease 0.75s; border-bottom: 1px solid #e0e3e4;}
 
 .table-hover > tbody > tr:hover{background: rgb(255, 255, 255); position: relative; z-index: 1; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);}
@@ -283,15 +285,8 @@ input[type="file"] { display: none;}
 .issuecerttabs .nav-pills .nav-item:last-child{z-index: 6;}
 .issuecerttabs .nav-pills .nav-item .nav-link.finished{border-color: #5992F1; box-shadow: inset 0 0 10px 0 rgba(255,255,255,0.35), 0 2px 5px rgba(0,0,0,0.25); background: linear-gradient(to top, #005FFF 75%, #005FFF 95%); color: #fff;}
 .issuecerttabs .nav-pills .nav-item .nav-link.finished .eva{ opacity: 1;}
-li .nftlistborder {
-    border-bottom: 1px solid #a6c5f9;
-    padding-bottom: 13px;
-    min-width: 300px;
-}
-li:last-child .nftlistborder {
-    border-bottom: 0px;
-    padding-bottom: 5px;
-}
+li .nftlistborder { border-bottom: 1px solid #a6c5f9;  padding-bottom: 13px;    min-width: 300px;}
+li:last-child .nftlistborder {    border-bottom: 0px;    padding-bottom: 5px;}
 
 .searchform .fields.txtfields{ flex: 0.5 0.5;}
 .icon-rht .eva{ margin-left: 5px; margin-right: 0px;}
@@ -310,7 +305,7 @@ li:last-child .nftlistborder {
 .certinfo .img img{  max-height: 350px;}
 
 .btn-light .eva{ fill: #4f4f4f;}
-.formscroldiv .backgroundblur {text-align: center;height: auto; }
+.formscroldiv .backgroundblur {height: auto; }
 .mh-auto{max-height: inherit !important;}
 
 .certpreview .img img {height: 400px;}
@@ -493,6 +488,25 @@ to {opacity: 1;transform: translate3d(0, 0, 0);}
 .backtit .btn:hover{ width: 100px; padding-left: 15px; }
 .backtit .btn:hover .eva{ margin-right: 10px;}
 
+.acboxs{ padding: 15px;}
+
+.btn-lightbtn{border: 1px solid transparent; box-shadow: inset 0 0 30px 0 rgba(255,255,255,0.35), 0 3px 5px rgba(0,0,0,0.15); }
+.btn-lightbtn:hover, .btn-lightbtn.active {border-color: #BCD3FB; background: linear-gradient(to top, rgba(0, 95, 255, 0.05), rgba(0, 95, 255, 0.01));}
+textarea.form-control{ height: auto; min-height: 150px;}
+.largebtn .badge{ height: 46px; padding: 0px 15px; display:inline-flex; align-items: center; justify-content: center; border: 1px solid #E1E1E1; border-radius: 10px; background: #F3F3F3; font-weight: 600; color: #464646;}
+.largebtn .badge:hover{border-color: #BCD3FB;  background: #D9E7FF; color: #005fff;}
+
+.toggle {cursor: pointer;display: inline-flex;}
+.toggle-switch {display: inline-block;background: #ccc;border-radius: 16px !important;width: 58px !important;height: 32px !important;position: relative;vertical-align: middle;transition: background 0.25s;}
+.toggle-switch:before, .toggle-switch:after {content: "";}
+.toggle-switch:before {display: block !important;background: linear-gradient(to bottom, #fff 0%, #eee 100%) !important;border-radius: 50% !important;box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) !important;width: 24px !important;height: 24px !important;position: absolute;top: 4px;left: 4px;transition: left 0.25s;}
+.toggle:hover .toggle-switch:before {background: linear-gradient(to bottom, #fff 0%, #fff 100%);box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);}
+.toggle-checkbox:checked + .toggle-switch {background: #005FFF;}
+.toggle-checkbox:checked + .toggle-switch:before {left: 30px; content: '';}
+.toggle-checkbox {position: absolute;visibility: hidden;}
+.toggle-label {margin-left: 15px;position: relative;top: 2px; display: flex; align-items: center;}
+
+.acboxs table .form-control{ min-width: 200px;}
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}
@@ -538,7 +552,7 @@ nav#sidebarMenu{ background: #fff;}
 .dashlast .col-md-3, .dashlast .col-md-9, .dashlast  .col-md-6{ width: 100%;}
 .barchart{ margin: 30px 0px;}
 .dashlast h5 br{ display: none;}
-.formscroldiv{height: calc(100vh - 305px); margin-bottom: 15px;}
+.formscroldiv{height: calc(100vh - 325px); margin-bottom: 15px;}
 .txtsfont .col-md-8, .txtsfont .col-md-4, .txtsstyle .col-md-6 {width: 100%;}
 .txtsstyle .col-md-2 {width: 33.3%;}
 .txtsstyle .col-md-4 {width: 66.6%;}

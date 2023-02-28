@@ -31,11 +31,14 @@ Keep all certificates, documents, agreements, warranty cards, tickets & web3 mem
 + You may notice GITHUB says 6 contributors, That is wrong, Actually our fullstack dev corrected a typo in his github username then it started showing him as two contributors. Shanmugamsundaram & Shanmuga-Sundaram. 
 
 
-## Demo
+## Testnet Demo
+**Demo Institution "Dapper University" Credentials**
+
 Demo URL: https://alpha.certifi.ly
-Demo Institution Credentials:
 Email:
+kart@certifi.ly
 Pass:
+YK93SWZ4V2CRJ6E5
 
 Demo User: You just create a user inside institution login & you will receive credentials and flow child account address in email.
 

@@ -64,6 +64,7 @@ const Dashboard = () => {
   let userprofile = JSON.parse(localStorage.getItem('userprofile'));
   let orgID = userprofile.organistaions[0]?.id;
   const [recentCertData, setRecentCertData] = useState([]);
+  const [fetched, setFetched] = useState(false)
 
   const recentcertificate = useSelector(state => state.demoReducer.recentcertificate);
   useEffect(() => {
@@ -77,7 +78,9 @@ const Dashboard = () => {
       setTimeout(() => {
         setRecentCertData(recentCert);
         dispatch(reseRecentCertificate());
+        setFetched(true);
       }, 1500);
+      
     }
   }, [recentcertificate]);
 
@@ -86,6 +89,15 @@ const Dashboard = () => {
   }
   useEffect(() => { eva.replace() });
 
+  function formatDate(date){
+    const formatter = Intl.DateTimeFormat('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+  });
+  const issDate = formatter.format(date).split(' ');
+  return `${issDate[1]} ${issDate[0]}, ${issDate[2]}`;
+  }
 
   return (
     <div className='scrolldiv'>
@@ -244,72 +256,78 @@ const Dashboard = () => {
             </div>
           </div>
           <div className=''>
-            {recentCertData.length == 0 ? (
+            {(recentCertData.length == 0 && !fetched) ? (
               <div className="mt-4">
                 <TableLoader />
               </div>
-            ) : (
+            ) : (recentCertData.length == 0 && fetched) ?
               <div className='tableblur mt-4'>
                 <div className='row align-items-center mb-3'>
                   <div className='col-12'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
-                  {/* <div className='col-5 text-right'>
+                  <div className='col-12 text-center'>
+                    <span className='text'>User not found</span>
+                  </div>
+                </div>
+              </div> : (
+                <div className='tableblur mt-4'>
+                  <div className='row align-items-center mb-3'>
+                    <div className='col-12'><span className='sitetextblue bluetxttitle'>RECENT CERTIFICATES</span></div>
+                    {/* <div className='col-5 text-right'>
                   <span className='icontext pull-right viewall'>
                     <span className='icon'><i data-eva="arrow-ios-forward-outline"></i></span>
                     <span className='text'>View all</span>
                   </span>
                 </div> */}
-                </div>
+                  </div>
 
-                <div className='table-responsive'>
-                  <table className="table align-middle mb-0 custable table-hover">
-                    <thead className="">
-                      <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Course</th>
-                        <th>Batch</th>
-                        <th>Status</th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {recentCertData.map((user, index) => (
-                        <tr key={index}>
-                          <td>
-                            <div className="d-flex align-items-center">
-                              {user.id}
-                            </div>
-                          </td>
-                          <td>
-                            <span className="text-dark">{user.user.name}</span>
-                          </td>
-                          <td>
-                            <p className="fw-normal mb-1">{user.course.name}</p>
-                          </td>
-                          <td> {user.slot.name} </td>
-                          <td>
-                            <span className="text-primary text-uppercase">Verified</span>
-                          </td>
-                          <td className='text-center' >
-                            <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">IPFS Link</Tooltipb>}>
-                              <a href={user.certificateHash} target="_blank" className='text-primary' ><i data-eva="link-outline"></i></a></OverlayTrigger>
-                          </td>
-                          <td className='text-center'>
-                            <span className="dropdown">
-                              <a href="#" className='text-secondary dropdown-toggle' type="button"
-                                id="dropdownMenuButton"
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"><i data-eva="more-vertical-outline"></i></a>
-                              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                <li><a className="dropdown-item" href="#">Edit</a></li>
-                                <li><a className="dropdown-item" href="#">View</a></li>
-                              </ul>
-                            </span>
-                          </td>
+                  <div className='table-responsive'>
+                    <table className="table align-middle mb-0 custable table-hover">
+                      <thead className="">
+                        <tr>
+                          <th>Name</th>
+                          <th>Course</th>
+                          <th>Batch</th>
+                          <th>Status</th>
+                          <th>Issued on</th>
+                          <th></th>
+                          <th></th>
                         </tr>
-                      ))}
-                      {/* <tr>
+                      </thead>
+                      <tbody>
+                        {recentCertData.map((user, index) => (
+                          <tr key={index}>
+                            <td>
+                              <span className="text-dark">{user.user.name}</span>
+                            </td>
+                            <td>
+                              <p className="fw-normal mb-1">{user.course.name}</p>
+                            </td>
+                            <td> {user.slot.name} </td>
+                            <td>
+                              <span className="text-primary text-uppercase">Verified</span>
+                            </td>
+                            <td>
+                              {formatDate(new Date(user.datetimeCreated))}
+                            </td>
+                            <td className='text-center' >
+                              <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={<Tooltipb id="tooltip-bottom">IPFS Link</Tooltipb>}>
+                                <a href={user.certificateHash} target="_blank" className='text-primary' ><i data-eva="link-outline"></i></a></OverlayTrigger>
+                            </td>
+                            <td className='text-center'>
+                              <span className="dropdown">
+                                <a href="#" className='text-secondary dropdown-toggle' type="button"
+                                  id="dropdownMenuButton"
+                                  data-mdb-toggle="dropdown"
+                                  aria-expanded="false"><i data-eva="more-vertical-outline"></i></a>
+                                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                  <li><a className="dropdown-item" href="#">Edit</a></li>
+                                  <li><a className="dropdown-item" href="#">View</a></li>
+                                </ul>
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                        {/* <tr>
                       <td>
                         <div className="d-flex align-items-center">
                           1
@@ -474,11 +492,11 @@ const Dashboard = () => {
                         </span>
                       </td>
                     </tr> */}
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
           <div className='row'>
             <div className='col-md-12 mt-4'>

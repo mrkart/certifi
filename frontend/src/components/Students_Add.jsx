@@ -12,11 +12,11 @@ const StudentsAdd = () => {
 
   const addStudentRes = useSelector(state => state.demoReducer.addStudent);
   const addNewStudentFailed = useSelector(state => state.demoReducer.addNewStudentFailed);
-
+  let timeout;
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
       dispatch(resetAddStudent());
-      navigate("/students");
+      navigate("/users");
     }
   },[addStudentRes]);
 
@@ -45,6 +45,10 @@ const StudentsAdd = () => {
     console.log(formData);
     if(!formData.email || !formData.name || !formData.number || !formData.slot){
       setErroMessage("Please fill out all below fields");
+      clearTimeout(timeout);
+      timeout = setTimeout(()=>{
+        setErroMessage("")
+    },4000)
       return;
     }
     setIsLoading(true);
@@ -78,7 +82,7 @@ const StudentsAdd = () => {
           <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-6'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/students" className='text-dark d-inline-block'>Users</NavLink> {'>'} Add Users</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/users" className='text-dark d-inline-block'>Users</NavLink> {'>'} Add Users</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btnwithpro'>                    
                     <ProfileArea />
@@ -99,25 +103,25 @@ const StudentsAdd = () => {
                     <div className='row'>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Email</label>
+                          <label className='mb-2'>Email *</label>
                           <input name="email" type={'text'} value={email} onChange={handleInputChange} className="form-control" placeholder='Email' />
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Name</label>
+                          <label className='mb-2'>Name *</label>
                           <input name="name" type={'text'}  value={name} onChange={handleInputChange} className="form-control" placeholder='Name' />
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Contact Number</label>
+                          <label className='mb-2'>Contact Number *</label>
                           <input name="number" type={'text'}  value={number} onChange={handleInputChange} className="form-control" placeholder='Contact Number'/>
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Batch</label>
+                          <label className='mb-2'>Batch *</label>
                           <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Batch' />
                         </div>
                       </div>
@@ -160,9 +164,14 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
-                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User
-                          {isLoading ? <span className='loaderbtn fadein'><img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /></span>: ''}
-                        </button>
+                        
+                          {isLoading ? 
+                           <button
+                           type="button"
+                           className="btn btn-light btn-icon btn-disabled bg-white"
+                         >
+                            <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" width={28} /></button>: 
+                            <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User</button>}
                       </div>
                     </div>
                   </div>

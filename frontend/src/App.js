@@ -56,22 +56,22 @@ function App() {
             <Admin subElement={ <AgreeSigners/> } /> 
           </PrivateRoute>
         } />
-        <Route path="/students" element={ 
+        <Route path="users" element={ 
           <PrivateRoute>
             <Admin subElement={ <Students /> }  /> 
           </PrivateRoute> 
         } />
-        <Route path="/add-student" element={ 
+        <Route path="/add-user" element={ 
           <PrivateRoute>
             <Admin subElement={ <StudentsAdd /> }  /> 
           </PrivateRoute> 
         } />
-        <Route path="/edit-student/:studentId" element={ 
+        <Route path="/edit-user/:studentId" element={ 
           <PrivateRoute>
             <Admin subElement={ <StudentsEdit /> }  /> 
           </PrivateRoute> 
         } />
-        <Route path="/students-import" element={ 
+        <Route path="/users-import" element={ 
           <PrivateRoute>
             <Admin subElement={ <StudentsImport /> } /> 
           </PrivateRoute>

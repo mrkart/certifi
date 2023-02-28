@@ -104,6 +104,7 @@ const Issue_Certificate = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [approveToMint, setApproveToMint] = useState(false)
   const [mintFailed, setMintFailed] = useState(false)
+  const [fetched,setFetched] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {eva.replace()})
@@ -146,6 +147,7 @@ const Issue_Certificate = () => {
   useEffect(() => {
     if (fulluserlist && fulluserlist.statusCode == 200 && fulluserlist.data && fulluserlist.data.orgUsers) {
       let data = fulluserlist.data.orgUsers;
+      setFetched(true)
       // setTimeout(() => {
         setUserlist(data);
       // }, 1000);
@@ -386,7 +388,8 @@ const Issue_Certificate = () => {
                 </div>
 
                 <div className="col-6 col-md-4 " >
-                  <NavLink className='ctemp dis-bfore' >
+                <NavLink to="/agreement-contract" >
+                  <div className='ctemp dis-bfore' >
                     <input type={'radio'} id="certselect-2" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-2">
                       <div className='img'>
@@ -395,6 +398,7 @@ const Issue_Certificate = () => {
                       <h4>Create a</h4>
                       <h3>Agreement | Contract</h3>
                     </label>
+                  </div>
                   </NavLink>
                 </div>
 
@@ -489,7 +493,7 @@ const Issue_Certificate = () => {
                   completeBorderColor={'#111'}
                   completeBarColor={'#111'}
                   steps={[
-                    { title: 'Select students', className: 'certsteps' },
+                    { title: 'Select users', className: 'certsteps' },
                     { title: 'Certification info', className: 'certsteps' },
                     { title: 'Select template', className: 'certsteps' },
                     { title: 'Customize template', className: 'certsteps' },
@@ -504,25 +508,31 @@ const Issue_Certificate = () => {
                         <div className='fields txtfields'>Cert batch name</div>
                         <div className='fields'>
                           <select className='form-control'>
-                            <option>2023-Computer-Science-Graduation - List 1 (300 Students)</option>
+                            <option>2023-Computer-Science-Graduation - List 1 (300 Users)</option>
                           </select>
                         </div>
                         <div className='fields text-end'>
                         <div className='btngrouprht'>
-                            <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
-                            <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>                           
+                            <NavLink to="/add-user" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
+                            <NavLink to="/users-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>                           
                           </div>
                         </div>
                       </div>
-                      {userlist.length == 0 ? (
+                      {(userlist.length == 0 && !fetched) ? (
                         <TableLoader />
-                      ) : (
+                      ) : (userlist.length == 0 && fetched) ? <div className=' mt-4'>
+                      <div className='row align-items-center mb-3'>
+                        <div className='col-12 text-center'>
+                          <span className='text'>User not found</span>
+                        </div>
+                      </div>
+                    </div> : (
                         <div className='tableblur'>
                           <div className='searchform pt-0'>
                             <div className='fields'>Search & Filters</div>
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year' /></div>
-                            <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
+                            <div className='fields'><input type={'text'} className="form-control" placeholder='User ID/Email' /></div>
                             <div className='fields'>
                               <select className="form-control">
                                 <option defaultValue>Import slot</option>
@@ -538,7 +548,7 @@ const Issue_Certificate = () => {
                               <thead className="">
                                 <tr>
                                   <th></th>
-                                  <th>Student ID</th>
+                                  <th>User ID</th>
                                   <th>Email</th>
                                   <th>Name</th>
                                   <th>Batch</th>
@@ -1438,7 +1448,7 @@ const Issue_Certificate = () => {
                       <div className='backgroundblur text-start'>
                         <div className='certinfo'>
                           <div className='certinfocont1'>
-                            <p className='text-center mb-0'><b>1</b> Student from <b>2023</b> - Computer Science Graduation</p>                           
+                            <p className='text-center mb-0'><b>1</b> User from <b>2023</b> - Computer Science Graduation</p>                           
                           </div>
                         </div>
                       </div>

@@ -38,7 +38,7 @@ const Agreement_Contract = () => {
             </ul>
 
             <div className="tab-content" id="ex1-content">
-              <div className="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+              <div className="tab-pane fade show active fadein" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
                 <div className='formscroldiv'>                  
                      <div className='backgroundblur'>
                       <div className='acboxs'>
@@ -120,91 +120,7 @@ const Agreement_Contract = () => {
                   </div>
                 </div>
 
-              </div>
-              {/* <div className="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-
-                <div className='formscroldiv'>
-                  <div className='backgroundblur text-center'>
-                    <div className='certinfo'>
-                      <p>Upload a CSV/XLS file with student ID & their certification info</p>
-                      <div className='certinfocont'>
-                        <p>Course</p>
-                        <p>Grade</p>
-                        <p>Batch</p>
-                        <p>Certificate Number</p>
-                      </div>
-                      <h3>Download CSV File</h3>
-
-                      <div className='form-group'>
-                        <label htmlFor="file-upload" className="custom-file-upload btn btn-primary btn-icon icon-rht">Upload File <i data-eva-animation="flip" data-eva="upload-outline"></i></label>
-                        <input id="file-upload" type="file" />
-                      </div>
-
-                      <p className='text-secondary'>CSV, XLS only - Maximum 10000 records</p>
-                    </div>
-                  </div>
-                </div>
-                <div className='row align-items-center'>
-                  <div className='col-6'>
-                    <div className='btngrouprht'>
-                      <a href='' className='btn btn-light btn-icon'>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</a>
-                    </div>
-                  </div>
-                  <div className='col-6 text-end'>
-                    <div className='btngrouprht'>
-                      <a href='' className='btn btn-primary btn-icon icon-rht'>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div className="tab-pane fade" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                <div className='formscroldiv'>
-                  <div className='certempfrm'>
-                    <div className='row'>
-                      <div className='col-md-6 text-center'>
-                        <div className='backgroundblur mb-3'>
-                          <div className='certinfo'>
-                            <div className='img'>
-                              <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
-                            </div>
-                          </div>
-                        </div>
-                        <p>Graduation Certificate Layout</p>
-                        <button className='btn btn-light'>Random Preview</button>
-
-                      </div>
-
-                      <div className='col-md-6 text-center'>
-                        <div className='backgroundblur mb-3'>
-                          <div className='certinfo'>
-                            <div className='img'>
-                              <img src={require('../assets/images/cert/cert1.png')} loading="lazy" />
-                            </div>
-                          </div>
-                        </div>
-                        <p>Course certificate 2</p>
-                        <button className='btn btn-light'>Random Preview</button>
-
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-                <div className='row align-items-center'>
-                  <div className='col-6'>
-                    <div className='btngrouprht'>
-                      <a href='' className='btn btn-light btn-icon'>< i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</a>
-                    </div>
-                  </div>
-                  <div className='col-6 text-end'>
-                    <div className='btngrouprht'>
-                      <a href='' className='btn btn-primary btn-icon icon-rht'>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>               */}
+              </div>             
             </div>
           </div>            
           </div>

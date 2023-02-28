@@ -13,7 +13,16 @@ Keep all certificates, documents, agreements, warranty cards, tickets & web3 mem
 ## Flow Hackathon 2023 / Devfolio Submission
 ![Certifily](https://github.com/mrkart/certifi/blob/main/frontend/src/assets/images/certifi-loader.gif)
 
-### Feb 20 to Feb 26 Sprint
+## Testnet Demo
+**Demo Institution "Dapper University" Credentials**
+
+Demo URL: https://alpha.certifi.ly
+Email:
+kart@certifi.ly
+Pass:
+YK93SWZ4V2CRJ6E5
+
+### Feb 20 to Feb 28 Sprint
 
 1. NFT Smart Contract
 2. Walletless Onboarding
@@ -31,14 +40,7 @@ Keep all certificates, documents, agreements, warranty cards, tickets & web3 mem
 + You may notice GITHUB says 6 contributors, That is wrong, Actually our fullstack dev corrected a typo in his github username then it started showing him as two contributors. Shanmugamsundaram & Shanmuga-Sundaram. 
 
 
-## Testnet Demo
-**Demo Institution "Dapper University" Credentials**
 
-Demo URL: https://alpha.certifi.ly
-Email:
-kart@certifi.ly
-Pass:
-YK93SWZ4V2CRJ6E5
 
 Demo User: You just create a user inside institution login & you will receive credentials and flow child account address in email.
 

@@ -388,6 +388,7 @@ const Issue_Certificate = () => {
                 </div>
 
                 <div className="col-6 col-md-4 " >
+                <NavLink to="/agreement-contract" >
                   <div className='ctemp dis-bfore' >
                     <input type={'radio'} id="certselect-2" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-2">
@@ -398,6 +399,7 @@ const Issue_Certificate = () => {
                       <h3>Agreement | Contract</h3>
                     </label>
                   </div>
+                  </NavLink>
                 </div>
 
                 <div className="col-6 col-md-4 ">
@@ -511,8 +513,8 @@ const Issue_Certificate = () => {
                         </div>
                         <div className='fields text-end'>
                         <div className='btngrouprht'>
-                            <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
-                            <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>                           
+                            <NavLink to="/add-user" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
+                            <NavLink to="/users-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>                           
                           </div>
                         </div>
                       </div>

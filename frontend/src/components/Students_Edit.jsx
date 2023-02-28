@@ -29,7 +29,7 @@ const StudentsEdit = () => {
   useEffect(() => {
     if(edituser.statusCode == 200){
       dispatch(resetEdituser());
-      navigate("/students");
+      navigate("/users");
     }
   },[edituser]);
 
@@ -83,7 +83,7 @@ const StudentsEdit = () => {
           <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-6'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/students" className='text-dark d-inline-block'>Users</NavLink> {'>'} Edit Users</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/users" className='text-dark d-inline-block'>Users</NavLink> {'>'} Edit Users</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btnwithpro'>                    
                     <ProfileArea />

@@ -89,6 +89,15 @@ const Dashboard = () => {
   }
   useEffect(() => { eva.replace() });
 
+  function formatDate(date){
+    const formatter = Intl.DateTimeFormat('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+  });
+  const issDate = formatter.format(date).split(' ');
+  return `${issDate[1]} ${issDate[0]}, ${issDate[2]}`;
+  }
 
   return (
     <div className='scrolldiv'>
@@ -275,11 +284,11 @@ const Dashboard = () => {
                     <table className="table align-middle mb-0 custable table-hover">
                       <thead className="">
                         <tr>
-                          <th>User ID</th>
                           <th>Name</th>
                           <th>Course</th>
                           <th>Batch</th>
                           <th>Status</th>
+                          <th>Issued on</th>
                           <th></th>
                           <th></th>
                         </tr>
@@ -287,11 +296,6 @@ const Dashboard = () => {
                       <tbody>
                         {recentCertData.map((user, index) => (
                           <tr key={index}>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                {user.id}
-                              </div>
-                            </td>
                             <td>
                               <span className="text-dark">{user.user.name}</span>
                             </td>
@@ -301,6 +305,9 @@ const Dashboard = () => {
                             <td> {user.slot.name} </td>
                             <td>
                               <span className="text-primary text-uppercase">Verified</span>
+                            </td>
+                            <td>
+                              {formatDate(new Date(user.datetimeCreated))}
                             </td>
                             <td className='text-center' >
                               <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={<Tooltipb id="tooltip-bottom">IPFS Link</Tooltipb>}>

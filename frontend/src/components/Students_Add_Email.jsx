@@ -268,7 +268,7 @@ const StudentsAddEmail = () => {
                           <th></th>
                           <th>Email Id</th>
                           <th className='text-center'>Flow Address</th>
-                          <th className='text-center'>Verification</th>
+                          <th className='text-center'>Action</th>
                           {/* <th className='text-center d-none'>Action</th> */}
                         </tr>
                       </thead>

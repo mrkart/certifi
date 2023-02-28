@@ -156,7 +156,7 @@ const Dashboard = () => {
                       <div className='foldercut'>
                         <div className='cltitle'>
                           <div className='climgcont'>
-                            <img src={require('../assets/images/icons/students.png')} loading="lazy" />  Students
+                            <img src={require('../assets/images/icons/students.png')} loading="lazy" />  Users
                           </div>
                         </div>
                       </div>
@@ -264,7 +264,7 @@ const Dashboard = () => {
                   <table className="table align-middle mb-0 custable table-hover">
                     <thead className="">
                       <tr>
-                        <th>Student ID</th>
+                        <th>User ID</th>
                         <th>Name</th>
                         <th>Course</th>
                         <th>Batch</th>

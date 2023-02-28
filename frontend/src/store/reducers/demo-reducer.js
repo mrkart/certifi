@@ -21,7 +21,9 @@ const initialState = {
     getCertificateFailed:'',
     getCertificate: {},
     flowOwnership : {},
-    flowOwnershipFailed : ''
+    flowOwnershipFailed : '',
+    removedKey : [],
+    removeKeyFailed : ''
 }
 //receives the current state and an action object
 export function demoReducer(state = initialState, action) {
@@ -136,7 +138,16 @@ export function demoReducer(state = initialState, action) {
                 ...state,
                 flowOwnershipFailed: action.payload
             }
-        
+        case types.REMOVE_PUBLIC_KEY:
+            return {
+                ...state,
+                removedKey: action.payload
+            }
+        case types.REMOVE_PUBLIC_KEY_FAILURE:
+            return {
+                ...state,
+                removeKeyFailed: action.payload
+            }
         default:
             return state
     }

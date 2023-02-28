@@ -43,12 +43,12 @@ const Students = () => {
             <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-4'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0">Students</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0">Users</h4></div>
                 <div className='col-md-8 text-end'>
                   <div className='btnwithpro'>
                     <div className='btngrouprht'>
-                      <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
-                      <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
+                      <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
+                      <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>
                       {/* <a href='/add-student' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a> 
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
                   */}
@@ -67,7 +67,7 @@ const Students = () => {
                   <div className='fields'>Search & Filters</div>
                   <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
                   <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year' /></div>
-                  <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
+                  <div className='fields'><input type={'text'} className="form-control" placeholder='User ID/Email' /></div>
                   <div className='fields'>
                     <select className="form-control">
                       <option defaultValue>Import slot</option>
@@ -86,7 +86,7 @@ const Students = () => {
                           {/* <th>
                     <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                     </th> */}
-                          <th>Student ID</th>
+                          <th>User ID</th>
                           <th>Email</th>
                           <th>Name</th>
                           <th>Batch</th>

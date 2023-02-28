@@ -3,6 +3,7 @@ import * as eva from 'eva-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserCertList, resetUserCertList } from '../actions/exampleAction';
 import ReactTimeAgo from 'react-time-ago';
+import { apiAsBlob } from '../services/api';
 
 const StudentDashboard = () => {
 
@@ -59,6 +60,19 @@ const StudentDashboard = () => {
 
     const buttonStyle = {
         cursor: 'pointer'
+    };
+
+    const downloadOnClick = async (url, nftId) => {
+        const res = await apiAsBlob(url);
+        if (res && res.status === 200) {
+            var blob = new Blob([res.data], { type: 'application/pdf' });
+            var blob_url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = blob_url;
+            link.download = `${nftId}.pdf`;
+            link.click();
+            URL.revokeObjectURL(blob_url);
+        }
     };
 
 
@@ -282,6 +296,7 @@ const StudentDashboard = () => {
                                                         </div>
                                                         <div className='col-md-5 text-end'>
                                                             <span className='eva-hover d-inline-flex align-items-center' style={buttonStyle} onClick={() => shareOnLinkedIn(user.certificateHash)}><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                            <span className='ms-2 eva-hover d-inline-flex align-items-center' style={buttonStyle} onClick={() => downloadOnClick(user.certificateHash, user.nftId)}><i className='mr-2' data-eva="code-download-outline" data-eva-animation="flip"></i> Download</span>
                                                         </div>
                                                     </div>
                                                 </label>

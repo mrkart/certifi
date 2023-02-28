@@ -7,4 +7,12 @@ const api = axios.create({
   },
 });
 
+export const apiAsBlob = axios.create({
+  baseURL: 'https://api.certifi.ly/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  responseType: 'blob',
+});
+
 export default api;

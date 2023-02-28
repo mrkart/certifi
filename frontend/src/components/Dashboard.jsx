@@ -75,11 +75,12 @@ const Dashboard = () => {
     //console.log(recentcertificate.data.certificates);
     if (recentcertificate.statusCode == 200) {
       let recentCert = recentcertificate.data.certificates;
-      setFetched(true)
       setTimeout(() => {
         setRecentCertData(recentCert);
         dispatch(reseRecentCertificate());
+        setFetched(true);
       }, 1500);
+      
     }
   }, [recentcertificate]);
 

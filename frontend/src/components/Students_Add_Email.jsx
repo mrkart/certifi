@@ -131,7 +131,42 @@ const StudentsAddEmail = () => {
   }, [ownershipFailed])
   const removeCustodial = async () => {
     setIsLoading(true)
-    dispatch(removePublicKey())
+    const address = await fcl.currentUser().authenticate();
+    const account = await fcl.send([fcl.getAccount(address.addr)])
+    const studAccount = await fcl.send([fcl.getAccount(userFlowAddress)])
+    dispatch(getWalletAddress())
+    const acckey = account.account.keys[0]
+
+    if(studAccount && studAccount.account && studAccount.account.keys && studAccount.account.keys[0]){
+      const stukey = studAccount.account.keys[0]
+
+      const ownerKey = studAccount.account.keys.find(item => item.publicKey === acckey.publicKey);
+        if (ownerKey && ownerKey.publicKey) {
+          if(stukey && stukey.revoked){
+            setFailedMessage("Already rovoked")
+            setErrorMessage(true)
+            clearTimeout(timeout)
+            setIsLoading(false)
+            timeout = setTimeout(() => {
+              setErrorMessage(false)
+            }, 4000)
+          }else{
+            dispatch(removePublicKey())
+          }
+        } else {
+          setFailedMessage("Claim your Certifi Custodial wallet first")
+            setErrorMessage(true)
+            clearTimeout(timeout)
+            setIsLoading(false)
+            timeout = setTimeout(() => {
+              setErrorMessage(false)
+            }, 4000)
+        }
+      
+    }
+    
+        
+    
   }
   useEffect(() => {
     if(keyRemoved && keyRemoved.statusCode === 200){
@@ -169,17 +204,17 @@ const StudentsAddEmail = () => {
               <div className='backgroundblur'>
               
               {addSuccess &&
-                      <div class="alert alert-success text-center col-sm-6 mx-auto py-3" role="alert">
+                      <div class="alert alert-success text-center py-3 fade show fadein alert-top" role="alert">
                         {successMessage}
                       </div>
                     }
               {errorMessage &&
-                <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
+                <div class="alert alert-danger text-center py-3 fade show fadein alert-top" role="alert">
                   {failedMessage}
                 </div>
               }
               {infoMessage &&
-                      <div class="alert alert-warning text-center col-sm-6 mx-auto py-3" role="alert">
+                      <div class="alert alert-warning text-center py-3 fade show fadein alert-top" role="alert">
                         Already added
                       </div>
                     }

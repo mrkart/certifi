@@ -12,7 +12,7 @@ const StudentsAdd = () => {
 
   const addStudentRes = useSelector(state => state.demoReducer.addStudent);
   const addNewStudentFailed = useSelector(state => state.demoReducer.addNewStudentFailed);
-
+  let timeout;
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
       dispatch(resetAddStudent());
@@ -45,6 +45,10 @@ const StudentsAdd = () => {
     console.log(formData);
     if(!formData.email || !formData.name || !formData.number || !formData.slot){
       setErroMessage("Please fill out all below fields");
+      clearTimeout(timeout);
+      timeout = setTimeout(()=>{
+        setErroMessage("")
+    },4000)
       return;
     }
     setIsLoading(true);
@@ -160,9 +164,14 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
-                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User
-                          {isLoading ? <span className='loaderbtn fadein'><img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /></span>: ''}
-                        </button>
+                        
+                          {isLoading ? 
+                           <button
+                           type="button"
+                           className="btn btn-light btn-icon btn-disabled bg-white"
+                         >
+                            <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" width={28} /></button>: 
+                            <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User</button>}
                       </div>
                     </div>
                   </div>

@@ -117,12 +117,10 @@ const Issue_Certificate = () => {
   const triggerCourseChange = (event) => {
     console.log(event.target.innerText);
     setCoursename(event.target.innerText);
-    setCallBack(true)
   }
   const triggerGradeChange = (event) => {
     console.log(event.target.innerText);
     setStuGrad(event.target.innerText);
-    setCallBack(true)
   }
   const handleInputFocusCourse = () => {
     setRecentCourse(true);
@@ -491,7 +489,7 @@ const Issue_Certificate = () => {
                   completeBorderColor={'#111'}
                   completeBarColor={'#111'}
                   steps={[
-                    { title: 'Select users', className: 'certsteps' },
+                    { title: 'Select students', className: 'certsteps' },
                     { title: 'Certification info', className: 'certsteps' },
                     { title: 'Select template', className: 'certsteps' },
                     { title: 'Customize template', className: 'certsteps' },
@@ -506,13 +504,13 @@ const Issue_Certificate = () => {
                         <div className='fields txtfields'>Cert batch name</div>
                         <div className='fields'>
                           <select className='form-control'>
-                            <option>2023-Computer-Science-Graduation - List 1 (300 Users)</option>
+                            <option>2023-Computer-Science-Graduation - List 1 (300 Students)</option>
                           </select>
                         </div>
                         <div className='fields text-end'>
                         <div className='btngrouprht'>
-                            <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
-                            <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>                           
+                            <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
+                            <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>                           
                           </div>
                         </div>
                       </div>
@@ -524,7 +522,7 @@ const Issue_Certificate = () => {
                             <div className='fields'>Search & Filters</div>
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Name' /></div>
                             <div className='fields'><input type={'text'} className="form-control" placeholder='Batch year' /></div>
-                            <div className='fields'><input type={'text'} className="form-control" placeholder='User ID/Email' /></div>
+                            <div className='fields'><input type={'text'} className="form-control" placeholder='Student ID/Email' /></div>
                             <div className='fields'>
                               <select className="form-control">
                                 <option defaultValue>Import slot</option>
@@ -540,7 +538,7 @@ const Issue_Certificate = () => {
                               <thead className="">
                                 <tr>
                                   <th></th>
-                                  <th>User ID</th>
+                                  <th>Student ID</th>
                                   <th>Email</th>
                                   <th>Name</th>
                                   <th>Batch</th>
@@ -614,7 +612,7 @@ const Issue_Certificate = () => {
                                 <th>
                                   <div className="form-group"><input type="checkbox" className="form-check-input" id="exampleCheck1" /><label className="form-check-label" htmlFor="exampleCheck1"></label></div>
                                 </th>
-                                <th>User ID</th>
+                                <th>Student ID</th>
                                 <th>Email</th>
                                 <th>Name</th>
                                 <th>Batch</th>
@@ -864,12 +862,12 @@ const Issue_Certificate = () => {
                     <div className='row align-items-center'>
                       <div className='col-6'>
                         <div className='btngrouprht'>
-                          <button className='btn btn-light btn-icon'><i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
+                          <button className='btn btn-light btn-icon' onClick={backtoSelectStuStep}><i data-eva-animation="flip" data-eva="arrow-back-outline"></i> Back</button>
                         </div>
                       </div>
                       <div className='col-6 text-end'>
                         <div className='btngrouprht'>
-                          <a href='/attributes' className='btn btn-primary btn-icon icon-rht'>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></a>
+                          <button className='btn btn-primary btn-icon icon-rht' onClick={movewithInfo} disabled={!fineToGetCertInfo}>Continue < i data-eva-animation="flip" data-eva="arrow-forward-outline"></i></button>
                         </div>
                       </div>
                     </div>
@@ -1440,7 +1438,7 @@ const Issue_Certificate = () => {
                       <div className='backgroundblur text-start'>
                         <div className='certinfo'>
                           <div className='certinfocont1'>
-                            <p className='text-center mb-0'><b>1</b> User from <b>2023</b> - Computer Science Graduation</p>                           
+                            <p className='text-center mb-0'><b>1</b> Student from <b>2023</b> - Computer Science Graduation</p>                           
                           </div>
                         </div>
                       </div>

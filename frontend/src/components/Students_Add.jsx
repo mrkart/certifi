@@ -2,7 +2,7 @@ import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { Tooltip, ResponsiveContainer } from 'recharts';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateStudent, resetAddStudent, resetAddStudentFailed } from '../actions/exampleAction';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import ProfileArea from '../components/shared/ProfileArea';
 
 const StudentsAdd = () => {
@@ -12,7 +12,7 @@ const StudentsAdd = () => {
 
   const addStudentRes = useSelector(state => state.demoReducer.addStudent);
   const addNewStudentFailed = useSelector(state => state.demoReducer.addNewStudentFailed);
-
+  let timeout;
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
       dispatch(resetAddStudent());
@@ -45,6 +45,10 @@ const StudentsAdd = () => {
     console.log(formData);
     if(!formData.email || !formData.name || !formData.number || !formData.slot){
       setErroMessage("Please fill out all below fields");
+      clearTimeout(timeout);
+      timeout = setTimeout(()=>{
+        setErroMessage("")
+    },4000)
       return;
     }
     setIsLoading(true);
@@ -71,14 +75,14 @@ const StudentsAdd = () => {
   };
 
   return (
-    <div className='scrolldiv1 mar-top'>
+    <div className='scrolldiv1'>
       <div className='row '>
         <div className='col-md-12 text-start'>
           <div className=''>
           <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-6'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0">Add Users</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/students" className='text-dark d-inline-block'>Users</NavLink> {'>'} Add Users</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btnwithpro'>                    
                     <ProfileArea />
@@ -91,7 +95,7 @@ const StudentsAdd = () => {
                 <form onSubmit={handleSubmit}>
                   <div className='formscroldiv1 px-3'>
                     {erroMessage &&
-                      <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
+                      <div class="alert alert-danger text-center py-3 fade show fadein alert-top" role="alert">
                         {erroMessage}
                       </div>
                     }
@@ -160,9 +164,14 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
-                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User
-                          {isLoading ? <span className='loaderbtn fadein'><img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /></span>: ''}
-                        </button>
+                        
+                          {isLoading ? 
+                           <button
+                           type="button"
+                           className="btn btn-light btn-icon btn-disabled bg-white"
+                         >
+                            <img src={require('../assets/images/certifi-loader.gif')} loading="lazy" width={28} /></button>: 
+                            <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User</button>}
                       </div>
                     </div>
                   </div>

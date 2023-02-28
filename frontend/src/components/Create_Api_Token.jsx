@@ -104,7 +104,7 @@ const CreateApiToken = () => {
                 <h6 className="fw-bolder text-black text-uppercase">API keys</h6>
                 {copySuccess && (
                     <div
-                        class="alert alert-success text-center col-sm-6 mx-auto py-3 fade show fadein"
+                        class="alert alert-success text-center py-3 fade show fadein alert-top"
                         role="alert"
                     >
                         <b>Secret key</b> copied to clipboard!

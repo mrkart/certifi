@@ -121,7 +121,7 @@ const Attributes = () => {
                 </div>
 
               </div> */}
-                                <div className="tab-pane fade show active" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                                <div className="tab-pane fade show active fadein" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
 
                                     <div className='formscroldiv'>
                                         <div className='backgroundblur text-center'>

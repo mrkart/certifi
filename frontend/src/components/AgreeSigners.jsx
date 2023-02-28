@@ -34,7 +34,7 @@ const AgreeSigners = () => {
                             <ul className="nav nav-pills mb-3 justify-content-center" id="ex1" role="tablist">
                                 <li className="nav-item" role="presentation"><a className="nav-link active finished" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab" aria-controls="ex1-pills-1" aria-selected="true">Terms</a></li>
                                 <li className="nav-item" role="presentation"><a className="nav-link active finished" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab" aria-controls="ex1-pills-2" aria-selected="false">Attributes</a></li>
-                                <li className="nav-item" role="presentation"><a className="nav-link active" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab" aria-controls="ex1-pills-3" aria-selected="false">Signers</a></li>
+                                <li className="nav-item" role="presentation"><a className="nav-link active finished" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab" aria-controls="ex1-pills-3" aria-selected="false">Signers</a></li>
                             </ul>
 
                             <div className="tab-content" id="ex1-content">

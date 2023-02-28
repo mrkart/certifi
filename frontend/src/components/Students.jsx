@@ -128,7 +128,7 @@ const Students = () => {
                             <td className='text-center'>
                               <div className='btngrouprht'>
                               <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}>
-                                <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-student/" + user.id}>
+                                <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-user/" + user.id}>
                                   < i data-eva-animation="flip" data-eva="edit-outline"></i>
                                 </NavLink>
                               </OverlayTrigger>

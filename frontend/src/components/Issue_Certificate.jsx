@@ -388,7 +388,7 @@ const Issue_Certificate = () => {
                 </div>
 
                 <div className="col-6 col-md-4 " >
-                <NavLink to="/agreement-contract" >
+                <NavLink to="/create/document" >
                   <div className='ctemp dis-bfore' >
                     <input type={'radio'} id="certselect-2" name='cerselect' />
                     <label className='backgroundblur' htmlFor="certselect-2">

@@ -507,6 +507,7 @@ textarea.form-control{ height: auto; min-height: 150px;}
 .toggle-label {margin-left: 15px;position: relative;top: 2px; display: flex; align-items: center;}
 
 .acboxs table .form-control{ min-width: 200px;}
+.scrolldiv.studentscroll {    max-height: calc(100vh - 140px);  }
 
 @media (min-width: 992px) {
 main {padding-left: 270px;}

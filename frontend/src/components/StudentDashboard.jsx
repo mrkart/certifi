@@ -77,7 +77,7 @@ const StudentDashboard = () => {
 
 
     return (
-        <div className='scrolldiv'>
+        <div className='scrolldiv studentscroll'>
             <div className='row fadein'>
                 <div className='col-md-12 text-start'>
 

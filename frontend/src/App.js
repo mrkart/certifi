@@ -41,7 +41,7 @@ function App() {
             <Admin subElement={ <Dashboard /> } /> 
           </PrivateRoute> 
         } />
-         <Route path="/agreement-contract" element={ 
+         <Route path="/create/document" element={ 
           <PrivateRoute>
             <Admin subElement={ <Agreement_Contract /> } /> 
           </PrivateRoute>

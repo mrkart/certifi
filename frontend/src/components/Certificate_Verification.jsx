@@ -75,13 +75,13 @@ export default function CertificateVerification() {
         eva.replace();
     });
     return (
-        <div className="container-fluid height100per">
-            <div className='row mt-3'>
+        <div className="container-fluid height100per verifycontent">
+            <div className='row mt-3 vcheader'>
             <div div className="col-md-6 offset-md-3 ">
                 <div className='row'>
-                    <div className='col-md-6 text-start'> 
+                    <div className='col-sm-6 text-start'> 
                     <a href="/"><img src={require('../assets/images/logo.png')} alt="certifily Logo" loading="lazy" className='sidebarlogo'/></a></div>
-                    <div className='col-md-6 text-end'>
+                    <div className='col-sm-6 text-end'>
                         <div className='vtlinks'>
                             <a href='' style={{pointerEvents:"none"}}>Verify</a>
                             <a href='' style={{pointerEvents:"none"}}>Login</a>
@@ -106,8 +106,8 @@ export default function CertificateVerification() {
                         <div className="backgroundblur p-3 mb-3">
                             <div className="ctemp height100per mb-0">
                                 <label htmlFor="cert-1" className="w-100">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-4 text-start">
+                                    <div className="row align-items-center vfpdfcont">
+                                        <div className="col-sm-4 text-start">
                                             <p className="mt-3 mb-2">
                                                 Issued on{' '}
                                                 <span className="fw-bold">
@@ -130,12 +130,12 @@ export default function CertificateVerification() {
                                                 </span>
                                             </p>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-sm-4">
                                             <p className="text-center w-100 mb-3">
                                                 <b>{certificateNumber}</b>{' '}
                                             </p>
                                         </div>
-                                        <div className="col-md-4 text-end">
+                                        <div className="col-sm-4 text-end">
                                             {' '}
                                             <p className="text-end w-100 mb-1">
                                                 <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={16} /> NFT #{certificate.nftId}{' '}
@@ -166,7 +166,7 @@ export default function CertificateVerification() {
                                         </div>
                                     </div>
                                     <embed
-                                        className="iframe"
+                                        className="iframe verifyiframe"
                                         src={certificate.certificateHash}
                                     />
                                 </label>

@@ -534,6 +534,8 @@ textarea.form-control{ height: auto; min-height: 150px;}
 .albox-tit input{ padding: 10px 10px; border: none; border-bottom: 1px solid #414141; border-radius: 0px;}
 .albox-tit input:hover, .albox-tit input:focus{border: none; border-bottom:1px solid #005FFF;}
 
+.iframe.verifyiframe {min-height: 700px;}
+
 @media (min-width: 992px) {
 main {padding-left: 270px;}
 .mobile-header{padding: 0px;}
@@ -542,6 +544,7 @@ main {padding-left: 270px;}
 @media (max-width: 1440px) {
 .folder::before{width: 170px;}
 .folder::after{left: 143px;}
+.iframe.verifyiframe {min-height: 550px;}
 }
 @media (max-width: 1366px) {
 html, body, div#root, .dashboard-light-bg, .h100vh, .backgroundblur {height: 100%;}
@@ -562,6 +565,8 @@ nav#sidebarMenu{ background: #fff;}
 .formscroldiv {height: calc(100vh - 320px);}
 .mar-top {margin-top: 0;}
 .sidebarbottom{ margin-top: 0px;}
+.verifycontent .col-md-6.offset-md-3 {width: 100%;margin: 0px;}
+.iframe.verifyiframe {min-height: 700px;}
 }
 
 @media (max-width: 1199px) {
@@ -635,6 +640,9 @@ nav#sidebarMenu{ background: #fff;}
     .mintnft .img img{max-height: 46px;}
     .mintnft .ctemp .backgroundblur{min-height: 160px;}
     .ctemp .img img { max-height: inherit;}
+    .vcheader .col-sm-6{ text-align: center !important;}
+    .vtlinks{ align-items: center; justify-content: center; margin-top: 5px;}
+    .vfpdfcont .col-sm-4, .vfpdfcont .col-sm-4 p{ text-align: center !important; margin-bottom: 15px;}
 }
 
 @media (max-width:530px) {

@@ -2,7 +2,9 @@ import { React, useState, useEffect, useMyCustomStuff } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { putUserDetails, getUserByID, resetUserbyid, resetEdituser } from '../actions/exampleAction';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+
+import ProfileArea from '../components/shared/ProfileArea';
 
 const StudentsEdit = () => {
 
@@ -78,8 +80,19 @@ const StudentsEdit = () => {
       <div className='row '>
         <div className='col-md-12 text-start'>
           <div className=''>
+          <div className='pageheader'>
+              <div className='row mb-3 align-items-center'>
+                <div className='col-md-6'>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/students" className='text-dark d-inline-block'>Users</NavLink> {'>'} Edit Users</h4></div>
+                <div className='col-md-6 text-end'>
+                  <div className='btnwithpro'>                    
+                    <ProfileArea />
+                  </div>
+                </div>
+              </div>
+            </div>         
             <div className='row mb-3 align-items-center'>
-              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Users</a> {'>'} Edit Users</h4></div>
+              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"></h4></div>
               {/* <div className='col-md-6 text-end'>
                 <div className='btngrouprht'>
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
@@ -91,7 +104,7 @@ const StudentsEdit = () => {
             
               <div className='searchform border-none d-block'>
               <form onSubmit={handleSubmit}>
-              <div className='formscroldiv px-3'>
+              <div className='formscroldiv1 px-3'>
               <h6 className='mb-3 fw-bold'>User Details</h6>
                 <div className='row'>
                 <div className='col-md-4'>

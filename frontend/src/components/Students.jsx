@@ -17,6 +17,8 @@ const Students = () => {
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
   const [userlist, setUserlist] = useState([]);
 
+  const [fetched, setFetched] = useState(false)
+
   useEffect(() => {
     dispatch(getUserList(orgID));
   }, []);
@@ -31,6 +33,7 @@ const Students = () => {
       setTimeout(() => {
         dispatch(resetUserlist());
         setUserlist(data);
+        setFetched(true)
       }, 1000);
     }
   }, [fulluserlist]);
@@ -59,9 +62,16 @@ const Students = () => {
               </div>
             </div>
 
-            {userlist.length == 0 ? (
+            {(userlist.length == 0 && !fetched) ? (
               <TableLoader />
-            ) : (
+            ) : (userlist.length == 0 && fetched) ?
+            <div className='tableblur mt-4 fadein'>
+                <div className='row align-items-center'>
+                  <div className='col-12 text-center'>
+                    <span className='text'>User not found</span>
+                  </div>
+                </div>
+              </div> : (
               <div className='tableblur mt-4 fadein'>
                 <div className='searchform pt-0'>
                   <div className='fields'>Search & Filters</div>

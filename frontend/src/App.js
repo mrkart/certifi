@@ -20,6 +20,10 @@ import ClaimFlowAccount from './components/Claim_Flow_Account';
 import StudentsAddEmail from './components/Students_Add_Email';
 import CreateApiToken from './components/Create_Api_Token';
 import CertificateVerification from './components/Certificate_Verification';
+import Agreement_Contract from './components/Agreement_Contract';
+import Attributes from './components/Attributes';
+import AgreeSigners from './components/AgreeSigners';
+
 
 function App() {
   useEffect(() => {
@@ -36,6 +40,21 @@ function App() {
           <PrivateRoute> 
             <Admin subElement={ <Dashboard /> } /> 
           </PrivateRoute> 
+        } />
+         <Route path="/agreement-contract" element={ 
+          <PrivateRoute>
+            <Admin subElement={ <Agreement_Contract /> } /> 
+          </PrivateRoute>
+        } />
+         <Route path="/attributes" element={ 
+          <PrivateRoute>
+            <Admin subElement={ <Attributes/> } /> 
+          </PrivateRoute>
+        } />
+        <Route path="/agreement-signers" element={ 
+          <PrivateRoute>
+            <Admin subElement={ <AgreeSigners/> } /> 
+          </PrivateRoute>
         } />
         <Route path="/students" element={ 
           <PrivateRoute>
@@ -97,6 +116,8 @@ function App() {
             <StudentLayout  subElement={ <StudentsAddEmail /> } /> 
           </PrivateRoute>
         } />
+
+       
         <Route path="*" element={ 
           <PrivateRoute>
             <Admin  subElement={ <PageNotFound /> } /> 

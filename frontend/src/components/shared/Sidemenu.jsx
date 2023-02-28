@@ -163,19 +163,19 @@ const Sidemenu = () => {
               </h2>
               <div id="flush-set" className="accordion-collapse collapse" aria-labelledby="flush-settings" data-mdb-parent="#accordionFlushExampleX">
                 <div className="accordion-body p-0 ps-3">                 
-                  <NavLink to="/members" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink className={({ isActive }) => (isActive ? " list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')} style={{pointerEvents:"none"}}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/users.png')} className=''/></div> <span>Members</span>
                   </NavLink>
 
-                  <NavLink to="/signers" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink className={({ isActive }) => (isActive ? " list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')} style={{pointerEvents:"none"}}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/edit-3.png')} className=''/></div> <span>Signers</span>
                   </NavLink>
 
-                  <NavLink to="/profile" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink className={({ isActive }) => (isActive ? " list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')} style={{pointerEvents:"none"}}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/user.png')} className=''/></div> <span>Profile</span>
                   </NavLink>
 
-                  <NavLink to="/security" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink className={({ isActive }) => (isActive ? " list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')} style={{pointerEvents:"none"}}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/verified.png')} className=''/></div> <span>Security</span>
                   </NavLink>
                 </div>
@@ -199,7 +199,7 @@ const Sidemenu = () => {
               </h2>
               <div id="flush-collapseOneX" className="accordion-collapse collapse" aria-labelledby="flush-headingOneX" data-mdb-parent="#accordionFlushExampleX">
                 <div className="accordion-body p-0 ps-3">                 
-                  <NavLink to="/domains" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink  className={({ isActive }) => (isActive ? "list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')} style={{pointerEvents:"none"}}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/web.png')} className=''/></div> <span>Domains</span>
                   </NavLink>
                   <NavLink to="/create-token" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
@@ -208,7 +208,7 @@ const Sidemenu = () => {
                   <NavLink to="https://api.certifi.ly/api-docs/" target="_blank" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img src={require('../../assets/images/icons/document.png')} className=''/></div><span>API DOCS</span>
                   </NavLink>
-                  <NavLink to="/smart-contract" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink to={`https://flow-view-source.com/testnet/account/${process.env.REACT_APP_CONTRACT_ADDRESS}/contract/Certifily`} target="_blank" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/smart-contracts.png')} className=''/></div> <span>Smart Contract</span>
                   </NavLink>
                  

@@ -114,14 +114,14 @@ const Sidemenu = () => {
               </h2>
               <div id="flush-collapseOneX2" className="accordion-collapse collapse" aria-labelledby="flush-collapseOneX2" data-mdb-parent="#accordionFlushExampleX">
               <div className="accordion-body p-0 ps-3">    
-                 <NavLink to="/students" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                 <NavLink to="/users" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/users.png')} className=''/></div> <span>USERS</span>
                   </NavLink>             
-                  <NavLink to="/add-student" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink to="/add-user" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/plus.png')} className=''/></div> <span>ADD USER</span>
                   </NavLink>
 
-                  <NavLink to="/students-import" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
+                  <NavLink to="/users-import" className={({ isActive }) => (isActive ? "active list-group-item list-group-item-action px-3 py-2 text-uppercase" : 'list-group-item list-group-item-action px-3 py-2 text-uppercase')}>
                     <div className='sidebaricons'><img  src={require('../../assets/images/icons/import.png')} className=''/></div> <span>IMPORT USERS</span>
                   </NavLink>
                 </div>

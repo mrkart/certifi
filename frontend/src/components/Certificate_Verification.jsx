@@ -151,7 +151,7 @@ export default function CertificateVerification() {
                                                         }
                                                     >
                                                         <i data-eva="external-link-outline" data-eva-animation="flip"></i> 
-                                                        <span className='ms-1'>View on ipfs</span>
+                                                        <span className='ms-1'>View on IPFS</span>
                                                     </a>{' '}
                                                 
                                                 <span className="eva-hover d-inline-flex align-items-center text-primary">

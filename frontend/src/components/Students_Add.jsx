@@ -16,7 +16,7 @@ const StudentsAdd = () => {
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
       dispatch(resetAddStudent());
-      navigate("/students");
+      navigate("/users");
     }
   },[addStudentRes]);
 
@@ -82,7 +82,7 @@ const StudentsAdd = () => {
           <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-6'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/students" className='text-dark d-inline-block'>Users</NavLink> {'>'} Add Users</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/users" className='text-dark d-inline-block'>Users</NavLink> {'>'} Add Users</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btnwithpro'>                    
                     <ProfileArea />
@@ -103,25 +103,25 @@ const StudentsAdd = () => {
                     <div className='row'>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Email</label>
+                          <label className='mb-2'>Email *</label>
                           <input name="email" type={'text'} value={email} onChange={handleInputChange} className="form-control" placeholder='Email' />
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Name</label>
+                          <label className='mb-2'>Name *</label>
                           <input name="name" type={'text'}  value={name} onChange={handleInputChange} className="form-control" placeholder='Name' />
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Contact Number</label>
+                          <label className='mb-2'>Contact Number *</label>
                           <input name="number" type={'text'}  value={number} onChange={handleInputChange} className="form-control" placeholder='Contact Number'/>
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Batch</label>
+                          <label className='mb-2'>Batch *</label>
                           <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Batch' />
                         </div>
                       </div>

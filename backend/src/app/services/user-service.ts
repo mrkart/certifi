@@ -137,6 +137,7 @@ export class UserService {
         const user = await UserRepository.findOrgUserById(userId, orgId);
         return {
             email: user.userEmails[0].email,
+            flowAddress: user.flowAddress,
             id: user.id,
             name: user.name,
             organistaions: user.orgRoles

@@ -277,3 +277,24 @@ export function resetAddOwnershipFailed() {
     dispatch({ type: 'ADD_OWNERSHIP_FLOW_ACCOUNT_FAILURE', payload: '' })
   }
 }
+export const removePublicKey = () => { 
+  return (dispatch) => {
+    apiWithToken(localStorage.getItem('accessToken')).delete(`/api/users/self/public-key`)
+      .then((response) => {
+        dispatch({ type: 'REMOVE_PUBLIC_KEY', payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: 'REMOVE_PUBLIC_KEY_FAILURE', payload: error && error.message && error.response.data.message });
+      });
+  };
+};
+export function resetRemovePublickey() {
+  return dispatch => {
+    dispatch({ type: 'REMOVE_PUBLIC_KEY', payload: {} })
+  }
+}
+export function resetRemovePublickeyFailed() {
+  return dispatch => {
+    dispatch({ type: 'REMOVE_PUBLIC_KEY_FAILURE', payload: '' })
+  }
+}

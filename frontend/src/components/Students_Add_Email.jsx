@@ -5,7 +5,7 @@ import { Buffer } from 'buffer'
 // const { getAccount } = require('@onflow/sdk');
 import * as t from "@onflow/types";
 import { useDispatch, useSelector } from 'react-redux';
-import { addOwnershipForAccount, getWalletAddress, resetAddOwnership, resetAddOwnershipFailed } from '../actions/exampleAction';
+import { addOwnershipForAccount, getWalletAddress, removePublicKey, resetAddOwnership, resetAddOwnershipFailed, resetRemovePublickey, resetRemovePublickeyFailed } from '../actions/exampleAction';
 import FullLoader from './shared/FullLoader';
 
 // import * as sdk from "@onflow/sdk"
@@ -21,11 +21,15 @@ const StudentsAddEmail = () => {
   const [verifyOTP, setVerifyOTP] = useState([]);
   const [addSuccess, setAddSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(false)
-  const [infoMessage, setInfoMessage] = useState(false)
+  const [errorMessage,setErrorMessage] = useState(false)
+  const [infoMessage,setInfoMessage] = useState(false)
+  const [failedMessage,setFailedMessage] = useState('')
+  const [successMessage,setSuccessMessage] = useState('')
   const dispatch = useDispatch();
   const ownershipAdded = useSelector(state => state.demoReducer.flowOwnership);
   const ownershipFailed = useSelector(state => state.demoReducer.flowOwnershipFailed);
+  const keyRemoved = useSelector(state => state.demoReducer.removedKey);
+  const keyRemovedFailed = useSelector(state => state.demoReducer.removeKeyFailed);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -101,6 +105,7 @@ const StudentsAddEmail = () => {
       dispatch(resetAddOwnership())
       setIsLoading(false)
       setAddSuccess(true)
+      setSuccessMessage('Ownership added')
       clearTimeout(timeout)
       timeout = setTimeout(() => {
         setAddSuccess(false)
@@ -111,6 +116,7 @@ const StudentsAddEmail = () => {
   useEffect(() => {
     if (ownershipFailed && ownershipFailed.length > 0 && typeof ownershipFailed === 'string') {
       dispatch(resetAddOwnershipFailed())
+      setFailedMessage(ownershipFailed)
       setErrorMessage(true)
       clearTimeout(timeout)
       setIsLoading(false)
@@ -124,33 +130,33 @@ const StudentsAddEmail = () => {
 
   }, [ownershipFailed])
   const removeCustodial = async () => {
-    const removeKeyScript = `
-        transaction(keyId: Int) {
-          prepare(acct: AuthAccount) {
-            acct.keys.revoke(keyIndex:keyId)
-          }
-        }`;
-    try {
-      const blockResponse = await fcl.send([
-        fcl.getBlock(),
-      ])
-      const txId = await fcl.send([
-        fcl.transaction(removeKeyScript),
-        fcl.args([fcl.arg(0, t.Int)]),
-        fcl.proposer(fcl.currentUser().authorization),
-        fcl.authorizations([
-          fcl.currentUser().authorization
-        ]),
-        fcl.payer(fcl.currentUser().authorization),
-        fcl.ref(blockResponse["block"].id),
-        fcl.limit(9999)
-      ]).then(fcl.decode);
-
-      console.log("Transaction ID:", txId);
-    } catch (error) {
-      console.error("Transaction error:", error);
-    }
+    setIsLoading(true)
+    dispatch(removePublicKey())
   }
+  useEffect(() => {
+    if(keyRemoved && keyRemoved.statusCode === 200){
+      setIsLoading(false)
+      dispatch(resetRemovePublickey())
+      setAddSuccess(true)
+      setSuccessMessage('Key Deleted')
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        setAddSuccess(false)
+      },4000)
+    }
+  },[keyRemoved])
+  useEffect(() => {
+    if(keyRemovedFailed && keyRemovedFailed.length > 0 && typeof keyRemovedFailed === 'string'){
+      dispatch(resetRemovePublickeyFailed())
+      setErrorMessage(true)
+      setFailedMessage(keyRemovedFailed)
+      clearTimeout(timeout)
+      setIsLoading(false)
+      timeout = setTimeout(() => {
+        setErrorMessage(false)
+      },4000)
+    }
+  },[keyRemovedFailed])
 
   return (
     <div className='scrolldiv'>
@@ -161,23 +167,23 @@ const StudentsAddEmail = () => {
             <div className='col-md-12 mb-3'>
               {isLoading ? <FullLoader /> : ''}
               <div className='backgroundblur'>
-
-                {addSuccess &&
-                  <div class="alert alert-success text-center col-sm-6 mx-auto py-3" role="alert">
-                    Ownership Added
-                  </div>
-                }
-                {errorMessage &&
-                  <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
-                    Failed to add
-                  </div>
-                }
-                {infoMessage &&
-                  <div class="alert alert-warning text-center col-sm-6 mx-auto py-3" role="alert">
-                    Already added
-                  </div>
-                }
-                
+              
+              {addSuccess &&
+                      <div class="alert alert-success text-center col-sm-6 mx-auto py-3" role="alert">
+                        {successMessage}
+                      </div>
+                    }
+              {errorMessage &&
+                <div class="alert alert-danger text-center col-sm-6 mx-auto py-3" role="alert">
+                  {failedMessage}
+                </div>
+              }
+              {infoMessage &&
+                      <div class="alert alert-warning text-center col-sm-6 mx-auto py-3" role="alert">
+                        Already added
+                      </div>
+                    }
+                {/* <h6 className="fw-bolder text-black text-uppercase">Email Accounts</h6> */}
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className='col-md-4'>

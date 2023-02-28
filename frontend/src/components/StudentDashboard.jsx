@@ -295,7 +295,7 @@ const StudentDashboard = () => {
                                                             <p className=''>by {user.org['name']}</p>
                                                         </div>
                                                         <div className='col-md-5 text-end'>
-                                                            <span className='eva-hover d-inline-flex align-items-center' style={buttonStyle} onClick={() => shareOnLinkedIn(user.certificateHash)}><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
+                                                            <span className='eva-hover d-inline-flex align-items-center' style={{color:"grey"}}><i className='mr-2' data-eva="share-outline" data-eva-animation="flip"></i> Share</span>
                                                             <span className='ms-2 eva-hover d-inline-flex align-items-center' style={buttonStyle} onClick={() => downloadOnClick(user.certificateHash, user.nftId)}><i className='mr-2' data-eva="code-download-outline" data-eva-animation="flip"></i> Download</span>
                                                         </div>
                                                     </div>

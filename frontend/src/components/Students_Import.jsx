@@ -16,12 +16,12 @@ const StudentsImport = () => {
           <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-4'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0">Import Students</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0">Import Users</h4></div>
                 <div className='col-md-8 text-end'>
                   <div className='btnwithpro'>
                     <div className='btngrouprht'>
-                      <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</NavLink>
-                      <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</NavLink>
+                      <NavLink to="/add-student" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
+                      <NavLink to="/students-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>
                       {/* <a href='/add-student' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a> 
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
                   */}
@@ -50,11 +50,11 @@ const StudentsImport = () => {
             <div className='greencont'>Map imported data</div>
             <div className='mapimportdata'>
               <div className='data'>
-                <p>Student email</p>
+                <p>User email</p>
                 <h5><a href="" className='text-primary'>John@gmail.com</a></h5>
               </div>
               <div className='data'>
-                <p>Student ID</p>
+                <p>User ID</p>
                 <h5><a href="" className='text-primary'>2</a></h5>
               </div>
               <div className='data'>

@@ -14,6 +14,7 @@ const StudentsEdit = () => {
   const [name, setName] = useState('');
   const [batch, setBatch] = useState('');
   const [number, setNumber] = useState('');
+  const [address, setAddress] = useState('')
   // console.log(params.studentId);
 
   const studentID = params.studentId;
@@ -38,6 +39,7 @@ const StudentsEdit = () => {
       setName(userbyid.data.orgUser.name);
       setBatch(userbyid.data.orgUser.slot[0].name);
       setNumber(userbyid.data.orgUser.phone);
+      setAddress(userbyid.data.orgUser.flowAddress)
     }
   },[userbyid]);
 
@@ -77,7 +79,7 @@ const StudentsEdit = () => {
         <div className='col-md-12 text-start'>
           <div className=''>
             <div className='row mb-3 align-items-center'>
-              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Students</a> {'>'} Edit Students</h4></div>
+              <div className='col-md-12'><h4 className="fw-bolder text-black text-uppercase mb-0"><a href="" className='text-dark'>Users</a> {'>'} Edit Users</h4></div>
               {/* <div className='col-md-6 text-end'>
                 <div className='btngrouprht'>
                   <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a>
@@ -90,11 +92,11 @@ const StudentsEdit = () => {
               <div className='searchform border-none d-block'>
               <form onSubmit={handleSubmit}>
               <div className='formscroldiv px-3'>
-              <h6 className='mb-3 fw-bold'>Student Details</h6>
+              <h6 className='mb-3 fw-bold'>User Details</h6>
                 <div className='row'>
                 <div className='col-md-4'>
                     <div className='form-group'>
-                      <label className='mb-2'>Student ID</label>
+                      <label className='mb-2'>User ID</label>
                       <input name="studentid" onChange={handleInputChange} value={studentID} type={'text'} className="form-control" placeholder='Email' disabled />
                     </div>
                   </div>
@@ -123,7 +125,12 @@ const StudentsEdit = () => {
                       <input name="batch" onChange={handleInputChange} value={batch} type={'text'} className="form-control" placeholder='Batch' disabled/>
                     </div>
                   </div>
-
+                  <div className='col-md-4'>
+                    <div className='form-group'>
+                      <label className='mb-2'>Flow Address</label>
+                      <input name="batch" onChange={handleInputChange} value={address} type={'text'} className="form-control" placeholder='Address' disabled/>
+                    </div>
+                  </div>
                   </div>
                   {/* <h6 className='my-3 fw-bold'>College Details</h6>
                   <div className='row'>

@@ -78,7 +78,7 @@ const StudentsAdd = () => {
           <div className='pageheader'>
               <div className='row mb-3 align-items-center'>
                 <div className='col-md-6'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0">Add Students</h4></div>
+                  <h4 className="fw-bolder text-black text-uppercase mb-0">Add Users</h4></div>
                 <div className='col-md-6 text-end'>
                   <div className='btnwithpro'>                    
                     <ProfileArea />
@@ -95,7 +95,7 @@ const StudentsAdd = () => {
                         {erroMessage}
                       </div>
                     }
-                    <h6 className='mb-3 fw-bold'>Student Details</h6>
+                    <h6 className='mb-3 fw-bold'>User Details</h6>
                     <div className='row'>
                       <div className='col-md-4'>
                         <div className='form-group'>
@@ -160,7 +160,7 @@ const StudentsAdd = () => {
                   <div className='row align-items-center'>                  
                     <div className='col-12 text-center'>
                       <div className='btngrouprht'>
-                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create Student
+                        <button type="submit" className='btn btn-primary btn-icon icon-rht'>Create User
                           {isLoading ? <span className='loaderbtn fadein'><img src={require('../assets/images/certifi-loader.gif')} loading="lazy" /></span>: ''}
                         </button>
                       </div>

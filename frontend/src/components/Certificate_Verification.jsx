@@ -83,9 +83,9 @@ export default function CertificateVerification() {
                     <a href="/"><img src={require('../assets/images/logo.png')} alt="certifily Logo" loading="lazy" className='sidebarlogo'/></a></div>
                     <div className='col-md-6 text-end'>
                         <div className='vtlinks'>
-                            <a href=''>Verify</a>
-                            <a href='/login'>Login</a>
-                            <a href='/register'>Register</a>
+                            <a href='' style={{pointerEvents:"none"}}>Verify</a>
+                            <a href='' style={{pointerEvents:"none"}}>Login</a>
+                            <a href='' style={{pointerEvents:"none"}}>Register</a>
                         </div>
                     </div>
                 </div>
@@ -202,23 +202,29 @@ export function VerificationFrom({
                             className="form-control"
                             placeholder="Certificate number"
                         />
-                        <button
+                        
+                        {isLoading ? (
+                             <button
+                             type="button"
+                             className="btn btn-light btn-icon btn-disabled bg-white"
+                         >
+                                <span className="loaderbtn input-group-text m-0">
+                                    <img
+                                        src={require('../assets/images/certifi-loader.gif')}
+                                        loading="lazy"
+                                        alt="Loading..." width={24}
+                                    />
+                                </span>
+                                </button>
+                            ) : (
+                                <button
                             type="submit"
                             className="btn btn-primary btn-icon"
                         >
                             Verify
-                            {isLoading ? (
-                                <span className="loaderbtn fadein">
-                                    <img
-                                        src={require('../assets/images/certifi-loader.gif')}
-                                        loading="lazy"
-                                        alt="Loading..."
-                                    />
-                                </span>
-                            ) : (
-                                ''
-                            )}
+                            
                         </button>
+                            )}
                     </div>
                 </div>
                 {erroMessage && (

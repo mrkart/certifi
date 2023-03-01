@@ -33,7 +33,7 @@ const StudentsAdd = () => {
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [slot, setSlot] = useState('');
+  const [slot, setSlot] = useState('2023');
   const [number, setNumber] = useState('');
   const [erroMessage,setErroMessage] = useState("");
   const [isLoading,setIsLoading] = useState(false)
@@ -122,7 +122,7 @@ const StudentsAdd = () => {
                       <div className='col-md-4'>
                         <div className='form-group'>
                           <label className='mb-2'>Batch *</label>
-                          <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Batch' />
+                          <input name="slot" type={'text'} value={slot} disabled onChange={handleInputChange} className="form-control" placeholder='Batch' />
                         </div>
                       </div>
                     </div>

@@ -117,7 +117,7 @@ export class OrgUserInviationMail {
                 <p>Welcome to Certifi.ly, Easy way to collect & store your professional certificates, documents, memberships, cards & tickets as NFTs on Flow blockchain.
                 </p>
                 <p>
-                Opticore Engineering invited you to use certifi.ly to access your professional NFT documents from them and around the world.
+                ${this.request.orgName} invited you to use certifi.ly to access your professional NFT documents from them and around the world.
                 </p>
                 <p>You have been invited to Certifi.ly by ${this.request.orgName}.</p>
                 <p>Credentials</p>

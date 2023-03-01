@@ -138,7 +138,7 @@ export default function CertificateVerification() {
                                         <div className="col-sm-4 text-end">
                                             {' '}
                                             <p className="text-end w-100 mb-1">
-                                                <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={16} /> NFT #{certificate.nftId}{' '}
+                                                <img src={require('../assets/images/icons/Certifily-icon.png')} loading="lazy" width={16} /> <a href={"https://testnet.flowview.app/account/"+certificate.user.flowAddress+"/collection/CertifilyNFTCollection/"+certificate.nftId} target="_blank">NFT #{certificate.nftId}</a>{' '}
                                                 <span className="badge badge-success ms-2 text-uppercase">
                                                     Verified
                                                 </span>

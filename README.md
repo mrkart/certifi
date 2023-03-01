@@ -22,20 +22,21 @@ kart@certifi.ly
 Pass:
 YK93SWZ4V2CRJ6E5
 
-### Feb 20 to Feb 28 Sprint
+### Feb 20 to Mar 1 Sprint
 
 1. NFT Smart Contract
-2. Walletless Onboarding
-3. Certificate type document minting workflow
-4. Backend / Swagger API
-5. Frontend
-6. Insitution portal
-7. User portal
+2. Walletless Onboarding, Claim Child Account Access & Revoke Hybrid Custodial
+3. Certificate type NFT mint & verification complete workflow
+4. Document type NFT form UI design
+4. Backend / Swagger API, API Key page
+5. Frontend / Public Certificate Verification Page
+6. Insitution portal (Demo institution account only. Public registration not available)
+7. User portal (Dynamic credentials created within institution portal)
 
-**All the above are fully done from scracth only during this sprint**
+**All the above features are fully done from scracth during this hackathon sprint period only**
 
 **Previous work disclosures** 
-- Figma static designs for frontend alone designed before the hackathon sprint. 
+- Figma static designs for frontend & presentation deck are designed before the hackathon sprint. 
 * Logo of certifily and domain was registered before the hackathon sprint. 
 + You may notice GITHUB says 6 contributors, That is wrong, Actually our fullstack dev corrected a typo in his github username then it started showing him as two contributors. Shanmugamsundaram & Shanmuga-Sundaram. 
 
@@ -47,11 +48,15 @@ Demo User: You just create a user inside institution login & you will receive cr
 ## Tech Stack
 Blockchain : **Flow**
 
+Smart Contract: **Cadence**
+
+Web3       : **FCL**
+
 Frontend   : **React JS**
 
 Backend    : **node JS**
 
-API        : **Swagger**
+API        : **Swagger UI**
 
 
 ## Team

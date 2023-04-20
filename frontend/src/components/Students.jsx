@@ -1,26 +1,26 @@
 import { React, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { getUserList, resetUserlist } from '../actions/exampleAction';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { getUserList, resetUserlist, resetUserlistfailed } from '../actions/exampleAction';
 import { useDispatch, useSelector } from 'react-redux';
 import TableLoader from './shared/TableLoader';
 import * as eva from 'eva-icons';
-import ProfileArea from '../components/shared/ProfileArea';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltipb from 'react-bootstrap/Tooltip';
 
 const Students = () => {
 
   const dispatch = useDispatch();
-  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
-  let orgID = userprofile.organistaions[0]?.id;
+  const navigate = useNavigate()
 
   const fulluserlist = useSelector(state => state.demoReducer.userlist);
+  const faileduserlist = useSelector(state => state.demoReducer.userListFailed);
+
   const [userlist, setUserlist] = useState([]);
 
   const [fetched, setFetched] = useState(false)
 
   useEffect(() => {
-    dispatch(getUserList(orgID));
+    dispatch(getUserList());
   }, []);
   useEffect(() => {
     eva.replace();
@@ -29,7 +29,6 @@ const Students = () => {
   useEffect(() => {
     if (fulluserlist.statusCode == 200 && fulluserlist.data.orgUsers) {
       let data = fulluserlist.data.orgUsers;
-      console.log(data);
       setTimeout(() => {
         dispatch(resetUserlist());
         setUserlist(data);
@@ -37,30 +36,21 @@ const Students = () => {
       }, 1000);
     }
   }, [fulluserlist]);
+  useEffect(() => {
+    if (faileduserlist && faileduserlist !== '' && faileduserlist !== undefined) {
+      dispatch(resetUserlistfailed())
+      setFetched(true)
+      if(faileduserlist.statusCode === 403){
+        navigate('/login')
+      }
+      
+    }
+  }, [faileduserlist]);
 
   return (
-    <div className='scrolldiv1 pb-3'>
-      <div className='row '>
-        <div className='col-md-12 text-start'>
+  
           <div className=''>
-            <div className='pageheader'>
-              <div className='row mb-3 align-items-center'>
-                <div className='col-md-4'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0">Users</h4></div>
-                <div className='col-md-8 text-end'>
-                  <div className='btnwithpro'>
-                    <div className='btngrouprht'>
-                      <NavLink to="/add-user" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="plus-outline"></i> Add users</NavLink>
-                      <NavLink to="/users-import" className="btn btn-primary btn-icon">< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import users</NavLink>
-                      {/* <a href='/add-student' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="plus-outline"></i> Add students</a> 
-                  <a href='' className='btn btn-primary btn-icon'>< i data-eva-animation="flip" data-eva="code-download-outline"></i> Import students</a>
-                  */}
-                    </div>
-                    <ProfileArea />
-                  </div>
-                </div>
-              </div>
-            </div>
+           
 
             {(userlist.length == 0 && !fetched) ? (
               <TableLoader />
@@ -112,23 +102,23 @@ const Students = () => {
                         </td> */}
                             <td>
                               <div className="d-flex align-items-center">
-                                {user.id}
+                                {user.uid}
                               </div>
                             </td>
                             <td>
                               <span className="text-dark">{user.email}</span>
                             </td>
                             <td>
-                              <p className="fw-normal mb-1">{user.name}</p>
+                              <p className="fw-normal mb-1">{(user && user.name) ? user.name : '-'}</p>
                             </td>
-                            <td> {user.slot[0].name} </td>
+                            <td> {(user && user.slot && user.slot[0])? user.slot[0].name : '-'} </td>
                             <td>
                               <span className="text-success">Approved</span>
                             </td>
                             <td className='text-center'>
                               <div className='btngrouprht'>
                               <OverlayTrigger key={'bottom'} placement={'bottom'} overlay={ <Tooltipb id="tooltip-bottom">Edit</Tooltipb>}>
-                                <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-user/" + user.id}>
+                                <NavLink className='btn btn-outline-primary text-primary btn-sm btn-action' to={"/edit-user/" + user.uid}>
                                   < i data-eva-animation="flip" data-eva="edit-outline"></i>
                                 </NavLink>
                               </OverlayTrigger>
@@ -139,6 +129,8 @@ const Students = () => {
                             </td>
                           </tr>
                         ))}
+                        
+                      
                         {/* 
                   <tr>
                     <td>
@@ -269,15 +261,7 @@ const Students = () => {
               </div>
             )}
           </div>
-        </div>
-        {/* <div className='col-md-2'>
-          <div className="card light-blur h-100">
-            <p className="card-text mb-1 ccondi mt-4">Sample</p>
-            <p className=" cpartitle">Sample text</p>
-          </div>
-        </div> */}
-      </div>
-    </div>
+       
   );
 }
 

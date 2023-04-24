@@ -1,10 +1,10 @@
-import { React, useState, useEffect, useMyCustomStuff } from 'react';
-import { Tooltip, ResponsiveContainer } from 'recharts';
+import { React, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postCreateStudent, resetAddStudent, resetAddStudentFailed } from '../actions/exampleAction';
-import { useNavigate, NavLink } from "react-router-dom";
-import ProfileArea from '../components/shared/ProfileArea';
-
+import { commonError, commonSuccess, postCreateStudent, resetAddStudent, resetAddStudentFailed } from '../actions/exampleAction';
+import { useNavigate } from "react-router-dom";
+import { getOrgId } from '../helpers/authData';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 const StudentsAdd = () => {
 
   const dispatch = useDispatch();
@@ -16,55 +16,87 @@ const StudentsAdd = () => {
   useEffect(() => {
     if(addStudentRes.statusCode == 200){
       dispatch(resetAddStudent());
+      dispatch(commonSuccess("Added successfully"))
       navigate("/users");
     }
   },[addStudentRes]);
 
   useEffect(() => {
-    if(addNewStudentFailed && typeof addNewStudentFailed === 'string' && addNewStudentFailed.length > 0){
+    if(addNewStudentFailed && addNewStudentFailed.statusCode){
+      console.log(addNewStudentFailed)
       dispatch(resetAddStudentFailed());
       setIsLoading(false);
-      setErroMessage(addNewStudentFailed);
+      if(addNewStudentFailed.statusCode === 403){
+        navigate('/login')
+      }else if(addNewStudentFailed 
+        && addNewStudentFailed.data 
+        && addNewStudentFailed.data[0] 
+        && addNewStudentFailed.data[0][0] 
+        && typeof addNewStudentFailed.data[0][0] === 'string'){
+          dispatch(commonError(addNewStudentFailed.data[0][0]))
+
+      }else if(addNewStudentFailed && addNewStudentFailed.message){
+        // setErroMessage(addNewStudentFailed.message);
+        dispatch(commonError(addNewStudentFailed.message))
+
+      }else{
+        // setErroMessage("Unhandled error occured")
+        dispatch(commonError("Unhandled error occured"))
+
+      }
+      
     }
   },[addNewStudentFailed]);
 
-  let userprofile = JSON.parse(localStorage.getItem('userprofile'));
-  let orgID = userprofile.organistaions[0]?.id;
+  let orgID = getOrgId();
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [slot, setSlot] = useState('2023');
+  const [slot, setSlot] = useState('');
   const [number, setNumber] = useState('');
   const [erroMessage,setErroMessage] = useState("");
   const [isLoading,setIsLoading] = useState(false)
-
+  const [isValidPhnNo,setIsValidPhnNo] = useState(false)
   const handleSubmit = (event) => {
     setErroMessage("");
     event.preventDefault();
-    const formData = { email, name, slot, number };
+    const formData = { email, name, slot, number, isValidPhnNo };
     console.log(formData);
-    if(!formData.email || !formData.name || !formData.number || !formData.slot){
-      setErroMessage("Please fill out all below fields");
-      clearTimeout(timeout);
-      timeout = setTimeout(()=>{
-        setErroMessage("")
-    },4000)
+    if(!formData.email || !formData.name || !formData.slot){
+      dispatch(commonError("Please fill out all below fields"))
+      // setErroMessage("Please fill out all below fields");
+    //   clearTimeout(timeout);
+    //   timeout = setTimeout(()=>{
+    //     setErroMessage("")
+    // },4000)
       return;
     }
-    setIsLoading(true);
     let data = {
       "email": formData.email,
       "name": formData.name,
-      "phone": formData.number,
       "slotName": formData.slot
     }
-    dispatch(postCreateStudent(data,orgID));
+    if(formData.number){
+      if(isValidPhnNo){
+        setIsLoading(true);
+        data["phone"] = `+${formData.number}`
+        dispatch(postCreateStudent(data,orgID));
+      }else{
+        // setErroMessage("Please fill valid phone number")
+        dispatch(commonError("Please fill valid phone number"))
+      }
+    }else{
+      setIsLoading(true);
+      dispatch(postCreateStudent(data,orgID));
+    }
+    
+    
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === 'email') {
-      setEmail(value);
+      setEmail(value.toLowerCase());
     } else if (name === 'name') {
       setName(value);
     } else if (name === 'slot') {
@@ -73,32 +105,33 @@ const StudentsAdd = () => {
       setNumber(value);
     }
   };
-
+  const isNumbervalid = (value,country) => {
+    if (value.match(/12345/)) {
+      setIsValidPhnNo(false)
+      return 'Invalid value: '+value+', '+country.name;
+  } else if (value.match(/1234/)) {
+    setIsValidPhnNo(false)
+       return false
+  } else {
+    setIsValidPhnNo(true)
+      return true;
+  }
+  }
   return (
     <div className='scrolldiv1'>
       <div className='row '>
         <div className='col-md-12 text-start'>
           <div className=''>
-          <div className='pageheader'>
-              <div className='row mb-3 align-items-center'>
-                <div className='col-md-6'>
-                  <h4 className="fw-bolder text-black text-uppercase mb-0"><NavLink to="/users" className='text-dark d-inline-block'>Users</NavLink> {'>'} Add Users</h4></div>
-                <div className='col-md-6 text-end'>
-                  <div className='btnwithpro'>                    
-                    <ProfileArea />
-                  </div>
-                </div>
-              </div>
-            </div>            
+                    
             <div className='backgroundblur'>
               <div className='searchform border-none d-block'>
                 <form onSubmit={handleSubmit}>
                   <div className='formscroldiv1 px-3'>
-                    {erroMessage &&
-                      <div class="alert alert-danger text-center py-3 fade show fadein alert-top" role="alert">
+                    {/* {erroMessage &&
+                      <div className="alert alert-danger text-center py-3 fade show fadein alert-top" role="alert">
                         {erroMessage}
                       </div>
-                    }
+                    } */}
                     <h6 className='mb-3 fw-bold'>User Details</h6>
                     <div className='row'>
                       <div className='col-md-4'>
@@ -115,14 +148,21 @@ const StudentsAdd = () => {
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
-                          <label className='mb-2'>Contact Number *</label>
-                          <input name="number" type={'text'}  value={number} onChange={handleInputChange} className="form-control" placeholder='Contact Number'/>
+                          <label className='mb-2'>Contact Number</label>
+                          <PhoneInput
+                              value={number}
+                              onChange={phone => setNumber(phone)}
+                              placeholder="Contact Number"
+                              inputClass="form-control"
+                             
+                              isValid={(value, country) => isNumbervalid(value, country)}
+                            />
                         </div>
                       </div>
                       <div className='col-md-4'>
                         <div className='form-group'>
                           <label className='mb-2'>Batch *</label>
-                          <input name="slot" type={'text'} value={slot} disabled onChange={handleInputChange} className="form-control" placeholder='Batch' />
+                          <input name="slot" type={'text'} value={slot} onChange={handleInputChange} className="form-control" placeholder='Batch' />
                         </div>
                       </div>
                     </div>
@@ -134,7 +174,6 @@ const StudentsAdd = () => {
                       <input type={'text'} className="form-control" placeholder='College Name' />
                     </div>
                   </div>
-
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Batch</label>
@@ -146,7 +185,6 @@ const StudentsAdd = () => {
                           </select>
                     </div>
                   </div>
-
                   <div className='col-md-4'>
                     <div className='form-group'>
                       <label className='mb-2'>Department</label>
